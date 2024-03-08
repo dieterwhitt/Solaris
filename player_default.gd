@@ -69,6 +69,3 @@ func update_animation():
 		$AnimationTree.set('parameters/conditions/swinging', false)
 		$AnimationTree.set('parameters/conditions/heavy', false)
 		$AnimationTree.set('parameters/run-idle/blend_position', direction)
-
-func test_print():
-	print('testing')

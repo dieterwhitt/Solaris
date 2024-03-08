@@ -1,5 +1,2 @@
-res://player_default.tscn
-res://player_default.gd
 res://world.tscn
-res://block.tscn
-res://tile_map.tscn
+res://player_default.gd
