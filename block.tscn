@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://pv2xlt2jqg1y"]
+
+[ext_resource type="Texture2D" uid="uid://crjhit5la2cuc" path="res://NanoNature/tileset.png" id="1_5e3ay"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2tjds"]
+size = Vector2(8, 8)
+
+[node name="Block" type="StaticBody2D"]
+position = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5e3ay")
+region_enabled = true
+region_rect = Rect2(9, 2.08165e-12, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2tjds")

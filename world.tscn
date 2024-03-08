@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccf8uxhg0toqp"]
+
+[ext_resource type="Texture2D" uid="uid://dicpn63thecj8" path="res://finn-sketch1.png" id="1_yrr5r"]
+[ext_resource type="PackedScene" uid="uid://7f2bio20uoel" path="res://player_default.tscn" id="2_rgnqu"]
+[ext_resource type="PackedScene" uid="uid://3w1xvg136m3q" path="res://tile_map.tscn" id="2_tc622"]
+
+[node name="World" type="Node2D"]
+
+[node name="Finn-sketch1" type="Sprite2D" parent="."]
+position = Vector2(128, 88)
+texture = ExtResource("1_yrr5r")
+
+[node name="TileMap" parent="." instance=ExtResource("2_tc622")]
+position = Vector2(-8, 0)
+
+[node name="Player_Default" parent="." instance=ExtResource("2_rgnqu")]
+position = Vector2(20, 40)
