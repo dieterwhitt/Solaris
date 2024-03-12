@@ -50,7 +50,7 @@ func apply_gravity(delta):
 	# apply the down gravity multiplier if can jump is false and are on the way down
 	# i.e the user already jumped and is now falling
 	var down_multiplier = 1
-	if not can_jump:
+	if not can_jump and velocity.y > 0:
 		down_multiplier = MoveData.DOWN_MULTIPLIER
 	
 	if not on_floor and velocity.y < MoveData.TERMINAL_Y:
