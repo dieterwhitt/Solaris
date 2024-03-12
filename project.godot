@@ -58,6 +58,10 @@ ui_ability={
 ]
 }
 
+[physics]
+
+2d/default_gravity=2.08165e-12
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

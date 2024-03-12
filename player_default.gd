@@ -2,102 +2,48 @@ extends CharacterBody2D
 # prototype default character controller
 # player collision layer on layer 2 to avoid collisions with clone (layer 3)
 
-const SPEED : float = 70.0
-const JUMP_VELOCITY : float = -300.0
-var direction : float = 0.0
-var swinging : bool = false
-var heavy : bool = false
-var ability_active : bool = false
+@export var MoveData = preload('res://default_player_data.gd').new()
 
-# clone scene
-# consideration: singletons (autoload) for global variables instead
-# or godot signals
-var clone = preload('res://player_ability.tscn')
-var clone_instance = clone.instantiate()
+# after leaving the ground (not from jumping), increase the coyote value
+# then decrease by 1 for each subsequent frame until 0
+# if the player is in the air with coyote > 0, 
+# the player can jump even though they are not on the ground
+var current_coyote : int = 0
+# when jumping in air, increase jump buffer
+# then decrease it by 1 for each subsequent frame until 0
+# then if the player is on the ground with the timer > 0,
+# jump even if the jump key was not pressed in that frame
+var current_jump_buffer : int = 0
+var on_floor : bool = false
 
+
+# runs upon character instantiation
 func _ready():
-	print('charcter created')
-	$AnimationTree.active = true
+	pass
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+# runs every physics frame
+# for updating physics
 func _physics_process(delta):
-	apply_gravity(delta)
-	ability()
-	
-	if ability_active:
-		direction = 0
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	else:
-		# Handle jump.
-		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
-		
-		# handle swing animation
-		swinging = Input.is_action_just_pressed("ui_attack")
-		heavy = Input.is_action_just_pressed("ui_heavy")
-		
-		# Get the input direction and handle the movement/deceleration.
-		# As good practice, you should replace UI actions with custom gameplay actions.
-		direction = Input.get_axis("ui_left", "ui_right")
-		if direction:
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-	
-	update_animation()
-	flip()
-	
-	move_and_slide()
+	# pre calculate on floor
+	on_floor = is_on_floor()
 
-func ability():
-	# ability switch
-	if Input.is_action_just_pressed("ui_ability"):
-		if ability_active:
-			# finishing ability:
-			# teleport player to clone and delete clone
-			set_global_position(clone_instance.get_global_position())
-			get_parent().remove_child(clone_instance)
-			print('teleporting to clone')
-		else:
-			# starting ability:
-			# summon clone at player's position
-			# sibling since adding a child makes the character body's interfere weirdly
-			add_sibling(clone_instance)
-			clone_instance.set_global_position(get_global_position())
-			print('summoning clone')
-		# switch ability status
-		ability_active = not ability_active
+func apply_gravity(delta, on_floor):
+	# apply gravity if the player is in the air and 
+	# below terminal velocity
+	if not is_on_floor() and velocity.y < MoveData.TERMINAL_Y:
+		velocity.y += MoveData.GRAVITY
 
-func apply_gravity(delta):
-	# Add the gravity
-	if not is_on_floor():
-		self.velocity.y += gravity * delta
+func apply_input_accel(delta):
+	pass
+	
+func apply_jump():
+	pass
+	
+func apply_friction(delta):
+	pass
 
-func flip():
-	if direction > 0:
-		$Sprite2D.flip_h = false
-	elif direction < 0:
-		$Sprite2D.flip_h = true
-		
-func update_animation():
-	if swinging:
-		$AnimationTree.set('parameters/conditions/swinging', true)
-		$AnimationTree.set('parameters/conditions/jumping', false)
-		swinging = false
-	elif heavy:
-		$AnimationTree.set('parameters/conditions/heavy', true)
-		$AnimationTree.set('parameters/conditions/jumping', false)
-		heavy = false
-	elif not is_on_floor():
-		$AnimationTree.set('parameters/conditions/swinging', false)
-		$AnimationTree.set('parameters/conditions/heavy', false)
-		$AnimationTree.set('parameters/conditions/grounded', false)
-		$AnimationTree.set('parameters/conditions/jumping', true)
-	else:
-		$AnimationTree.set('parameters/conditions/grounded', true)
-		$AnimationTree.set('parameters/conditions/jumping', false)
-		$AnimationTree.set('parameters/conditions/swinging', false)
-		$AnimationTree.set('parameters/conditions/heavy', false)
-		$AnimationTree.set('parameters/run-idle/blend_position', direction)
+
+# runs every frame
+# for updating animations
+func _process(delta):
+	pass
