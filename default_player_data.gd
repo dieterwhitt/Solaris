@@ -21,6 +21,6 @@ extends Resource
 @export var TERMINAL_Y : float = 1200
 # max velocity reachable by input alone
 @export var INPUT_TERMINAL : float = 150.0 
-# coyote and jump buffer frames
+# number of coyote and jump buffer frames
 @export var COYOTE_TIME : int = 20
 @export var JUMP_BUFFER : int = 20

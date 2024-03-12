@@ -39,7 +39,7 @@ func _physics_process(delta):
 	
 	apply_gravity(delta)
 	apply_x_accel(delta)
-	
+
 	apply_jump()
 	
 	move_and_slide()
@@ -127,10 +127,10 @@ func apply_jump():
 	# jump if the user can jump and the user just pressed space and is 
 	# still on the floor in coyote time
 	if can_jump and Input.is_action_just_pressed("jump") and (on_floor or current_coyote > 0):
-		velocity.y += MoveData.JUMP_VELOCITY
+		velocity.y = MoveData.JUMP_VELOCITY
 		can_jump = false
 	elif on_floor and current_jump_buffer > 0:
-		velocity.y += MoveData.JUMP_VELOCITY
+		velocity.y = MoveData.JUMP_VELOCITY
 		can_jump = false
 
 # runs every frame
