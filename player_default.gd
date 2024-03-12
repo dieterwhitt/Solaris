@@ -2,19 +2,25 @@ extends CharacterBody2D
 # prototype default character controller
 # player collision layer on layer 2 to avoid collisions with clone (layer 3)
 
-@export var MoveData = preload('res://default_player_data.gd').new()
+@export var MoveData = preload("res://default_player_data.gd").new()
 
 # after leaving the ground (not from jumping), increase the coyote value
 # then decrease by 1 for each subsequent frame until 0
 # if the player is in the air with coyote > 0, 
 # the player can jump even though they are not on the ground
 var current_coyote : int = 0
+# variable for if jump is still valid
+var can_jump : bool = true
 # when jumping in air, increase jump buffer
 # then decrease it by 1 for each subsequent frame until 0
 # then if the player is on the ground with the timer > 0,
 # jump even if the jump key was not pressed in that frame
 var current_jump_buffer : int = 0
+
 var on_floor : bool = false
+# direction: -1, 0, 1
+# represents the CURRENT input direction (left, none, right)
+var direction : int = 0
 
 
 # runs upon character instantiation
@@ -24,24 +30,90 @@ func _ready():
 # runs every physics frame
 # for updating physics
 func _physics_process(delta):
+	# in general: multiply by delta whenever velocity changes, except jump
+	# velocity means 'how much to move the character next frame'
+	
 	# pre calculate on floor
 	on_floor = is_on_floor()
+	# can jump when on the floor or coyote timer > 0
+	if not on_floor and current_coyote == 0:
+		can_jump = false
+	else:
+		can_jump = true
+	
+	
+	apply_gravity(delta)
+	apply_x_accel(delta)
+	
+	update_coyote()
+	update_buffer()
+	apply_jump()
+	
+	move_and_slide()
 
-func apply_gravity(delta, on_floor):
+func apply_gravity(delta):
 	# apply gravity if the player is in the air and 
 	# below terminal velocity
-	if not is_on_floor() and velocity.y < MoveData.TERMINAL_Y:
-		velocity.y += MoveData.GRAVITY
+	# apply the down gravity multiplier if can jump is false and are on the way down
+	# i.e the user already jumped and is now falling
+	var down_multiplier = 1
+	if not can_jump:
+		down_multiplier = MoveData.DOWN_MULTIPLIER
+	
+	if not on_floor and velocity.y < MoveData.TERMINAL_Y:
+		velocity.y += MoveData.GRAVITY * down_multiplier * delta
 
-func apply_input_accel(delta):
-	pass
+# handles logic for when to accelerate/decelerate player
+func apply_x_accel(delta):
+	# -1, 0, 1
+	direction = Input.get_axis("left", "right")
+	# before adjusting velocity determine air accleration multiplier
 	
-func apply_jump():
-	pass
+	# logic: 
+	# above input terminal: apply friction, ignore input
+	# below or equal input terminal : apply player input, cap at input terminal
+	# apply friction if no input
+	# cap at total terminal
 	
+	if abs(velocity.x) > MoveData.INPUT_TERMINAL or direction == 0:
+		apply_friction(delta)
+	else:
+		apply_input(delta)
+	# cap at total x terminal
+	if velocity.x < -1 * MoveData.TERMINAL_X:
+		velocity.x = -1 * MoveData.TERMINAL_X
+	elif velocity.x > MoveData.TERMINAL_X:
+		velocity.x = MoveData.TERMINAL_X
+		
+# moves the player in the current direction
+func apply_input(delta):
+	var multiplier = 1
+	if not on_floor:
+		multiplier = MoveData.AIR_ACCEL_MULTIPLIER
+	# adjust velocity and cap at input velocity
+	velocity.x += direction * MoveData.ACCELERATION * multiplier * delta
+	# cap at input terminal
+	if velocity.x < -1 * MoveData.INPUT_TERMINAL:
+		velocity.x = -1 * MoveData.INPUT_TERMINAL
+	elif velocity.x > MoveData.INPUT_TERMINAL:
+		velocity.x = MoveData.INPUT_TERMINAL
+
 func apply_friction(delta):
+	var multiplier = 1
+	if not on_floor:
+		multiplier = MoveData.AIR_DECEL_MULTIPLIER
+	velocity.x = move_toward(velocity.x, 0, MoveData.DECELERATION * multiplier * delta)
+
+func update_coyote():
 	pass
 
+func update_buffer():
+	pass
+
+func apply_jump():
+	# jump if the user can jump and the user just pressed space or queued a buffer
+	if can_jump and (Input.is_action_just_pressed("jump") or current_jump_buffer > 0):
+		velocity.y += MoveData.JUMP_VELOCITY
 
 # runs every frame
 # for updating animations
