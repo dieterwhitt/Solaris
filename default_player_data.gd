@@ -2,30 +2,34 @@ extends Resource
 # default player data resource
 # not a node because i want it seperate from nodes since it's not a 'game object'
 
-func calculate_jump_velo(height, time):
+func calculate_jump_velo(height, air_time):
 	# apply kinematic equations
 	pass
 
 # gravity
-@export var GRAVITY : float = 300.0
-# acceleration and deceleration (60*pixels/frame^2)
-@export var ACCELERATION : float = 600.0
-@export var DECELERATION : float = 600.0
+const GRAVITY : float = 300.0
+# acceleration and deceleration (velocity/s)
+const ACCELERATION : float = 600.0
+const DECELERATION : float = 600.0
 # jump height and air time (pixels, seconds) used to calculate jump velocity
-@export var JUMP_HEIGHT : int = 32
-@export var AIR_TIME : float = 2.5
-@export var JUMP_VELOCITY : float = -150
+const JUMP_HEIGHT : float = 50
+const AIR_TIME : float = 2.0
+var JUMP_VELOCITY : float = -150
 # down gravity multiplier
-@export var DOWN_MULTIPLIER : float = 3.0
+const DOWN_MULTIPLIER : float = 1.0
 # air acceleration and deceleration multiplier (air control and air brake)
-@export var AIR_ACCEL_MULTIPLIER : float = 1.0
-@export var AIR_DECEL_MULTIPLIER : float = 1.0
+const AIR_ACCEL_MULTIPLIER : float = 1.0
+const AIR_DECEL_MULTIPLIER : float = 1.0
 # terminal x and y velocity
-@export var TERMINAL_X : float = 300.0
-@export var TERMINAL_Y : float = 1200
+const TERMINAL_X : float = 300.0
+const TERMINAL_Y : float = 1200.0
 # max velocity reachable by input alone
-@export var INPUT_TERMINAL : float = 150.0 
+const INPUT_TERMINAL : float = 150.0 
 # number of coyote and jump buffer frames
-@export var COYOTE_TIME : int = 20
-@export var JUMP_BUFFER : int = 20
+const COYOTE_TIME : int = 20
+const JUMP_BUFFER : int = 20
+
+func _init():
+	print(JUMP_VELOCITY)
+
 

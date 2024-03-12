@@ -2,15 +2,14 @@ extends CharacterBody2D
 # prototype default character controller
 # player collision layer on layer 2 to avoid collisions with clone (layer 3)
 
-@export var MoveData = preload("res://default_player_data.gd").new()
-
+@export var MoveData : Resource = preload("res://default_player_data.gd").new()
 # after leaving the ground (not from jumping), increase the coyote value
 # then decrease by 1 for each subsequent frame until 0
 # if the player is in the air with coyote > 0, 
 # the player can jump even though they are not on the ground
 var current_coyote : int = 0
 # variable for if jump is still valid
-var can_jump : bool = true
+var used_jump : bool = false
 # when jumping in air, increase jump buffer
 # then decrease it by 1 for each subsequent frame until 0
 # then if the player is on the ground with the timer > 0,
@@ -50,7 +49,7 @@ func apply_gravity(delta):
 	# apply the down gravity multiplier if can jump is false and are on the way down
 	# i.e the user already jumped and is now falling
 	var down_multiplier = 1
-	if not can_jump and velocity.y > 0:
+	if used_jump and velocity.y > 0:
 		down_multiplier = MoveData.DOWN_MULTIPLIER
 	
 	if not on_floor and velocity.y < MoveData.TERMINAL_Y:
@@ -113,25 +112,23 @@ func update_buffer():
 		current_jump_buffer -= 1
 	
 		
-func update_can_jump():
-	# can jump when on the floor
-	if not on_floor and current_coyote == 0:
-		can_jump = false
-	else:
-		can_jump = true
+func update_jump_elig():
+	# replenish jump when on the floor
+	if on_floor:
+		used_jump = false
 
 func apply_jump():
 	update_coyote()
 	update_buffer()
-	update_can_jump()
+	update_jump_elig()
 	# jump if the user can jump and the user just pressed space and is 
 	# still on the floor in coyote time
-	if can_jump and Input.is_action_just_pressed("jump") and (on_floor or current_coyote > 0):
+	# pressed space <-> buffer > 0
+	# on floor <-> coyote > 0
+	if (not used_jump and (Input.is_action_just_pressed("jump") or current_jump_buffer > 0)
+			 and (on_floor or current_coyote > 0)):
 		velocity.y = MoveData.JUMP_VELOCITY
-		can_jump = false
-	elif on_floor and current_jump_buffer > 0:
-		velocity.y = MoveData.JUMP_VELOCITY
-		can_jump = false
+		used_jump = true
 
 # runs every frame
 # for updating animations
