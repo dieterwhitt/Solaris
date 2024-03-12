@@ -35,18 +35,11 @@ func _physics_process(delta):
 	
 	# pre calculate on floor
 	on_floor = is_on_floor()
-	# can jump when on the floor or coyote timer > 0
-	if not on_floor and current_coyote == 0:
-		can_jump = false
-	else:
-		can_jump = true
 	
 	
 	apply_gravity(delta)
 	apply_x_accel(delta)
 	
-	update_coyote()
-	update_buffer()
 	apply_jump()
 	
 	move_and_slide()
@@ -105,15 +98,40 @@ func apply_friction(delta):
 	velocity.x = move_toward(velocity.x, 0, MoveData.DECELERATION * multiplier * delta)
 
 func update_coyote():
-	pass
+	# set timer to the coyote time when on the ground
+	if on_floor:
+		current_coyote = MoveData.COYOTE_TIME
+	elif current_coyote > 0:
+		# decrease the coyote timer for each frame off the ground
+		current_coyote -= 1
 
 func update_buffer():
-	pass
+	# queue buffer
+	if Input.is_action_just_pressed("jump") and not on_floor:
+		current_jump_buffer = MoveData.JUMP_BUFFER
+	elif current_jump_buffer > 0:
+		current_jump_buffer -= 1
+	
+		
+func update_can_jump():
+	# can jump when on the floor
+	if not on_floor and current_coyote == 0:
+		can_jump = false
+	else:
+		can_jump = true
 
 func apply_jump():
-	# jump if the user can jump and the user just pressed space or queued a buffer
-	if can_jump and (Input.is_action_just_pressed("jump") or current_jump_buffer > 0):
+	update_coyote()
+	update_buffer()
+	update_can_jump()
+	# jump if the user can jump and the user just pressed space and is 
+	# still on the floor in coyote time
+	if can_jump and Input.is_action_just_pressed("jump") and (on_floor or current_coyote > 0):
 		velocity.y += MoveData.JUMP_VELOCITY
+		can_jump = false
+	elif on_floor and current_jump_buffer > 0:
+		velocity.y += MoveData.JUMP_VELOCITY
+		can_jump = false
 
 # runs every frame
 # for updating animations
