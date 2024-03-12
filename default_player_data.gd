@@ -2,10 +2,6 @@ extends Resource
 # default player data resource
 # not a node because i want it seperate from nodes since it's not a 'game object'
 
-func calculate_jump_velo(height, air_time):
-	# apply kinematic equations
-	pass
-
 # gravity
 const GRAVITY : float = 300.0
 # acceleration and deceleration (velocity/s)
@@ -14,7 +10,7 @@ const DECELERATION : float = 600.0
 # jump height and air time (pixels, seconds) used to calculate jump velocity
 const JUMP_HEIGHT : float = 50
 const AIR_TIME : float = 2.0
-var JUMP_VELOCITY : float = -150
+const JUMP_VELOCITY = -150.0
 # down gravity multiplier
 const DOWN_MULTIPLIER : float = 1.0
 # air acceleration and deceleration multiplier (air control and air brake)
@@ -29,7 +25,5 @@ const INPUT_TERMINAL : float = 150.0
 const COYOTE_TIME : int = 20
 const JUMP_BUFFER : int = 20
 
-func _init():
-	print(JUMP_VELOCITY)
 
 

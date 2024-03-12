@@ -2,7 +2,8 @@ extends CharacterBody2D
 # prototype default character controller
 # player collision layer on layer 2 to avoid collisions with clone (layer 3)
 
-@export var MoveData : Resource = preload("res://default_player_data.gd").new()
+@onready var Sprite = $Sprite2D
+var MoveData = preload("res://default_player_data.gd").new()
 # after leaving the ground (not from jumping), increase the coyote value
 # then decrease by 1 for each subsequent frame until 0
 # if the player is in the air with coyote > 0, 
@@ -133,4 +134,10 @@ func apply_jump():
 # runs every frame
 # for updating animations
 func _process(delta):
-	pass
+	flip()
+	
+func flip():
+	if direction > 0:
+		Sprite.flip_h = false
+	elif direction < 0:
+		Sprite.flip_h = true
