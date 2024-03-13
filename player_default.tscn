@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dfy1ludmwa1b5" path="res://Ninja.png" id="1_i1nh5"]
 [ext_resource type="Script" path="res://player_default.gd" id="1_sypw7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_udio6"]
-size = Vector2(8, 20)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l8qgx"]
+radius = 3.0
+height = 22.0
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
 length = 0.001
@@ -224,8 +225,8 @@ vframes = 9
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 14)
-shape = SubResource("RectangleShape2D_udio6")
+position = Vector2(0, 13)
+shape = SubResource("CapsuleShape2D_l8qgx")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

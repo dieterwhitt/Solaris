@@ -11,7 +11,6 @@ position = Vector2(128, 88)
 texture = ExtResource("1_yrr5r")
 
 [node name="TileMap" parent="." instance=ExtResource("2_tc622")]
-position = Vector2(-8, 0)
 
 [node name="Player_Default" parent="." instance=ExtResource("2_rgnqu")]
-position = Vector2(28, 40)
+position = Vector2(40, 40)

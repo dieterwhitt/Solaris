@@ -9,7 +9,7 @@ const GRAVITY : float = 670.0
 const ACCELERATION : float = 1000.0
 const DECELERATION : float = 1500.0
 
-# jump height and air time (pixels, seconds) used to calculate jump velocity
+# jump height and air time (pixels, seconds) used to calculate jump velocity with kinematic eqns
 # currently: 0.3s to peak (0.6s total), 30px jump
 const JUMP_VELOCITY = -200.0 
 # down gravity multiplier
