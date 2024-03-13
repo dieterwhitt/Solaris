@@ -36,7 +36,6 @@ func _physics_process(delta):
 	# pre calculate on floor
 	on_floor = is_on_floor()
 	
-	
 	apply_gravity(delta)
 	apply_x_accel(delta)
 
