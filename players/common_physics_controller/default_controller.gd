@@ -13,7 +13,6 @@ extends CharacterBody2D
 
 class_name DefaultController
 
-
 # after leaving the ground (not from jumping), increase the coyote value
 # then decrease by 1 for each subsequent frame until 0
 # if the player is in the air with coyote > 0, 
@@ -34,13 +33,22 @@ var direction : int = 0
 # to disable input (physics still applies), ex. after ability usage
 var recieve_input : bool = true
 
-var MoveData : Resource = null
+# dependent on subclass: must define
+var MoveData : Resource
+var sprite : Sprite2D
+var animation_tree : AnimationTree
+var state_machine : AnimationNodeStateMachinePlayback
 
 # runs upon character instantiation
 func _init():
-	# apply default settings
+	# apply default movement settings
 	const default_path = "res://players/common_physics_controller/default_controller_data.gd"
 	MoveData = preload(default_path)
+
+func _ready():
+	# subclasses define children HERE
+	# NOT in _init since children aren't loaded yet!!!
+	pass
 
 func set_data(path):
 	MoveData = load(path)
@@ -156,12 +164,18 @@ func apply_jump():
 func _process(delta):
 	# handling animations
 	# common animations: run/idle, jump
-	
+	_update_animation()
 	# common flip function
 	flip()
 
 func flip():
-	if direction > 0:
-		$Sprite2D.flip_h = false
-	elif direction < 0:
-		$Sprite2D.flip_h = true
+	if sprite != null:
+		if direction > 0:
+			sprite.flip_h = false
+		elif direction < 0:
+			sprite.flip_h = true
+		
+func _update_animation():
+	# subclass must override
+	# changes animations - subclass must use AnimationNodeStateMachine
+	pass

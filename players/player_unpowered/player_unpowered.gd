@@ -4,11 +4,22 @@
 
 extends DefaultController
 
-@onready var Sprite = $Sprite2D
+
+# get tree state machine
+#var state_machine = $AnimationTree.get("parameters/playback")
 
 func _init():
 	super._init()
 
+func _ready():
+	# override
+	# activate animation tree
+	animation_tree = $AnimationTree
+	animation_tree.active = true
+	
+	sprite = $Sprite2D
+	state_machine = animation_tree.get("parameters/playback")
+	
 func _physics_process(delta):
 	# apply physics controller
 	super._physics_process(delta)
@@ -22,6 +33,19 @@ func _process(delta):
 	# define extra animatiion options
 	super._process(delta)
 	
+func _update_animation():
+	# override
+	if not on_floor and used_jump:
+		# jump
+		state_machine.travel("jump")
+	elif not on_floor:
+		# fall
+		pass
+	else:
+		# set blend
+		animation_tree.set("parameters/idle-run/blend_position", direction)
+		# idle-run
+		state_machine.travel("idle-run")
 	
 
 
