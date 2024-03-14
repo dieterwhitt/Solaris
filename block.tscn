@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://pv2xlt2jqg1y"]
+[gd_scene load_steps=3 format=3 uid="uid://g0s5ii35q1c0"]
 
-[ext_resource type="Texture2D" uid="uid://crjhit5la2cuc" path="res://NanoNature/tileset.png" id="1_5e3ay"]
+[ext_resource type="Texture2D" uid="uid://crjhit5la2cuc" path="res://online-assets/NanoNature/tileset.png" id="1_5e3ay"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2tjds"]
 size = Vector2(8, 8)
