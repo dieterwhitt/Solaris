@@ -86,10 +86,10 @@ func apply_x_accel(delta):
 	# logic: 
 	# above input terminal: apply friction, ignore input
 	# below or equal input terminal : apply player input, cap at input terminal
-	# apply friction if no input
+	# apply friction if no input OR input in opposite direction (product is negative)
 	# cap at total terminal
 	if (not recieve_input or abs(velocity.x) > MoveData.INPUT_TERMINAL 
-			or direction == 0):
+			or direction == 0 or (direction * velocity.x < 0)):
 		apply_friction(delta)
 	else:
 		apply_input(delta)
@@ -153,4 +153,15 @@ func apply_jump():
 		velocity.y = MoveData.JUMP_VELOCITY
 		used_jump = true
 
+func _process(delta):
+	# handling animations
+	# common animations: run/idle, jump
 	
+	# common flip function
+	flip()
+
+func flip():
+	if direction > 0:
+		$Sprite2D.flip_h = false
+	elif direction < 0:
+		$Sprite2D.flip_h = true

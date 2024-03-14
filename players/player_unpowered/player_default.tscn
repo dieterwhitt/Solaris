@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://7f2bio20uoel"]
+[gd_scene load_steps=21 format=3 uid="uid://7f2bio20uoel"]
 
 [ext_resource type="Script" path="res://players/player_unpowered/player_unpowered.gd" id="1_c5bbc"]
 [ext_resource type="Texture2D" uid="uid://dfy1ludmwa1b5" path="res://players/sprites/Ninja.png" id="1_i1nh5"]
@@ -130,6 +130,9 @@ _data = {
 "swing2": SubResource("Animation_jusep")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hrojt"]
+animation = &"RESET"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l5ao5"]
 animation = &"jump"
 
@@ -157,62 +160,24 @@ animation = &"swing1"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6pdav"]
 animation = &"swing2"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lwkop"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6rgvn"]
 advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iicos"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u5yhh"]
-advance_mode = 2
-advance_condition = &"swinging"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kl8aq"]
-advance_mode = 2
-advance_condition = &"jumping"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t5s3n"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"jumping"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mgf0c"]
-advance_mode = 2
-advance_condition = &"grounded"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rc3us"]
-advance_mode = 2
-advance_condition = &"swinging"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cwleo"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wcb2p"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ih8xr"]
-advance_mode = 2
-advance_condition = &"heavy"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ym3cs"]
-advance_mode = 2
-advance_condition = &"heavy"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gnciy"]
-states/End/position = Vector2(900.5, 100)
+states/End/position = Vector2(808.5, 99)
+states/RESET/node = SubResource("AnimationNodeAnimation_hrojt")
+states/RESET/position = Vector2(406.948, 65.4219)
+states/Start/position = Vector2(175, 63.9609)
 states/jump/node = SubResource("AnimationNodeAnimation_l5ao5")
-states/jump/position = Vector2(623.279, -4.48792)
+states/jump/position = Vector2(588.779, -73.4879)
 states/run-idle/node = SubResource("AnimationNodeBlendSpace1D_tjgjs")
-states/run-idle/position = Vector2(439.445, 101.5)
+states/run-idle/position = Vector2(429.945, 224.5)
 states/swing1/node = SubResource("AnimationNodeAnimation_0rp8k")
-states/swing1/position = Vector2(282.612, -4.67542)
+states/swing1/position = Vector2(228.112, -105.175)
 states/swing2/node = SubResource("AnimationNodeAnimation_6pdav")
-states/swing2/position = Vector2(341.362, -94.9879)
-transitions = ["Start", "run-idle", SubResource("AnimationNodeStateMachineTransition_lwkop"), "swing1", "run-idle", SubResource("AnimationNodeStateMachineTransition_iicos"), "run-idle", "swing1", SubResource("AnimationNodeStateMachineTransition_u5yhh"), "run-idle", "jump", SubResource("AnimationNodeStateMachineTransition_kl8aq"), "swing1", "jump", SubResource("AnimationNodeStateMachineTransition_t5s3n"), "jump", "run-idle", SubResource("AnimationNodeStateMachineTransition_mgf0c"), "jump", "swing1", SubResource("AnimationNodeStateMachineTransition_rc3us"), "swing2", "jump", SubResource("AnimationNodeStateMachineTransition_cwleo"), "swing2", "run-idle", SubResource("AnimationNodeStateMachineTransition_wcb2p"), "jump", "swing2", SubResource("AnimationNodeStateMachineTransition_ih8xr"), "run-idle", "swing2", SubResource("AnimationNodeStateMachineTransition_ym3cs")]
-graph_offset = Vector2(-162.078, -61.5254)
+states/swing2/position = Vector2(397.362, -160.488)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_6rgvn")]
+graph_offset = Vector2(-51.0516, -315.578)
 
 [node name="PlayerUnpowered" type="CharacterBody2D"]
 collision_layer = 2
@@ -241,8 +206,4 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_gnciy")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/grounded = false
-parameters/conditions/heavy = false
-parameters/conditions/jumping = false
-parameters/conditions/swinging = false
 parameters/run-idle/blend_position = 2.08165e-12

@@ -19,12 +19,9 @@ func _physics_process(delta):
 
 # handling non-physics processes
 func _process(delta):
-	# flipping sprite
-	flip()
+	# define extra animatiion options
+	super._process(delta)
+	
 	
 
-func flip():
-	if direction > 0:
-		$Sprite2D.flip_h = false
-	elif direction < 0:
-		$Sprite2D.flip_h = true
+
