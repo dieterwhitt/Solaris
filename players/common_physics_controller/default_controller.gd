@@ -34,24 +34,15 @@ var direction : int = 0
 var recieve_input : bool = true
 
 # dependent on subclass: must define
-var MoveData : Resource
+@onready var MoveData : Resource = preload("res://players/common_physics_controller/default_controller_data.gd")
 var sprite : Sprite2D
 var animation_tree : AnimationTree
 var state_machine : AnimationNodeStateMachinePlayback
-
-# runs upon character instantiation
-func _init():
-	# apply default movement settings
-	const default_path = "res://players/common_physics_controller/default_controller_data.gd"
-	MoveData = preload(default_path)
 
 func _ready():
 	# subclasses define children HERE
 	# NOT in _init since children aren't loaded yet!!!
 	pass
-
-func set_data(path):
-	MoveData = load(path)
 
 # set receiving input ex. ability usage
 func set_input(val : bool):
@@ -75,7 +66,7 @@ func _physics_process(delta):
 func apply_gravity(delta):
 	# apply gravity if the player is in the air and 
 	# below terminal velocity
-	# apply the down gravity multiplier if can jump is false and are on the way down
+	# apply the down gravity multiplier if used jump and are on the way down
 	# i.e the user already jumped and is now falling
 	var down_multiplier = 1
 	if used_jump and velocity.y > 0:
@@ -124,6 +115,7 @@ func apply_friction(delta):
 	var multiplier = 1
 	if not on_floor:
 		multiplier = MoveData.AIR_DECEL_MULTIPLIER
+	# decelerate
 	velocity.x = move_toward(velocity.x, 0, MoveData.DECELERATION * multiplier * delta)
 
 func update_coyote():
@@ -152,7 +144,7 @@ func apply_jump():
 	update_buffer()
 	update_jump_elig()
 	# jump if the user can jump and the user just pressed space and is 
-	# still on the floor in coyote time
+	# still on the floor or in coyote time
 	# pressed space <-> buffer > 0
 	# on floor <-> coyote > 0
 	if ((not used_jump and recieve_input) 

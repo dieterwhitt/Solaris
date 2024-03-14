@@ -8,15 +8,13 @@ extends DefaultController
 # get tree state machine
 #var state_machine = $AnimationTree.get("parameters/playback")
 
-func _init():
-	super._init()
 
 func _ready():
 	# override
 	# activate animation tree
 	animation_tree = $AnimationTree
 	animation_tree.active = true
-	
+	# sprite and state machine
 	sprite = $Sprite2D
 	state_machine = animation_tree.get("parameters/playback")
 	
