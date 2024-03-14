@@ -22,7 +22,7 @@ const AIR_ACCEL_MULTIPLIER : float = 0.9 # 0.9
 const AIR_DECEL_MULTIPLIER : float = 0.5 # 0.5
 # terminal x and y velocity
 const TERMINAL_X : float = 200.0 # 200
-const TERMINAL_Y : float = 600.0 # 600
+const TERMINAL_Y : float = 250.0 # 200
 # max velocity reachable by input alone
 const INPUT_TERMINAL : float = 120.0 # 120
 # number of coyote and jump buffer frames

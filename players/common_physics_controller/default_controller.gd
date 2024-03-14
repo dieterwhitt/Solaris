@@ -72,8 +72,15 @@ func apply_gravity(delta):
 	if used_jump and velocity.y > 0:
 		down_multiplier = MoveData.DOWN_MULTIPLIER
 	
+	# apply gravity
 	if not on_floor and velocity.y < MoveData.TERMINAL_Y:
 		velocity.y += MoveData.GRAVITY * down_multiplier * delta
+	
+	# cap at terminal
+	if velocity.y < -1 * MoveData.TERMINAL_Y:
+		velocity.y = -1 * MoveData.TERMINAL_Y
+	elif velocity.y > MoveData.TERMINAL_Y:
+		velocity.y = MoveData.TERMINAL_Y
 
 # handles logic for when to accelerate/decelerate player
 func apply_x_accel(delta):

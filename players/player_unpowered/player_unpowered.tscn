@@ -199,7 +199,7 @@ states/swing1/position = Vector2(239.16, 93.5)
 states/swing2/node = SubResource("AnimationNodeAnimation_ct4uj")
 states/swing2/position = Vector2(402.66, 67.5)
 transitions = ["Start", "idle-run", SubResource("AnimationNodeStateMachineTransition_pph1j"), "idle-run", "swing1", SubResource("AnimationNodeStateMachineTransition_35p6w"), "idle-run", "swing2", SubResource("AnimationNodeStateMachineTransition_0hb83"), "idle-run", "jump", SubResource("AnimationNodeStateMachineTransition_t5l5l"), "idle-run", "RESET", SubResource("AnimationNodeStateMachineTransition_ayr5y"), "swing1", "idle-run", SubResource("AnimationNodeStateMachineTransition_eroip"), "swing2", "idle-run", SubResource("AnimationNodeStateMachineTransition_wby41"), "jump", "idle-run", SubResource("AnimationNodeStateMachineTransition_n8nvh"), "idle-run", "End", SubResource("AnimationNodeStateMachineTransition_ngvfd"), "RESET", "idle-run", SubResource("AnimationNodeStateMachineTransition_h7cax")]
-graph_offset = Vector2(21.1598, 0)
+graph_offset = Vector2(21.1598, 73.9468)
 
 [node name="PlayerUnpowered" type="CharacterBody2D"]
 collision_layer = 2

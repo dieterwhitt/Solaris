@@ -22,7 +22,7 @@ func _physics_process(delta):
 	# apply physics controller
 	super._physics_process(delta)
 	# define non-movement physics
-	
+
 	# move and slide
 	move_and_slide()
 
