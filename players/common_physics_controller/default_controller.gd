@@ -1,3 +1,9 @@
+# default_controller.gd 
+# 3/13/24
+# abstract controller class to be inherited by unique character controllers
+# defines horizontal movement and jump
+# loads data from file which defines movement
+
 extends CharacterBody2D
 # prototype default character controller
 # abstract class to handle physics of controllable characters only
@@ -25,9 +31,10 @@ var on_floor : bool = false
 # direction: -1, 0, 1
 # represents the CURRENT input direction (left, none, right)
 var direction : int = 0
+# to disable input (physics still applies), ex. after ability usage
+var recieve_input : bool = true
 
-
-var MoveData = null
+var MoveData : Resource = null
 
 # runs upon character instantiation
 func _init():
@@ -37,6 +44,10 @@ func _init():
 
 func set_data(path):
 	MoveData = load(path)
+
+# set receiving input ex. ability usage
+func set_input(val : bool):
+	recieve_input = val
 
 # runs every physics frame
 # for updating physics
@@ -68,7 +79,8 @@ func apply_gravity(delta):
 # handles logic for when to accelerate/decelerate player
 func apply_x_accel(delta):
 	# -1, 0, 1
-	direction = Input.get_axis("left", "right")
+	if recieve_input:
+		direction = Input.get_axis("left", "right")
 	# before adjusting velocity determine air accleration multiplier
 	
 	# logic: 
@@ -76,8 +88,8 @@ func apply_x_accel(delta):
 	# below or equal input terminal : apply player input, cap at input terminal
 	# apply friction if no input
 	# cap at total terminal
-	
-	if abs(velocity.x) > MoveData.INPUT_TERMINAL or direction == 0:
+	if (not recieve_input or abs(velocity.x) > MoveData.INPUT_TERMINAL 
+			or direction == 0):
 		apply_friction(delta)
 	else:
 		apply_input(delta)
@@ -135,7 +147,8 @@ func apply_jump():
 	# still on the floor in coyote time
 	# pressed space <-> buffer > 0
 	# on floor <-> coyote > 0
-	if (not used_jump and (Input.is_action_just_pressed("jump") or current_jump_buffer > 0)
+	if ((not used_jump and recieve_input) 
+			and (Input.is_action_just_pressed("jump") or current_jump_buffer > 0)
 			 and (on_floor or current_coyote > 0)):
 		velocity.y = MoveData.JUMP_VELOCITY
 		used_jump = true

@@ -1,3 +1,6 @@
+# default_controller_data.gd
+# 3/13/24
+
 extends Resource
 # default player data resource
 # not a node because i want it seperate from nodes since it's not a 'game object'
