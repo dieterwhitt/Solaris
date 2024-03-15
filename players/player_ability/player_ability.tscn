@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://biaovc1aslm2s"]
 
-[ext_resource type="Script" path="res://players/player_ability.gd" id="1_uri5i"]
+[ext_resource type="Script" path="res://players/player_ability/player_ability.gd" id="1_uri5i"]
 [ext_resource type="Texture2D" uid="uid://db564byw8qlsv" path="res://players/sprites/Ninja-clone.png" id="2_1kh7o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufoio"]
@@ -101,12 +101,8 @@ blend_point_2/pos = 0.0
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kv45n"]
-advance_mode = 2
-advance_condition = &"jumping"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fe4py"]
-advance_mode = 2
-advance_condition = &"grounded"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2b4wp"]
 advance_mode = 2
@@ -145,6 +141,4 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_hdbx3")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/grounded = false
-parameters/conditions/jumping = false
 parameters/run-idle/blend_position = 0

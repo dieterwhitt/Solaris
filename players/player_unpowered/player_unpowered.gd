@@ -4,11 +4,9 @@
 
 extends DefaultController
 
+var swinging : bool = false
 
-# get tree state machine
-#var state_machine = $AnimationTree.get("parameters/playback")
-
-
+# get child nodes for animation
 func _ready():
 	# override
 	# activate animation tree
@@ -19,10 +17,13 @@ func _ready():
 	state_machine = animation_tree.get("parameters/playback")
 	
 func _physics_process(delta):
+	# freeze input on swing
+	recieve_input = not swinging
+		
 	# apply physics controller
 	super._physics_process(delta)
 	# define non-movement physics
-
+	
 	# move and slide
 	move_and_slide()
 
@@ -44,6 +45,18 @@ func _update_animation():
 		animation_tree.set("parameters/idle-run/blend_position", direction)
 		# idle-run
 		state_machine.travel("idle-run")
+		
+	# handle swing
+	swing_animation()
+		
+func swing_animation():
+	if Input.is_action_just_pressed("attack"):
+		state_machine.travel("swing1")
+	elif Input.is_action_just_pressed("heavy"):
+		state_machine.travel("swing2")
+	
+	# update swing status
+	swinging = state_machine.get_current_node() == "swing2" 
 	
 
 

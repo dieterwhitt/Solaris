@@ -13,6 +13,9 @@ extends CharacterBody2D
 
 class_name DefaultController
 
+# below variables:
+# from an oop standpoint it might be better to initialize them in _ready() instead
+
 # after leaving the ground (not from jumping), increase the coyote value
 # then decrease by 1 for each subsequent frame until 0
 # if the player is in the air with coyote > 0, 
@@ -32,6 +35,8 @@ var on_floor : bool = false
 var direction : int = 0
 # to disable input (physics still applies), ex. after ability usage
 var recieve_input : bool = true
+
+	
 
 # dependent on subclass: must define
 @onready var MoveData : Resource = preload("res://players/common_physics_controller/default_controller_data.gd")
