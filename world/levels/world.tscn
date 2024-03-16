@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccf8uxhg0toqp"]
+[gd_scene load_steps=5 format=3 uid="uid://ccf8uxhg0toqp"]
 
 [ext_resource type="Texture2D" uid="uid://dicpn63thecj8" path="res://world/backgrounds/finn-sketch1.png" id="1_if87x"]
 [ext_resource type="PackedScene" uid="uid://3w1xvg136m3q" path="res://world/tiles/tile_map.tscn" id="2_feglb"]
 [ext_resource type="PackedScene" uid="uid://7f2bio20uoel" path="res://players/player_unpowered/player_unpowered.tscn" id="3_tdnlp"]
+[ext_resource type="PackedScene" uid="uid://biaovc1aslm2s" path="res://players/player_ability/player_ability.tscn" id="4_ua28u"]
 
 [node name="World" type="Node2D"]
 
@@ -13,4 +14,8 @@ texture = ExtResource("1_if87x")
 [node name="TileMap" parent="." instance=ExtResource("2_feglb")]
 
 [node name="PlayerUnpowered" parent="." instance=ExtResource("3_tdnlp")]
+position = Vector2(40, 40)
+
+[node name="player_ability" parent="." instance=ExtResource("4_ua28u")]
+visible = false
 position = Vector2(40, 40)

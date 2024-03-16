@@ -4,7 +4,7 @@
 # defines horizontal movement and jump
 # loads data from file which defines movement
 
-extends CharacterBody2D
+
 # prototype default character controller
 # abstract class to handle physics of controllable characters only
 # capabilities: left, right, jump
@@ -12,6 +12,8 @@ extends CharacterBody2D
 # own unique capabilities locally
 
 class_name DefaultController
+
+extends CharacterBody2D
 
 # below variables:
 # from an oop standpoint it might be better to initialize them in _ready() instead
@@ -34,25 +36,51 @@ var on_floor : bool = false
 # represents the CURRENT input direction (left, none, right)
 var direction : int = 0
 # to disable input (physics still applies), ex. after ability usage
-var recieve_input : bool = true
+@export var recieve_input : bool = true
 
-	
 
-# dependent on subclass: must define
-@onready var MoveData : Resource = preload("res://players/common_physics_controller/default_controller_data.gd")
-var sprite : Sprite2D
-var animation_tree : AnimationTree
-var state_machine : AnimationNodeStateMachinePlayback
+
+# dependent on subclass: 
+# underscore indicates must define in subclass
+var _sprite : Sprite2D
+var _animation_tree : AnimationTree
+var _state_machine : AnimationNodeStateMachinePlayback
+
+# using move data: one to keep a reference to the default, one active
+# that way we can change active data while still having the default available
+@onready var MoveData : Resource = preload("res://players/common_physics_controller/default_controller_data.gd").new()
+@onready var DefaultDataReference : Resource = MoveData.duplicate()
 
 func _ready():
 	# subclasses define children HERE
 	# NOT in _init since children aren't loaded yet!!!
 	pass
 
-# set receiving input ex. ability usage
-func set_input(val : bool):
-	recieve_input = val
-
+# slow down physics
+# slows down by a factor of n (n times slower)
+func slow_physics(factor : float):
+	# changes physics to a multiple of the default data
+	# you can restore default settings by using parameter 1
+	const acceleration_variables = ["ACCELERATION", "DECELERATION", "GRAVITY"]
+	const velocity_variables = ["JUMP_VELOCITY", "TERMINAL_X", 
+			"TERMINAL_Y", "INPUT_TERMINAL"]
+	const timer_variables = ["COYOTE_TIME", "JUMP_BUFFER"]
+	
+	# divide acceleration by n^2
+	var new_value = 0
+	for var_name in acceleration_variables:
+		new_value = DefaultDataReference.get(var_name) / (factor ** 2)
+		MoveData.set(var_name, new_value)
+	# divide velocity by n
+	for var_name in velocity_variables:
+		new_value = DefaultDataReference.get(var_name) / factor
+		MoveData.set(var_name, new_value)
+	
+	for var_name in timer_variables:
+		# increase coyote time and jump buffer
+		new_value = DefaultDataReference.get(var_name) * factor
+		MoveData.set(var_name, new_value)
+	
 # runs every physics frame
 # for updating physics
 func _physics_process(delta):
@@ -173,11 +201,11 @@ func _process(delta):
 	flip()
 
 func flip():
-	if sprite != null:
+	if _sprite != null:
 		if direction > 0:
-			sprite.flip_h = false
+			_sprite.flip_h = false
 		elif direction < 0:
-			sprite.flip_h = true
+			_sprite.flip_h = true
 		
 func _update_animation():
 	# subclass must override

@@ -10,11 +10,11 @@ var swinging : bool = false
 func _ready():
 	# override
 	# activate animation tree
-	animation_tree = $AnimationTree
-	animation_tree.active = true
+	_animation_tree = $AnimationTree
+	_animation_tree.active = true
 	# sprite and state machine
-	sprite = $Sprite2D
-	state_machine = animation_tree.get("parameters/playback")
+	_sprite = $Sprite2D
+	_state_machine = _animation_tree.get("parameters/playback")
 	
 func _physics_process(delta):
 	# freeze input on swing
@@ -23,40 +23,53 @@ func _physics_process(delta):
 	# apply physics controller
 	super._physics_process(delta)
 	# define non-movement physics
+	swing_animation()
+	
+	# test
+	if Input.is_action_just_pressed("ability"):
+		slow_physics(2)
+	
 	
 	# move and slide
 	move_and_slide()
+
+# handles swing
+# animation keyframes spawn hitbox
+func swing_animation():
+	if Input.is_action_just_pressed("attack"):
+		_state_machine.travel("swing1")
+		swinging = true
+	elif Input.is_action_just_pressed("heavy"):
+		_state_machine.travel("swing2")
+		swinging = true
+	else:
+		# update swing status
+		swinging = (_state_machine.get_current_node() == "swing1"  
+				or _state_machine.get_current_node() == "swing2")
 
 # handling non-physics processes
 func _process(delta):
 	# define extra animatiion options
 	super._process(delta)
-	
+
 func _update_animation():
 	# override
-	if not on_floor and used_jump:
+	if swinging:
+		pass
+	elif not on_floor and used_jump:
 		# jump
-		state_machine.travel("jump")
+		_state_machine.travel("jump")
 	elif not on_floor:
 		# fall
 		pass
 	else:
 		# set blend
-		animation_tree.set("parameters/idle-run/blend_position", direction)
+		_animation_tree.set("parameters/idle-run/blend_position", direction)
 		# idle-run
-		state_machine.travel("idle-run")
+		_state_machine.travel("idle-run")
 		
-	# handle swing
-	swing_animation()
 		
-func swing_animation():
-	if Input.is_action_just_pressed("attack"):
-		state_machine.travel("swing1")
-	elif Input.is_action_just_pressed("heavy"):
-		state_machine.travel("swing2")
-	
-	# update swing status
-	swinging = state_machine.get_current_node() == "swing2" 
+
 	
 
 
