@@ -38,8 +38,6 @@ var direction : int = 0
 # to disable input (physics still applies), ex. after ability usage
 @export var recieve_input : bool = true
 
-
-
 # dependent on subclass: 
 # underscore indicates must define in subclass
 var _sprite : Sprite2D
@@ -48,7 +46,8 @@ var _state_machine : AnimationNodeStateMachinePlayback
 
 # using move data: one to keep a reference to the default, one active
 # that way we can change active data while still having the default available
-@onready var MoveData : Resource = preload("res://players/common_physics_controller/default_controller_data.gd").new()
+@onready var MoveData : Resource = \
+		preload("res://players/common_physics_controller/default_controller_data.gd").new()
 @onready var DefaultDataReference : Resource = MoveData.duplicate()
 
 func _ready():

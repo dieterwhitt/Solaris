@@ -25,11 +25,6 @@ func _physics_process(delta):
 	# define non-movement physics
 	swing_animation()
 	
-	# test
-	if Input.is_action_just_pressed("ability"):
-		slow_physics(2)
-	
-	
 	# move and slide
 	move_and_slide()
 
@@ -41,9 +36,11 @@ func swing_animation():
 		swinging = true
 	elif Input.is_action_just_pressed("heavy"):
 		_state_machine.travel("swing2")
+		print(_state_machine.get_current_node())
 		swinging = true
 	else:
 		# update swing status
+		# weird since .travel only changes current node at end of the process
 		swinging = (_state_machine.get_current_node() == "swing1"  
 				or _state_machine.get_current_node() == "swing2")
 

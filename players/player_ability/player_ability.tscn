@@ -3,9 +3,6 @@
 [ext_resource type="Script" path="res://players/player_ability/player_ability.gd" id="1_uri5i"]
 [ext_resource type="Texture2D" uid="uid://db564byw8qlsv" path="res://players/sprites/Ninja-clone.png" id="2_1kh7o"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufoio"]
-size = Vector2(8, 20)
-
 [sub_resource type="Animation" id="Animation_0etnk"]
 length = 0.001
 tracks/0/type = "value"
@@ -116,6 +113,10 @@ states/run-idle/node = SubResource("AnimationNodeBlendSpace1D_foq3x")
 states/run-idle/position = Vector2(460, 152.5)
 transitions = ["run-idle", "jump", SubResource("AnimationNodeStateMachineTransition_kv45n"), "jump", "run-idle", SubResource("AnimationNodeStateMachineTransition_fe4py"), "Start", "run-idle", SubResource("AnimationNodeStateMachineTransition_2b4wp")]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vn8q5"]
+radius = 3.0
+height = 22.0
+
 [node name="player_ability" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_uri5i")
@@ -124,10 +125,6 @@ script = ExtResource("1_uri5i")
 texture = ExtResource("2_1kh7o")
 hframes = 9
 vframes = 9
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 14)
-shape = SubResource("RectangleShape2D_ufoio")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -142,3 +139,8 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_hdbx3")
 anim_player = NodePath("../AnimationPlayer")
 parameters/run-idle/blend_position = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 13)
+shape = SubResource("CapsuleShape2D_vn8q5")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)

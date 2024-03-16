@@ -14,8 +14,8 @@ texture = ExtResource("1_if87x")
 [node name="TileMap" parent="." instance=ExtResource("2_feglb")]
 
 [node name="PlayerUnpowered" parent="." instance=ExtResource("3_tdnlp")]
+visible = false
 position = Vector2(40, 40)
 
 [node name="player_ability" parent="." instance=ExtResource("4_ua28u")]
-visible = false
 position = Vector2(40, 40)
