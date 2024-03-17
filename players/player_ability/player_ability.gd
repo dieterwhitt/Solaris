@@ -36,23 +36,23 @@ func _ready():
 	print("created clone")
 	
 func _physics_process(delta):
+	if teleport_frame:
+		execute_teleport()
+		teleport_frame = false
 	# reset teleport status
 	# want to maintain original jump, but fall at slowed speed
 	jump_adjust(20) # 20x slower
 	# get 2d direction
 	update_direction_2d()
-	
-		
+	# apply default controller
 	super._physics_process(delta)
 	# define additional capabilities
 	if not teleport_frame:
-		move_and_slide()
 		# queue teleport
 		queue_teleport()
-	# apply default controller
-	if teleport_frame:
-		execute_teleport()
-		teleport_frame = false
+		move_and_slide()
+
+	
 	
 
 # adjusts move data to apply regular gravity when jumping
@@ -244,9 +244,11 @@ func start_teleport(tp_dir):
 		
 func execute_teleport():
 	# finally... move the player
-	var can_teleport = area_hitbox.has_overlapping_bodies()
+	var can_teleport = not area_hitbox.has_overlapping_bodies()
+	print(can_teleport)
 	# finally we can teleport
 	if can_teleport:
+		print("teleporting")
 		# move player
 		self.global_position = area_hitbox.global_position
 		# delete area's associated collision shape
