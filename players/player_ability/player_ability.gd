@@ -16,10 +16,13 @@ var buffer_timer : int = teleport_buffer
 var teleporting : bool = false
 # boolean for if in the holding stage (frame 4+ in doc)
 var holding_teleport : bool = false
-# for when checking teleport destinations
-var can_teleport : bool = true
-var just_teleported : bool = true
-@onready var collision = $CollisionShape2D
+# indicates that the current frame will teleport
+var teleport_frame : bool = false
+# vector to store the teleport transformation after checking destination
+var transformation : Vector2 = Vector2.ZERO
+
+@onready var collision : CollisionShape2D = $CollisionShape2D
+@onready var area_hitbox : Area2D = Area2D.new()
 
 func _ready():
 	# update movedata
@@ -34,18 +37,23 @@ func _ready():
 	
 func _physics_process(delta):
 	# reset teleport status
-	just_teleported = false
 	# want to maintain original jump, but fall at slowed speed
 	jump_adjust(20) # 20x slower
 	# get 2d direction
 	update_direction_2d()
-	# teleport
-	queue_teleport()
-	# apply default controller
+	
+		
 	super._physics_process(delta)
 	# define additional capabilities
-	if not just_teleported:
+	if not teleport_frame:
 		move_and_slide()
+		# queue teleport
+		queue_teleport()
+	# apply default controller
+	if teleport_frame:
+		execute_teleport()
+		teleport_frame = false
+	
 
 # adjusts move data to apply regular gravity when jumping
 # releasing input in midair will slow gravity, allowing for teleports
@@ -108,7 +116,7 @@ func queue_teleport():
 		var tp_dir = vector_or()
 		print(tp_dir)
 		if tp_dir != Vector2.ZERO:
-			execute_teleport(tp_dir)
+			start_teleport(tp_dir)
 		
 		# after successful or unsuccessful teleport continue to holding phase
 		holding_teleport = true
@@ -147,7 +155,7 @@ func queue_teleport():
 		if teleporting:
 			var tp_dir = vector_or()
 			if tp_dir != Vector2.ZERO:
-				execute_teleport(tp_dir)
+				start_teleport(tp_dir)
 			# reset queue, but STAY in holding
 			queue_reset()
 			# also keep not receiving input incase staying in 4+
@@ -193,9 +201,9 @@ func queue_reset():
 	buffer_timer = teleport_buffer
 	input_queue = []
 
-# teleports the player
-func execute_teleport(tp_dir):
-	print("teleporting")
+# checks teleport destination then prepares for teleport execution on next frame
+func start_teleport(tp_dir):
+	print("checking teleport")
 	# 1. duplicate player hitbox and attempt to send it to destination
 	# 2. if no collision at destination, delete the duplicated hitbox and set player
 	# 		location to that position
@@ -207,11 +215,11 @@ func execute_teleport(tp_dir):
 		# not diagonal
 		scale = 56
 	
-	var transformation = scale * tp_dir
+	transformation = scale * tp_dir
 	print(transformation)
 	# checking destination using area 2d
-	# *** better fix: add only a single area, and reuse
-	var area_hitbox : Area2D = Area2D.new()
+	
+	# var area_hitbox : Area2D = Area2D.new()
 	var dupe_collision : CollisionShape2D = collision.duplicate()
 	# add child
 	area_hitbox.add_child(dupe_collision)
@@ -221,35 +229,44 @@ func execute_teleport(tp_dir):
 	area_hitbox.set_collision_mask_value(1, true)
 	area_hitbox.set_collision_layer_value(1, false)
 	
-	# check if it's overlapping with anything
+	# 
 	
 	# MUST USE SIGNALS - overlaps are only detected in each physics process
 	# calls _on_body_entered when a body enters
-	area_hitbox.connect("body_entered", _on_body_entered)
+	# area_hitbox.connect("body_entered", _on_body_entered)
 	# move it to destination
 	print("moving area hitbox")
 	area_hitbox.global_position = \
 			Vector2(self.global_position + transformation)
 	
+	# set teleport on next frame
+	teleport_frame = true
+		
+func execute_teleport():
+	# finally... move the player
+	var can_teleport = area_hitbox.has_overlapping_bodies()
 	# finally we can teleport
 	if can_teleport:
-		# delete area hitbox
+		# move player
 		self.global_position = area_hitbox.global_position
-		# fix: single area
-		area_hitbox.queue_free()
-	else:
-		# move and slide along transformation
-		
+		# delete area's associated collision shape
+		for node in area_hitbox.get_children():
+			node.queue_free()
 		move_and_collide(transformation)
-		just_teleported = true
-		
+	else:
+		# move and collide along transformation
+		print("can't teleport there")
+		move_and_collide(transformation)
 
+		
+'''
 # signal callback
 func _on_body_entered(body):
 	# modify global variable
-	print("can't teleport here")
 	can_teleport = false
 		
+'''
+
 
 
 
