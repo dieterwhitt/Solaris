@@ -246,19 +246,20 @@ func execute_teleport():
 	# finally... move the player
 	var can_teleport = not area_hitbox.has_overlapping_bodies()
 	print(can_teleport)
+	print(area_hitbox.get_children())
 	# finally we can teleport
 	if can_teleport:
 		print("teleporting")
 		# move player
 		self.global_position = area_hitbox.global_position
-		# delete area's associated collision shape
-		for node in area_hitbox.get_children():
-			node.queue_free()
-		move_and_collide(transformation)
 	else:
 		# move and collide along transformation
 		print("can't teleport there")
 		move_and_collide(transformation)
+	# delete areas associated collision shape
+	for node in area_hitbox.get_children():
+			node.queue_free()
+		
 
 		
 '''
