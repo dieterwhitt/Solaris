@@ -18,9 +18,6 @@ func _ready():
 	_state_machine = _animation_tree.get("parameters/playback")
 	
 func _physics_process(delta):
-	# freeze input on swing
-	recieve_input = not swinging
-
 	# apply physics controller
 	super._physics_process(delta)
 	# define non-movement physics
@@ -32,10 +29,10 @@ func _physics_process(delta):
 # handles swing
 # animation keyframes spawn hitbox
 func swing_animation():
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and receive_input:
 		_state_machine.travel("swing1")
 		swinging = true
-	elif Input.is_action_just_pressed("heavy"):
+	elif Input.is_action_just_pressed("heavy") and receive_input:
 		_state_machine.travel("swing2")
 		swinging = true
 	else:

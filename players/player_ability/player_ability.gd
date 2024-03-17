@@ -52,15 +52,12 @@ func _physics_process(delta):
 		queue_teleport()
 		move_and_slide()
 
-	
-	
-
 # adjusts move data to apply regular gravity when jumping
 # releasing input in midair will slow gravity, allowing for teleports
 func jump_adjust(factor):
 	# reset before calculating
 	slow_physics(1.0)
-	if recieve_input and (velocity.y <= 0 or direction != 0):
+	if receive_input and (velocity.y <= 0 or direction_2d != Vector2.ZERO):
 		# not moving or moving up (before apex), or input in mid air:
 		# regular gravity (remove magic number : factor^2, in this case 10)
 		MoveData.GRAVITY = DefaultDataReference.GRAVITY
@@ -83,7 +80,7 @@ func update_direction_2d():
 # i.e go 1-2 frames into animation (24fps) BEFORE moving player
 # if k is pressed, use those frames as a buffer for a direction
 # so if the direction changes during those 2 buffer frames, use that instead
-# in fact any input recieved in those frames will just be added to the queued direction
+# in fact any input received in those frames will just be added to the queued direction
 # another thing would be to not count the frame where k is pressed for direction
 # since it's very hard to press a key for only 1 frame - chances are if a key was only
 # on the frame where they pressed k and not in the next 2 buffer frames, they meant to let go
@@ -94,7 +91,7 @@ func queue_teleport():
 		print("frame 1")
 		# frame 1
 		# stop physics input
-		recieve_input = false
+		receive_input = false
 		teleporting = true
 		# add input vector to queue
 		input_queue.append(direction_2d)
@@ -130,24 +127,24 @@ func queue_teleport():
 		if not teleporting:
 			queue_reset()
 		# stop physics
-		recieve_input = false
+		receive_input = false
 		# check if any wasd was JUST pressed. just pressed since we don't want them
 		# to be able to hold teleport and wasd and spam. see doc
 		var instant_direction : Vector2 = Vector2.ZERO
-		var instant_recieved : bool = false
+		var instant_received : bool = false
 		if Input.is_action_just_pressed("left"):
 			instant_direction.x -= 1
-			instant_recieved = true
+			instant_received = true
 			# will teleport on next frame
 		if Input.is_action_just_pressed("right"):
 			instant_direction.x += 1
-			instant_recieved = true
+			instant_received = true
 		if Input.is_action_just_pressed("up"):
 			instant_direction.y -= 1
-			instant_recieved = true
+			instant_received = true
 		if Input.is_action_just_pressed("down"):
 			instant_direction.y += 1
-			instant_recieved = true
+			instant_received = true
 		# add to queue
 		input_queue.append(instant_direction)
 		# lastly: if teleporting, then teleport (no queue)
@@ -159,8 +156,8 @@ func queue_teleport():
 			# reset queue, but STAY in holding
 			queue_reset()
 			# also keep not receiving input incase staying in 4+
-			recieve_input = false
-		elif instant_recieved:
+			receive_input = false
+		elif instant_received:
 			teleporting = true
 			# will teleport next frame
 			
@@ -197,7 +194,7 @@ func vector_or() -> Vector2:
 func queue_reset():
 	# not teleporting - reset everything except holding teleport
 	teleporting = false
-	recieve_input = true
+	receive_input = true
 	buffer_timer = teleport_buffer
 	input_queue = []
 
@@ -260,20 +257,6 @@ func execute_teleport():
 	for node in area_hitbox.get_children():
 			node.queue_free()
 		
-
-		
-'''
-# signal callback
-func _on_body_entered(body):
-	# modify global variable
-	can_teleport = false
-		
-'''
-
-
-
-
-
 func _process(delta):
 	super._process(delta)
 

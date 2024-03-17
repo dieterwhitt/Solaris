@@ -36,7 +36,7 @@ var on_floor : bool = false
 # represents the CURRENT input direction (left, none, right)
 var direction : int = 0
 # to disable input (physics still applies), ex. after ability usage
-@export var recieve_input : bool = true
+@export var receive_input : bool = true
 
 # dependent on subclass: 
 # underscore indicates must define in subclass
@@ -97,7 +97,7 @@ func _physics_process(delta):
 	# move_and_slide()
 
 func update_direction():
-	if recieve_input:
+	if receive_input:
 		# -1, 0, 1
 		direction = Input.get_axis("left", "right")
 
@@ -127,7 +127,7 @@ func apply_x_accel(delta):
 	# below or equal input terminal : apply player input, cap at input terminal
 	# apply friction if no input OR input in opposite direction (product is negative)
 	# cap at total terminal
-	if (not recieve_input or abs(velocity.x) > MoveData.INPUT_TERMINAL 
+	if (not receive_input or abs(velocity.x) > MoveData.INPUT_TERMINAL 
 			or direction == 0 or (direction * velocity.x < 0)):
 		apply_friction(delta)
 	else:
@@ -187,7 +187,7 @@ func apply_jump():
 	# still on the floor or in coyote time
 	# pressed space <-> buffer > 0
 	# on floor <-> coyote > 0
-	if ((not used_jump and recieve_input) 
+	if ((not used_jump and receive_input) 
 			and (Input.is_action_just_pressed("jump") or current_jump_buffer > 0)
 			 and (on_floor or current_coyote > 0)):
 		velocity.y = MoveData.JUMP_VELOCITY
