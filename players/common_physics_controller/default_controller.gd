@@ -87,6 +87,7 @@ func _physics_process(delta):
 	# velocity means 'how much to move the character next frame'
 	# pre calculate on floor
 	on_floor = is_on_floor()
+	update_direction()
 	apply_gravity(delta)
 	apply_x_accel(delta)
 	apply_jump()
@@ -94,6 +95,11 @@ func _physics_process(delta):
 	# subclasses: define unique movement
 	# run move and slide (in subclass)
 	# move_and_slide()
+
+func update_direction():
+	if recieve_input:
+		# -1, 0, 1
+		direction = Input.get_axis("left", "right")
 
 func apply_gravity(delta):
 	# apply gravity if the player is in the air and 
@@ -115,12 +121,7 @@ func apply_gravity(delta):
 		velocity.y = MoveData.TERMINAL_Y
 
 # handles logic for when to accelerate/decelerate player
-func apply_x_accel(delta):
-	# -1, 0, 1
-	if recieve_input:
-		direction = Input.get_axis("left", "right")
-	# before adjusting velocity determine air accleration multiplier
-	
+func apply_x_accel(delta):	
 	# logic: 
 	# above input terminal: apply friction, ignore input
 	# below or equal input terminal : apply player input, cap at input terminal

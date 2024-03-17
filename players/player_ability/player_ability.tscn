@@ -55,6 +55,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_ddqhi"]
 resource_name = "run"
 length = 0.80001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -143,4 +144,4 @@ parameters/run-idle/blend_position = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 13)
 shape = SubResource("CapsuleShape2D_vn8q5")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
+debug_color = Color(0.513726, 0.423529, 1, 0.419608)

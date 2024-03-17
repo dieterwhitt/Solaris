@@ -4,7 +4,8 @@
 
 extends DefaultController
 
-var swinging : bool = false
+@export var swinging : bool = false
+@export var damage_box_active : bool = false
 
 # get child nodes for animation
 func _ready():
@@ -19,7 +20,7 @@ func _ready():
 func _physics_process(delta):
 	# freeze input on swing
 	recieve_input = not swinging
-		
+
 	# apply physics controller
 	super._physics_process(delta)
 	# define non-movement physics
@@ -36,7 +37,6 @@ func swing_animation():
 		swinging = true
 	elif Input.is_action_just_pressed("heavy"):
 		_state_machine.travel("swing2")
-		print(_state_machine.get_current_node())
 		swinging = true
 	else:
 		# update swing status
