@@ -121,7 +121,6 @@ height = 22.0
 [node name="player_ability" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_uri5i")
-receive_input = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_1kh7o")

@@ -5,13 +5,16 @@
 
 extends DefaultController
 
+# *** currently no cooldown for teleports yet ***
+# decrement buffer during teleportation process
+const TELEPORT_BUFFER : int = 1
+# teleport distance in pixels
+const TELEPORT_DISTANCE : int = 48
+
 var input_queue = []
 var direction_2d : Vector2 = Vector2.ZERO
 
-# *** currently no cooldown for teleports yet ***
-# decrement buffer during teleportation process
-const teleport_buffer : int = 1
-var buffer_timer : int = teleport_buffer
+var buffer_timer : int = TELEPORT_BUFFER
 # boolean for if in the teleport stage/buffering (see doc)
 var teleporting : bool = false
 # boolean for if in the holding stage (frame 4+ in doc)
@@ -36,10 +39,10 @@ func _ready():
 	print("created clone")
 	
 func _physics_process(delta):
+	# execute teleport if queued
 	if teleport_frame:
 		execute_teleport()
 		teleport_frame = false
-	# reset teleport status
 	# want to maintain original jump, but fall at slowed speed
 	jump_adjust(20) # 20x slower
 	# get 2d direction
@@ -73,19 +76,11 @@ func update_direction_2d():
 	direction_2d = Input.get_vector("left", "right", "up", "down").snapped(Vector2.ONE)
 
 # function for clone teleport
-# will update this wall of text - for now look at google doc for documentation
-# idea: teleport on both input and action button (probably k)
-# that way there are 3 ways to teleport: hold k then input, hold input then k, or both at once
-# another idea: add a 1-2 frame delay/buffer so that it's easier to hit both at once
-# i.e go 1-2 frames into animation (24fps) BEFORE moving player
-# if k is pressed, use those frames as a buffer for a direction
-# so if the direction changes during those 2 buffer frames, use that instead
-# in fact any input received in those frames will just be added to the queued direction
-# another thing would be to not count the frame where k is pressed for direction
-# since it's very hard to press a key for only 1 frame - chances are if a key was only
-# on the frame where they pressed k and not in the next 2 buffer frames, they meant to let go
-# should probably keep buffer period <= 3 frames (60fps) to stay responsive
-# it's a trade off between responsiveness and making input easier for the player
+# see google doc for more detailed documentation
+# frame 1 - begin input queue
+# frame 2-3 - gather input
+# frame 3 - queue teleport if input was valid (non-zero)
+# frame 4+ - if invalid input in 3, wait for input, then teleport after a 1 frame buffer
 func queue_teleport():
 	if Input.is_action_just_pressed("teleport") and not teleporting:
 		print("frame 1")
@@ -118,14 +113,14 @@ func queue_teleport():
 		# after successful or unsuccessful teleport continue to holding phase
 		holding_teleport = true
 		# reset
-		queue_reset()
+		reset_teleport()
 	elif holding_teleport and Input.is_action_pressed("teleport"):
 		print("frame 4+")
 		# holding frame (4+)
 		# wait for any input, then teleport on next frame
 		# reset queue
 		if not teleporting:
-			queue_reset()
+			reset_teleport()
 		# stop physics
 		receive_input = false
 		# check if any wasd was JUST pressed. just pressed since we don't want them
@@ -154,7 +149,7 @@ func queue_teleport():
 			if tp_dir != Vector2.ZERO:
 				start_teleport(tp_dir)
 			# reset queue, but STAY in holding
-			queue_reset()
+			reset_teleport()
 			# also keep not receiving input incase staying in 4+
 			receive_input = false
 		elif instant_received:
@@ -162,7 +157,7 @@ func queue_teleport():
 			# will teleport next frame
 			
 	else:
-		queue_reset()
+		reset_teleport()
 		# prevent going back to holding frame
 		holding_teleport = false
 	
@@ -191,11 +186,11 @@ func vector_or() -> Vector2:
 	# now use variables to construct new vector
 	return Vector2((right - left), (down - up))
 	
-func queue_reset():
+func reset_teleport():
 	# not teleporting - reset everything except holding teleport
 	teleporting = false
 	receive_input = true
-	buffer_timer = teleport_buffer
+	buffer_timer = TELEPORT_BUFFER
 	input_queue = []
 
 # checks teleport destination then prepares for teleport execution on next frame
@@ -205,14 +200,15 @@ func start_teleport(tp_dir):
 	# 2. if no collision at destination, delete the duplicated hitbox and set player
 	# 		location to that position
 	# 3. if there is a collision at destination, move_and_collide the player along the direction vector
-	# diagonal: 5 tiles (40px) x, 5 tiles y
-	# axis: 7 tiles (56 px)
-	var scale : int = 40
+
 	if tp_dir.x == 0 or tp_dir.y == 0:
 		# not diagonal
-		scale = 56
+		transformation =  TELEPORT_DISTANCE * tp_dir
+	else:
+		# diagonal
+		# divide by root 2
+		transformation = (round(scale * TELEPORT_DISTANCE / sqrt(2))) * tp_dir
 	
-	transformation = scale * tp_dir
 	print(transformation)
 	# checking destination using area 2d
 	
@@ -225,12 +221,7 @@ func start_teleport(tp_dir):
 	add_sibling(area_hitbox)
 	area_hitbox.set_collision_mask_value(1, true)
 	area_hitbox.set_collision_layer_value(1, false)
-	
-	# 
-	
-	# MUST USE SIGNALS - overlaps are only detected in each physics process
-	# calls _on_body_entered when a body enters
-	# area_hitbox.connect("body_entered", _on_body_entered)
+
 	# move it to destination
 	print("moving area hitbox")
 	area_hitbox.global_position = \

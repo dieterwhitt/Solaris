@@ -15,16 +15,13 @@ class_name DefaultController
 
 extends CharacterBody2D
 
-# below variables:
-# from an oop standpoint it might be better to initialize them in _ready() instead
-
 # after leaving the ground (not from jumping), increase the coyote value
 # then decrease by 1 for each subsequent frame until 0
 # if the player is in the air with coyote > 0, 
 # the player can jump even though they are not on the ground
 var current_coyote : int = 0
 # variable for if jump is still valid
-var used_jump : bool = false
+var used_jump : bool = true
 # when jumping in air, increase jump buffer
 # then decrease it by 1 for each subsequent frame until 0
 # then if the player is on the ground with the timer > 0,
@@ -35,9 +32,13 @@ var on_floor : bool = false
 # direction: -1, 0, 1
 # represents the CURRENT input direction (left, none, right)
 var direction : int = 0
+# queue reset on next frame
+var queue_reset : bool = false
 # to disable input (physics still applies), ex. after ability usage
 @export var receive_input : bool = true
 
+# variable for print debug statements
+@export var debug = false
 # dependent on subclass: 
 # underscore indicates must define in subclass
 var _sprite : Sprite2D
@@ -79,10 +80,22 @@ func slow_physics(factor : float):
 		# increase coyote time and jump buffer
 		new_value = DefaultDataReference.get(var_name) * factor
 		MoveData.set(var_name, new_value)
+
+# reset all attributes
+func _reset_physics():
+	if queue_reset:
+		velocity = Vector2.ZERO
+		direction = 0
+		used_jump = true
+		current_coyote = 0
+		current_jump_buffer = 0
+		queue_reset = false
 	
 # runs every physics frame
 # for updating physics
 func _physics_process(delta):
+	# reset all physics if queued
+	_reset_physics()
 	# in general: multiply by delta whenever velocity changes, except jump
 	# velocity means 'how much to move the character next frame'
 	# pre calculate on floor
@@ -192,6 +205,17 @@ func apply_jump():
 			 and (on_floor or current_coyote > 0)):
 		velocity.y = MoveData.JUMP_VELOCITY
 		used_jump = true
+
+# debug function which prints data on the character
+# subclasses may override to print additional data
+func _print_debug():
+	if debug:
+		print("-------frame-------")
+		print("address: %s" % self)
+		print("velocity: %v" % velocity)
+		print("direction: %d" % direction)
+		print("recieve input: %s" % receive_input)
+		
 
 func _process(delta):
 	# handling animations

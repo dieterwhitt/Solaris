@@ -5,7 +5,6 @@
 extends DefaultController
 
 @export var swinging : bool = false
-@export var damage_box_active : bool = false
 
 # get child nodes for animation
 func _ready():
@@ -27,7 +26,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 # handles swing
-# animation keyframes spawn hitbox
+# animation keyframes spawn damage hitbox
 func swing_animation():
 	if Input.is_action_just_pressed("attack") and receive_input:
 		_state_machine.travel("swing1")
