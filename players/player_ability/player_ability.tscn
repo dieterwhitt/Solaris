@@ -128,6 +128,7 @@ hframes = 9
 vframes = 9
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 0
 libraries = {
 "": SubResource("AnimationLibrary_llfrh")
 }

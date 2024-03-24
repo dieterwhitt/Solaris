@@ -252,6 +252,7 @@ func _process(delta):
 	super._process(delta)
 
 func _update_animation():
+	super._update_animation()
 	# override
 	if not on_floor and used_jump:
 		# jump

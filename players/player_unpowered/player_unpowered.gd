@@ -42,10 +42,11 @@ func swing_animation():
 
 # handling non-physics processes
 func _process(delta):
-	# define extra animatiion options
+	# define extra options
 	super._process(delta)
 
 func _update_animation():
+	super._update_animation()
 	# override
 	if swinging:
 		pass

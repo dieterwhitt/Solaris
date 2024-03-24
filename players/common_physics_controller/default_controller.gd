@@ -38,7 +38,7 @@ var queue_reset : bool = false
 @export var receive_input : bool = true
 
 # variable for print debug statements
-@export var debug = false
+@export var debug = true
 # dependent on subclass: 
 # underscore indicates must define in subclass
 var _sprite : Sprite2D
@@ -105,9 +105,15 @@ func _physics_process(delta):
 	apply_x_accel(delta)
 	apply_jump()
 	
+	# handling animations
+	# common animations: run/idle, jump
+	_update_animation()
+	
+	_print_debug()
 	# subclasses: define unique movement
 	# run move and slide (in subclass)
 	# move_and_slide()
+	
 
 func update_direction():
 	if receive_input:
@@ -128,10 +134,13 @@ func apply_gravity(delta):
 		velocity.y += MoveData.GRAVITY * down_multiplier * delta
 	
 	# cap at terminal
+	velocity.y = clamp(velocity.y, -1 * MoveData.TERMINAL_Y, MoveData.TERMINAL_Y)
+	'''
 	if velocity.y < -1 * MoveData.TERMINAL_Y:
 		velocity.y = -1 * MoveData.TERMINAL_Y
 	elif velocity.y > MoveData.TERMINAL_Y:
 		velocity.y = MoveData.TERMINAL_Y
+		'''
 
 # handles logic for when to accelerate/decelerate player
 func apply_x_accel(delta):	
@@ -146,10 +155,13 @@ func apply_x_accel(delta):
 	else:
 		apply_input(delta)
 	# cap at total x terminal
+		velocity.x = clamp(velocity.x, -1 * MoveData.TERMINAL_X, MoveData.TERMINAL_X)
+		'''
 	if velocity.x < -1 * MoveData.TERMINAL_X:
 		velocity.x = -1 * MoveData.TERMINAL_X
 	elif velocity.x > MoveData.TERMINAL_X:
 		velocity.x = MoveData.TERMINAL_X
+		'''
 		
 # moves the player in the current direction
 func apply_input(delta):
@@ -159,10 +171,13 @@ func apply_input(delta):
 	# adjust velocity and cap at input velocity
 	velocity.x += direction * MoveData.ACCELERATION * multiplier * delta
 	# cap at input terminal
+	velocity.x = clamp(velocity.x, -1 * MoveData.INPUT_TERMINAL, MoveData.INPUT_TERMINAL)
+	'''
 	if velocity.x < -1 * MoveData.INPUT_TERMINAL:
 		velocity.x = -1 * MoveData.INPUT_TERMINAL
 	elif velocity.x > MoveData.INPUT_TERMINAL:
 		velocity.x = MoveData.INPUT_TERMINAL
+		'''
 
 func apply_friction(delta):
 	var multiplier = 1
@@ -218,11 +233,7 @@ func _print_debug():
 		
 
 func _process(delta):
-	# handling animations
-	# common animations: run/idle, jump
-	_update_animation()
-	# common flip function
-	flip()
+	pass
 
 func flip():
 	if _sprite != null:
@@ -234,4 +245,4 @@ func flip():
 func _update_animation():
 	# subclass must override
 	# changes animations - subclass must use AnimationNodeStateMachine
-	pass
+	flip()
