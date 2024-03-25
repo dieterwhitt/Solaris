@@ -5,6 +5,7 @@
 extends DefaultController
 
 @export var swinging : bool = false
+var initial_position = Vector2(100, 100)
 
 # get child nodes for animation
 func _ready():
@@ -15,6 +16,7 @@ func _ready():
 	# sprite and state machine
 	_sprite = $Sprite2D
 	_state_machine = _animation_tree.get("parameters/playback")
+	initial_position = position
 	
 func _physics_process(delta):
 	# apply physics controller
@@ -43,8 +45,16 @@ func swing_animation():
 # handling non-physics processes
 func _process(delta):
 	# define extra options
+	
+	#if character is off screen, just set position to initial position.
+	if abs(position.y) > get_viewport_rect().size.y:
+		reset_position()
 	super._process(delta)
 
+func reset_position():
+	# Reset the character's position to the initial position
+	position = initial_position
+	
 func _update_animation():
 	super._update_animation()
 	# override
