@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccf8uxhg0toqp"]
+[gd_scene load_steps=6 format=3 uid="uid://ccf8uxhg0toqp"]
 
 [ext_resource type="Texture2D" uid="uid://dicpn63thecj8" path="res://world/backgrounds/finn-sketch1.png" id="1_if87x"]
 [ext_resource type="PackedScene" uid="uid://3w1xvg136m3q" path="res://world/tiles/tile_map.tscn" id="2_feglb"]
 [ext_resource type="Script" path="res://world/levels/input_test.gd" id="5_8ktsy"]
+[ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/jump_pad.tscn" id="5_h55ax"]
 [ext_resource type="PackedScene" uid="uid://bgd67wjkmahc1" path="res://players/player_manager.tscn" id="6_m8j83"]
 
 [node name="World" type="Node2D"]
@@ -18,3 +19,6 @@ visible = false
 script = ExtResource("5_8ktsy")
 
 [node name="PlayerManager" parent="." instance=ExtResource("6_m8j83")]
+
+[node name="JumpPad" parent="." instance=ExtResource("5_h55ax")]
+position = Vector2(152, 72)

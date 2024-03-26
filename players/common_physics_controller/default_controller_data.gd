@@ -22,7 +22,8 @@ var AIR_ACCEL_MULTIPLIER : float = 0.9 # 0.9
 var AIR_DECEL_MULTIPLIER : float = 0.5 # 0.5
 # terminal x and y velocity
 var TERMINAL_X : float = 200.0 # 200
-var TERMINAL_Y : float = 250.0 # 200
+# falling only
+var TERMINAL_Y : float = 250.0 # 250
 # max velocity reachable by input alone
 var INPUT_TERMINAL : float = 120.0 # 120
 # number of coyote and jump buffer frames

@@ -38,7 +38,7 @@ var queue_reset : bool = false
 @export var receive_input : bool = true
 
 # variable for print debug statements
-@export var debug = true
+@export var debug = false
 # dependent on subclass: 
 # underscore indicates must define in subclass
 var _sprite : Sprite2D
@@ -133,14 +133,8 @@ func apply_gravity(delta):
 	if not on_floor and velocity.y < MoveData.TERMINAL_Y:
 		velocity.y += MoveData.GRAVITY * down_multiplier * delta
 	
-	# cap at terminal
-	velocity.y = clamp(velocity.y, -1 * MoveData.TERMINAL_Y, MoveData.TERMINAL_Y)
-	'''
-	if velocity.y < -1 * MoveData.TERMINAL_Y:
-		velocity.y = -1 * MoveData.TERMINAL_Y
-	elif velocity.y > MoveData.TERMINAL_Y:
-		velocity.y = MoveData.TERMINAL_Y
-		'''
+	# cap at terminal (falling speed only!)
+	velocity.y = min(velocity.y, MoveData.TERMINAL_Y)
 
 # handles logic for when to accelerate/decelerate player
 func apply_x_accel(delta):	
@@ -156,12 +150,6 @@ func apply_x_accel(delta):
 		apply_input(delta)
 	# cap at total x terminal
 		velocity.x = clamp(velocity.x, -1 * MoveData.TERMINAL_X, MoveData.TERMINAL_X)
-		'''
-	if velocity.x < -1 * MoveData.TERMINAL_X:
-		velocity.x = -1 * MoveData.TERMINAL_X
-	elif velocity.x > MoveData.TERMINAL_X:
-		velocity.x = MoveData.TERMINAL_X
-		'''
 		
 # moves the player in the current direction
 func apply_input(delta):
@@ -172,12 +160,6 @@ func apply_input(delta):
 	velocity.x += direction * MoveData.ACCELERATION * multiplier * delta
 	# cap at input terminal
 	velocity.x = clamp(velocity.x, -1 * MoveData.INPUT_TERMINAL, MoveData.INPUT_TERMINAL)
-	'''
-	if velocity.x < -1 * MoveData.INPUT_TERMINAL:
-		velocity.x = -1 * MoveData.INPUT_TERMINAL
-	elif velocity.x > MoveData.INPUT_TERMINAL:
-		velocity.x = MoveData.INPUT_TERMINAL
-		'''
 
 func apply_friction(delta):
 	var multiplier = 1
