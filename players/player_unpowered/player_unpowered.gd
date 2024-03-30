@@ -40,6 +40,14 @@ func swing_animation():
 		swinging = (_state_machine.get_current_node() == "swing1"  
 				or _state_machine.get_current_node() == "swing2")
 
+func kill():
+	# kills the player and handles logic
+	# eventually will need to rig it up to reset the level
+	# for now just reset player position
+	# eventually we'll also have to define every level's 
+	# reset position/checkpoint position.
+	self.global_position = Vector2(40, 16)
+
 # handling non-physics processes
 func _process(delta):
 	# define extra options

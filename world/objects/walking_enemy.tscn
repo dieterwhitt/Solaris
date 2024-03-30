@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvw780c0vet6v"]
+
+[ext_resource type="Script" path="res://world/objects/walking_enemy.gd" id="1_kxxou"]
+[ext_resource type="Texture2D" uid="uid://c7y2o6ue1kint" path="res://online-assets/kenney_pixel-platformer/Tiles/Characters/tile_0015.png" id="1_l4at0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fqc5o"]
+size = Vector2(15, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8pc8"]
+size = Vector2(13, 7)
+
+[node name="WalkingEnemy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 9
+script = ExtResource("1_kxxou")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_l4at0")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 6.5)
+shape = SubResource("RectangleShape2D_fqc5o")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="DamageBox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 6.5)
+shape = SubResource("RectangleShape2D_q8pc8")
+
+[node name="RayCast2DLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-7, 13)
+
+[node name="RayCast2DRight" type="RayCast2D" parent="."]
+target_position = Vector2(6, 13)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
