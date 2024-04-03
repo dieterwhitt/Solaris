@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://3w1xvg136m3q" path="res://world/tiles/tile_map.tscn" id="2_feglb"]
 [ext_resource type="Script" path="res://world/levels/input_test.gd" id="5_8ktsy"]
 [ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/jump_pad.tscn" id="5_h55ax"]
-[ext_resource type="PackedScene" uid="uid://bgd67wjkmahc1" path="res://players/player_manager.tscn" id="6_m8j83"]
 [ext_resource type="PackedScene" uid="uid://bvw780c0vet6v" path="res://world/objects/walking_enemy.tscn" id="6_oexp7"]
 [ext_resource type="PackedScene" uid="uid://cdqyy8r71bnmi" path="res://world/objects/small_spikes.tscn" id="7_ks5pe"]
 [ext_resource type="PackedScene" uid="uid://b7uh2up3p5ga0" path="res://world/objects/normal_spike.tscn" id="8_ntkoo"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/dash_orb.tscn" id="9_xab1v"]
+[ext_resource type="PackedScene" uid="uid://yri1y85csvlw" path="res://players/player_reworked/player_reworked.tscn" id="9_ycl3q"]
 
 [node name="World" type="Node2D"]
 
@@ -40,9 +40,6 @@ position = Vector2(168, 80)
 [node name="SmallSpikes4" parent="." instance=ExtResource("7_ks5pe")]
 position = Vector2(192, 80)
 
-[node name="PlayerManager" parent="." instance=ExtResource("6_m8j83")]
-position = Vector2(40, 24)
-
 [node name="NormalSpike" parent="." instance=ExtResource("8_ntkoo")]
 position = Vector2(112, 160)
 
@@ -55,3 +52,6 @@ position = Vector2(184, 56)
 [node name="DashOrb2" parent="." instance=ExtResource("9_xab1v")]
 position = Vector2(216, 24)
 rotation = 1.5708
+
+[node name="PlayerReworked" parent="." instance=ExtResource("9_ycl3q")]
+position = Vector2(96, 24)

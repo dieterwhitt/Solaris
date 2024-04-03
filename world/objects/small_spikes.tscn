@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cdqyy8r71bnmi"]
 
-[ext_resource type="Script" path="res://small_spikes.gd" id="1_xg0nf"]
+[ext_resource type="Script" path="res://world/objects/small_spikes.gd" id="1_xg0nf"]
 [ext_resource type="Texture2D" uid="uid://4rcqj4tpgk5q" path="res://world/objects/random-tiles.png" id="2_6d5vv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hj14"]
