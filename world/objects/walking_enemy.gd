@@ -30,5 +30,5 @@ func _physics_process(delta):
 func _on_area_2d_body_entered(body):
 	print("enemy collision")
 	# check for player entered damage box
-	if body.get_name() == "PlayerUnpowered":
+	if body.is_in_group("Player"):
 		body.kill()

@@ -17,5 +17,5 @@ func _process(delta):
 func _on_area_2d_body_entered(body):
 	print("small spikes collision")
 	# kill player
-	if body.get_name() == "PlayerUnpowered":
+	if body.is_in_group("Player"):
 		body.kill()

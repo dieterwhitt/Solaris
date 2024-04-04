@@ -5,11 +5,12 @@ extends Node2D
 
 var DOUBLE_JUMP_VELOCITY = -150.0
 # dash velocity
-var DASH_VELOCITY = 400.0
+var DASH_VELOCITY = 250.0
 # number of frames into dash before applying friction
-var DASH_FRAMES : int = 10
+var DASH_FRAMES : int = 8
 # dash deceleration
-var DASH_FRICTION = 800.0
+var DASH_FRICTION : float = 2750.0
+var FRICTION_FRAMES : int = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,6 +26,13 @@ func _on_area_2d_body_entered(body):
 	print("collision with dash orb")
 	# dash player
 	if body.get_name() == "PlayerReworked":
-		body.dash(Vector2(0, -1), 8, 250, 4, 2750)
-			
-		
+		# calculate direction vector
+		var direction : Vector2 = Vector2.ZERO
+		if int(round(rotation_degrees)) % 45 == 0:
+			# direction vector based on angle
+			direction = Vector2(sin(rotation), -cos(rotation))
+			body.dash(direction, DASH_FRAMES, DASH_VELOCITY, 
+					FRICTION_FRAMES, DASH_FRICTION)
+		else:
+			print("invalid jump orb rotation")
+

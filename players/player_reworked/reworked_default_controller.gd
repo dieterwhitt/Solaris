@@ -182,6 +182,8 @@ func dash(direction : Vector2, dash_frames : int, dash_velocity :
 			float, friction_frames : int, friction_decel : float):
 	dashing = true
 	dash_stopping = false
+	# give back double jump
+	used_double_jump = false
 	# set timer
 	dash_timer = dash_frames
 	# applies velocity using the direction vector
@@ -206,8 +208,6 @@ func update_dash(delta):
 	elif dash_stopping and dash_friction_timer == 0:
 		# apply regular physics again
 		dash_stopping = false
-		# give back double jump
-		used_double_jump = false
 	
 
 # debug function which prints data on the character

@@ -55,3 +55,14 @@ rotation = 1.5708
 
 [node name="PlayerReworked" parent="." instance=ExtResource("9_ycl3q")]
 position = Vector2(96, 24)
+
+[node name="DashOrb3" parent="." instance=ExtResource("9_xab1v")]
+position = Vector2(48, 24)
+rotation = 3.14159
+
+[node name="DashOrb4" parent="." instance=ExtResource("9_xab1v")]
+position = Vector2(16, 24)
+rotation = 3.14159
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 88)
