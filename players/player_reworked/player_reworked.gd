@@ -46,7 +46,9 @@ func kill():
 	# for now just reset player position
 	# eventually we'll also have to define every level's 
 	# reset position/checkpoint position.
-	self.global_position = Vector2(40, 16)
+	
+	#HARDCODED!!
+	self.global_position = Vector2(-112, 40)
 
 # handling non-physics processes
 func _process(delta):

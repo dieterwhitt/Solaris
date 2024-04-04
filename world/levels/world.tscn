@@ -50,7 +50,7 @@ position = Vector2(104, 160)
 position = Vector2(184, 56)
 
 [node name="DashOrb2" parent="." instance=ExtResource("9_xab1v")]
-position = Vector2(216, 24)
+position = Vector2(208, 16)
 rotation = 1.5708
 
 [node name="PlayerReworked" parent="." instance=ExtResource("9_ycl3q")]

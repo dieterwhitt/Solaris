@@ -1,0 +1,282 @@
+[gd_scene load_steps=10 format=3 uid="uid://7kwu1he1d8n"]
+
+[ext_resource type="Texture2D" uid="uid://dicpn63thecj8" path="res://world/backgrounds/finn-sketch1.png" id="1_54er8"]
+[ext_resource type="TileSet" uid="uid://n525m3jhu2dx" path="res://world/tiles/shitty_tileset.tres" id="2_o4dvl"]
+[ext_resource type="PackedScene" uid="uid://cdqyy8r71bnmi" path="res://world/objects/small_spikes.tscn" id="3_a3525"]
+[ext_resource type="PackedScene" uid="uid://yri1y85csvlw" path="res://players/player_reworked/player_reworked.tscn" id="4_8qpk7"]
+[ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/jump_pad.tscn" id="4_kpdxv"]
+[ext_resource type="PackedScene" uid="uid://b7uh2up3p5ga0" path="res://world/objects/normal_spike.tscn" id="5_x7442"]
+[ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/dash_orb.tscn" id="6_7qy1j"]
+[ext_resource type="Texture2D" uid="uid://4rcqj4tpgk5q" path="res://world/objects/random-tiles.png" id="7_2evxg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubfba"]
+size = Vector2(9, 10)
+
+[node name="Level00" type="Node"]
+
+[node name="-1" type="CanvasGroup" parent="."]
+z_index = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="-1"]
+texture = ExtResource("1_54er8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -2)
+
+[node name="Level" type="Node" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Level"]
+tile_set = ExtResource("2_o4dvl")
+format = 2
+layer_0/tile_data = PackedInt32Array(-720912, 720898, 1, -655376, 720898, 1, -589840, 720898, 1, -524304, 720898, 1, -458768, 720898, 1, -393232, 720898, 1, -327696, 720898, 1, -262160, 720898, 1, -196624, 720898, 1, -131088, 720898, 1, -65552, 720898, 1, -16, 720898, 1, 65520, 720898, 1, 131056, 720898, 1, 196592, 720898, 1, 262128, 720898, 1, 327664, 720898, 1, 393200, 720898, 1, 458736, 720898, 1, 524272, 720898, 1, -720916, 655362, 1, -655380, 655362, 1, -589844, 655362, 1, -524308, 655362, 1, -458772, 655362, 1, -393236, 655362, 1, -327700, 655362, 1, -262164, 655362, 1, -196628, 655362, 1, -131092, 655362, 1, -65556, 655362, 1, -20, 655362, 1, 65516, 655362, 1, 131052, 655362, 1, 196588, 655362, 1, 262124, 655362, 1, 327660, 655362, 1, 393196, 655362, 1, 458732, 655362, 1, 524268, 655362, 1, -720915, 655362, 1, -655379, 655362, 1, -589843, 655362, 1, -524307, 655362, 1, -458771, 655362, 1, -393235, 655362, 1, -327699, 655362, 1, -262163, 655362, 1, -196627, 655362, 1, -131091, 655362, 1, -65555, 655362, 1, -19, 655362, 1, 65517, 655362, 1, 131053, 655362, 1, 196589, 655362, 1, 262125, 655362, 1, 327661, 655362, 1, 393197, 655362, 1, 458733, 655362, 1, 524269, 655362, 1, -720914, 655362, 1, -655378, 655362, 1, -589842, 655362, 1, -524306, 655362, 1, -458770, 655362, 1, -393234, 655362, 1, -327698, 655362, 1, -262162, 655362, 1, -196626, 655362, 1, -131090, 655362, 1, -65554, 655362, 1, -18, 655362, 1, 65518, 655362, 1, 131054, 655362, 1, 196590, 655362, 1, 262126, 655362, 1, 327662, 655362, 1, 393198, 655362, 1, 458734, 655362, 1, 524270, 655362, 1, -720913, 655362, 1, -655377, 655362, 1, -589841, 655362, 1, -524305, 655362, 1, -458769, 655362, 1, -393233, 655362, 1, -327697, 655362, 1, -262161, 655362, 1, -196625, 655362, 1, -131089, 655362, 1, -65553, 655362, 1, -17, 655362, 1, 65519, 655362, 1, 131055, 655362, 1, 196591, 655362, 1, 262127, 655362, 1, 327663, 655362, 1, 393199, 655362, 1, 458735, 655362, 1, 524271, 655362, 1, 589809, 655362, 0, 589808, 589826, 5, 589810, 655362, 0, 589811, 655362, 0, 589812, 655362, 0, 589813, 655362, 0, 589814, 720898, 0, 655350, 720898, 1, 720886, 720898, 1, 786422, 720898, 1, 786429, 589826, 1, 720893, 589826, 1, 655357, 589826, 1, 589821, 589826, 1, 524285, 589826, 1, 458749, 589826, 0, 589804, 655362, 1, 589805, 655362, 1, 655341, 655362, 1, 655342, 655362, 1, 720878, 655362, 1, 720879, 655362, 1, 589806, 655362, 1, 589807, 655362, 1, 655343, 655362, 1, 655340, 655362, 1, 720876, 655362, 1, 720877, 655362, 1, 720880, 655362, 1, 720881, 655362, 1, 720882, 655362, 1, 720883, 655362, 1, 720884, 655362, 1, 720885, 655362, 1, 655349, 655362, 1, 655348, 655362, 1, 655347, 655362, 1, 655346, 655362, 1, 655345, 655362, 1, 655344, 655362, 1, 458750, 655362, 0, 458751, 655362, 0, 393216, 655362, 0, 393217, 720898, 0, 458754, 655362, 0, 458755, 655362, 0, 458753, 589826, 5, 524286, 655362, 1, 589822, 655362, 1, 655358, 655362, 1, 720894, 655362, 1, 524287, 655362, 1, 589823, 655362, 1, 655359, 655362, 1, 720895, 655362, 1, 458752, 655362, 1, 524288, 655362, 1, 589824, 655362, 1, 655360, 655362, 1, 524289, 655362, 1, 589825, 655362, 1, 655361, 655362, 1, 524290, 655362, 1, 589826, 655362, 1, 655362, 655362, 1, 524291, 655362, 1, 589827, 655362, 1, 655363, 655362, 1, 589835, 1179650, 0, 589836, 1310722, 0, 655371, 1179650, 1, 655372, 1310722, 1, 15, 1179650, 1, -786417, 1179650, 1, -720881, 1179650, 1, -655345, 1179650, 1, -589809, 1179650, 1, -524273, 1179650, 1, -458737, 1179650, 1, -393201, 1179650, 1, -327665, 1179650, 1, -262129, 1179650, 1, -196593, 1179650, 1, -131057, 1179650, 1, -65521, 1179650, 1, 65551, 1179650, 1, 131087, 1179650, 1, 196623, 1179650, 1, 262159, 1179650, 1, 327695, 1179650, 1, 393231, 1179650, 1, 458767, 1179650, 1, 524303, 1179650, 1, 589839, 1179650, 1, 655375, 1179650, 1, -786416, 1245186, 1, -786415, 1245186, 1, -786414, 1245186, 1, -786413, 1245186, 1, -720880, 1245186, 1, -655344, 1245186, 1, -589808, 1245186, 1, -524272, 1245186, 1, -458736, 1245186, 1, -393200, 1245186, 1, -327664, 1245186, 1, -262128, 1245186, 1, -196592, 1245186, 1, -131056, 1245186, 1, -65520, 1245186, 1, 16, 1245186, 1, 65552, 1245186, 1, 131088, 1245186, 1, 196624, 1245186, 1, 262160, 1245186, 1, 327696, 1245186, 1, 393232, 1245186, 1, 458768, 1245186, 1, 524304, 1245186, 1, 589840, 1245186, 1, 655376, 1245186, 1, -720879, 1245186, 1, -655343, 1245186, 1, -589807, 1245186, 1, -524271, 1245186, 1, -458735, 1245186, 1, -393199, 1245186, 1, -327663, 1245186, 1, -262127, 1245186, 1, -196591, 1245186, 1, -131055, 1245186, 1, -65519, 1245186, 1, 17, 1245186, 1, 65553, 1245186, 1, 131089, 1245186, 1, 196625, 1245186, 1, 262161, 1245186, 1, 327697, 1245186, 1, 393233, 1245186, 1, 458769, 1245186, 1, 524305, 1245186, 1, 589841, 1245186, 1, 655377, 1245186, 1, -720878, 1245186, 1, -655342, 1245186, 1, -589806, 1245186, 1, -524270, 1245186, 1, -458734, 1245186, 1, -393198, 1245186, 1, -327662, 1245186, 1, -262126, 1245186, 1, -196590, 1245186, 1, -131054, 1245186, 1, -65518, 1245186, 1, 18, 1245186, 1, 65554, 1245186, 1, 131090, 1245186, 1, 196626, 1245186, 1, 262162, 1245186, 1, 327698, 1245186, 1, 393234, 1245186, 1, 458770, 1245186, 1, 524306, 1245186, 1, 589842, 1245186, 1, 655378, 1245186, 1, -720877, 1245186, 1, -655341, 1245186, 1, -589805, 1245186, 1, -524269, 1245186, 1, -458733, 1245186, 1, -393197, 1245186, 1, -327661, 1245186, 1, -262125, 1245186, 1, -196589, 1245186, 1, -131053, 1245186, 1, -65517, 1245186, 1, 19, 1245186, 1, 65555, 1245186, 1, 131091, 1245186, 1, 196627, 1245186, 1, 262163, 1245186, 1, 327699, 1245186, 1, 393235, 1245186, 1, 458771, 1245186, 1, 524307, 1245186, 1, 589843, 1245186, 1, 655379, 1245186, 1, 65548, 655362, 3, 65549, 655362, 3, 65550, 655362, 3, 65547, 589826, 3, -12, 589826, 0, 65524, 589826, 2, -11, 655362, 0, -10, 655362, 0, -9, 655362, 0, -8, 655362, 0, -7, 720898, 0, 65529, 720898, 2, 65528, 655362, 2, 65527, 655362, 2, 65526, 655362, 2, 65525, 655362, 2, 131080, 786434, 1, 65544, 786434, 1, 196616, 786434, 2, 8, 786434, 1, -65528, 786434, 1, -131064, 786434, 1, -196600, 786434, 1, -327672, 786434, 1, -262136, 786434, 1, -393208, 786434, 0, 458756, 720898, 0, 524292, 720898, 1, 589828, 720898, 1, 655364, 720898, 1, -458755, 786434, 3, -262151, 786434, 3, -524302, 589826, 3, -524301, 720898, 3, -196603, 1376258, 0, -131067, 1376258, 2)
+
+[node name="Static" type="Node" parent="Level"]
+
+[node name="SmallSpikes" parent="Level/Static" instance=ExtResource("3_a3525")]
+position = Vector2(-72, 88)
+
+[node name="SmallSpikes2" parent="Level/Static" instance=ExtResource("3_a3525")]
+position = Vector2(-64, 88)
+
+[node name="SmallSpikes3" parent="Level/Static" instance=ExtResource("3_a3525")]
+position = Vector2(-56, 88)
+
+[node name="SmallSpikes4" parent="Level/Static" instance=ExtResource("3_a3525")]
+position = Vector2(-48, 88)
+
+[node name="SmallSpikes5" parent="Level/Static" instance=ExtResource("3_a3525")]
+position = Vector2(-40, 88)
+
+[node name="SmallSpikes6" parent="Level/Static" instance=ExtResource("3_a3525")]
+position = Vector2(-32, 88)
+
+[node name="SmallSpikes7" parent="Level/Static" instance=ExtResource("3_a3525")]
+position = Vector2(48, 88)
+
+[node name="SmallSpikes8" parent="Level/Static" instance=ExtResource("3_a3525")]
+position = Vector2(56, 88)
+
+[node name="SmallSpikes9" parent="Level/Static" instance=ExtResource("3_a3525")]
+position = Vector2(64, 88)
+
+[node name="SmallSpikes10" parent="Level/Static" instance=ExtResource("3_a3525")]
+position = Vector2(72, 88)
+
+[node name="SmallSpikes11" parent="Level/Static" instance=ExtResource("3_a3525")]
+position = Vector2(80, 88)
+
+[node name="JumpPad" parent="Level/Static" instance=ExtResource("4_kpdxv")]
+position = Vector2(96, 64)
+
+[node name="NormalSpike" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(104, 88)
+
+[node name="NormalSpike2" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(112, 88)
+
+[node name="NormalSpike3" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(-88, 8)
+rotation = 3.14159
+
+[node name="NormalSpike4" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(-48, 0)
+rotation = 1.5708
+
+[node name="NormalSpike5" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(-48, -8)
+rotation = 1.5708
+
+[node name="DashOrb" parent="Level/Static" instance=ExtResource("6_7qy1j")]
+position = Vector2(96, -32)
+
+[node name="DashOrb2" parent="Level/Static" instance=ExtResource("6_7qy1j")]
+position = Vector2(104, -72)
+rotation = 4.71239
+
+[node name="NormalSpike6" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(72, 32)
+rotation = 3.14159
+
+[node name="NormalSpike7" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(64, -48)
+
+[node name="NormalSpike8" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(72, -48)
+rotation = 1.5708
+
+[node name="NormalSpike9" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(72, -40)
+rotation = 1.5708
+
+[node name="NormalSpike10" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(72, -32)
+rotation = 1.5708
+
+[node name="NormalSpike11" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(72, -24)
+rotation = 1.5708
+
+[node name="NormalSpike12" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(72, -16)
+rotation = 1.5708
+
+[node name="NormalSpike13" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(72, -8)
+rotation = 1.5708
+
+[node name="NormalSpike14" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(72, 0)
+rotation = 1.5708
+
+[node name="NormalSpike15" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(72, 8)
+rotation = 1.5708
+
+[node name="NormalSpike16" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(72, 16)
+rotation = 1.5708
+
+[node name="NormalSpike17" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(72, 24)
+rotation = 1.5708
+
+[node name="NormalSpike18" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(64, -40)
+rotation = 4.71239
+
+[node name="NormalSpike19" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(64, -32)
+rotation = 4.71239
+
+[node name="NormalSpike21" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(64, -16)
+rotation = 4.71239
+
+[node name="NormalSpike22" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(64, -8)
+rotation = 4.71239
+
+[node name="NormalSpike23" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(64, 0)
+rotation = 4.71239
+
+[node name="NormalSpike24" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(64, 8)
+rotation = 4.71239
+
+[node name="NormalSpike25" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(64, 16)
+rotation = 4.71239
+
+[node name="NormalSpike26" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(64, 24)
+rotation = 4.71239
+
+[node name="NormalSpike27" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(64, 32)
+rotation = 4.71239
+
+[node name="SmallSpikes13" parent="Level/Static" instance=ExtResource("3_a3525")]
+position = Vector2(40, 88)
+
+[node name="SmallSpikes14" parent="Level/Static" instance=ExtResource("3_a3525")]
+position = Vector2(32, 56)
+
+[node name="NormalSpike20" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(-80, 8)
+rotation = 3.14159
+
+[node name="NormalSpike28" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(-56, -8)
+
+[node name="NormalSpike29" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(-56, -40)
+
+[node name="NormalSpike30" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(-24, -64)
+
+[node name="NormalSpike31" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(-48, -40)
+rotation = 1.5708
+
+[node name="NormalSpike32" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(-16, -64)
+rotation = 1.5708
+
+[node name="NormalSpike33" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(-16, -56)
+rotation = 3.14159
+
+[node name="NormalSpike34" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(-48, -32)
+rotation = 3.14159
+
+[node name="NormalSpike35" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(-56, -32)
+rotation = 4.71239
+
+[node name="DashOrb3" parent="Level/Static" instance=ExtResource("6_7qy1j")]
+position = Vector2(-16, -24)
+rotation = -0.785398
+
+[node name="Area2D2" type="Area2D" parent="Level/Static/DashOrb3"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Static/DashOrb3/Area2D2"]
+position = Vector2(3.5, -4)
+shape = SubResource("RectangleShape2D_ubfba")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Static/DashOrb3/Area2D2"]
+position = Vector2(4, -4)
+rotation = 6.28319
+texture = ExtResource("7_2evxg")
+hframes = 4
+vframes = 4
+frame = 2
+
+[node name="NormalSpike36" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(-24, -56)
+rotation = 4.71239
+
+[node name="NormalSpike37" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(64, -24)
+rotation = 4.71239
+
+[node name="NormalSpike38" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(40, -16)
+rotation = 4.71239
+
+[node name="NormalSpike39" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(40, -8)
+rotation = 4.71239
+
+[node name="NormalSpike41" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(40, -24)
+
+[node name="NormalSpike42" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(48, -24)
+rotation = 1.5708
+
+[node name="NormalSpike43" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(48, -16)
+rotation = 1.5708
+
+[node name="NormalSpike44" parent="Level/Static" instance=ExtResource("5_x7442")]
+position = Vector2(48, -8)
+rotation = 3.14159
+
+[node name="JumpPad2" parent="Level/Static" instance=ExtResource("4_kpdxv")]
+position = Vector2(-88, -16)
+
+[node name="Entities" type="Node" parent="Level"]
+
+[node name="PlayerReworked" parent="Level" instance=ExtResource("4_8qpk7")]
+position = Vector2(-112, 40)
+
+[node name="SmallSpikes13" parent="Level" instance=ExtResource("3_a3525")]
+position = Vector2(24, 56)
+
+[node name="SmallSpikes14" parent="Level" instance=ExtResource("3_a3525")]
+position = Vector2(16, 56)
+
+[connection signal="body_entered" from="Level/Static/DashOrb3/Area2D2" to="Level/Static/DashOrb3" method="_on_area_2d_body_entered"]
