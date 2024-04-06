@@ -19,6 +19,7 @@ shape = SubResource("RectangleShape2D_ubfba")
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
 position = Vector2(4, -4)
 rotation = 6.28319
+scale = Vector2(0.984, 1)
 texture = ExtResource("2_kebol")
 hframes = 4
 vframes = 4

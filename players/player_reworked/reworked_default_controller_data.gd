@@ -25,7 +25,7 @@ var TERMINAL_X : float = 200.0 # 200
 # falling only
 var TERMINAL_Y : float = 250.0 # 250
 # max velocity reachable by input alone
-var INPUT_TERMINAL : float = 120.0 # 120
+var INPUT_TERMINAL : float = 110.0 # 120
 # number of coyote and jump buffer frames
 var COYOTE_TIME : int = 5 # 5
 var JUMP_BUFFER : int = 5 # 5

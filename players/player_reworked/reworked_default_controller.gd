@@ -22,6 +22,7 @@ var dash_stopping = false
 var dash_timer : int = 0
 var dash_friction_timer : int = 0
 var dash_friction : float = 0
+var apply_down_gravity = true
 # when jumping in air, increase jump buffer
 # then decrease it by 1 for each subsequent frame until 0
 # then if the player is on the ground with the timer > 0,
@@ -88,7 +89,7 @@ func apply_gravity(delta):
 	# apply the down gravity multiplier if used jump and are on the way down
 	# i.e the user already jumped and is now falling
 	var down_multiplier = 1
-	if used_jump and velocity.y > 0:
+	if used_jump and velocity.y > 0 and apply_down_gravity:
 		down_multiplier = MoveData.DOWN_MULTIPLIER
 	
 	# apply gravity
@@ -148,9 +149,11 @@ func update_buffer():
 		
 func update_jump_elig():
 	# replenish jump when on the floor
-	if on_floor and current_jump_buffer == 0:
+	if on_floor:
 		used_jump = false
 		used_double_jump = false
+		# also reset down gravity to true
+		apply_down_gravity = true
 
 func apply_jump():
 	update_coyote()
@@ -163,6 +166,7 @@ func apply_jump():
 	if ((not used_jump and receive_input) 
 			and (Input.is_action_just_pressed("jump") or current_jump_buffer > 0)
 			 and (on_floor or current_coyote > 0)):
+		#regular jump
 		velocity.y = MoveData.JUMP_VELOCITY
 		used_jump = true
 		# cancel dash
@@ -184,6 +188,8 @@ func dash(direction : Vector2, dash_frames : int, dash_velocity :
 	dash_stopping = false
 	# give back double jump
 	used_double_jump = false
+	# disable down gravity until next full jump
+	apply_down_gravity = false
 	# set timer
 	dash_timer = dash_frames
 	# applies velocity using the direction vector
@@ -208,7 +214,6 @@ func update_dash(delta):
 	elif dash_stopping and dash_friction_timer == 0:
 		# apply regular physics again
 		dash_stopping = false
-	
 
 # debug function which prints data on the character
 # subclasses may override to print additional data
