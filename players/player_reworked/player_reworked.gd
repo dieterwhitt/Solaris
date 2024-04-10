@@ -29,10 +29,10 @@ func _physics_process(delta):
 # animation keyframes spawn damage hitbox
 func swing_animation():
 	if Input.is_action_just_pressed("attack") and receive_input:
-		_state_machine.travel("swing1")
+		_state_machine.start("swing1", true)
 		swinging = true
 	elif Input.is_action_just_pressed("heavy") and receive_input:
-		_state_machine.travel("swing2")
+		_state_machine.start("swing2", true)
 		swinging = true
 	else:
 		# update swing status

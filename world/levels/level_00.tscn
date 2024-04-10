@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://7kwu1he1d8n"]
+[gd_scene load_steps=8 format=3 uid="uid://7kwu1he1d8n"]
 
 [ext_resource type="Texture2D" uid="uid://dicpn63thecj8" path="res://world/backgrounds/finn-sketch1.png" id="1_54er8"]
 [ext_resource type="TileSet" uid="uid://n525m3jhu2dx" path="res://world/tiles/shitty_tileset.tres" id="2_o4dvl"]
@@ -7,10 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/jump_pad.tscn" id="4_kpdxv"]
 [ext_resource type="PackedScene" uid="uid://b7uh2up3p5ga0" path="res://world/objects/normal_spike.tscn" id="5_x7442"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/dash_orb.tscn" id="6_7qy1j"]
-[ext_resource type="Texture2D" uid="uid://4rcqj4tpgk5q" path="res://world/objects/random-tiles.png" id="7_2evxg"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubfba"]
-size = Vector2(9, 10)
 
 [node name="Level00" type="Node"]
 
@@ -32,251 +28,238 @@ layer_0/tile_data = PackedInt32Array(-720912, 720898, 1, -655376, 720898, 1, -58
 
 [node name="Static" type="Node" parent="Level"]
 
-[node name="SmallSpikes" parent="Level/Static" instance=ExtResource("3_a3525")]
-position = Vector2(-72, 88)
-
-[node name="SmallSpikes2" parent="Level/Static" instance=ExtResource("3_a3525")]
-position = Vector2(-64, 88)
-
-[node name="SmallSpikes3" parent="Level/Static" instance=ExtResource("3_a3525")]
-position = Vector2(-56, 88)
-
-[node name="SmallSpikes4" parent="Level/Static" instance=ExtResource("3_a3525")]
-position = Vector2(-48, 88)
-
-[node name="SmallSpikes5" parent="Level/Static" instance=ExtResource("3_a3525")]
-position = Vector2(-40, 88)
-
-[node name="SmallSpikes6" parent="Level/Static" instance=ExtResource("3_a3525")]
-position = Vector2(-32, 88)
-
-[node name="SmallSpikes7" parent="Level/Static" instance=ExtResource("3_a3525")]
-position = Vector2(48, 88)
-
-[node name="SmallSpikes8" parent="Level/Static" instance=ExtResource("3_a3525")]
-position = Vector2(56, 88)
-
-[node name="SmallSpikes9" parent="Level/Static" instance=ExtResource("3_a3525")]
-position = Vector2(64, 88)
-
-[node name="SmallSpikes10" parent="Level/Static" instance=ExtResource("3_a3525")]
-position = Vector2(72, 88)
-
-[node name="SmallSpikes11" parent="Level/Static" instance=ExtResource("3_a3525")]
-position = Vector2(80, 88)
-
 [node name="JumpPad" parent="Level/Static" instance=ExtResource("4_kpdxv")]
 position = Vector2(96, 64)
 
-[node name="NormalSpike" parent="Level/Static" instance=ExtResource("5_x7442")]
-position = Vector2(104, 88)
-
-[node name="NormalSpike2" parent="Level/Static" instance=ExtResource("5_x7442")]
-position = Vector2(112, 88)
-
-[node name="NormalSpike3" parent="Level/Static" instance=ExtResource("5_x7442")]
-position = Vector2(-88, 8)
-rotation = 3.14159
-
-[node name="NormalSpike4" parent="Level/Static" instance=ExtResource("5_x7442")]
-position = Vector2(-48, 0)
-rotation = 1.5708
-
-[node name="NormalSpike5" parent="Level/Static" instance=ExtResource("5_x7442")]
-position = Vector2(-48, -8)
-rotation = 1.5708
+[node name="JumpPad2" parent="Level/Static" instance=ExtResource("4_kpdxv")]
+position = Vector2(-88, -16)
 
 [node name="DashOrb" parent="Level/Static" instance=ExtResource("6_7qy1j")]
 position = Vector2(96, -32)
+GLASS = true
 
 [node name="DashOrb2" parent="Level/Static" instance=ExtResource("6_7qy1j")]
 position = Vector2(104, -72)
 rotation = 4.71239
 
-[node name="NormalSpike6" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="DashOrb4" parent="Level/Static" instance=ExtResource("6_7qy1j")]
+position = Vector2(-16, -24)
+rotation = -0.785398
+GLASS = true
+
+[node name="Spikes" type="Node" parent="Level/Static"]
+
+[node name="SmallSpikes" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
+position = Vector2(-72, 88)
+
+[node name="SmallSpikes2" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
+position = Vector2(-64, 88)
+
+[node name="SmallSpikes3" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
+position = Vector2(-56, 88)
+
+[node name="SmallSpikes4" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
+position = Vector2(-48, 88)
+
+[node name="SmallSpikes5" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
+position = Vector2(-40, 88)
+
+[node name="SmallSpikes6" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
+position = Vector2(-32, 88)
+
+[node name="SmallSpikes7" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
+position = Vector2(48, 88)
+
+[node name="SmallSpikes8" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
+position = Vector2(56, 88)
+
+[node name="SmallSpikes9" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
+position = Vector2(64, 88)
+
+[node name="SmallSpikes10" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
+position = Vector2(72, 88)
+
+[node name="SmallSpikes11" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
+position = Vector2(80, 88)
+
+[node name="NormalSpike" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
+position = Vector2(104, 88)
+
+[node name="NormalSpike2" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
+position = Vector2(112, 88)
+
+[node name="NormalSpike3" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
+position = Vector2(-88, 8)
+rotation = 3.14159
+
+[node name="NormalSpike4" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
+position = Vector2(-48, 0)
+rotation = 1.5708
+
+[node name="NormalSpike5" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
+position = Vector2(-48, -8)
+rotation = 1.5708
+
+[node name="NormalSpike6" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(72, 32)
 rotation = 3.14159
 
-[node name="NormalSpike7" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike7" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(64, -48)
 
-[node name="NormalSpike8" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike8" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(72, -48)
 rotation = 1.5708
 
-[node name="NormalSpike9" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike9" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(72, -40)
 rotation = 1.5708
 
-[node name="NormalSpike10" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike10" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(72, -32)
 rotation = 1.5708
 
-[node name="NormalSpike11" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike11" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(72, -24)
 rotation = 1.5708
 
-[node name="NormalSpike12" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike12" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(72, -16)
 rotation = 1.5708
 
-[node name="NormalSpike13" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike13" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(72, -8)
 rotation = 1.5708
 
-[node name="NormalSpike14" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike14" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(72, 0)
 rotation = 1.5708
 
-[node name="NormalSpike15" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike15" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(72, 8)
 rotation = 1.5708
 
-[node name="NormalSpike16" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike16" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(72, 16)
 rotation = 1.5708
 
-[node name="NormalSpike17" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike17" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(72, 24)
 rotation = 1.5708
 
-[node name="NormalSpike18" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike18" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(64, -40)
-rotation = 4.71239
+rotation = -1.5708
 
-[node name="NormalSpike19" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike19" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(64, -32)
-rotation = 4.71239
+rotation = -1.5708
 
-[node name="NormalSpike21" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike21" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(64, -16)
-rotation = 4.71239
+rotation = -1.5708
 
-[node name="NormalSpike22" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike22" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(64, -8)
-rotation = 4.71239
+rotation = -1.5708
 
-[node name="NormalSpike23" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike23" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(64, 0)
-rotation = 4.71239
+rotation = -1.5708
 
-[node name="NormalSpike24" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike24" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(64, 8)
-rotation = 4.71239
+rotation = -1.5708
 
-[node name="NormalSpike25" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike25" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(64, 16)
-rotation = 4.71239
+rotation = -1.5708
 
-[node name="NormalSpike26" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike26" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(64, 24)
-rotation = 4.71239
+rotation = -1.5708
 
-[node name="NormalSpike27" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike27" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(64, 32)
-rotation = 4.71239
+rotation = -1.5708
 
-[node name="SmallSpikes13" parent="Level/Static" instance=ExtResource("3_a3525")]
+[node name="SmallSpikes13" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
 position = Vector2(40, 88)
 
-[node name="SmallSpikes14" parent="Level/Static" instance=ExtResource("3_a3525")]
+[node name="SmallSpikes14" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
 position = Vector2(32, 56)
 
-[node name="NormalSpike20" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike20" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(-80, 8)
 rotation = 3.14159
 
-[node name="NormalSpike28" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike28" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(-56, -8)
 
-[node name="NormalSpike29" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike29" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(-56, -40)
 
-[node name="NormalSpike30" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike30" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(-24, -64)
 
-[node name="NormalSpike31" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike31" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(-48, -40)
 rotation = 1.5708
 
-[node name="NormalSpike32" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike32" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(-16, -64)
 rotation = 1.5708
 
-[node name="NormalSpike33" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike33" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(-16, -56)
 rotation = 3.14159
 
-[node name="NormalSpike34" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike34" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(-48, -32)
 rotation = 3.14159
 
-[node name="NormalSpike35" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike35" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(-56, -32)
-rotation = 4.71239
+rotation = -1.5708
 
-[node name="DashOrb3" parent="Level/Static" instance=ExtResource("6_7qy1j")]
-position = Vector2(-16, -24)
-rotation = -0.785398
-
-[node name="Area2D2" type="Area2D" parent="Level/Static/DashOrb3"]
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Static/DashOrb3/Area2D2"]
-position = Vector2(3.5, -4)
-shape = SubResource("RectangleShape2D_ubfba")
-
-[node name="Sprite2D" type="Sprite2D" parent="Level/Static/DashOrb3/Area2D2"]
-position = Vector2(4, -4)
-rotation = 6.28319
-texture = ExtResource("7_2evxg")
-hframes = 4
-vframes = 4
-frame = 2
-
-[node name="NormalSpike36" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike36" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(-24, -56)
-rotation = 4.71239
+rotation = -1.5708
 
-[node name="NormalSpike37" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike37" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(64, -24)
-rotation = 4.71239
+rotation = -1.5708
 
-[node name="NormalSpike38" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike38" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(40, -16)
-rotation = 4.71239
+rotation = -1.5708
 
-[node name="NormalSpike39" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike39" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(40, -8)
-rotation = 4.71239
+rotation = -1.5708
 
-[node name="NormalSpike41" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike41" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(40, -24)
 
-[node name="NormalSpike42" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike42" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(48, -24)
 rotation = 1.5708
 
-[node name="NormalSpike43" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike43" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(48, -16)
 rotation = 1.5708
 
-[node name="NormalSpike44" parent="Level/Static" instance=ExtResource("5_x7442")]
+[node name="NormalSpike44" parent="Level/Static/Spikes" instance=ExtResource("5_x7442")]
 position = Vector2(48, -8)
 rotation = 3.14159
 
-[node name="SmallSpikes15" parent="Level/Static" instance=ExtResource("3_a3525")]
+[node name="SmallSpikes15" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
 position = Vector2(24, 56)
 
-[node name="SmallSpikes16" parent="Level/Static" instance=ExtResource("3_a3525")]
+[node name="SmallSpikes16" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
 position = Vector2(16, 56)
-
-[node name="JumpPad2" parent="Level/Static" instance=ExtResource("4_kpdxv")]
-position = Vector2(-88, -16)
 
 [node name="Entities" type="Node" parent="Level"]
 
 [node name="PlayerReworked" parent="Level" instance=ExtResource("4_8qpk7")]
 position = Vector2(-112, 40)
-
-[connection signal="body_entered" from="Level/Static/DashOrb3/Area2D2" to="Level/Static/DashOrb3" method="_on_area_2d_body_entered"]
