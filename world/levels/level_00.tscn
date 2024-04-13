@@ -262,4 +262,4 @@ position = Vector2(16, 56)
 [node name="Entities" type="Node" parent="Level"]
 
 [node name="PlayerReworked" parent="Level" instance=ExtResource("4_8qpk7")]
-position = Vector2(-112, 40)
+position = Vector2(-112, 48)

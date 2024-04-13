@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://bln36344x66pa"]
+
+[ext_resource type="Script" path="res://world/objects/teleport_orbs.gd" id="1_7wngk"]
+[ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/objects/random-tiles-v2.png" id="2_8k3s7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqti3"]
+size = Vector2(8, 8)
+
+[node name="TeleportOrbs" type="Node"]
+script = ExtResource("1_7wngk")
+
+[node name="Enter" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Enter"]
+position = Vector2(4, -4)
+texture = ExtResource("2_8k3s7")
+hframes = 4
+vframes = 4
+frame = 5
+
+[node name="Glass" type="Sprite2D" parent="Enter"]
+visible = false
+position = Vector2(4, -4)
+texture = ExtResource("2_8k3s7")
+hframes = 4
+vframes = 4
+frame = 3
+
+[node name="Area2D" type="Area2D" parent="Enter"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enter/Area2D"]
+position = Vector2(4, -4)
+shape = SubResource("RectangleShape2D_uqti3")
+
+[node name="Exit" type="Node2D" parent="."]
+position = Vector2(0, 8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Exit"]
+position = Vector2(4, -4)
+texture = ExtResource("2_8k3s7")
+hframes = 4
+vframes = 4
+frame = 6
+
+[connection signal="body_entered" from="Enter/Area2D" to="." method="_on_area_2d_body_entered"]

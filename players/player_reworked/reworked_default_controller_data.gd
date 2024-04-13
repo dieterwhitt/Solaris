@@ -18,7 +18,7 @@ var JUMP_VELOCITY = -200.0 # -200
 # down gravity multiplier
 var DOWN_MULTIPLIER : float = 1.2 # 1.2
 # air acceleration and deceleration multiplier (air control and air brake)
-var AIR_ACCEL_MULTIPLIER : float = 0.9 # 0.9
+var AIR_ACCEL_MULTIPLIER : float = 0.8 # 0.9
 var AIR_DECEL_MULTIPLIER : float = 0.5 # 0.5
 # terminal x and y velocity
 var TERMINAL_X : float = 200.0 # 200

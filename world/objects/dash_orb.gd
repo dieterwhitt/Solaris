@@ -8,7 +8,7 @@ var DASH_VELOCITY = 300.0 #300
 # number of frames into dash before applying friction
 var DASH_FRAMES : int = 6 #6
 # dash deceleration
-var DASH_FRICTION : float = 2750.0 #2750
+var DASH_FRICTION : float = 2600.0 #2750
 var FRICTION_FRAMES : int = 3 #3
 
 # allowing setting glass in inspector when making levels
