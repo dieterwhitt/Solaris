@@ -9,8 +9,8 @@ extends Resource
 var GRAVITY : float = 670.0 # 670
 # acceleration and deceleration (velocity/s)
 # added: acceleration in opposite direction -> apply friction instead 
-var ACCELERATION : float = 1000.0 # 1000
-var DECELERATION : float = 1500.0 # 1500
+var ACCELERATION : float = 900.0 # 1000
+var DECELERATION : float = 1400.0 # 1500
 
 # jump height and air time (pixels, seconds) used to calculate jump velocity with kinematic eqns
 # currently: 0.3s to peak (0.6s total), 30px jump
@@ -19,13 +19,13 @@ var JUMP_VELOCITY = -200.0 # -200
 var DOWN_MULTIPLIER : float = 1.2 # 1.2
 # air acceleration and deceleration multiplier (air control and air brake)
 var AIR_ACCEL_MULTIPLIER : float = 0.8 # 0.9
-var AIR_DECEL_MULTIPLIER : float = 0.5 # 0.5
+var AIR_DECEL_MULTIPLIER : float = 0.35 # 0.5
 # terminal x and y velocity
-var TERMINAL_X : float = 200.0 # 200
+var TERMINAL_X : float = 250.0 # 200
 # falling only
 var TERMINAL_Y : float = 250.0 # 250
 # max velocity reachable by input alone
-var INPUT_TERMINAL : float = 110.0 # 120
+var INPUT_TERMINAL : float = 105.0 # 120
 # number of coyote and jump buffer frames
 var COYOTE_TIME : int = 5 # 5
 var JUMP_BUFFER : int = 5 # 5

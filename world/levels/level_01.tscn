@@ -27,7 +27,7 @@ position = Vector2(0, -2)
 [node name="TileMap" type="TileMap" parent="Level"]
 tile_set = ExtResource("2_yfdqa")
 format = 2
-layer_0/tile_data = PackedInt32Array(720882, 720898, 1, 720881, 655362, 1, 720880, 655362, 1, 720879, 655362, 1, 720878, 655362, 1, 720877, 655362, 1, 720876, 655362, 1, 131055, 589826, 1, 196591, 589826, 2, 131056, 655362, 1, 196592, 655362, 2, 131057, 655362, 1, 196593, 655362, 2, 131058, 655362, 1, 196594, 655362, 2, 131059, 655362, 1, 196595, 655362, 2, 131060, 655362, 1, 196596, 655362, 2, 131061, 655362, 1, 196597, 655362, 2, 131062, 655362, 1, 196598, 655362, 2, 131063, 655362, 1, 196599, 655362, 2, 131064, 720898, 1, 196600, 720898, 2, 65519, 589826, 0, 65520, 655362, 0, 65521, 655362, 0, 65522, 655362, 0, 65523, 655362, 0, 65524, 655362, 0, 65525, 655362, 0, 65526, 655362, 0, 65527, 655362, 0, 65528, 720898, 0, 720883, 655362, 0, 720884, 655362, 0, 720885, 655362, 0, 720886, 655362, 0, 720887, 655362, 0, 720888, 655362, 0, 720889, 655362, 0, 720890, 655362, 0, 720891, 655362, 0, 720892, 655362, 0, 720893, 655362, 0, 720894, 655362, 0, 720895, 655362, 0, 655360, 655362, 0, 655361, 655362, 0, 655362, 655362, 0, 655363, 655362, 0, 655364, 655362, 0, 655365, 655362, 0, 655366, 655362, 0, 655367, 1179650, 1, 589831, 1179650, 1, 524295, 1179650, 1, 458759, 1179650, 0, 458760, 1245186, 0, 458761, 1245186, 0, 458762, 1245186, 0, 458763, 1245186, 0, 458764, 1245186, 0, 458765, 1310722, 0, 524301, 1310722, 1, 589837, 1310722, 1, 655373, 1310722, 1, 524296, 1245186, 1, 524297, 1245186, 1, 524298, 1245186, 1, 524299, 1245186, 1, 524300, 1245186, 1, 589836, 1245186, 1, 589835, 1245186, 1, 589834, 1245186, 1, 589833, 1245186, 1, 589832, 1245186, 1, 655368, 1245186, 1, 655369, 1245186, 1, 655370, 1245186, 1, 655371, 1245186, 1, 655372, 1245186, 1, 589804, 655362, 0, 589805, 655362, 0, 589806, 655362, 0, 589807, 655362, 0, 589808, 655362, 0, 589809, 655362, 0, 589810, 720898, 0, 655346, 720898, 1, 655345, 655362, 1, 655344, 655362, 1, 655343, 655362, 1, 655342, 655362, 1, 655341, 655362, 1, 655340, 655362, 1, 131065, 1245186, 2, 131066, 1245186, 2, 131067, 1245186, 2, 131068, 1245186, 2, 131069, 1245186, 2, 131070, 1245186, 2, 131071, 1245186, 2, 65536, 1245186, 2, 65537, 1245186, 2, 65538, 1245186, 2, 65539, 1245186, 2, 65540, 1245186, 2, 65541, 1245186, 2, 65542, 1245186, 2, 65543, 1245186, 2, 65544, 1245186, 2, 65545, 1245186, 4, 65529, 1245186, 0, 65530, 1245186, 0, 65531, 1245186, 0, 65532, 1245186, 0, 65533, 1245186, 0, 65534, 1245186, 0, 65535, 1245186, 0, 0, 1245186, 0, 1, 1245186, 0, 2, 1245186, 0, 3, 1245186, 0, 4, 1245186, 0, 5, 1245186, 0, 6, 1245186, 0, 7, 1245186, 0, 8, 1245186, 0, 9, 1245186, 0, 10, 1310722, 0, 65546, 1310722, 1, 131082, 1310722, 2, 131081, 1179650, 2, 589838, 655362, 0, 589839, 655362, 0, 589840, 655362, 0, 589841, 655362, 0, 589842, 655362, 0, 589843, 655362, 0, 655374, 655362, 1, 655375, 655362, 1, 655376, 655362, 1, 655377, 655362, 1, 655378, 655362, 1, 655379, 655362, 1)
+layer_0/tile_data = PackedInt32Array(720882, 720898, 1, 720881, 655362, 1, 720880, 655362, 1, 720879, 655362, 1, 720878, 655362, 1, 720877, 655362, 1, 720876, 655362, 1, 720883, 655362, 0, 720884, 655362, 0, 720885, 655362, 0, 720886, 655362, 0, 720887, 655362, 0, 720888, 655362, 0, 720889, 655362, 0, 720890, 655362, 0, 720891, 655362, 0, 720892, 655362, 0, 720893, 655362, 0, 720894, 655362, 0, 720895, 655362, 0, 655360, 655362, 0, 655361, 655362, 0, 655362, 655362, 0, 655363, 655362, 0, 655364, 655362, 0, 655365, 655362, 0, 655366, 655362, 0, 655367, 1179650, 1, 589831, 1179650, 0, 458762, 1179650, 0, 458763, 1245186, 0, 458764, 1245186, 0, 458765, 1310722, 0, 524301, 1310722, 1, 589837, 1310722, 1, 655373, 1310722, 1, 524297, 1179650, 0, 524298, 1245186, 5, 524299, 1245186, 1, 524300, 1245186, 1, 589836, 1245186, 1, 589835, 1245186, 1, 589834, 1245186, 1, 589833, 1245186, 5, 589832, 1245186, 0, 655368, 1245186, 1, 655369, 1245186, 1, 655370, 1245186, 1, 655371, 1245186, 1, 655372, 1245186, 1, 589804, 655362, 0, 589805, 655362, 0, 589806, 655362, 0, 589807, 655362, 0, 589808, 655362, 0, 589809, 655362, 0, 589810, 720898, 0, 655346, 720898, 1, 655345, 655362, 1, 655344, 655362, 1, 655343, 655362, 1, 655342, 655362, 1, 655341, 655362, 1, 655340, 655362, 1, 589838, 655362, 0, 589839, 655362, 0, 589840, 655362, 0, 589841, 655362, 0, 589842, 655362, 0, 589843, 655362, 0, 655374, 655362, 1, 655375, 655362, 1, 655376, 655362, 1, 655377, 655362, 1, 655378, 655362, 1, 655379, 655362, 1, 131055, 589826, 2, 131056, 655362, 2, 131057, 655362, 2, 131058, 655362, 2, 131059, 655362, 2, 131060, 655362, 2, 131061, 655362, 2, 131062, 655362, 2, 131063, 655362, 2, 131064, 720898, 2, 65545, 1179650, 2, 65546, 1310722, 2, 65519, 589826, 0, 65520, 655362, 0, 65521, 655362, 0, 65522, 655362, 0, 65523, 655362, 0, 65524, 655362, 0, 65525, 655362, 0, 65526, 655362, 0, 65527, 655362, 0, 65528, 720898, 0, 65529, 1245186, 3, 65530, 1245186, 3, 65531, 1245186, 3, 65532, 1245186, 3, 65533, 1245186, 3, 65534, 1245186, 3, 65535, 1245186, 3, 0, 1245186, 3, 1, 1245186, 3, 2, 1245186, 3, 3, 1245186, 3, 4, 1245186, 3, 5, 1245186, 3, 6, 1245186, 3, 7, 1245186, 3, 8, 1245186, 3, 9, 1245186, 0, 10, 1310722, 0)
 metadata/_edit_lock_ = true
 
 [node name="Static" type="Node" parent="Level"]
@@ -95,43 +95,43 @@ position = Vector2(41, 80)
 position = Vector2(49, 80)
 
 [node name="SmallSpikes2" parent="Level/Static/Spikes" instance=ExtResource("4_fryxv")]
-position = Vector2(-56, 24)
+position = Vector2(-56, 16)
 rotation = 3.14159
 
 [node name="SmallSpikes3" parent="Level/Static/Spikes" instance=ExtResource("4_fryxv")]
-position = Vector2(-64, 24)
+position = Vector2(-64, 16)
 rotation = 3.14159
 
 [node name="SmallSpikes4" parent="Level/Static/Spikes" instance=ExtResource("4_fryxv")]
-position = Vector2(-72, 24)
+position = Vector2(-72, 16)
 rotation = 3.14159
 
 [node name="SmallSpikes5" parent="Level/Static/Spikes" instance=ExtResource("4_fryxv")]
-position = Vector2(-80, 24)
+position = Vector2(-80, 16)
 rotation = 3.14159
 
 [node name="SmallSpikes6" parent="Level/Static/Spikes" instance=ExtResource("4_fryxv")]
-position = Vector2(-88, 24)
+position = Vector2(-88, 16)
 rotation = 3.14159
 
 [node name="SmallSpikes7" parent="Level/Static/Spikes" instance=ExtResource("4_fryxv")]
-position = Vector2(-96, 24)
+position = Vector2(-96, 16)
 rotation = 3.14159
 
 [node name="SmallSpikes8" parent="Level/Static/Spikes" instance=ExtResource("4_fryxv")]
-position = Vector2(-104, 24)
+position = Vector2(-104, 16)
 rotation = 3.14159
 
 [node name="SmallSpikes9" parent="Level/Static/Spikes" instance=ExtResource("4_fryxv")]
-position = Vector2(-112, 24)
+position = Vector2(-112, 16)
 rotation = 3.14159
 
 [node name="SmallSpikes10" parent="Level/Static/Spikes" instance=ExtResource("4_fryxv")]
-position = Vector2(-128, 24)
+position = Vector2(-128, 16)
 rotation = 3.14159
 
 [node name="SmallSpikes11" parent="Level/Static/Spikes" instance=ExtResource("4_fryxv")]
-position = Vector2(-120, 24)
+position = Vector2(-120, 16)
 rotation = 3.14159
 
 [node name="Spikes2" type="Node" parent="Level/Static"]
@@ -197,80 +197,89 @@ position = Vector2(41, 80)
 position = Vector2(49, 80)
 
 [node name="SmallSpikes2" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(24, 16)
+position = Vector2(24, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes3" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(16, 16)
+position = Vector2(16, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes4" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(8, 16)
+position = Vector2(8, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes5" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(0, 16)
+position = Vector2(0, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes6" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(-8, 16)
+position = Vector2(-8, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes7" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(-16, 16)
+position = Vector2(-16, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes8" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(-24, 16)
+position = Vector2(-24, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes9" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(-32, 16)
+position = Vector2(-32, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes10" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(-48, 16)
+position = Vector2(-48, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes11" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(-40, 16)
+position = Vector2(-40, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes12" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(64, 16)
+position = Vector2(64, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes13" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(56, 16)
+position = Vector2(56, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes14" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(48, 16)
+position = Vector2(48, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes15" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(40, 16)
+position = Vector2(40, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes16" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(32, 16)
+position = Vector2(32, 8)
 rotation = 3.14159
 
 [node name="SmallSpikes17" parent="Level/Static/Spikes2" instance=ExtResource("4_fryxv")]
-position = Vector2(72, 16)
+position = Vector2(72, 8)
 rotation = 3.14159
 
+[node name="NormalSpike21" parent="Level/Static/Spikes2" instance=ExtResource("3_en3lr")]
+position = Vector2(56, 72)
+
+[node name="NormalSpike22" parent="Level/Static/Spikes2" instance=ExtResource("3_en3lr")]
+position = Vector2(64, 72)
+
+[node name="NormalSpike23" parent="Level/Static/Spikes2" instance=ExtResource("3_en3lr")]
+position = Vector2(72, 64)
+
 [node name="DashOrb" parent="Level/Static" instance=ExtResource("4_iqwo0")]
-position = Vector2(-112, 48)
+position = Vector2(-120, 48)
 rotation = 1.5708
 
 [node name="DashOrb2" parent="Level/Static" instance=ExtResource("4_iqwo0")]
-position = Vector2(-72, 56)
+position = Vector2(-80, 56)
 rotation = 0.785398
 GLASS = true
 
 [node name="DashOrb3" parent="Level/Static" instance=ExtResource("4_iqwo0")]
-position = Vector2(-40, 24)
+position = Vector2(-40, 16)
 rotation = 2.35619
 
 [node name="DashOrb4" parent="Level/Static" instance=ExtResource("4_iqwo0")]
@@ -278,13 +287,13 @@ position = Vector2(-16, 56)
 rotation = 0.785398
 
 [node name="DashOrb5" parent="Level/Static" instance=ExtResource("4_iqwo0")]
-position = Vector2(16, 24)
+position = Vector2(24, 16)
 rotation = 2.35619
 
 [node name="TeleportOrbs" parent="Level/Static" instance=ExtResource("5_qovld")]
 
 [node name="Enter" parent="Level/Static/TeleportOrbs" index="0"]
-position = Vector2(32, 56)
+position = Vector2(48, 56)
 
 [node name="Sprite2D" parent="Level/Static/TeleportOrbs/Enter" index="0"]
 metadata/_edit_lock_ = true
@@ -296,7 +305,11 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Exit" parent="Level/Static/TeleportOrbs" index="1"]
-position = Vector2(72, 40)
+position = Vector2(96, 40)
+
+[node name="Sprite2D" parent="Level/Static/TeleportOrbs/Exit" index="0"]
+position = Vector2(0, 2.08165e-12)
+metadata/_edit_lock_ = true
 
 [node name="TeleportOrbs2" parent="Level/Static" instance=ExtResource("5_qovld")]
 GLASS = true
@@ -348,25 +361,25 @@ metadata/_edit_lock_ = true
 position = Vector2(-8, -56)
 
 [node name="DashOrb9" parent="Level/Static" instance=ExtResource("4_iqwo0")]
-position = Vector2(-8, -24)
+position = Vector2(-24, -24)
 rotation = 5.49779
 
 [node name="DashOrb10" parent="Level/Static" instance=ExtResource("4_iqwo0")]
-position = Vector2(-32, -56)
+position = Vector2(-48, -56)
 rotation = 3.92699
 
 [node name="DashOrb11" parent="Level/Static" instance=ExtResource("4_iqwo0")]
-position = Vector2(-64, -24)
+position = Vector2(-80, -24)
 rotation = 5.49779
 
 [node name="DashOrb12" parent="Level/Static" instance=ExtResource("4_iqwo0")]
-position = Vector2(-88, -56)
+position = Vector2(-104, -56)
 rotation = 3.92699
 
 [node name="Entities" type="Node" parent="Level"]
 
 [node name="WalkingEnemy" parent="Level/Entities" instance=ExtResource("3_ov02t")]
-position = Vector2(-126, -12)
+position = Vector2(-128, -16)
 
 [node name="PlayerReworked" parent="Level" instance=ExtResource("3_12r68")]
 position = Vector2(-152, 40)

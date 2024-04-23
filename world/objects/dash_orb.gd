@@ -4,12 +4,12 @@
 extends Node2D
 
 # dash velocity
-var DASH_VELOCITY = 300.0 #300
+var DASH_VELOCITY = 250.0 #300
 # number of frames into dash before applying friction
 var DASH_FRAMES : int = 6 #6
 # dash deceleration
-var DASH_FRICTION : float = 2600.0 #2750
-var FRICTION_FRAMES : int = 3 #3
+var DASH_FRICTION : float = 100 #2750
+var FRICTION_FRAMES : int = 4 #3
 
 # allowing setting glass in inspector when making levels
 @export var GLASS = false
