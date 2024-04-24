@@ -21,7 +21,7 @@ var DOWN_MULTIPLIER : float = 1.2 # 1.2
 var AIR_ACCEL_MULTIPLIER : float = 0.8 # 0.9
 var AIR_DECEL_MULTIPLIER : float = 0.35 # 0.5
 # terminal x and y velocity
-var TERMINAL_X : float = 250.0 # 200
+var TERMINAL_X : float = 400.0 # 200
 # falling only
 var TERMINAL_Y : float = 250.0 # 250
 # max velocity reachable by input alone

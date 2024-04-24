@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://world/objects/normal_spike.gd" id="1_xvggk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o40xd"]
-size = Vector2(3.25, 3)
+size = Vector2(6, 4)
 
 [node name="NormalSpike" type="Node2D"]
 script = ExtResource("1_xvggk")
