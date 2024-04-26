@@ -10,6 +10,8 @@ right_x = 160
 left_path = "res://world/levels/level_02.tscn"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 2)
+metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_ewb3d")

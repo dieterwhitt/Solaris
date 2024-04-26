@@ -19,23 +19,15 @@ class_name Level
 @export var right_path : String = ""
 
 @onready var adjacent = {
-	"top" : load(top_path),
-	"bottom" : load(bottom_path),
-	"left" : load(left_path),
-	"right" : load(right_path),
+	"top" : top_path,
+	"bottom" : bottom_path,
+	"left" : left_path,
+	"right" : right_path,
 }
 
 func _ready():
-	print("ready")
-	# attempt to instantiate each adjacent node
-	for key in adjacent:
-		print("instantiating")
-		if adjacent[key]:
-			# non null
-			adjacent[key] = adjacent[key].instantiate()
-		else:
-			# path doesn't exist: keep it null
-			pass
+	print("current level: " + name)
+	print(adjacent)
 
 func _process(delta):
 	pass
