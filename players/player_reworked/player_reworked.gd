@@ -8,8 +8,8 @@ extends ReworkedDefaultController
 
 # get child nodes for animation
 func _ready():
-	
 	# override
+	print("creating reworked player")
 	# activate animation tree
 	_animation_tree = $AnimationTree
 	_animation_tree.active = true
@@ -48,7 +48,7 @@ func kill():
 	# reset position/checkpoint position.
 	
 	#HARDCODED!!
-	self.global_position = Vector2(-112, 40)
+	get_tree().reload_current_scene()
 
 # handling non-physics processes
 func _process(delta):

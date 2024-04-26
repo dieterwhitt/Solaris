@@ -191,7 +191,7 @@ transitions = ["Start", "idle-run", SubResource("AnimationNodeStateMachineTransi
 graph_offset = Vector2(35.9501, 19.4354)
 
 [node name="PlayerReworked" type="CharacterBody2D" groups=["Player"]]
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.7, 0.7)
 collision_layer = 2
 script = ExtResource("1_wcno6")
 
