@@ -94,3 +94,6 @@ func enter_border(level : Node, posn : Vector2):
 	start_current_level()
 	# move player
 	player.position = posn
+	
+	
+

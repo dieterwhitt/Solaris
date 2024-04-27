@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvw780c0vet6v"]
+[gd_scene load_steps=6 format=3 uid="uid://bvw780c0vet6v"]
 
 [ext_resource type="Script" path="res://world/objects/walking_enemy.gd" id="1_kxxou"]
 [ext_resource type="Texture2D" uid="uid://c7y2o6ue1kint" path="res://online-assets/kenney_pixel-platformer/Tiles/Characters/tile_0015.png" id="1_l4at0"]
+[ext_resource type="PackedScene" uid="uid://dyrpmbpr8barb" path="res://world/objects/killbox.tscn" id="3_idb56"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fqc5o"]
 size = Vector2(15, 11)
@@ -35,5 +36,7 @@ target_position = Vector2(-7, 13)
 
 [node name="RayCast2DRight" type="RayCast2D" parent="."]
 target_position = Vector2(6, 13)
+
+[node name="Killbox" parent="." instance=ExtResource("3_idb56")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

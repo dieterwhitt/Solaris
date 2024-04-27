@@ -26,9 +26,3 @@ func _physics_process(delta):
 	velocity.x = speed * direction
 	move_and_slide()
 
-
-func _on_area_2d_body_entered(body):
-	print("enemy collision")
-	# check for player entered damage box
-	if body.is_in_group("Player"):
-		body.kill()
