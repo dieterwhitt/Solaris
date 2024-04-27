@@ -20,9 +20,28 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	# update direction
-	if is_on_wall() or not left.is_colliding() or not right.is_colliding():
-		direction *= -1
+	update_direction()
 	# update velocity
 	velocity.x = speed * direction
 	move_and_slide()
 
+func update_direction():
+	if is_on_wall():
+		direction *= -1
+	elif not left.is_colliding() and not right.is_colliding():
+		# in air
+		pass
+	elif not left.is_colliding():
+		# left side over edge: move right
+		direction = 1
+	elif not right.is_colliding():
+		# right side over edge
+		direction = -1
+	
+	# flip sprite 
+	if direction < 0:
+		#facing left
+		$Sprite2D.flip_h = false
+	else:
+		# facing right
+		$Sprite2D.flip_h = true

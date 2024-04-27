@@ -19,10 +19,13 @@ var loaded = {}
 @onready var player : Node = \
 	preload("res://players/player_reworked/player_reworked.tscn").instantiate()
 
+# number of invincibility frames on scene change
+var invince_frames = 3
+var invince_timer = 0
+
 func _ready():
 	# read save file and adjust current, checkpoint
 	start_current_level()
-	add_child(player)
 	spawn_player_default()
 
 # starts the current level by adding it to the tree and loading its
@@ -49,10 +52,20 @@ func start_current_level():
 func spawn_player_default():
 	var spawnpoint = current.get_node("Spawn").position
 	player.position = spawnpoint
-	
-func _process(delta):
+	#queue_add_player = 60
+	add_child(player)
+
+func _physics_process(delta):
+	update_invincibility()
 	check_borders()
-	
+
+func update_invincibility():
+	if invince_timer > 0:
+		invince_timer -= 1
+		print("i frame")
+	else:
+		player.set_collision_layer_value(2, true)
+
 # check if the player is out of bounds
 # for now we are limited to single screen levels
 func check_borders():
@@ -90,10 +103,19 @@ func check_borders():
 func enter_border(level : Node, posn : Vector2):
 	print("crossing level border")
 	remove_child(current)
-	current = level
-	start_current_level()
 	# move player
 	player.position = posn
+	
+	# need to disable collision layer (invincibility frame on scene change)
+	# this also avoids bugs with 1-frame misalignment, so 
+	# you don't die to a spike on the other side when you change levels
+	player.set_collision_layer_value(2, false)
+	
+	invince_timer = invince_frames
+	current = level
+	start_current_level()
+	print("adding player at %v" % posn)
+	
 	
 	
 
