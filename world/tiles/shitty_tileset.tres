@@ -1,6 +1,23 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://n525m3jhu2dx"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://n525m3jhu2dx"]
 
 [ext_resource type="Texture2D" uid="uid://crjhit5la2cuc" path="res://online-assets/NanoNature/tileset.png" id="1_hygmf"]
+[ext_resource type="Texture2D" uid="uid://b34juxmcb57w7" path="res://online-assets/kenney_pixel-platformer/Tiles/tile_0111.png" id="1_nry8v"]
+[ext_resource type="Texture2D" uid="uid://d37umuebr5tcy" path="res://online-assets/kenney_pixel-platformer/Tiles/tile_0112.png" id="2_7jjwe"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_2ib2w"]
+frames = 2
+frame_0/texture = ExtResource("1_nry8v")
+frame_1/texture = ExtResource("2_7jjwe")
+frame_1/duration = 1.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mfrc1"]
+resource_name = "anim"
+texture = SubResource("AnimatedTexture_2ib2w")
+texture_region_size = Vector2i(18, 18)
+use_texture_padding = false
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="Shader" id="Shader_r5dro"]
 code = "shader_type spatial;
@@ -1249,3 +1266,4 @@ tile_size = Vector2i(8, 8)
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/2 = SubResource("TileSetAtlasSource_vvv6t")
+sources/0 = SubResource("TileSetAtlasSource_mfrc1")

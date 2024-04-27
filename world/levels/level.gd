@@ -8,10 +8,10 @@ extends Node
 class_name Level
 
 # borders (default values)
-@export var top_y : int = -88
-@export var bottom_y : int = 88
-@export var left_x : int = 160
-@export var right_x : int = -160
+@export var top_y : int = 0
+@export var bottom_y : int = 180
+@export var left_x : int = 0
+@export var right_x : int = 320
 
 @export var top_path : String = ""
 @export var bottom_path : String = ""

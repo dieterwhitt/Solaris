@@ -8,7 +8,7 @@
 size = Vector2(15, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8pc8"]
-size = Vector2(13, 7)
+size = Vector2(13, 9)
 
 [node name="WalkingEnemy" type="CharacterBody2D"]
 collision_layer = 8
@@ -22,11 +22,9 @@ texture = ExtResource("1_l4at0")
 position = Vector2(-0.5, 6.5)
 shape = SubResource("RectangleShape2D_fqc5o")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 2
+[node name="Killbox" parent="." instance=ExtResource("3_idb56")]
 
-[node name="DamageBox" type="CollisionShape2D" parent="Area2D"]
+[node name="DamageBox" type="CollisionShape2D" parent="Killbox"]
 position = Vector2(-0.5, 6.5)
 shape = SubResource("RectangleShape2D_q8pc8")
 debug_color = Color(1, 0, 0, 0.419608)
@@ -36,7 +34,3 @@ target_position = Vector2(-7, 13)
 
 [node name="RayCast2DRight" type="RayCast2D" parent="."]
 target_position = Vector2(6, 13)
-
-[node name="Killbox" parent="." instance=ExtResource("3_idb56")]
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

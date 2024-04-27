@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://kfh6ljcbp5p1"]
+
+[node name="LevelTemplate" type="Node"]
+editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
+
+[node name="BorderLabels" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="BorderLabels"]
+anchors_preset = -1
+anchor_left = 1.1
+anchor_top = 0.444
+anchor_right = 1.1
+anchor_bottom = 0.444
+offset_top = 0.0799936
+offset_right = 116.0
+offset_bottom = 23.08
+text = "Right: Level_XX"
+
+[node name="Label2" type="Label" parent="BorderLabels"]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = -0.267
+anchor_right = 0.3
+anchor_bottom = -0.267
+offset_left = 8.0
+offset_top = 0.0600035
+offset_right = 124.0
+offset_bottom = 23.06
+text = "Top: Level_XX"
+
+[node name="Label3" type="Label" parent="BorderLabels"]
+anchors_preset = -1
+anchor_left = -0.425
+anchor_top = 0.444
+anchor_right = -0.425
+anchor_bottom = 0.444
+offset_top = 0.0799936
+offset_right = 116.0
+offset_bottom = 23.08
+text = "Left: Level_XX"
+
+[node name="Label4" type="Label" parent="BorderLabels"]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 1.156
+anchor_right = 0.3
+anchor_bottom = 1.156
+offset_top = -0.0800033
+offset_right = 134.0
+offset_bottom = 22.92
+text = "Bottom: Level_XX"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="-2_BG_LAYER" type="CanvasGroup" parent="."]
+z_index = -2
+metadata/_edit_lock_ = true
+
+[node name="-1_LEVEL" type="CanvasGroup" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="TileMap" type="TileMap" parent="-1_LEVEL"]
+editor_description = "For level tiles, not including scene tiles (use scene tilemap)"
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles0deg" type="TileMap" parent="-1_LEVEL"]
+editor_description = "For scene tiles at a 0 degree rotation"
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="LevelObjects" type="Node" parent="-1_LEVEL"]
+editor_description = "orbs, artifacts, ladders, etc."
+
+[node name="Enemies" type="Node" parent="-1_LEVEL"]
+editor_description = "Any moving enemies/hazards"
+
+[node name="+1_FG" type="CanvasGroup" parent="."]
+editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"
+z_index = 1
+metadata/_edit_lock_ = true
