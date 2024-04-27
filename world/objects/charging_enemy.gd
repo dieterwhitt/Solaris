@@ -41,7 +41,7 @@ func _physics_process(delta):
 	# update direction
 	# does not check ledges if charging
 	if is_on_wall() or (not charging and \
-			not left.is_colliding() or not right.is_colliding()):
+			(not left.is_colliding() or not right.is_colliding())):
 		direction *= -1
 		# flip sprite and scan direction
 		scan.rotation_degrees = int(scan.rotation_degrees + 180) % 360
@@ -66,7 +66,6 @@ func _physics_process(delta):
 	elif abs(velocity.x) > idle_speed:
 		# moving faster than idle speed
 		# decelerate
-		print("decel")
 		velocity.x = move_toward(velocity.x, 0, charge_decel * delta)
 	else:
 		# set idle speed
