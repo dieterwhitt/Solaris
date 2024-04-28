@@ -52,7 +52,7 @@ func start_current_level():
 func spawn_player_default():
 	var spawnpoint = current.get_node("Spawn").position
 	player.position = spawnpoint
-	#queue_add_player = 60
+	invince_timer = invince_frames
 	add_child(player)
 
 func _physics_process(delta):

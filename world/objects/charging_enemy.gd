@@ -41,12 +41,13 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	# update direction
 	update_direction()
-	
-			
+
 	# check charge
-	if scan.is_colliding() and \
+	var collider = scan.get_collider()
+	if collider and collider.is_in_group("Player") and \
 			animation_state_machine.get_current_node() == "idle":
 		# scan colliding with player and idle
+		# first collider is player
 		print("player detected")
 		queue_charge()
 	
@@ -97,7 +98,6 @@ func queue_charge():
 	# play grow animation (animation player goes to charge automatically)
 	animation_state_machine.travel("grow")
 	growing = true
-	
 	
 func start_charge():
 	print("starting charge")
