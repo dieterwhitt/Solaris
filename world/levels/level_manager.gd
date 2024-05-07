@@ -3,6 +3,30 @@
 
 extends Node
 
+'''
+PLEASE READ!!!
+level_manager.gd is responsible for controlling the changing of levels and 
+managing the player.
+By copying the level_template scene, you'll be able to create levels,
+and this file controls loading & switching between them
+
+as of may 6 2024:
+level_manager:
+	- loads levels
+	- moves the player across levels when they exit the screen
+	- spawns the player in on intial load
+
+level_manager DOES NOT YET:
+	- handle player powerup scenes
+	- save checkpoints and respawn player on death
+
+(the unadded features above will be necessary but I 
+haven't implemented them yet)
+
+If you have any questions dm me on discord.
+- dieter whittingham
+'''
+
 # starting the system, need to fix it to make it better
 # good start though
 

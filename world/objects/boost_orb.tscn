@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dodd8iw6i5vm2"]
 
 [ext_resource type="Script" path="res://world/objects/boost_orb.gd" id="1_lvaqs"]
-[ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/objects/random-tiles-v2.png" id="1_w0qaf"]
+[ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="1_w0qaf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cpmqk"]
 size = Vector2(10, 10)

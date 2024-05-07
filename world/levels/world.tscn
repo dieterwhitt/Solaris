@@ -1,14 +1,48 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccf8uxhg0toqp"]
+[gd_scene load_steps=10 format=3 uid="uid://bfk480b34w2wv"]
 
 [ext_resource type="Texture2D" uid="uid://dicpn63thecj8" path="res://world/backgrounds/finn-sketch1.png" id="1_if87x"]
 [ext_resource type="PackedScene" uid="uid://3w1xvg136m3q" path="res://world/tiles/tile_map.tscn" id="2_feglb"]
-[ext_resource type="Script" path="res://world/levels/input_test.gd" id="5_8ktsy"]
 [ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/jump_pad.tscn" id="5_h55ax"]
 [ext_resource type="PackedScene" uid="uid://bvw780c0vet6v" path="res://world/objects/walking_enemy.tscn" id="6_oexp7"]
 [ext_resource type="PackedScene" uid="uid://cdqyy8r71bnmi" path="res://world/objects/small_spikes.tscn" id="7_ks5pe"]
 [ext_resource type="PackedScene" uid="uid://b7uh2up3p5ga0" path="res://world/objects/normal_spike.tscn" id="8_ntkoo"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/dash_orb.tscn" id="9_xab1v"]
 [ext_resource type="PackedScene" uid="uid://yri1y85csvlw" path="res://players/player_reworked/player_reworked.tscn" id="9_ycl3q"]
+
+[sub_resource type="GDScript" id="GDScript_tufx2"]
+script/source = "extends Node2D
+
+var d
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	print(\"input test\")
+	# hide mouse
+	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	'''
+	print(\"-----frame-----\")
+	# 60fps - higher on higher refresh rates
+	if Input.is_action_pressed(\"left\"):
+		print(\"left\")
+	if Input.is_action_pressed(\"right\"):
+		print(\"right\")
+	if Input.is_action_pressed(\"up\"):
+		print(\"up\")
+	if Input.is_action_pressed(\"down\"):
+		print(\"down\")
+	if Input.is_action_pressed(\"attack\"):
+		print(\"k\")
+	if Input.is_action_pressed(\"lmb\"):
+		print(\"click\")
+	'''
+	d = Input.get_vector(\"left\", \"right\", \"up\", \"down\").snapped(Vector2.ONE)
+	#print(d)
+	
+"
 
 [node name="World" type="Node2D"]
 
@@ -23,7 +57,7 @@ position = Vector2(248, 40)
 
 [node name="Node2D" type="Node2D" parent="."]
 visible = false
-script = ExtResource("5_8ktsy")
+script = SubResource("GDScript_tufx2")
 
 [node name="JumpPad" parent="." instance=ExtResource("5_h55ax")]
 position = Vector2(152, 72)

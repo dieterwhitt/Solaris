@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b7uh2up3p5ga0"]
 
-[ext_resource type="Texture2D" uid="uid://4rcqj4tpgk5q" path="res://world/objects/random-tiles.png" id="1_rkqr5"]
+[ext_resource type="Texture2D" uid="uid://4rcqj4tpgk5q" path="res://world/tiles/random-tiles.png" id="1_rkqr5"]
 [ext_resource type="PackedScene" uid="uid://dyrpmbpr8barb" path="res://world/objects/killbox.tscn" id="2_l4ssl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o40xd"]

@@ -4,6 +4,34 @@
 # defines horizontal movement and dash, double jump
 # loads data from file which defines movement
 
+'''
+PLEASE READ!!!!
+reworked_default_controller.gd controls the base character
+it is an abstract class that is intended to be inherited by different
+player powerup scenes.
+
+It loads the player movement data which controls things like 
+acceleration, air control, jump height, and more.
+
+Be sure to document and voice any changes to the default controller data from
+now on, as they will impact all future characters
+
+You are free to modify the controller data of INDIVIDUAL characters
+
+This controller currently supports movement, gravity, dashes,
+jumps, and double jumps
+
+I intend to remove double jumps from the common controller to make it
+an artifact-specific ability.
+
+This file is probably the most complicated so please dm me if you have
+any questions. I tried my best to document what I did but its still
+a bit complex.
+
+- dieter whittingham
+'''
+
+
 class_name ReworkedDefaultController
 
 extends CharacterBody2D

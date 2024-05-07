@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://8wt45uebyitn"]
 
 [ext_resource type="Script" path="res://world/objects/dash_orb.gd" id="1_slnlk"]
-[ext_resource type="Texture2D" uid="uid://4rcqj4tpgk5q" path="res://world/objects/random-tiles.png" id="2_kebol"]
+[ext_resource type="Texture2D" uid="uid://4rcqj4tpgk5q" path="res://world/tiles/random-tiles.png" id="2_kebol"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubfba"]
 size = Vector2(9, 10)
