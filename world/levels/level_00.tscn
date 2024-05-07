@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://7kwu1he1d8n"]
+[gd_scene load_steps=8 format=3 uid="uid://7kwu1he1d8n"]
 
 [ext_resource type="Texture2D" uid="uid://dicpn63thecj8" path="res://world/backgrounds/finn-sketch1.png" id="1_54er8"]
 [ext_resource type="TileSet" uid="uid://n525m3jhu2dx" path="res://world/tiles/shitty_tileset.tres" id="2_o4dvl"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/jump_pad.tscn" id="4_kpdxv"]
 [ext_resource type="PackedScene" uid="uid://b7uh2up3p5ga0" path="res://world/objects/normal_spike.tscn" id="5_x7442"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/dash_orb.tscn" id="6_7qy1j"]
-[ext_resource type="PackedScene" uid="uid://dodd8iw6i5vm2" path="res://world/objects/boost_orb.tscn" id="7_wjhu2"]
 
 [node name="Level00" type="Node"]
 
@@ -53,7 +52,6 @@ rotation = 4.71239
 [node name="DashOrb4" parent="Level/Static" instance=ExtResource("6_7qy1j")]
 position = Vector2(-16, -24)
 rotation = -0.785398
-GLASS = true
 
 [node name="Spikes" type="Node" parent="Level/Static"]
 
@@ -266,9 +264,6 @@ position = Vector2(24, 56)
 
 [node name="SmallSpikes16" parent="Level/Static/Spikes" instance=ExtResource("3_a3525")]
 position = Vector2(16, 56)
-
-[node name="BoostOrb" parent="Level/Static" instance=ExtResource("7_wjhu2")]
-position = Vector2(-56, 40)
 
 [node name="Entities" type="Node" parent="Level"]
 

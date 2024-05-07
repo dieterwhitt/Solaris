@@ -59,7 +59,8 @@ text = "Bottom: Level_XX"
 metadata/_edit_lock_ = true
 
 [node name="PhysicsBorder" type="StaticBody2D" parent="Borders"]
-collision_mask = 24
+collision_layer = 24
+collision_mask = 0
 metadata/_edit_lock_ = true
 
 [node name="TopBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
