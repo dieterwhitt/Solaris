@@ -21,9 +21,6 @@ You are free to modify the controller data of INDIVIDUAL characters
 This controller currently supports movement, gravity, dashes,
 jumps, and double jumps
 
-I intend to remove double jumps from the common controller to make it
-an artifact-specific ability.
-
 This file is probably the most complicated so please dm me if you have
 any questions. I tried my best to document what I did but its still
 a bit complex.

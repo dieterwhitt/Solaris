@@ -1,15 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmsq2nc6iensn"]
+[gd_scene load_steps=4 format=3 uid="uid://nrc4kn02f3kj"]
 
-[ext_resource type="Script" path="res://world/levels/level_04.gd" id="1_yon3l"]
-[ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="2_wkr1n"]
+[ext_resource type="Script" path="res://world/levels/level_05.gd" id="1_dqlfg"]
+[ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_liarp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
 
-[node name="Level_04" type="Node"]
+[node name="Level_05" type="Node"]
 editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
-script = ExtResource("1_yon3l")
-top_path = "res://world/levels/level_05.tscn"
-left_path = "res://world/levels/level_03.tscn"
+script = ExtResource("1_dqlfg")
+bottom_path = "res://world/levels/level_04.tscn"
 
 [node name="Borders" type="Node" parent="."]
 
@@ -47,7 +46,7 @@ anchor_bottom = 0.444
 offset_top = 0.0799936
 offset_right = 116.0
 offset_bottom = 23.08
-text = "Left: Level_03"
+text = "Left: Level_XX"
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Label" parent="Borders"]
@@ -63,8 +62,8 @@ text = "Bottom: Level_XX"
 metadata/_edit_lock_ = true
 
 [node name="PhysicsBorder" type="StaticBody2D" parent="Borders"]
-collision_layer = 0
-collision_mask = 24
+collision_layer = 24
+collision_mask = 0
 metadata/_edit_lock_ = true
 
 [node name="TopBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
@@ -72,6 +71,7 @@ position = Vector2(160, 2.08165e-12)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_0e1bx")
 one_way_collision = true
+metadata/_edit_lock_ = true
 
 [node name="BottomBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
 position = Vector2(160, 180)
@@ -104,23 +104,45 @@ metadata/_edit_lock_ = true
 [node name="-1_LEVEL" type="CanvasGroup" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="LayoutTileMap" type="TileMap" parent="-1_LEVEL"]
+[node name="Tilemaps" type="Node" parent="-1_LEVEL"]
+
+[node name="LayoutTileMap" type="TileMap" parent="-1_LEVEL/Tilemaps"]
 editor_description = "For level tiles, not including scene tiles (use scene tilemap)"
-tile_set = ExtResource("2_wkr1n")
+tile_set = ExtResource("1_liarp")
 format = 2
-layer_0/tile_data = PackedInt32Array(1310720, 1, 0, 1310721, 1, 0, 1310722, 1, 0, 1310723, 1, 0, 1310724, 1, 0, 1310725, 1, 0, 1310726, 1, 0, 1310727, 1, 0, 1310728, 1, 0, 1310729, 1, 0, 1310730, 1, 0, 1376266, 1, 0, 1441802, 1, 0, 1376267, 196609, 0, 1441803, 196609, 0, 1376268, 196609, 0, 1441804, 196609, 0, 1376269, 196609, 0, 1441805, 196609, 0, 1376270, 196609, 0, 1441806, 196609, 0, 1376271, 196609, 0, 1441807, 196609, 0, 1376272, 196609, 0, 1441808, 196609, 0, 1376273, 196609, 0, 1441809, 196609, 0, 1048585, 131073, 0, 1048586, 131073, 0, 1048587, 131073, 0, 1048588, 131073, 0, 1048589, 131073, 0, 786441, 131073, 0, 786442, 131073, 0, 786443, 131073, 0, 786444, 131073, 0, 786445, 131073, 0, 524301, 131073, 0, 524300, 131073, 0, 524299, 131073, 0, 524298, 131073, 0, 524297, 131073, 0, 262153, 131073, 0, 262154, 131073, 0, 262155, 131073, 0, 262156, 131073, 0, 262157, 131073, 0)
 metadata/_edit_lock_ = true
 
-[node name="SceneTiles0deg" type="TileMap" parent="-1_LEVEL"]
+[node name="DecoTileMap" type="TileMap" parent="-1_LEVEL/Tilemaps"]
+format = 2
+
+[node name="SceneTiles0deg" type="TileMap" parent="-1_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles90deg" type="TileMap" parent="-1_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 1.5708
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles180deg" type="TileMap" parent="-1_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 3.14159
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles270deg" type="TileMap" parent="-1_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 4.71239
 format = 2
 metadata/_edit_lock_ = true
 
 [node name="LevelObjects" type="Node" parent="-1_LEVEL"]
 editor_description = "orbs, artifacts, ladders, etc."
 
-[node name="Enemies" type="Node" parent="-1_LEVEL"]
-editor_description = "Any moving enemies/hazards"
+[node name="Entities" type="Node" parent="-1_LEVEL"]
+editor_description = "Any moving enemies/hazards/npcs"
 
 [node name="+1_FG" type="CanvasGroup" parent="."]
 editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"

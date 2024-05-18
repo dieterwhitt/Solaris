@@ -108,6 +108,14 @@ cancel={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Tilemap"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Killbox"
+2d_physics/layer_4="Static World Objects"
+2d_physics/layer_5="Entities"
+
 [physics]
 
 2d/default_gravity=670.0

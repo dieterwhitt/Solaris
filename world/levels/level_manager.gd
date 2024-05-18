@@ -44,7 +44,7 @@ var loaded = {}
 	preload("res://players/player_reworked/player_reworked.tscn").instantiate()
 
 # number of invincibility frames on scene change
-var invince_frames = 3
+var invince_frames = 1
 var invince_timer = 0
 
 func _ready():
@@ -59,6 +59,7 @@ func start_current_level():
 		loaded.merge({curr_path : current})
 	# now add current to tree
 	add_child(current)
+	# now we want to load all adjacent levels (smooth transitions)
 	for border in current.adjacent:
 		# border: top, bottom, left, right
 		var adj_path : String = current.adjacent[border]
@@ -89,6 +90,7 @@ func update_invincibility():
 		print("i frame")
 	else:
 		player.set_collision_layer_value(2, true)
+		player.set_collision_mask_value(1, true)
 
 # check if the player is out of bounds
 # for now we are limited to single screen levels
@@ -134,6 +136,7 @@ func enter_border(level : Node, posn : Vector2):
 	# this also avoids bugs with 1-frame misalignment, so 
 	# you don't die to a spike on the other side when you change levels
 	player.set_collision_layer_value(2, false)
+	player.set_collision_mask_value(1, false)
 	
 	invince_timer = invince_frames
 	current = level
