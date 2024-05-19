@@ -40,7 +40,7 @@ extends CharacterBody2D
 var current_coyote : int = 0
 # variable for if jump is still valid
 var used_jump : bool = true
-# new
+# new - dashing
 var used_double_jump = true
 var dashing = false
 var dash_stopping = false
@@ -48,6 +48,10 @@ var dash_timer : int = 0
 var dash_friction_timer : int = 0
 var dash_friction : float = 0
 var apply_down_gravity = true
+# new - dropping
+var drop_timer : int = 0
+# value for drop timer
+const drop_delay: int = 3
 # when jumping in air, increase jump buffer
 # then decrease it by 1 for each subsequent frame until 0
 # then if the player is on the ground with the timer > 0,
@@ -92,6 +96,7 @@ func _physics_process(delta):
 		apply_gravity(delta)
 		apply_x_accel(delta)
 	apply_jump()
+	check_drop()
 	
 	# handling animations
 	# common animations: run/idle, jump
@@ -206,6 +211,21 @@ func apply_jump():
 		# cancel dash
 		dashing = false
 		dash_stopping = false
+
+# dropping ledges
+# checks for "s" input then temporarily disables collisions with
+# one-way physics layer (layer 6)
+func check_drop():
+	if drop_timer > 0:
+		drop_timer -= 1
+	else:
+		# timer at 0: set collision layer for one-way
+		set_collision_mask_value(6, true)
+		# user just dropped
+		if Input.is_action_just_pressed("down"):
+			# remove mask for one-way layer
+			set_collision_mask_value(6, false)
+			drop_timer = drop_delay
 
 func dash(direction : Vector2, dash_frames : int, dash_velocity : 
 			float, friction_frames : int, friction_decel : float):

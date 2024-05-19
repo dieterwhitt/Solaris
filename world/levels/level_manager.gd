@@ -135,6 +135,8 @@ func enter_border(level : Node, posn : Vector2):
 	# need to disable collision layer (invincibility frame on scene change)
 	# this also avoids bugs with 1-frame misalignment, so 
 	# you don't die to a spike on the other side when you change levels
+	# also MAKE SURE TO EXTEND LEVELs BY 1 TILE AT EDGES TO PREVENT CLIPPING
+	# OUT OF THE WORLD!
 	player.set_collision_layer_value(2, false)
 	player.set_collision_mask_value(1, false)
 	

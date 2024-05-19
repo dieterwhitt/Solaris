@@ -115,6 +115,7 @@ cancel={
 2d_physics/layer_3="Killbox"
 2d_physics/layer_4="Static World Objects"
 2d_physics/layer_5="Entities"
+2d_physics/layer_6="One Way"
 
 [physics]
 
