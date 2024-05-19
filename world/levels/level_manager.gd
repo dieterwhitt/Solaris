@@ -36,12 +36,21 @@ If you have any questions dm me on discord.
 var loaded = {}
 # current level path
 @onready var curr_path : String = "res://world/levels/level_02.tscn"
-# current scene
+# current scene being rendered
 @onready var current : Node = \
 	load(curr_path).instantiate()
 # player
 @onready var player : Node = \
 	preload("res://players/player_reworked/player_reworked.tscn").instantiate()
+
+# new - camera settings
+var camera : Camera2D = Camera2D.new()
+# to control camera movement
+var cam_transform : RemoteTransform2D = RemoteTransform2D.new()
+
+# new - checkpoints
+# filepath of the level containing the active spawn point
+var curr_checkpoint : String = ""
 
 # number of invincibility frames on scene change
 var invince_frames = 1
@@ -51,6 +60,15 @@ func _ready():
 	# read save file and adjust current, checkpoint
 	start_current_level()
 	spawn_player_default()
+	# calibrate camera according to current level
+	calibrate_camera()
+
+func calibrate_camera():
+	# set camera drag margins & limits
+	# attach camera control to player
+	# current level dimensions must be considereed,
+	# so maybe work on multi-screen level systems first
+	pass
 
 # starts the current level by adding it to the tree and loading its
 # adjacent levels. does NOT spawn player
@@ -74,11 +92,14 @@ func start_current_level():
 				print("level not found")
 
 # spawns the player in the default spawnpoint
+# will need to rework when adding checkpoints
 func spawn_player_default():
 	var spawnpoint = current.get_node("Spawn").position
 	player.position = spawnpoint
 	invince_timer = invince_frames
 	add_child(player)
+
+
 
 func _physics_process(delta):
 	update_invincibility()
