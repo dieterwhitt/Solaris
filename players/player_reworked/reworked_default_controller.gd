@@ -31,6 +31,8 @@ a bit complex.
 
 class_name ReworkedDefaultController
 
+# need to add parry and then should be done
+
 extends CharacterBody2D
 
 # after leaving the ground (not from jumping), increase the coyote value
@@ -106,7 +108,6 @@ func _physics_process(delta):
 	# subclasses: define unique movement
 	# run move and slide (in subclass)
 	# move_and_slide()
-	
 
 func update_direction():
 	if receive_input:

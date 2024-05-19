@@ -4,7 +4,7 @@
 
 extends ReworkedDefaultController
 
-@export var swinging : bool = false
+var swinging : bool = false
 
 # get child nodes for animation
 func _ready():

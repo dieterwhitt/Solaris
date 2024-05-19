@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhowsgklfujem"]
+
+[sub_resource type="Curve2D" id="Curve2D_530b1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Animation" id="Animation_om70u"]
+resource_name = "movement_animation"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_xe6t7"]
+length = 5.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4kdyp"]
+_data = {
+"RESET": SubResource("Animation_xe6t7"),
+"movement_animation": SubResource("Animation_om70u")
+}
+
+[node name="PathMovingObject" type="Node2D"]
+editor_description = "Scene for creating an object that follows a path. Can be a platform, enemy, spike, etc. By default rotation is set to off. Add the moving object as a child to  this node and connect the remote transform to it. for moving platforms: make sure to check collision animatable so it's recognized as a platform by the player"
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_530b1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(2.08165e-12, 0)
+progress = 128.0
+rotates = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D"]
+editor_description = "animation player controlling the movement of the object. adjust the animation length and keyframes as needed."
+libraries = {
+"": SubResource("AnimationLibrary_4kdyp")
+}
+autoplay = "movement_animation"

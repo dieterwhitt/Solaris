@@ -1,9 +1,42 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmsq2nc6iensn"]
+[gd_scene load_steps=8 format=3 uid="uid://bmsq2nc6iensn"]
 
 [ext_resource type="Script" path="res://world/levels/level_04.gd" id="1_yon3l"]
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="2_wkr1n"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
+
+[sub_resource type="Curve2D" id="Curve2D_530b1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Animation" id="Animation_om70u"]
+resource_name = "movement_animation"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_xe6t7"]
+length = 5.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4kdyp"]
+_data = {
+"RESET": SubResource("Animation_xe6t7"),
+"movement_animation": SubResource("Animation_om70u")
+}
 
 [node name="Level_04" type="Node"]
 editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
@@ -118,6 +151,35 @@ metadata/_edit_lock_ = true
 
 [node name="LevelObjects" type="Node" parent="-1_LEVEL"]
 editor_description = "orbs, artifacts, ladders, etc."
+
+[node name="PathMovingObject" type="Node2D" parent="-1_LEVEL/LevelObjects"]
+editor_description = "Scene for creating an object that follows a path. Can be a platform, enemy, spike, etc. By default rotation is set to off. Add the moving object as a child to PathFollow2d."
+position = Vector2(136, 80)
+
+[node name="TileMap" type="TileMap" parent="-1_LEVEL/LevelObjects/PathMovingObject"]
+position = Vector2(38.5041, 0)
+tile_set = ExtResource("2_wkr1n")
+collision_animatable = true
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 1, 1, 0, 2, 1, 0)
+
+[node name="Path2D" type="Path2D" parent="-1_LEVEL/LevelObjects/PathMovingObject"]
+curve = SubResource("Curve2D_530b1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="-1_LEVEL/LevelObjects/PathMovingObject/Path2D"]
+position = Vector2(38.5041, 0)
+progress = 38.5003
+rotates = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="-1_LEVEL/LevelObjects/PathMovingObject/Path2D/PathFollow2D"]
+remote_path = NodePath("../../../TileMap")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="-1_LEVEL/LevelObjects/PathMovingObject/Path2D"]
+editor_description = "animation player controlling the movement of the object. adjust the animation length and keyframes as needed."
+libraries = {
+"": SubResource("AnimationLibrary_4kdyp")
+}
+autoplay = "movement_animation"
 
 [node name="Enemies" type="Node" parent="-1_LEVEL"]
 editor_description = "Any moving enemies/hazards"
