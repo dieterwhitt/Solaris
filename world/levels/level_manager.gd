@@ -31,8 +31,8 @@ If you have any questions dm me on discord.
 # good start though
 
 # loaded scenes (deleted on checkpoint)
-# path (string) : node
 # keep all the loaded levels in here so that we aren't loading things twice
+# path (string) : node
 var loaded = {}
 # current level path
 @onready var curr_path : String = "res://world/levels/level_02.tscn"

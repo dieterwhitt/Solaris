@@ -61,6 +61,7 @@ class_name Level
 
 # need to update for multi-screen levels
 
+# reworked may 19 2024
 
 # borders (default values)
 @export var top_y : int = 0
@@ -74,6 +75,31 @@ class_name Level
 @export var right_path : String = ""
 
 @onready var adjacent = {
+	"top" : top_path,
+	"bottom" : bottom_path,
+	"left" : left_path,
+	"right" : right_path,
+}
+
+# rework:
+# width and height default values (# of screens)
+# must be > 0
+@export var width = 1
+@export var height = 1
+
+# below: arrays of strings (filepaths to levels)
+
+# left to right
+# these arrays must have length (width)
+@export var top_borders : Array[String] = [""]
+@export var bottom_borders : Array[String] = [""]
+
+# top to bottom
+# these arrays must have length (height)
+@export var left_borders : Array[String] = [""]
+@export var right_borders : Array[String] = [""]
+
+@onready var adjacent0 = {
 	"top" : top_path,
 	"bottom" : bottom_path,
 	"left" : left_path,
