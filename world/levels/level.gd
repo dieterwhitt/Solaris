@@ -84,16 +84,16 @@ class_name Level
 
 # rework:
 
-const SCREEN_WIDTH = 320
-const SCREEN_HEIGHT = 180
+const SCREEN_WIDTH : int = 320
+const SCREEN_HEIGHT : int = 180
 
 # whether level contains checkpoint
 @export var checkpoint = false
 
 # width and height default values (# of screens)
 # must be > 0
-@export var width = 1
-@export var height = 1
+@export var width : int = 1
+@export var height : int = 1
 
 # below: arrays of strings (filepaths to levels)
 
@@ -125,6 +125,19 @@ const SCREEN_HEIGHT = 180
 func _ready():
 	print("current level: " + name)
 	print(adjacent)
+	'''
+	# testing (maybe move to seperate testing harness file)
+	# using level_02: set w/h = 3
+	print("testing level functions")
+	print(borders)
+	print(Vector2(width, height))
+	assert(get_posn_screen(Vector2(100, 100)) == Vector2(0, 0))
+	assert(get_posn_screen(Vector2(400, 400)) == Vector2(1, 2))
+	assert(get_relative_x(800) == 160)
+	assert(get_relative_y(200) == 20)
+	assert(adjust_coords(Vector2(0, 0), Vector2(1, 0)) == Vector2(320, 0))
+	print("assertions passed")
+	'''
 
 func _process(delta):
 	pass
@@ -132,32 +145,29 @@ func _process(delta):
 # returns the current screen segment of posn as a vector2 [x, y]
 # if out of bounds, return the nearest screen
 # i.e clamp x and y to the borders of the room
-func get_posn_screen(posn : Vector2) -> Vector2:
-	return Vector2.ZERO
-
-# given a filepath from the adjacent levels dictionary, and a screen in the
-# current level, return the corresponding screen in the NEW level
-# need to determine length of shared border and how far along the border the
-# current screen is, then find the corresponding screen in the next level
-# that is equally far along
-# leetcode medium-hard?
-# also maybe this should be done in level_manager instead since it involves 2 levels
-func get_dest_screen(path : String) -> Vector2:
-	return Vector2.ZERO
+func get_screen(posn : Vector2) -> Vector2:
+	var screen = Vector2.ZERO
+	# floor division
+	screen.x = int(clamp(posn.x, borders["left"], borders["right"]) / SCREEN_WIDTH)
+	screen.y = int(clamp(posn.y, borders["top"], borders["bottom"]) / SCREEN_HEIGHT)
+	return screen
 
 # returns the x coordinate relative to its screen segment
 # gives an error if x is out of bounds
 func get_relative_x(x) -> int:
-	return 0
+	assert(borders["left"] <= x and x <= borders["right"])
+	return x % SCREEN_WIDTH
 
 # returns the y coordinate relative to its screen segment
 # error if y is out of bounds
 func get_relative_y(y) -> int:
-	return 0
+	assert(borders["top"] <= y and y <= borders["bottom"])
+	return y % SCREEN_HEIGHT
 
 # given a screen's relative coordinates and a screen destination,
 # return the coordinates to that screen.
-# ex. adjust_coords([0, 0], [2, 1]) -> [320, 0]
-# i.e top left corner (origin) on screen [2, 1] is located at [320, 0]
+# ex. adjust_coords([0, 0], [1, 0]) -> [320, 0]
+# i.e top left corner (origin) on screen [1, 0] is located at [320, 0]
 func adjust_coords(posn : Vector2, screen : Vector2) -> Vector2:
-	return Vector2.ZERO
+	return Vector2(posn.x + (screen.x * SCREEN_WIDTH), \
+			posn.y + (screen.y * SCREEN_HEIGHT))

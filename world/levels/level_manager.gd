@@ -38,6 +38,8 @@ If you have any questions dm me on discord.
 # keep all the loaded levels in here so that we aren't loading things twice
 # path (string) : node
 var loaded = {}
+# current level path
+var current_path : String = ""
 # current level checkpoint path
 # intial value: starting spawn point
 var spawn_path : String = "res://world/levels/level_02.tscn"
@@ -123,6 +125,7 @@ func respawn_player():
 		current.queue_free()
 	# load new current
 	current = load(spawn_path).instantiate()
+	current_path = spawn_path
 	loaded.merge({spawn_path : current})
 	# start current scene
 	var Spawn = current.get_node("Spawn")
@@ -149,9 +152,11 @@ func update_invincibility():
 			player.set_collision_layer_value(2, true)
 			player.set_collision_mask_value(1, true)
 			player.set_physics_process(true)
-
+			
+# warning: basically all of the code below is fucking cancer (i tried my best)
+# probably just shouldnt even touch it tbh
+'''
 # check if the player is out of bounds
-# for now we are limited to single screen levels
 func check_borders():
 	var posn = player.position
 	# you want to keep the position in the dimension that remains unchanged
@@ -181,11 +186,66 @@ func check_borders():
 			var right_lvl = loaded[current.adjacent["right"]]
 			enter_border(right_lvl, 
 					Vector2(right_lvl.left_x, posn.y))
-	
+'''
+# check borders reworked
+# get current screen, find target position, find target screen, adjust screen, insert player
+func check_borders():
+	var posn = player.position
+	var screen = current.get_screen(posn)
+	var target_data = get_target_posn(screen)
+	if not target_data[0]:
+		# player is in bounds
+		return
+	else:
+		# player went out of bounds
+		if target_data[1] == "":
+			# no level connected
+			print("no level path to change to")
+		elif target_data[1] not in loaded:
+			print("error: path specified was never loaded - check spelling")
+		else:
+			var target_screen = get_dest_screen(current_path, target_data[1], screen)
+			var insert_posn = current.adjust_coords(target_data[0], target_screen)
+			print("crossing border")
+			enter_border(target_data[1], insert_posn)
 
+# gets target position (relative to target screen) and path
+# if player is out of bounds
+# returns null target if player is not out of bounds
+# screen is to determine what the target level is
+func get_target_posn(screen : Vector2): # [relative coords, level path]
+	var target = Vector2.ZERO
+	var level = ""
+	var posn = player.position
+	if posn.x < current.borders["left"]:
+		# left of left border (spawn on right side)
+		target.x = current.SCREEN_WIDTH
+		target.y = current.get_relative_y(posn.y)
+		level = current.adjacent0["left"][screen.y]
+	elif posn.x > current.borders["right"]:
+		# right of right border (spawn on left side)
+		target.x = 0
+		target.y = current.get_relative_y(posn.y)
+		level = current.adjacent0["right"][screen.y]
+	elif posn.y < current.borders["top"]:
+		# above top border (spawn on bottom)
+		target.x = current.get_relative_x(posn.x)
+		target.y = current.SCREEN_HEIGHT
+		level = current.adjacent0["top"][screen.x]
+	elif posn.y > current.borders["bottom"]:
+		# below bottom border (spawn on top)
+		target.x = current.get_relative_x(posn.x)
+		target.y = 0
+		level = current.adjacent0["bottom"][screen.y]
+	else:
+		target = null
+	return [target, level]
+	
 # function for entering a border
-func enter_border(level : Node, posn : Vector2):
+func enter_border(path : String, posn : Vector2):
 	print("crossing level border")
+	# possible future improvement: short timer (like 2s) to keep running before removal
+	# so stuff like moving platforms still run for a moment off screen
 	remove_child(current)
 	# move player
 	player.position = posn
@@ -199,12 +259,88 @@ func enter_border(level : Node, posn : Vector2):
 	player.set_collision_mask_value(1, false)
 	# freeze physics during i frame to prevent clipping
 	player.set_physics_process(false)
-	
 	invince_timer = invince_frames
-	current = level
+	
+	current = loaded[path]
+	current_path = path
+	
 	start_current_level()
 	print("adding player at %v" % posn)
 	
 	
+# given a filepath from the adjacent levels dictionary, and a screen in the
+# from level, return the corresponding screen in the dest level
+# need to determine length of shared border and how far along the border the
+# from screen is, then find the corresponding screen in the dest level
+# that is equally far along
+# requires screen to be on the border and for its corresponding border level and
+# they both have to be loaded
+# to match path
+# leetcode medium-hard? were gonna need to test like crazy
+func get_dest_screen(from_path : String, dest_path : String, screen : Vector2) -> Vector2:
+	var from = loaded[from_path]
+	var dest = loaded[dest_path]
+	# how far along the shared border the screen is
+	var border_position_from = 0
+	var found = false
+	# current screen as we scan the edge
+	var current_screen = Vector2.ZERO
+	# edge data: border key, starting screen, scan direction
+	var edges_from = [["left", Vector2.ZERO, "down"], 
+			["right", Vector2(from.borders["right"], 0), "down"], 
+			["top", Vector2.ZERO, "right"], 
+			["bottom", Vector2(0, from.borders["bottom"]), "right"]]
+	for edge in edges_from:
+		current_screen = edge[1]
+		for adj in from.adjacent0[edge[0]]:
+			if adj == from_path:
+				# match found
+				border_position_from += 1
+				# check if screen matches
+				if current_screen == screen:
+					# found correct border position
+					found = true
+					break
+				else:
+					# update current screen based on scan direction
+					if edge[2] == "down":
+						current_screen.y += 1
+					elif edge[2] == "right":
+						current_screen.x += 1
+		# break nested loop
+		if found:
+			break
 	
+	# we now have the position on the shared border of our screen (starting at 1)
+	# now need to scan dest for that same position
+	# cancer, i actually dont know how to refactor this code
+	var border_position_dest = 0
+	found = false
+	var edges_dest = [["left", Vector2.ZERO, "down"], 
+			["right", Vector2(dest.borders["right"], 0), "down"], 
+			["top", Vector2.ZERO, "right"], 
+			["bottom", Vector2(0, dest.borders["bottom"]), "right"]]
+	for edge in edges_dest:
+		current_screen = edge[1]
+		for adj in dest.adjacent0[edge[0]]:
+			if adj == dest_path:
+				# match found
+				border_position_dest += 1
+				# check if border position matches
+				if border_position_dest == border_position_from:
+					# found correct border position
+					found = true
+					break
+				else:
+					# update current screen based on scan direction
+					if edge[2] == "down":
+						current_screen.y += 1
+					elif edge[2] == "right":
+						current_screen.x += 1
+		# break nested loop
+		if found:
+			break
+	# current screen should be the screen in dest that has the same shared border
+	# position as the screen given as the parameter
+	return current_screen
 

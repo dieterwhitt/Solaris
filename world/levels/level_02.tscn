@@ -11,6 +11,9 @@
 [node name="Level_02" type="Node"]
 script = ExtResource("1_sm3jy")
 right_path = "res://world/levels/level_03.tscn"
+checkpoint = true
+width = 3
+height = 3
 
 [node name="Spawn" type="Node2D" parent="."]
 position = Vector2(48, 104)
