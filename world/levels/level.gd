@@ -158,13 +158,15 @@ func get_screen(posn : Vector2) -> Vector2:
 # gives an error if x is out of bounds
 func get_relative_x(x) -> int:
 	assert(borders["left"] <= x and x <= borders["right"])
-	return x % SCREEN_WIDTH
+	var diff = x - int(x)
+	return (int(x) % SCREEN_WIDTH) + diff
 
 # returns the y coordinate relative to its screen segment
 # error if y is out of bounds
 func get_relative_y(y) -> int:
 	assert(borders["top"] <= y and y <= borders["bottom"])
-	return y % SCREEN_HEIGHT
+	var diff = y - int(y)
+	return (int(y) % SCREEN_HEIGHT) + diff
 
 # given a screen's relative coordinates and a screen destination,
 # return the coordinates to that screen.
