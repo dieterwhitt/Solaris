@@ -1,7 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bhowsgklfujem"]
 
-[sub_resource type="Animation" id="Animation_om70u"]
-resource_name = "movement_animation"
+[sub_resource type="Animation" id="Animation_xe6t7"]
 length = 5.0
 loop_mode = 1
 tracks/0/type = "value"
@@ -17,7 +16,8 @@ tracks/0/keys = {
 "values": [0.0, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_xe6t7"]
+[sub_resource type="Animation" id="Animation_om70u"]
+resource_name = "movement_animation"
 length = 5.0
 loop_mode = 1
 tracks/0/type = "value"

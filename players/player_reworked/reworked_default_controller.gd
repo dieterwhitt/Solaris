@@ -65,7 +65,6 @@ var on_floor : bool = false
 var direction : int = 0
 # to disable input (physics still applies), ex. after ability usage
 @export var receive_input : bool = true
-
 # variable for print debug statements
 @export var debug = false
 # dependent on subclass: 

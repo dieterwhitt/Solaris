@@ -59,6 +59,9 @@ extends Node
 
 class_name Level
 
+# need to update for multi-screen levels
+
+
 # borders (default values)
 @export var top_y : int = 0
 @export var bottom_y : int = 180

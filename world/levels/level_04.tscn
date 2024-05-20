@@ -11,8 +11,7 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="Animation" id="Animation_om70u"]
-resource_name = "movement_animation"
+[sub_resource type="Animation" id="Animation_xe6t7"]
 length = 5.0
 loop_mode = 1
 tracks/0/type = "value"
@@ -28,7 +27,8 @@ tracks/0/keys = {
 "values": [0.0, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_xe6t7"]
+[sub_resource type="Animation" id="Animation_om70u"]
+resource_name = "movement_animation"
 length = 5.0
 loop_mode = 1
 tracks/0/type = "value"
@@ -160,7 +160,7 @@ metadata/_edit_lock_ = true
 editor_description = "For level tiles, not including scene tiles (use scene tilemap)"
 tile_set = ExtResource("2_wkr1n")
 format = 2
-layer_0/tile_data = PackedInt32Array(1310720, 1, 0, 1310721, 1, 0, 1310722, 1, 0, 1310723, 1, 0, 1310724, 1, 0, 1310725, 1, 0, 1310726, 1, 0, 1310727, 1, 0, 1310728, 1, 0, 1310729, 1, 0, 1310730, 1, 0, 1376266, 1, 0, 1441802, 1, 0, 1376267, 196609, 0, 1441803, 196609, 0, 1376268, 196609, 0, 1441804, 196609, 0, 1376269, 196609, 0, 1441805, 196609, 0, 1376270, 196609, 0, 1441806, 196609, 0, 1376271, 196609, 0, 1441807, 196609, 0, 1376272, 196609, 0, 1441808, 196609, 0, 1376273, 196609, 0, 1441809, 196609, 0, 1048585, 131073, 0, 1048586, 131073, 0, 1048587, 131073, 0, 1048588, 131073, 0, 1048589, 131073, 0, 786441, 131073, 0, 786442, 131073, 0, 786443, 131073, 0, 786444, 131073, 0, 786445, 131073, 0, 524301, 131073, 0, 524300, 131073, 0, 524299, 131073, 0, 524298, 131073, 0, 524297, 131073, 0, 262153, 131073, 0, 262154, 131073, 0, 262155, 131073, 0, 262156, 131073, 0, 262157, 131073, 0, 1376255, 1, 0)
+layer_0/tile_data = PackedInt32Array(1310720, 1, 0, 1310721, 1, 0, 1310722, 1, 0, 1310723, 1, 0, 1310724, 1, 0, 1310725, 1, 0, 1310726, 1, 0, 1310727, 1, 0, 1310728, 1, 0, 1310729, 1, 0, 1310730, 1, 0, 1376266, 1, 0, 1441802, 1, 0, 1376267, 196609, 0, 1441803, 196609, 0, 1376268, 196609, 0, 1441804, 196609, 0, 1376269, 196609, 0, 1441805, 196609, 0, 1376270, 196609, 0, 1441806, 196609, 0, 1376271, 196609, 0, 1441807, 196609, 0, 1376272, 196609, 0, 1441808, 196609, 0, 1376273, 196609, 0, 1441809, 196609, 0, 1048585, 131073, 0, 1048586, 131073, 0, 1048587, 131073, 0, 1048588, 131073, 0, 1048589, 131073, 0, 786441, 131073, 0, 786442, 131073, 0, 786443, 131073, 0, 786444, 131073, 0, 786445, 131073, 0, 524301, 131073, 0, 524300, 131073, 0, 524299, 131073, 0, 524298, 131073, 0, 524297, 131073, 0, 262153, 131073, 0, 262154, 131073, 0, 262155, 131073, 0, 262156, 131073, 0, 262157, 131073, 0, 1376255, 1, 0, 1310719, 1, 0, 1245184, 1, 0, 1245185, 1, 0, 1245186, 1, 0)
 metadata/_edit_lock_ = true
 
 [node name="SceneTiles0deg" type="TileMap" parent="-1_LEVEL"]
@@ -187,6 +187,8 @@ layer_0/tile_data = PackedInt32Array(0, 1, 0, 1, 1, 0, 2, 1, 0)
 curve = SubResource("Curve2D_530b1")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="-1_LEVEL/LevelObjects/PathMovingObject/Path2D"]
+position = Vector2(38.5041, 0)
+progress = 38.5003
 rotates = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="-1_LEVEL/LevelObjects/PathMovingObject/Path2D/PathFollow2D"]
@@ -208,6 +210,7 @@ position = Vector2(192, 144)
 curve = SubResource("Curve2D_krnyk")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="-1_LEVEL/LevelObjects/PathMovingObject2/Path2D"]
+progress = 64.0
 rotates = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="-1_LEVEL/LevelObjects/PathMovingObject2/Path2D/PathFollow2D"]

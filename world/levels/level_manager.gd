@@ -60,15 +60,34 @@ func _ready():
 	# read save file and adjust current, checkpoint
 	start_current_level()
 	spawn_player_default()
+	# initialize camera settings
+	initialize_camera()
 	# calibrate camera according to current level
 	calibrate_camera()
 
+# one-time initialization of camera
+func initialize_camera():
+	add_child(camera)
+	camera.name = "Camera" # rename camera in tree
+	# fix camera top left
+	camera.anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
+	# enable smoothing
+	camera.position_smoothing_enabled = true
+	camera.limit_smoothed = true
+	# connect camera control to camera
+	cam_transform.remote_path = "root/LevelManager/Camera"
+
+# calibrating camera settings for the current level
 func calibrate_camera():
-	# set camera drag margins & limits
+	
 	# attach camera control to player
-	# current level dimensions must be considereed,
+	
+	# set camera drag margins & limits
+	# current level dimensions must be considereed
+	
 	# so maybe work on multi-screen level systems first
 	pass
+	
 
 # starts the current level by adding it to the tree and loading its
 # adjacent levels. does NOT spawn player
@@ -109,9 +128,11 @@ func update_invincibility():
 	if invince_timer > 0:
 		invince_timer -= 1
 		print("i frame")
-	else:
-		player.set_collision_layer_value(2, true)
-		player.set_collision_mask_value(1, true)
+		if invince_timer == 0:
+	
+			player.set_collision_layer_value(2, true)
+			player.set_collision_mask_value(1, true)
+			player.set_physics_process(true)
 
 # check if the player is out of bounds
 # for now we are limited to single screen levels
@@ -156,10 +177,12 @@ func enter_border(level : Node, posn : Vector2):
 	# need to disable collision layer (invincibility frame on scene change)
 	# this also avoids bugs with 1-frame misalignment, so 
 	# you don't die to a spike on the other side when you change levels
-	# also MAKE SURE TO EXTEND LEVELs BY 1 TILE AT EDGES TO PREVENT CLIPPING
+	# also MAKE SURE TO EXTEND LEVELs BY 1 TILE AT EDGES TO HELP PREVENT CLIPPING
 	# OUT OF THE WORLD!
 	player.set_collision_layer_value(2, false)
 	player.set_collision_mask_value(1, false)
+	# freeze physics during i frame to prevent clipping
+	player.set_physics_process(false)
 	
 	invince_timer = invince_frames
 	current = level
