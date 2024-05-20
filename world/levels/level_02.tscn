@@ -10,6 +10,7 @@
 
 [node name="Level_02" type="Node"]
 script = ExtResource("1_sm3jy")
+left_path = "res://world/levels/test_level.tscn"
 right_path = "res://world/levels/level_03.tscn"
 
 [node name="Spawn" type="Node2D" parent="."]
