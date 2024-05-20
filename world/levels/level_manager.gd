@@ -27,13 +27,12 @@ If you have any questions dm me on discord.
 - dieter whittingham
 '''
 
-# starting the system, need to fix it to make it better
-# good start though
-
 # this will probably be the longest file in the game
 # needs to control level switching, player position/scene, and camera
 # maybe try splitting them into 3 files? idk if its worth it unless this file
 # goes >1000 lines
+# also a lot of stuff will need to be read from a save file like
+# current spawn, spawnpoints visited, active player, etc.
 
 # loaded scenes (deleted on checkpoint)
 # keep all the loaded levels in here so that we aren't loading things twice
@@ -44,9 +43,10 @@ var loaded = {}
 var spawn_path : String = "res://world/levels/level_02.tscn"
 # current scene being rendered
 var current : Node = null
+# active player and other available players (not implemented yet)
+var active_player : String = "res://players/player_reworked/player_reworked.tscn"
 # player
 var player : Node = null
-var active_player : String = "res://players/player_reworked/player_reworked.tscn"
 
 # new - camera settings
 var camera : Camera2D = Camera2D.new()
@@ -115,7 +115,7 @@ func respawn_player():
 	if player:
 		player.queue_free()
 	player = load(active_player).instantiate()
-	# delete all loaded scenes and switch current scene to checkpoint if not already
+	# delete all loaded scenes and switch current scene to checkpoint
 	for level in loaded:
 		loaded[level].queue_free()
 	loaded = {}
@@ -145,6 +145,7 @@ func update_invincibility():
 		invince_timer -= 1
 		print("i frame")
 		if invince_timer == 0:
+			# re-enable player
 			player.set_collision_layer_value(2, true)
 			player.set_collision_mask_value(1, true)
 			player.set_physics_process(true)

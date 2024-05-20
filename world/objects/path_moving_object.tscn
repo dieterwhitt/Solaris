@@ -46,7 +46,6 @@ editor_description = "Scene for creating an object that follows a path. Can be a
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2(2.08165e-12, 0)
-progress = 128.0
 rotates = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
