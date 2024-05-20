@@ -6,8 +6,6 @@
 
 [node name="Level_03" type="Node"]
 script = ExtResource("1_1a5rd")
-left_path = "res://world/levels/level_02.tscn"
-right_path = "res://world/levels/level_04.tscn"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

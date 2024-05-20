@@ -63,7 +63,7 @@ class_name Level
 # need to update for multi-screen levels
 
 # reworked may 19 2024
-
+'''
 # borders (default values)
 @export var top_y : int = 0
 @export var bottom_y : int = 180
@@ -81,7 +81,7 @@ class_name Level
 	"left" : left_path,
 	"right" : right_path,
 }
-
+'''
 # rework:
 
 const SCREEN_WIDTH : int = 320
@@ -124,7 +124,9 @@ const SCREEN_HEIGHT : int = 180
 
 func _ready():
 	print("current level: " + name)
-	print(adjacent)
+	print("adjacent: %s" % adjacent0)
+	print("borders: %s" % borders)
+	
 	'''
 	# testing (maybe move to seperate testing harness file)
 	# using level_02: set w/h = 3

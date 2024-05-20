@@ -42,7 +42,7 @@ var loaded = {}
 var current_path : String = ""
 # current level checkpoint path
 # intial value: starting spawn point
-var spawn_path : String = "res://world/levels/level_02.tscn"
+var spawn_path : String = "res://world/levels/long_level_00.tscn"
 # current scene being rendered
 var current : Node = null
 # active player and other available players (not implemented yet)
@@ -71,25 +71,25 @@ func _ready():
 func initialize_camera():
 	add_child(camera)
 	camera.name = "Camera" # rename camera in tree
-	# fix camera top left
-	camera.anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
-	# enable smoothing
-	camera.position_smoothing_enabled = true
+	# enable smoothing (or maybe not? it's kinda buggy)
+	# camera.position_smoothing_enabled = true
 	camera.limit_smoothed = true
 	# connect camera control to camera
-	cam_transform.remote_path = "root/LevelManager/Camera"
+	cam_transform.remote_path = camera.get_path()
+	print("connecting remote transform to camera")
 
 # calibrating camera settings for the current level
 func calibrate_camera():
-	
 	# attach camera control to player
-	
+	if cam_transform not in player.get_children():
+		print("adding remote camera transform to player")
+		player.add_child(cam_transform)
 	# set camera drag margins & limits
 	# current level dimensions must be considereed
-	
-	# so maybe work on multi-screen level systems first
-	pass
-	
+	camera.limit_left = current.borders["left"]
+	camera.limit_right = current.borders["right"]
+	camera.limit_top = current.borders["top"]
+	camera.limit_bottom = current.borders["bottom"]
 
 # starts the current level by adding it to the tree and loading its
 # adjacent levels. does NOT spawn player
@@ -97,18 +97,18 @@ func start_current_level():
 	# now add current to tree
 	add_child(current)
 	# now we want to load all adjacent levels (smooth transitions)
-	for border in current.adjacent:
-		# border: top, bottom, left, right
-		var adj_path : String = current.adjacent[border]
-		if adj_path != "" and adj_path not in loaded:
-			print("attempting to load " + adj_path)
-			# if path was given and hasn't been loaded
-			var packed_lvl : PackedScene = load(adj_path)
-			if packed_lvl:
-				loaded.merge({adj_path : packed_lvl.instantiate()})
-				print("level loaded")
-			else:
-				print("level not found")
+	# below: reworked may 20 - multi screen levels rework
+	for direction in current.adjacent0:
+		for adj_path in current.adjacent0[direction]:
+			if adj_path != "" and adj_path not in loaded:
+				print("attempting to load " + adj_path)
+				# if path was given and hasn't been loaded
+				var packed_lvl : PackedScene = load(adj_path)
+				if packed_lvl:
+					loaded.merge({adj_path : packed_lvl.instantiate()})
+					print("level loaded")
+				else:
+					print("level not found")
 
 # spawns/respawns player
 func respawn_player():
@@ -265,6 +265,7 @@ func enter_border(path : String, posn : Vector2):
 	current_path = path
 	
 	start_current_level()
+	calibrate_camera()
 	print("adding player at %v" % posn)
 	
 	

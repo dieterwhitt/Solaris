@@ -59,8 +59,6 @@ point_count = 3
 [node name="Level_04" type="Node"]
 editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
 script = ExtResource("1_yon3l")
-top_path = "res://world/levels/level_05.tscn"
-left_path = "res://world/levels/level_03.tscn"
 
 [node name="Borders" type="Node" parent="."]
 
