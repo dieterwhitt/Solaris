@@ -34,6 +34,7 @@ prototype levels. from now on use the level template.
 Layers: the level template is separated into layers from back to front;
 -2 (backgrounds), -1 (level), 0 (player layer ONLY), +1 (foreground)
 note* HUD (+2) and Player (0) are to be handled in level_manager.
+OUTDATED AS OF MAY 19 - SEE DESIGN DOC
 
 Borders: the border objects that enclose the world. may be toggled
 to block the player from passing through. blocks entities by default
@@ -82,6 +83,10 @@ class_name Level
 }
 
 # rework:
+
+const SCREEN_WIDTH = 320
+const SCREEN_HEIGHT = 180
+
 # width and height default values (# of screens)
 # must be > 0
 @export var width = 1
@@ -91,19 +96,27 @@ class_name Level
 
 # left to right
 # these arrays must have length (width)
-@export var top_borders : Array[String] = [""]
-@export var bottom_borders : Array[String] = [""]
+# empty string means no connection
+@export var top_paths : Array[String] = [""]
+@export var bottom_paths : Array[String] = [""]
 
 # top to bottom
 # these arrays must have length (height)
-@export var left_borders : Array[String] = [""]
-@export var right_borders : Array[String] = [""]
+@export var left_paths : Array[String] = [""]
+@export var right_paths : Array[String] = [""]
 
 @onready var adjacent0 = {
-	"top" : top_path,
-	"bottom" : bottom_path,
-	"left" : left_path,
-	"right" : right_path,
+	"top" : top_paths,
+	"bottom" : bottom_paths,
+	"left" : left_paths,
+	"right" : right_paths,
+}
+
+@onready var borders = {
+	"top" : 0, # y = 0
+	"bottom" : height * SCREEN_HEIGHT,
+	"left" : 0, # x = 0
+	"right" : width * SCREEN_WIDTH,
 }
 
 func _ready():
@@ -113,3 +126,24 @@ func _ready():
 func _process(delta):
 	pass
 
+# returns the current screen segment of posn as a vector2 [x, y]
+# if out of bounds, return the nearest screen
+func get_screen(posn : Vector2) -> Vector2:
+	return Vector2.ZERO
+
+# returns the x coordinate relative to its screen segment
+# gives an error if x is out of bounds
+func get_relative_x(x) -> int:
+	return 0
+
+# returns the y coordinate relative to its screen segment
+# error if y is out of bounds
+func get_relative_y(y) -> int:
+	return 0
+
+# given a screen's relative coordinates and a screen destination,
+# return the coordinates to that screen.
+# ex. adjust_coords([0, 0], [2, 1]) -> [320, 0]
+# i.e top left corner (origin) on screen [2, 1] is located at [320, 0]
+func adjust_coords(posn : Vector2, screen : Vector2) -> Vector2:
+	return Vector2.ZERO
