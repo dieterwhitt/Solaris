@@ -30,27 +30,28 @@ If you have any questions dm me on discord.
 # starting the system, need to fix it to make it better
 # good start though
 
+# this will probably be the longest file in the game
+# needs to control level switching, player position/scene, and camera
+# maybe try splitting them into 3 files? idk if its worth it unless this file
+# goes >1000 lines
+
 # loaded scenes (deleted on checkpoint)
 # keep all the loaded levels in here so that we aren't loading things twice
 # path (string) : node
 var loaded = {}
-# current level path
-@onready var curr_path : String = "res://world/levels/level_02.tscn"
+# current level checkpoint path
+# intial value: starting spawn point
+var spawn_path : String = "res://world/levels/level_02.tscn"
 # current scene being rendered
-@onready var current : Node = \
-	load(curr_path).instantiate()
+var current : Node = null
 # player
-@onready var player : Node = \
-	preload("res://players/player_reworked/player_reworked.tscn").instantiate()
+var player : Node = null
+var active_player : String = "res://players/player_reworked/player_reworked.tscn"
 
 # new - camera settings
 var camera : Camera2D = Camera2D.new()
 # to control camera movement
 var cam_transform : RemoteTransform2D = RemoteTransform2D.new()
-
-# new - checkpoints
-# filepath of the level containing the active spawn point
-var curr_checkpoint : String = ""
 
 # number of invincibility frames on scene change
 var invince_frames = 1
@@ -58,8 +59,7 @@ var invince_timer = 0
 
 func _ready():
 	# read save file and adjust current, checkpoint
-	start_current_level()
-	spawn_player_default()
+	respawn_player()
 	# initialize camera settings
 	initialize_camera()
 	# calibrate camera according to current level
@@ -92,8 +92,6 @@ func calibrate_camera():
 # starts the current level by adding it to the tree and loading its
 # adjacent levels. does NOT spawn player
 func start_current_level():
-	if curr_path not in loaded:
-		loaded.merge({curr_path : current})
 	# now add current to tree
 	add_child(current)
 	# now we want to load all adjacent levels (smooth transitions)
@@ -110,15 +108,33 @@ func start_current_level():
 			else:
 				print("level not found")
 
-# spawns the player in the default spawnpoint
-# will need to rework when adding checkpoints
-func spawn_player_default():
-	var spawnpoint = current.get_node("Spawn").position
-	player.position = spawnpoint
-	invince_timer = invince_frames
-	add_child(player)
-
-
+# spawns/respawns player
+func respawn_player():
+	# rework:
+	# free player, then create new player based on active player path
+	if player:
+		player.queue_free()
+	player = load(active_player).instantiate()
+	# delete all loaded scenes and switch current scene to checkpoint if not already
+	for level in loaded:
+		loaded[level].queue_free()
+	loaded = {}
+	if current:
+		current.queue_free()
+	# load new current
+	current = load(spawn_path).instantiate()
+	loaded.merge({spawn_path : current})
+	# start current scene
+	var Spawn = current.get_node("Spawn")
+	start_current_level()
+	# load in player
+	if Spawn:
+		player.position = Spawn.position
+		invince_timer = invince_frames
+		add_child(player)
+	else:
+		print("spawn point not found, unable to spawn player")
+	
 
 func _physics_process(delta):
 	update_invincibility()
@@ -129,7 +145,6 @@ func update_invincibility():
 		invince_timer -= 1
 		print("i frame")
 		if invince_timer == 0:
-	
 			player.set_collision_layer_value(2, true)
 			player.set_collision_mask_value(1, true)
 			player.set_physics_process(true)

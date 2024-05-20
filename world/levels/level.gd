@@ -87,6 +87,9 @@ class_name Level
 const SCREEN_WIDTH = 320
 const SCREEN_HEIGHT = 180
 
+# whether level contains checkpoint
+@export var checkpoint = false
+
 # width and height default values (# of screens)
 # must be > 0
 @export var width = 1
@@ -128,7 +131,18 @@ func _process(delta):
 
 # returns the current screen segment of posn as a vector2 [x, y]
 # if out of bounds, return the nearest screen
-func get_screen(posn : Vector2) -> Vector2:
+# i.e clamp x and y to the borders of the room
+func get_posn_screen(posn : Vector2) -> Vector2:
+	return Vector2.ZERO
+
+# given a filepath from the adjacent levels dictionary, and a screen in the
+# current level, return the corresponding screen in the NEW level
+# need to determine length of shared border and how far along the border the
+# current screen is, then find the corresponding screen in the next level
+# that is equally far along
+# leetcode medium-hard?
+# also maybe this should be done in level_manager instead since it involves 2 levels
+func get_dest_screen(path : String) -> Vector2:
 	return Vector2.ZERO
 
 # returns the x coordinate relative to its screen segment
