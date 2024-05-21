@@ -222,6 +222,10 @@ rotation = 0.785398
 position = Vector2(116, 62)
 rotation = 3.14159
 
+[node name="DashOrb6" parent="-1_LEVEL/LevelObjects" instance=ExtResource("4_kpexx")]
+position = Vector2(111, 33)
+rotation = 1.5708
+
 [node name="Entities" type="Node2D" parent="-1_LEVEL"]
 editor_description = "Any moving enemies/hazards/npcs"
 metadata/_edit_lock_ = true

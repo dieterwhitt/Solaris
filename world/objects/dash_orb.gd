@@ -8,7 +8,7 @@ extends Node2D
 # standard friction - 525
 
 # dash velocity
-var DASH_VELOCITY = 310 # 275 250 #300
+var DASH_VELOCITY = 300 # 275 250 #300
 # number of frames into dash before applying friction
 var DASH_FRAMES : int = 6 #6
 # dash deceleration
@@ -37,6 +37,7 @@ func _process(delta):
 func check_activate():
 	for body in $Area2D.get_overlapping_bodies():
 		if body.is_in_group("Player") and Input.is_action_just_pressed("attack"):
+			print("collision with dash orb")
 			dash_body(body)
 
 

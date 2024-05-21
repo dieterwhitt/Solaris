@@ -127,7 +127,9 @@ func apply_gravity(delta):
 		velocity.y += MoveData.GRAVITY * down_multiplier * delta
 	
 	# cap at terminal (falling speed only!)
-	velocity.y = min(velocity.y, MoveData.TERMINAL_Y)
+	# do not cap if dash_stopping
+	if not dash_stopping:
+		velocity.y = min(velocity.y, MoveData.TERMINAL_Y)
 
 # handles logic for when to accelerate/decelerate player
 func apply_x_accel(delta):	
@@ -136,12 +138,22 @@ func apply_x_accel(delta):
 	# below or equal input terminal : apply player input, cap at input terminal
 	# apply friction if no input OR input in opposite direction (product is negative)
 	# cap at total terminal
-	if (not receive_input or abs(velocity.x) > MoveData.INPUT_TERMINAL 
+	
+	# new: momentum friction
+	if abs(velocity.x) > MoveData.INPUT_TERMINAL and (direction * velocity.x > 0):
+		# speed above input terminal and player moving in that direction: 
+		# apply special "momentum friction"
+		# make speed boosts more satisfying (in theory)
+		const momentum_friciton_mult = 0.6 # friction reduced 
+		# (consider moving value to movedata)
+		apply_friction(delta, momentum_friciton_mult)
+	elif (not receive_input or abs(velocity.x) > MoveData.INPUT_TERMINAL 
 			or direction == 0 or (direction * velocity.x < 0)):
-		apply_friction(delta)
+		# standard friction
+		apply_friction(delta, 1)
 	else:
 		apply_input(delta)
-	# cap at total x terminal
+		# cap at total x terminal
 		velocity.x = clamp(velocity.x, -1 * MoveData.TERMINAL_X, MoveData.TERMINAL_X)
 		
 # moves the player in the current direction
@@ -154,10 +166,10 @@ func apply_input(delta):
 	# cap at input terminal
 	velocity.x = clamp(velocity.x, -1 * MoveData.INPUT_TERMINAL, MoveData.INPUT_TERMINAL)
 
-func apply_friction(delta):
-	var multiplier = 1
+# new: allowing custom friction multiplier for special cases
+func apply_friction(delta, multiplier):
 	if not on_floor:
-		multiplier = MoveData.AIR_DECEL_MULTIPLIER
+		multiplier *= MoveData.AIR_DECEL_MULTIPLIER
 	# decelerate
 	velocity.x = move_toward(velocity.x, 0, MoveData.DECELERATION * multiplier * delta)
 
