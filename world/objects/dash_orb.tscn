@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://4rcqj4tpgk5q" path="res://world/tiles/random-tiles.png" id="2_kebol"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubfba"]
-size = Vector2(9, 10)
+size = Vector2(11, 12)
 
 [node name="DashOrb" type="Node2D"]
 script = ExtResource("1_slnlk")

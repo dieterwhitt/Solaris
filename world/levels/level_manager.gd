@@ -74,8 +74,10 @@ func initialize_camera():
 	# enable smoothing (or maybe not? it's kinda buggy)
 	# probably will need to add some kind of damping eventually
 	# to make it less jarring
-	# camera.position_smoothing_enabled = true
-	camera.limit_smoothed = true
+	camera.position_smoothing_enabled = true
+	camera.position_smoothing_speed = 8
+	camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
+	camera.limit_smoothed = false
 	# connect camera control to camera
 	cam_transform.remote_path = camera.get_path()
 	print("connecting remote transform to camera")
