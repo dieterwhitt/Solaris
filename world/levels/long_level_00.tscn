@@ -1,9 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcc6wre0hb31p"]
+[gd_scene load_steps=9 format=3 uid="uid://dcc6wre0hb31p"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_j2gyh"]
 [ext_resource type="Script" path="res://world/levels/long_level_00.gd" id="1_j03lr"]
+[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_lu7wd"]
+[ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/dash_orb.tscn" id="4_kpexx"]
+[ext_resource type="Script" path="res://world/objects/teleport_orbs.gd" id="5_wclnd"]
+[ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="6_gayy5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqti3"]
+size = Vector2(8, 8)
 
 [node name="LongLevel_00" type="Node"]
 editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
@@ -29,6 +36,7 @@ offset_top = 0.079999
 offset_right = 435.0
 offset_bottom = 23.08
 text = "Right: Level_XX"
+metadata/_edit_lock_ = true
 
 [node name="Top" type="Label" parent="Borders"]
 anchors_preset = -1
@@ -97,6 +105,7 @@ position = Vector2(640, 90)
 rotation = 4.71239
 shape = SubResource("WorldBoundaryShape2D_0e1bx")
 one_way_collision = true
+metadata/_edit_lock_ = true
 
 [node name="-2_BG_LAYER" type="CanvasGroup" parent="."]
 z_index = -2
@@ -122,13 +131,17 @@ metadata/_edit_lock_ = true
 
 [node name="SceneTiles0deg" type="TileMap" parent="-1_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
+tile_set = ExtResource("3_lu7wd")
 format = 2
+layer_0/tile_data = PackedInt32Array(1179671, 0, 65536, 1179672, 0, 65536, 1179673, 0, 65536, 1179674, 0, 65536, 1179675, 0, 65536, 917546, 0, 65536, 589871, 0, 65536, 589872, 0, 65536, 1179713, 0, 65536, 1179714, 0, 65536, 1179715, 0, 65536, 1179716, 0, 65536, 1179717, 0, 65536, 1179718, 0, 65536, 458823, 0, 65536, 458824, 0, 65536, 720932, 0, 131072)
 metadata/_edit_lock_ = true
 
 [node name="SceneTiles90deg" type="TileMap" parent="-1_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = 1.5708
+tile_set = ExtResource("3_lu7wd")
 format = 2
+layer_0/tile_data = PackedInt32Array(-3670008, 0, 65536, -3670007, 0, 65536, -3670006, 0, 65536, -3670005, 0, 65536, -3670011, 0, 65536, -3670010, 0, 65536, -3670009, 0, 65536)
 metadata/_edit_lock_ = true
 
 [node name="SceneTiles180deg" type="TileMap" parent="-1_LEVEL/Tilemaps"]
@@ -140,12 +153,74 @@ metadata/_edit_lock_ = true
 [node name="SceneTiles270deg" type="TileMap" parent="-1_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = -1.5708
+tile_set = ExtResource("3_lu7wd")
 format = 2
+layer_0/tile_data = PackedInt32Array(3604474, 0, 65536, 3604473, 0, 65536, 3604472, 0, 65536, 3604471, 0, 65536, 3604470, 0, 65536, 3604469, 0, 65536, 3604468, 0, 65536)
 metadata/_edit_lock_ = true
 
 [node name="LevelObjects" type="Node2D" parent="-1_LEVEL"]
 editor_description = "orbs, artifacts, ladders, etc."
 metadata/_edit_lock_ = true
+
+[node name="DashOrb" parent="-1_LEVEL/LevelObjects" instance=ExtResource("4_kpexx")]
+position = Vector2(313, 95)
+
+[node name="TeleportOrbs" type="Node2D" parent="-1_LEVEL/LevelObjects"]
+script = ExtResource("5_wclnd")
+GLASS = true
+metadata/_edit_lock_ = true
+
+[node name="Enter" type="Node2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs"]
+position = Vector2(411, 69)
+
+[node name="Sprite2D" type="Sprite2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs/Enter"]
+position = Vector2(4, -4)
+texture = ExtResource("6_gayy5")
+hframes = 4
+vframes = 4
+frame = 5
+
+[node name="Glass" type="Sprite2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs/Enter"]
+visible = false
+position = Vector2(4, -4)
+texture = ExtResource("6_gayy5")
+hframes = 4
+vframes = 4
+frame = 3
+
+[node name="Area2D" type="Area2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs/Enter"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs/Enter/Area2D"]
+position = Vector2(4, -4)
+shape = SubResource("RectangleShape2D_uqti3")
+
+[node name="Exit" type="Node2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs"]
+position = Vector2(485, 61)
+
+[node name="Sprite2D" type="Sprite2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs/Exit"]
+position = Vector2(4, -4)
+texture = ExtResource("6_gayy5")
+hframes = 4
+vframes = 4
+frame = 6
+
+[node name="DashOrb2" parent="-1_LEVEL/LevelObjects" instance=ExtResource("4_kpexx")]
+position = Vector2(312, 21)
+rotation = 1.5708
+GLASS = true
+
+[node name="DashOrb3" parent="-1_LEVEL/LevelObjects" instance=ExtResource("4_kpexx")]
+position = Vector2(93, 93)
+rotation = -0.785398
+
+[node name="DashOrb4" parent="-1_LEVEL/LevelObjects" instance=ExtResource("4_kpexx")]
+position = Vector2(53, 57)
+rotation = 0.785398
+
+[node name="DashOrb5" parent="-1_LEVEL/LevelObjects" instance=ExtResource("4_kpexx")]
+position = Vector2(116, 62)
+rotation = 3.14159
 
 [node name="Entities" type="Node2D" parent="-1_LEVEL"]
 editor_description = "Any moving enemies/hazards/npcs"
@@ -155,3 +230,5 @@ metadata/_edit_lock_ = true
 editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"
 z_index = 1
 metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="-1_LEVEL/LevelObjects/TeleportOrbs/Enter/Area2D" to="-1_LEVEL/LevelObjects/TeleportOrbs" method="_on_area_2d_body_entered"]

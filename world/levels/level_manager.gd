@@ -72,6 +72,8 @@ func initialize_camera():
 	add_child(camera)
 	camera.name = "Camera" # rename camera in tree
 	# enable smoothing (or maybe not? it's kinda buggy)
+	# probably will need to add some kind of damping eventually
+	# to make it less jarring
 	# camera.position_smoothing_enabled = true
 	camera.limit_smoothed = true
 	# connect camera control to camera

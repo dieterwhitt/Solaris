@@ -3,7 +3,7 @@
 
 extends Node2D
 
-const pad_velocity = -300
+const pad_velocity = -275
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

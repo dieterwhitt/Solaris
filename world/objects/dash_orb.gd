@@ -3,13 +3,17 @@
 
 extends Node2D
 
+# problem: gravity is naturally weaker than air friction
+# standard gravity - 670
+# standard friction - 525
+
 # dash velocity
-var DASH_VELOCITY = 250.0 #300
+var DASH_VELOCITY = 310 # 275 250 #300
 # number of frames into dash before applying friction
 var DASH_FRAMES : int = 6 #6
 # dash deceleration
-var DASH_FRICTION : float = 100 #2750
-var FRICTION_FRAMES : int = 4 #3
+var DASH_FRICTION : float = 950 # 1600 100 #2750
+var FRICTION_FRAMES : int = 5 # 4 #3
 
 # allowing setting glass in inspector when making levels
 @export var GLASS = false
