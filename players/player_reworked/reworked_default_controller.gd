@@ -144,9 +144,7 @@ func apply_x_accel(delta):
 		# speed above input terminal and player moving in that direction: 
 		# apply special "momentum friction"
 		# make speed boosts more satisfying (in theory)
-		const momentum_friciton_mult = 0.65 # friction reduced 
-		# (consider moving value to movedata)
-		apply_friction(delta, momentum_friciton_mult)
+		apply_friction(delta, MoveData.MOMENTUM_MULTIPLIER)
 	elif (not receive_input or abs(velocity.x) > MoveData.INPUT_TERMINAL 
 			or direction == 0 or (direction * velocity.x < 0)):
 		# standard friction

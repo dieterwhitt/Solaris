@@ -75,7 +75,7 @@ func initialize_camera():
 	# probably will need to add some kind of damping eventually
 	# to make it less jarring
 	camera.position_smoothing_enabled = true
-	camera.position_smoothing_speed = 8
+	camera.position_smoothing_speed = 10
 	camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
 	camera.limit_smoothed = false
 	# connect camera control to camera
@@ -146,6 +146,7 @@ func respawn_player():
 func _physics_process(delta):
 	update_invincibility()
 	check_borders()
+
 
 func update_invincibility():
 	if invince_timer > 0:

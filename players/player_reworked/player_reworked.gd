@@ -60,7 +60,9 @@ func _update_animation():
 	# override
 	if swinging:
 		pass
-	elif not on_floor and used_jump:
+	elif used_double_jump:
+		_state_machine.travel("jump")
+	elif used_jump:
 		# jump
 		_state_machine.travel("jump")
 	elif not on_floor:

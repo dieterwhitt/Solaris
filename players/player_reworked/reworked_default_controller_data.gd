@@ -31,3 +31,4 @@ var COYOTE_TIME : int = 5 # 5
 var JUMP_BUFFER : int = 5 # 5
 # new stuff
 var DOUBLE_JUMP_VELOCITY = -150 # -150
+var MOMENTUM_MULTIPLIER = 0.65 # friction multiplier at high speeds

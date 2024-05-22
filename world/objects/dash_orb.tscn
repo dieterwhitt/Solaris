@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://4rcqj4tpgk5q" path="res://world/tiles/random-tiles.png" id="2_kebol"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubfba"]
-size = Vector2(11, 12)
+size = Vector2(12, 12)
 
 [node name="DashOrb" type="Node2D"]
 script = ExtResource("1_slnlk")
@@ -29,7 +29,7 @@ frame = 3
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(3.5, -4)
+position = Vector2(4, -4)
 shape = SubResource("RectangleShape2D_ubfba")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
