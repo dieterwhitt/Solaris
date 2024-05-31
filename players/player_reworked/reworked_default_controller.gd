@@ -94,10 +94,14 @@ func _physics_process(delta):
 	# pre calculate on floor
 	on_floor = is_on_floor()
 	update_direction()
+	# special - subclasses that use the special button override
+	_special()
+	
 	update_dash(delta)
 	if not dashing:
 		apply_gravity(delta)
 		apply_x_accel(delta)
+		
 	apply_jump()
 	check_drop()
 	
@@ -109,6 +113,9 @@ func _physics_process(delta):
 	# subclasses: define unique movement
 	# run move and slide (in subclass)
 	# move_and_slide()
+
+func _special():
+	pass
 
 func update_direction():
 	if receive_input:

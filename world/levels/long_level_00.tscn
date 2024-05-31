@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dcc6wre0hb31p"]
+[gd_scene load_steps=17 format=3 uid="uid://dcc6wre0hb31p"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_j2gyh"]
 [ext_resource type="Script" path="res://world/levels/long_level_00.gd" id="1_j03lr"]
 [ext_resource type="Texture2D" uid="uid://dicpn63thecj8" path="res://world/backgrounds/finn-sketch1.png" id="2_bw8jt"]
 [ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_lu7wd"]
+[ext_resource type="PackedScene" uid="uid://dqtprroieu5mk" path="res://world/particles/rain.tscn" id="3_qaju1"]
+[ext_resource type="Texture2D" uid="uid://0kwj2o5mqbo7" path="res://world/particles/rain.png" id="4_u7upl"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="6_8msbr"]
 [ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="6_gayy5"]
 [ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="7_36msg"]
@@ -13,6 +15,51 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ykfev"]
 size = Vector2(12, 12)
+
+[sub_resource type="Curve2D" id="Curve2D_ulpaq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 288, 40, 0, 0, 0, 0, 352, 40, 0, 0, 0, 0, 288, 40)
+}
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_xe6t7"]
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_om70u"]
+resource_name = "movement_animation"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4kdyp"]
+_data = {
+"RESET": SubResource("Animation_xe6t7"),
+"movement_animation": SubResource("Animation_om70u")
+}
 
 [node name="LongLevel_00" type="Node"]
 editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
@@ -119,6 +166,10 @@ texture = ExtResource("2_bw8jt")
 centered = false
 metadata/_edit_lock_ = true
 
+[node name="Rain" parent="-2_BG_LAYER" instance=ExtResource("3_qaju1")]
+modulate = Color(0.396078, 0.494118, 0.564706, 1)
+texture = ExtResource("4_u7upl")
+
 [node name="-1_LEVEL" type="CanvasGroup" parent="."]
 z_index = -1
 metadata/_edit_lock_ = true
@@ -141,7 +192,7 @@ metadata/_edit_lock_ = true
 editor_description = "For scene tiles at a 0 degree rotation"
 tile_set = ExtResource("3_lu7wd")
 format = 2
-layer_0/tile_data = PackedInt32Array(1179671, 0, 65536, 1179672, 0, 65536, 1179673, 0, 65536, 1179674, 0, 65536, 1179675, 0, 65536, 917546, 0, 65536, 589871, 0, 65536, 589872, 0, 65536, 1179713, 0, 65536, 1179714, 0, 65536, 1179715, 0, 65536, 1179716, 0, 65536, 1179717, 0, 65536, 1179718, 0, 65536, 458823, 0, 65536, 458824, 0, 65536, 720932, 0, 131072, 1179677, 0, 65536, 1179678, 0, 65536, 458757, 0, 65536, 458758, 0, 65536, 458759, 0, 65536, 458760, 0, 65536, 458761, 0, 65536, 458762, 0, 65536, 458763, 0, 65536, 458764, 0, 65536, 458765, 0, 65536)
+layer_0/tile_data = PackedInt32Array(1179671, 0, 65536, 1179672, 0, 65536, 1179673, 0, 65536, 1179674, 0, 65536, 1179675, 0, 65536, 917546, 0, 65536, 589871, 0, 65536, 589872, 0, 65536, 1179713, 0, 65536, 1179714, 0, 65536, 1179715, 0, 65536, 1179716, 0, 65536, 1179717, 0, 65536, 1179718, 0, 65536, 458823, 0, 65536, 458824, 0, 65536, 720932, 0, 131072, 1179677, 0, 65536, 1179678, 0, 65536, 458765, 0, 196608, 458764, 0, 196608, 458763, 0, 196608, 458762, 0, 196608, 458761, 0, 196608, 458760, 0, 196608, 458759, 0, 196608, 458758, 0, 196608, 458757, 0, 196608)
 metadata/_edit_lock_ = true
 
 [node name="SceneTiles90deg" type="TileMap" parent="-1_LEVEL/Tilemaps"]
@@ -264,6 +315,36 @@ glass = true
 [node name="Entities" type="Node2D" parent="-1_LEVEL"]
 editor_description = "Any moving enemies/hazards/npcs"
 metadata/_edit_lock_ = true
+
+[node name="PathMovingObject" type="Node2D" parent="-1_LEVEL/Entities"]
+editor_description = "Scene for creating an object that follows a path. Can be a platform, enemy, spike, etc. By default rotation is set to off. Add the moving object as a child to  this node and connect the remote transform to it. for moving platforms: make sure to check collision animatable so it's recognized as a platform by the player"
+
+[node name="Path2D" type="Path2D" parent="-1_LEVEL/Entities/PathMovingObject"]
+position = Vector2(-40, 0)
+scale = Vector2(1.125, 1)
+curve = SubResource("Curve2D_ulpaq")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="-1_LEVEL/Entities/PathMovingObject/Path2D"]
+position = Vector2(288, 40)
+rotates = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="-1_LEVEL/Entities/PathMovingObject/Path2D/PathFollow2D"]
+remote_path = NodePath("../../../TileMap")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="-1_LEVEL/Entities/PathMovingObject/Path2D"]
+editor_description = "animation player controlling the movement of the object. adjust the animation length and keyframes as needed."
+libraries = {
+"": SubResource("AnimationLibrary_4kdyp")
+}
+autoplay = "movement_animation"
+
+[node name="TileMap" type="TileMap" parent="-1_LEVEL/Entities/PathMovingObject"]
+position = Vector2(284, 40)
+scale = Vector2(1.125, 1)
+tile_set = ExtResource("1_j2gyh")
+collision_animatable = true
+format = 2
+layer_0/tile_data = PackedInt32Array(65534, 131073, 0, 65535, 131073, 0, 0, 131073, 0, 1, 131073, 0, 2, 131073, 0)
 
 [node name="+1_FG" type="CanvasGroup" parent="."]
 editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"
