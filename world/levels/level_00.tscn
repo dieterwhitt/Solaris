@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_3g7of"]
 [ext_resource type="PackedScene" uid="uid://yri1y85csvlw" path="res://players/player_reworked/player_reworked.tscn" id="4_8qpk7"]
 [ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/jump_pad.tscn" id="4_kpdxv"]
-[ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/dash_orb.tscn" id="6_7qy1j"]
+[ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="6_7qy1j"]
 
 [node name="Level00" type="Node"]
 
@@ -75,7 +75,6 @@ position = Vector2(-88, -16)
 
 [node name="DashOrb" parent="Level/Static" instance=ExtResource("6_7qy1j")]
 position = Vector2(96, -32)
-GLASS = true
 
 [node name="DashOrb2" parent="Level/Static" instance=ExtResource("6_7qy1j")]
 position = Vector2(104, -72)

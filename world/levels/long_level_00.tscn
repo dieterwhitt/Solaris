@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcc6wre0hb31p"]
+[gd_scene load_steps=11 format=3 uid="uid://dcc6wre0hb31p"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_j2gyh"]
 [ext_resource type="Script" path="res://world/levels/long_level_00.gd" id="1_j03lr"]
@@ -6,56 +6,13 @@
 [ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_lu7wd"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="6_8msbr"]
 [ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="6_gayy5"]
+[ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="7_36msg"]
+[ext_resource type="PackedScene" uid="uid://bln36344x66pa" path="res://world/objects/orbs/teleport_orbs.tscn" id="8_0384o"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
 
-[sub_resource type="GDScript" id="GDScript_f7wqq"]
-script/source = "# apr 12 2024
-# teleport orbs
-
-extends Node
-
-@onready var enter = $Enter
-@onready var exit = $Exit
-
-# allowing setting glass in inspector when making levels
-@export var GLASS = false
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	if not GLASS:
-		# delete glass sprite if not glass
-		enter.get_node(\"Glass\").queue_free()
-	else:
-		# otherwise show glass
-		enter.get_node(\"Glass\").show()
-		
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	# if glass, check for player attack on every frame
-	if GLASS:
-		check_activate()
-
-func check_activate():
-	for body in enter.get_node(\"Area2D\").get_overlapping_bodies():
-		if body.is_in_group(\"Player\") and Input.is_action_just_pressed(\"attack\"):
-			teleport_body(body)
-
-func _on_area_2d_body_entered(body):
-	print(\"hit teleport orb\")
-	# body entered the entrance orb
-	if body.is_in_group(\"Player\") and not GLASS:
-		teleport_body(body)
-		
-
-func teleport_body(body):
-	# this should work i think... may need to find a better way
-	body.position = exit.position
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqti3"]
-size = Vector2(11, 11)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykfev"]
+size = Vector2(12, 12)
 
 [node name="LongLevel_00" type="Node"]
 editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
@@ -160,6 +117,7 @@ metadata/_edit_lock_ = true
 modulate = Color(0.533333, 0.533333, 0.533333, 1)
 texture = ExtResource("2_bw8jt")
 centered = false
+metadata/_edit_lock_ = true
 
 [node name="-1_LEVEL" type="CanvasGroup" parent="."]
 z_index = -1
@@ -212,22 +170,33 @@ metadata/_edit_lock_ = true
 editor_description = "orbs, artifacts, ladders, etc."
 metadata/_edit_lock_ = true
 
+[node name="DashOrb7" parent="-1_LEVEL/LevelObjects" instance=ExtResource("6_8msbr")]
+position = Vector2(318, 96)
+glass = true
+
 [node name="TeleportOrbs" type="Node2D" parent="-1_LEVEL/LevelObjects"]
-script = SubResource("GDScript_f7wqq")
-GLASS = true
+position = Vector2(411, 65)
+script = ExtResource("7_36msg")
+glass = true
+
+[node name="Area2D" type="Area2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs"]
+collision_mask = 2
 metadata/_edit_lock_ = true
 
-[node name="Enter" type="Node2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs"]
-position = Vector2(411, 69)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs/Area2D"]
+position = Vector2(4, -4)
+shape = SubResource("RectangleShape2D_ykfev")
+metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs/Enter"]
+[node name="Sprite2D" type="Sprite2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs"]
 position = Vector2(4, -4)
 texture = ExtResource("6_gayy5")
 hframes = 4
 vframes = 4
 frame = 5
+metadata/_edit_lock_ = true
 
-[node name="Glass" type="Sprite2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs/Enter"]
+[node name="Glass" type="Sprite2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs"]
 visible = false
 position = Vector2(4, -4)
 texture = ExtResource("6_gayy5")
@@ -235,15 +204,8 @@ hframes = 4
 vframes = 4
 frame = 3
 
-[node name="Area2D" type="Area2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs/Enter"]
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs/Enter/Area2D"]
-position = Vector2(3.5, -3.5)
-shape = SubResource("RectangleShape2D_uqti3")
-
 [node name="Exit" type="Node2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs"]
-position = Vector2(485, 61)
+position = Vector2(64, 11)
 
 [node name="Sprite2D" type="Sprite2D" parent="-1_LEVEL/LevelObjects/TeleportOrbs/Exit"]
 position = Vector2(4, -4)
@@ -252,9 +214,8 @@ hframes = 4
 vframes = 4
 frame = 6
 
-[node name="DashOrb7" parent="-1_LEVEL/LevelObjects" instance=ExtResource("6_8msbr")]
-position = Vector2(269, 127)
-glass = true
+[node name="TeleportOrbs2" parent="-1_LEVEL/LevelObjects" instance=ExtResource("8_0384o")]
+position = Vector2(90, 127)
 
 [node name="Entities" type="Node2D" parent="-1_LEVEL"]
 editor_description = "Any moving enemies/hazards/npcs"
@@ -264,5 +225,3 @@ metadata/_edit_lock_ = true
 editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"
 z_index = 1
 metadata/_edit_lock_ = true
-
-[connection signal="body_entered" from="-1_LEVEL/LevelObjects/TeleportOrbs/Enter/Area2D" to="-1_LEVEL/LevelObjects/TeleportOrbs" method="_on_area_2d_body_entered"]

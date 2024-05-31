@@ -20,7 +20,6 @@ const RESET_TIME = 4
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	print(glass)
 	# connect area2d using code
 	if not glass:
 		# hide glass
