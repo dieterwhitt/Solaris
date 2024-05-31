@@ -16,7 +16,7 @@ var used = false
 # getting the orb hitbox
 @onready var hitbox = $Area2D
 # time for orbs to come back after being hit
-const RESET_TIME = 4
+const RESET_TIME = 5
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
