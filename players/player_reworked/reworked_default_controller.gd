@@ -63,6 +63,8 @@ var on_floor : bool = false
 # direction: -1, 0, 1
 # represents the CURRENT input direction (left, none, right)
 var direction : int = 0
+# new - parrying
+var parrying = false
 # to disable input (physics still applies), ex. after ability usage
 @export var receive_input : bool = true
 # variable for print debug statements
@@ -290,8 +292,49 @@ func flip():
 			_sprite.flip_h = false
 		elif direction < 0:
 			_sprite.flip_h = true
-		
+
+func update_parry():
+	if Input.is_action_just_pressed("parry") and receive_input:
+		_state_machine.start("parry", true)
+		parrying = true
+	else:
+		# update parry status based on if animation is still playing
+		parrying = _state_machine.get_current_node() == "parry" 
+
 func _update_animation():
-	# subclass must override
+	# subclass can override
 	# changes animations - subclass must use AnimationNodeStateMachine
+	# handles idle-run, jump, parry, fall
 	flip()
+	# all players can parry
+	update_parry()
+	_choose_animation()
+
+# function for choosing the animation to play/travel to
+# subclasses with unique animations can override to adjust logic
+func _choose_animation():
+	if parrying:
+		pass
+	elif used_double_jump:
+		_state_machine.travel("jump")
+	elif used_jump:
+		# jump
+		_state_machine.travel("jump")
+	elif not on_floor:
+		# fall
+		pass
+	else:
+		# set blend
+		_animation_tree.set("parameters/idle-run/blend_position", direction)
+		# idle-run
+		_state_machine.travel("idle-run")
+
+func kill():
+	# kills the player and handles logic
+	# eventually will need to rig it up to reset the level
+	# for now just reset player position
+	# eventually we'll also have to define every level's 
+	# reset position/checkpoint position.
+	
+	#HARDCODED!!
+	get_tree().reload_current_scene()

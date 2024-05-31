@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://n525m3jhu2dx" path="res://world/tiles/shitty_tileset.tres" id="1_e7px3"]
 [ext_resource type="Script" path="res://world/levels/level_02.gd" id="1_sm3jy"]
-[ext_resource type="PackedScene" uid="uid://1m6larhfi3hm" path="res://world/objects/charging_enemy.tscn" id="4_a4wyd"]
+[ext_resource type="PackedScene" uid="uid://1m6larhfi3hm" path="res://world/objects/enemies/charging_enemy.tscn" id="4_a4wyd"]
 [ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="4_kpdrj"]
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="5_06hun"]
 
