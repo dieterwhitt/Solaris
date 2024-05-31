@@ -4,11 +4,55 @@
 [ext_resource type="Script" path="res://world/levels/long_level_00.gd" id="1_j03lr"]
 [ext_resource type="Texture2D" uid="uid://dicpn63thecj8" path="res://world/backgrounds/finn-sketch1.png" id="2_bw8jt"]
 [ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_lu7wd"]
-[ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/dash_orb.tscn" id="4_kpexx"]
-[ext_resource type="Script" path="res://world/objects/teleport_orbs.gd" id="5_wclnd"]
+[ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="6_8msbr"]
 [ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="6_gayy5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
+
+[sub_resource type="GDScript" id="GDScript_f7wqq"]
+script/source = "# apr 12 2024
+# teleport orbs
+
+extends Node
+
+@onready var enter = $Enter
+@onready var exit = $Exit
+
+# allowing setting glass in inspector when making levels
+@export var GLASS = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	if not GLASS:
+		# delete glass sprite if not glass
+		enter.get_node(\"Glass\").queue_free()
+	else:
+		# otherwise show glass
+		enter.get_node(\"Glass\").show()
+		
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	# if glass, check for player attack on every frame
+	if GLASS:
+		check_activate()
+
+func check_activate():
+	for body in enter.get_node(\"Area2D\").get_overlapping_bodies():
+		if body.is_in_group(\"Player\") and Input.is_action_just_pressed(\"attack\"):
+			teleport_body(body)
+
+func _on_area_2d_body_entered(body):
+	print(\"hit teleport orb\")
+	# body entered the entrance orb
+	if body.is_in_group(\"Player\") and not GLASS:
+		teleport_body(body)
+		
+
+func teleport_body(body):
+	# this should work i think... may need to find a better way
+	body.position = exit.position
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqti3"]
 size = Vector2(11, 11)
@@ -168,11 +212,8 @@ metadata/_edit_lock_ = true
 editor_description = "orbs, artifacts, ladders, etc."
 metadata/_edit_lock_ = true
 
-[node name="DashOrb" parent="-1_LEVEL/LevelObjects" instance=ExtResource("4_kpexx")]
-position = Vector2(313, 95)
-
 [node name="TeleportOrbs" type="Node2D" parent="-1_LEVEL/LevelObjects"]
-script = ExtResource("5_wclnd")
+script = SubResource("GDScript_f7wqq")
 GLASS = true
 metadata/_edit_lock_ = true
 
@@ -211,26 +252,9 @@ hframes = 4
 vframes = 4
 frame = 6
 
-[node name="DashOrb2" parent="-1_LEVEL/LevelObjects" instance=ExtResource("4_kpexx")]
-position = Vector2(312, 21)
-rotation = 1.5708
-GLASS = true
-
-[node name="DashOrb3" parent="-1_LEVEL/LevelObjects" instance=ExtResource("4_kpexx")]
-position = Vector2(93, 93)
-rotation = -0.785398
-
-[node name="DashOrb4" parent="-1_LEVEL/LevelObjects" instance=ExtResource("4_kpexx")]
-position = Vector2(53, 57)
-rotation = 0.785398
-
-[node name="DashOrb5" parent="-1_LEVEL/LevelObjects" instance=ExtResource("4_kpexx")]
-position = Vector2(189, 60)
-rotation = 3.14159
-
-[node name="DashOrb6" parent="-1_LEVEL/LevelObjects" instance=ExtResource("4_kpexx")]
-position = Vector2(111, 33)
-rotation = 1.5708
+[node name="DashOrb7" parent="-1_LEVEL/LevelObjects" instance=ExtResource("6_8msbr")]
+position = Vector2(269, 127)
+glass = true
 
 [node name="Entities" type="Node2D" parent="-1_LEVEL"]
 editor_description = "Any moving enemies/hazards/npcs"
