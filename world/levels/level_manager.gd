@@ -46,7 +46,7 @@ var spawn_path : String = "res://world/levels/long_level_00.tscn"
 # current scene being rendered
 var current : Node = null
 # active player and other available players (not implemented yet)
-var active_player : String = "res://players/player_reworked/player_reworked.tscn"
+var active_player : String = "res://players/boomstick_player/boomstick_player.tscn"
 # player
 var player : Node = null
 

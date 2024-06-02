@@ -11,11 +11,11 @@ initial_velocity_min = 200.0
 initial_velocity_max = 300.0
 gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 
-[node name="Rain" type="GPUParticles2D"]
+[node name="BG_Rain" type="GPUParticles2D"]
+modulate = Color(0.215686, 0.290196, 0.380392, 1)
 position = Vector2(160, 0)
-amount = 800
+amount = 1000
 process_material = SubResource("ParticleProcessMaterial_1di6c")
 lifetime = 2.0
-fixed_fps = 60
 visibility_rect = Rect2(-200, -200, 400, 400)
 local_coords = true

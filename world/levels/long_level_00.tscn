@@ -4,12 +4,12 @@
 [ext_resource type="Script" path="res://world/levels/long_level_00.gd" id="1_j03lr"]
 [ext_resource type="Texture2D" uid="uid://dicpn63thecj8" path="res://world/backgrounds/finn-sketch1.png" id="2_bw8jt"]
 [ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_lu7wd"]
-[ext_resource type="PackedScene" uid="uid://dqtprroieu5mk" path="res://world/particles/rain.tscn" id="3_qaju1"]
-[ext_resource type="Texture2D" uid="uid://0kwj2o5mqbo7" path="res://world/particles/rain.png" id="4_u7upl"]
+[ext_resource type="PackedScene" uid="uid://dqtprroieu5mk" path="res://world/particles/bg_rain.tscn" id="3_qaju1"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="6_8msbr"]
 [ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="6_gayy5"]
 [ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="7_36msg"]
 [ext_resource type="PackedScene" uid="uid://d0rkh45i2a8xl" path="res://world/objects/orbs/hop_orb.tscn" id="8_mnb8x"]
+[ext_resource type="PackedScene" uid="uid://jtl7uk1yuw3v" path="res://world/particles/fg_rain.tscn" id="10_2f6ov"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
 
@@ -166,9 +166,7 @@ texture = ExtResource("2_bw8jt")
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="Rain" parent="-2_BG_LAYER" instance=ExtResource("3_qaju1")]
-modulate = Color(0.396078, 0.494118, 0.564706, 1)
-texture = ExtResource("4_u7upl")
+[node name="BG_Rain" parent="-2_BG_LAYER" instance=ExtResource("3_qaju1")]
 
 [node name="-1_LEVEL" type="CanvasGroup" parent="."]
 z_index = -1
@@ -312,6 +310,13 @@ glass = true
 position = Vector2(40, 48)
 glass = true
 
+[node name="PointLight2D" type="PointLight2D" parent="-1_LEVEL/LevelObjects"]
+
+[node name="DashOrb8" parent="-1_LEVEL/LevelObjects" instance=ExtResource("6_8msbr")]
+position = Vector2(24, 136)
+rotation = 1.5708
+glass = true
+
 [node name="Entities" type="Node2D" parent="-1_LEVEL"]
 editor_description = "Any moving enemies/hazards/npcs"
 metadata/_edit_lock_ = true
@@ -350,3 +355,5 @@ layer_0/tile_data = PackedInt32Array(65534, 131073, 0, 65535, 131073, 0, 0, 1310
 editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"
 z_index = 1
 metadata/_edit_lock_ = true
+
+[node name="FG_Rain" parent="+1_FG" instance=ExtResource("10_2f6ov")]
