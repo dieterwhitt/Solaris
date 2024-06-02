@@ -5,7 +5,7 @@
 extends ReworkedDefaultController
 
 var direction2d = Vector2.ZERO
-const SHOTGUN_VELOCITY = 225
+const SHOTGUN_VELOCITY = 220
 
 func _ready():
 	# override
@@ -32,17 +32,17 @@ func update_direction_2d():
 func check_shoot():
 	var recoil_direction = Vector2.ZERO
 	if Input.is_action_just_pressed("special"):
-		recoil_direction.x = -direction2d.x
-		recoil_direction.y = -direction2d.y
+		recoil_direction = -direction2d
 		if recoil_direction == Vector2.ZERO:
-			if (_sprite.flip_h): recoil_direction.x = 1 
-			else: recoil_direction.x = -1
+			if transform.x.x == 1: recoil_direction.x = -1
+			else: recoil_direction.x = 1
 		recoil_direction = recoil_direction.normalized()
 		# recoil_direction.x = _sprite.flip_h
 		velocity = SHOTGUN_VELOCITY * recoil_direction
 		# emitting particles
 		var pellet_direction = Vector3.ZERO
-		pellet_direction.x = -recoil_direction.x
+		# abs val because want to always shoot right, will be flipped by parent
+		pellet_direction.x = abs(recoil_direction.x)
 		pellet_direction.y = -recoil_direction.y
 		$BoomstickPellets.process_material.direction = pellet_direction
 		$BoomstickPellets.emitting = true

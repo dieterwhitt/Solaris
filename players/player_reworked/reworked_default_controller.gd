@@ -279,6 +279,18 @@ func update_dash(delta):
 		# apply regular physics again
 		dash_stopping = false
 
+func update_curse():
+	# updates the current curse status of the player
+	# player needs area2d
+	# check if player area interesect with area2d in group "curse"
+	# if yes increment player curse tick and if it meets target curse tick,
+	# increment curse stage and call specific curse function
+	# kill player at curse stage 8
+	
+	# if there is no curse
+	# reduce curse tick/stage
+	pass
+
 # debug function which prints data on the character
 # subclasses may override to print additional data
 func _print_debug():
@@ -294,11 +306,27 @@ func _process(delta):
 	pass
 
 func flip():
-	if _sprite != null:
-		if direction > 0:
-			_sprite.flip_h = false
-		elif direction < 0:
-			_sprite.flip_h = true
+	if direction > 0:
+		transform.x.x = 1
+	elif direction < 0:
+		transform.x.x = -1
+	
+	'''
+	#if _sprite != null:
+		#if direction > 0:
+		#	_sprite.flip_h = false
+	#	elif direction < 0:
+		#	_sprite.flip_h = true
+	# flip all child sprites and reflect all 2d children on local y axis
+	for node in get_children():
+		if node is Sprite2D:
+			if direction > 0:
+				_sprite.flip_h = false
+			elif direction < 0:
+				_sprite.flip_h = true
+		# also reflect on local y axis
+		'''
+		
 
 func update_parry():
 	if Input.is_action_just_pressed("parry") and receive_input:
