@@ -29,10 +29,9 @@ If you have any questions dm me on discord.
 
 # this will probably be the longest file in the game
 # needs to control level switching, player position/scene, and camera
-# maybe try splitting them into 3 files? idk if its worth it unless this file
-# goes >1000 lines
-# also a lot of stuff will need to be read from a save file like
-# current spawn, spawnpoints visited, active player, etc.
+# child node - player manager - will handle switching player
+# and keeping track of which artifacts are collected
+# in a different file to improve readability
 
 # loaded scenes (deleted on checkpoint)
 # keep all the loaded levels in here so that we aren't loading things twice
@@ -45,6 +44,7 @@ var spawn_lvl : String = "01" # current spawn level id
 var current : Node = null
 var current_lvl : String = "" # current level id
 # active player and other available players (not implemented yet)
+# switch to checking value in player manager instead
 var active_player : String = "res://players/boomstick_player/boomstick_player.tscn"
 var backup_player : String # other equipped powerup
 # player (node)
@@ -109,20 +109,7 @@ func start_current_level():
 	# now add current to tree
 	add_child(current)
 	# now we want to load all adjacent levels (smooth transitions)
-	'''
-	# below: reworked may 20 - multi screen levels rework
-	for direction in current.adjacent0:
-		for adj_path in current.adjacent0[direction]:
-			if adj_path != "" and adj_path not in loaded:
-				print("attempting to load " + adj_path)
-				# if path was given and hasn't been loaded
-				var packed_lvl : PackedScene = load(adj_path)
-				if packed_lvl:
-					loaded.merge({adj_path : packed_lvl.instantiate()})
-					print("level loaded")
-				else:
-					print("level not found")
-					'''
+
 	# matrix rework, june 2:
 	# for each screen in the level, check all 4 adjacent screens
 	# if that screen is in the level matrix and not blank ("  ") and not
