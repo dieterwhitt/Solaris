@@ -71,9 +71,11 @@ var parrying = false
 @export var debug = false
 # dependent on subclass: 
 # underscore indicates must define in subclass
-var _sprite : Sprite2D
+var _sprite : Sprite2D # may not need anymore due to new flip
 var _animation_tree : AnimationTree
 var _state_machine : AnimationNodeStateMachinePlayback
+
+# to be added: temporary movedata multipliers
 
 # using move data: one to keep a reference to the default, one active
 # that way we can change active data while still having the default available

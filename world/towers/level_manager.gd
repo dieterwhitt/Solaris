@@ -51,9 +51,9 @@ var backup_player : String # other equipped powerup
 var player : Node = null
 
 # new - camera settings
-var camera : Camera2D = Camera2D.new()
+@onready var camera : Camera2D = Camera2D.new()
 # to control camera movement
-var cam_transform : RemoteTransform2D = RemoteTransform2D.new()
+@onready var cam_transform : RemoteTransform2D = RemoteTransform2D.new()
 
 # number of invincibility frames on scene change
 var invince_frames = 1
