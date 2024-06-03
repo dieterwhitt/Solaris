@@ -14,9 +14,11 @@ var _name : String
 # level filepath prefix (.../levels/{id}-)
 var _prefix : String
 # level matrix: lower y index indicates UP!!!!
-# ex. (2,2) -> up -> (1, 2)
-var _level_matrix : Array[Array] # (y, x)
-var _start : Vector2 # start position (must have checkpoint) (y, x)
+# ex. (2,2) -> up -> (2, 1)
+var _level_matrix : Array[Array] # (row, col)
+# level matrix height and width
+var _height : int
+var _width : int
 
 func _init(): # init instead of _ready() since it's resource derived
 	pass

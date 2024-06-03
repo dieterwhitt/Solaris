@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://nrc4kn02f3kj"]
 
-[ext_resource type="Script" path="res://world/levels/level_05.gd" id="1_dqlfg"]
+[ext_resource type="Script" path="res://world/prototype-levels/level_05.gd" id="1_dqlfg"]
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_liarp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]

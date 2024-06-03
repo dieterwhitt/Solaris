@@ -95,26 +95,6 @@ const SCREEN_HEIGHT : int = 180
 @export var width : int = 1
 @export var height : int = 1
 
-# below: arrays of strings (filepaths to levels)
-
-# left to right
-# these arrays must have length (width)
-# empty string means no connection
-@export var top_paths : Array[String] = [""]
-@export var bottom_paths : Array[String] = [""]
-
-# top to bottom
-# these arrays must have length (height)
-@export var left_paths : Array[String] = [""]
-@export var right_paths : Array[String] = [""]
-
-@onready var adjacent0 = {
-	"top" : top_paths,
-	"bottom" : bottom_paths,
-	"left" : left_paths,
-	"right" : right_paths,
-}
-
 @onready var borders = {
 	"top" : 0, # y = 0
 	"bottom" : height * SCREEN_HEIGHT,
@@ -123,47 +103,35 @@ const SCREEN_HEIGHT : int = 180
 }
 
 func _ready():
-	print("current level: " + name)
-	print("adjacent: %s" % adjacent0)
-	print("borders: %s" % borders)
-	
-	'''
-	# testing (maybe move to seperate testing harness file)
-	# using level_02: set w/h = 3
-	print("testing level functions")
-	print(borders)
-	print(Vector2(width, height))
-	assert(get_posn_screen(Vector2(100, 100)) == Vector2(0, 0))
-	assert(get_posn_screen(Vector2(400, 400)) == Vector2(1, 2))
-	assert(get_relative_x(800) == 160)
-	assert(get_relative_y(200) == 20)
-	assert(adjust_coords(Vector2(0, 0), Vector2(1, 0)) == Vector2(320, 0))
-	print("assertions passed")
-	'''
+	print("level added to tree for the first time: " + name)
 
 func _process(delta):
 	pass
 
 # returns the current screen segment of posn as a vector2 [x, y]
+# relative to top left screen (0,0)
 # if out of bounds, return the nearest screen
 # i.e clamp x and y to the borders of the room
 func get_screen(posn : Vector2) -> Vector2:
 	var screen = Vector2.ZERO
-	# floor division
-	screen.x = int(clamp(posn.x, borders["left"], borders["right"]) / SCREEN_WIDTH)
-	screen.y = int(clamp(posn.y, borders["top"], borders["bottom"]) / SCREEN_HEIGHT)
+	
+	screen.x = posn.x / SCREEN_WIDTH
+	screen.y = posn.y / SCREEN_HEIGHT
+	# clamp
+	screen.x = clamp(screen.x, 0, width - 1)
+	screen.y = clamp(screen.y, 0, height - 1)
 	return screen
 
 # returns the x coordinate relative to its screen segment
 # gives an error if x is out of bounds
-func get_relative_x(x) -> int:
+func get_relative_x(x):
 	assert(borders["left"] <= x and x <= borders["right"])
 	var diff = x - int(x)
 	return (int(x) % SCREEN_WIDTH) + diff
 
 # returns the y coordinate relative to its screen segment
 # error if y is out of bounds
-func get_relative_y(y) -> int:
+func get_relative_y(y):
 	assert(borders["top"] <= y and y <= borders["bottom"])
 	var diff = y - int(y)
 	return (int(y) % SCREEN_HEIGHT) + diff

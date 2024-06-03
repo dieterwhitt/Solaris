@@ -14,12 +14,14 @@ func _init():
 	# define matrix (y, x)
 	# lower y index is UP IN GAME
 	_level_matrix = \
-	[ 	# 00 indicates no level
+	[ 	# "  " indicates no level
 		# testing with a 5x3 matrix
-		[00, 02, 02, 05, 00],
-		[00, 03, 04, 05, 00],
-		[01, 02, 02, 00, 00],
+		["  ", "  ", "  ", "05", "  "],
+		["  ", "03", "04", "05", "  "],
+		["01", "02", "02", "  ", "  "],
 	]
+	_height = len(_level_matrix)
+	_width = len(_level_matrix[0])
 	
 
 

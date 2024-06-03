@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://dcc6wre0hb31p"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_j2gyh"]
-[ext_resource type="Script" path="res://world/levels/long_level_00.gd" id="1_j03lr"]
+[ext_resource type="Script" path="res://world/prototype-levels/long_level_00.gd" id="1_j03lr"]
 [ext_resource type="Texture2D" uid="uid://dicpn63thecj8" path="res://world/backgrounds/finn-sketch1.png" id="2_bw8jt"]
 [ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_lu7wd"]
 [ext_resource type="PackedScene" uid="uid://dqtprroieu5mk" path="res://world/particles/bg_rain.tscn" id="3_qaju1"]
@@ -66,8 +66,6 @@ editor_description = "Last step: Make this scene local and attach a script that 
 script = ExtResource("1_j03lr")
 checkpoint = true
 width = 2
-top_paths = Array[String](["", ""])
-bottom_paths = Array[String](["", ""])
 
 [node name="Spawn" type="Node2D" parent="."]
 position = Vector2(52, 93)

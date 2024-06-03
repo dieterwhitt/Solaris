@@ -310,22 +310,6 @@ func flip():
 		transform.x.x = 1
 	elif direction < 0:
 		transform.x.x = -1
-	
-	'''
-	#if _sprite != null:
-		#if direction > 0:
-		#	_sprite.flip_h = false
-	#	elif direction < 0:
-		#	_sprite.flip_h = true
-	# flip all child sprites and reflect all 2d children on local y axis
-	for node in get_children():
-		if node is Sprite2D:
-			if direction > 0:
-				_sprite.flip_h = false
-			elif direction < 0:
-				_sprite.flip_h = true
-		# also reflect on local y axis
-		'''
 		
 
 func update_parry():
