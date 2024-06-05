@@ -89,6 +89,10 @@ func calibrate_camera():
 	if cam_transform not in player.get_children():
 		print("adding remote camera transform to player")
 		player.add_child(cam_transform)
+	print(camera.position)
+	print(player.position)
+	camera.position = player.position
+	#camera.force_update_transform()
 	# set camera drag margins & limits
 	# current level dimensions must be considereed
 	camera.limit_left = current.borders["left"]
@@ -96,12 +100,39 @@ func calibrate_camera():
 	camera.limit_top = current.borders["top"]
 	camera.limit_bottom = current.borders["bottom"]
 	
-	snap_camera()
+	print("resetting")
+	camera.reset_smoothing()
 
 # snaps camera to player
 func snap_camera():
 	camera.position_smoothing_enabled = false
 	camera_smooth_timer = camera_smooth_delay
+
+'''
+func initialize_camera():
+	camera.name = "Camera" # rename camera in tree
+	camera.position_smoothing_enabled = true
+	camera.position_smoothing_speed = 8
+	camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
+	camera.limit_smoothed = true
+	
+
+# calibrating camera settings for the current level
+func calibrate_camera():
+	# attach camera control to player
+	if camera not in player.get_children():
+		print("adding camera to player")
+		player.add_child(camera)
+	camera.align() 
+	# set camera drag margins & limits
+	# current level dimensions must be considereed
+	camera.limit_left = current.borders["left"]
+	camera.limit_right = current.borders["right"]
+	camera.limit_top = current.borders["top"]
+	camera.limit_bottom = current.borders["bottom"]
+	camera.reset_smoothing()
+	print(camera.get_parent())
+'''
 
 # starts the current level by adding it to the tree and loading its
 # adjacent levels. does NOT spawn player
@@ -183,15 +214,6 @@ func respawn_player():
 func _physics_process(delta):
 	update_invincibility()
 	check_borders()
-	update_camera()
-
-# update camera smoothimg after snap
-func update_camera():
-	if camera_smooth_timer > 1:
-		camera_smooth_timer -= 1
-	elif camera_smooth_timer == 1:
-		camera_smooth_timer = 0
-		camera.position_smoothing_enabled = true
 		
 
 func update_invincibility():

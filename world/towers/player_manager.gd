@@ -56,14 +56,18 @@ func update_player():
 		new_player.drop_timer = old_player.drop_timer
 		# in the future: also transfer temporary movedata multipliers
 		# detach camera transform and free old player
+		#old_player.remove_child(level_manager.cam_transform)
 		old_player.remove_child(level_manager.cam_transform)
+		new_player.add_child(level_manager.cam_transform)
+		#new_player.add_child(level_manager.camera)
+		#level_manager.camera.make_current()
 		old_player.queue_free()
 	# update player
 	level_manager.add_child(new_player)
 	level_manager.player = new_player
 	# in the future: play player pull out animation
 	# calibrate camera
-	level_manager.calibrate_camera
+	#level_manager.calibrate_camera()
 	
 	
 	
