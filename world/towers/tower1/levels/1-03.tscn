@@ -1,0 +1,165 @@
+[gd_scene load_steps=5 format=3 uid="uid://sy2dmrcdthct"]
+
+[ext_resource type="Script" path="res://world/towers/tower1/levels/1-03.gd" id="1_fqjbu"]
+[ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_tgrvg"]
+[ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="3_ugnib"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xh0ji"]
+
+[node name="1-03" type="Node"]
+editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
+script = ExtResource("1_fqjbu")
+width = 2
+
+[node name="Borders" type="Node" parent="."]
+
+[node name="Right" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 2.075
+anchor_top = 0.5
+anchor_right = 2.075
+anchor_bottom = 0.5
+offset_left = -1.52588e-05
+offset_top = -2.0
+offset_right = 116.0
+offset_bottom = 21.0
+text = "Right: 1-04"
+
+[node name="Top" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = -0.267
+anchor_right = 0.3
+anchor_bottom = -0.267
+offset_left = 8.0
+offset_top = 0.0600035
+offset_right = 124.0
+offset_bottom = 23.06
+text = "Top: Level_04"
+metadata/_edit_lock_ = true
+
+[node name="Left" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = -0.425
+anchor_top = 0.444
+anchor_right = -0.425
+anchor_bottom = 0.444
+offset_top = 0.0799936
+offset_right = 116.0
+offset_bottom = 23.08
+text = "Left: Level_XX"
+metadata/_edit_lock_ = true
+
+[node name="Bottom" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 1.156
+anchor_right = 0.3
+anchor_bottom = 1.156
+offset_top = -0.0800033
+offset_right = 134.0
+offset_bottom = 22.92
+text = "Bottom: Level_XX"
+metadata/_edit_lock_ = true
+
+[node name="PhysicsBorder" type="StaticBody2D" parent="Borders"]
+collision_layer = 24
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="TopBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(160, 2.08165e-12)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_xh0ji")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="BottomBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(160, 180)
+shape = SubResource("WorldBoundaryShape2D_xh0ji")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="LeftBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(2.08165e-12, 90)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_xh0ji")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="RightBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(640, 90)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_xh0ji")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="-40_BG_LAYER" type="CanvasGroup" parent="."]
+z_index = -40
+metadata/_edit_lock_ = true
+
+[node name="-30_LEVEL" type="CanvasGroup" parent="."]
+z_index = -30
+metadata/_edit_lock_ = true
+
+[node name="Tilemaps" type="Node2D" parent="-30_LEVEL"]
+metadata/_edit_lock_ = true
+
+[node name="LayoutTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For level tiles, not including scene tiles (use scene tilemap)"
+tile_set = ExtResource("1_tgrvg")
+format = 2
+layer_0/tile_data = PackedInt32Array(131072, 1, 0, 655360, 1, 0, 458784, 131073, 0, 458785, 131073, 0, 458786, 131073, 0, 458787, 131073, 0, 458788, 131073, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 720902, 1, 0, 720903, 1, 0, 720904, 1, 0, 720905, 1, 0, 720906, 1, 0, 786442, 1, 0, 786443, 1, 0, 786444, 1, 0, 786445, 1, 0, 786446, 1, 0, 786447, 1, 0, 786448, 1, 0, 786449, 1, 0, 786450, 1, 0, 786451, 1, 0, 786452, 1, 0, 851988, 1, 0, 917524, 1, 0, 917525, 1, 0, 983061, 1, 0, 983062, 1, 0, 1048598, 1, 0, 1048599, 1, 0, 1114135, 1, 0, 1114136, 1, 0, 1114137, 1, 0, 1114138, 1, 0, 1114139, 1, 0, 1114140, 1, 0, 1114141, 1, 0, 1114142, 1, 0, 1114143, 1, 0, 1114153, 1, 0, 1114154, 1, 0, 1114155, 1, 0, 1114156, 1, 0, 1048607, 1, 0, 1048608, 1, 0, 1048609, 1, 0, 1048610, 1, 0, 1048611, 1, 0, 1048612, 1, 0, 1048613, 1, 0, 1048614, 1, 0, 1048615, 1, 0, 1048616, 1, 0, 1114151, 1, 0, 1114152, 1, 0, 327723, 131073, 0, 327724, 131073, 0, 327725, 131073, 0, 327726, 65537, 0, 327727, 131073, 0, 1114157, 1, 0, 1048621, 1, 0, 983085, 1, 0, 983086, 1, 0, 917550, 1, 0, 852014, 1, 0, 852015, 1, 0, 786478, 1, 0, 720942, 1, 0, 655406, 1, 0, 589870, 65537, 0, 524334, 65537, 0, 458798, 65537, 0, 393262, 65537, 0, 327728, 131073, 0, 327729, 131073, 0, 327730, 131073, 0, 327731, 1, 0, 262195, 1, 0, 196659, 1, 0, 131123, 1, 0, 65586, 1, 0, 50, 1, 0, 49, 1, 0, 48, 1, 0, 47, 1, 0, 46, 1, 0, 45, 1, 0, 44, 1, 0, 43, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 65552, 1, 0, 65553, 1, 0, 65554, 1, 0, 65555, 1, 0, 65556, 1, 0, 65557, 1, 0, 65558, 1, 0, 65559, 1, 0, 65560, 1, 0, 65561, 1, 0, 65562, 1, 0, 65563, 1, 0, 65564, 1, 0, 65565, 1, 0, 65566, 1, 0, 65567, 1, 0, 65568, 1, 0, 65569, 1, 0, 38, 1, 0, 39, 1, 0, 40, 1, 0, 41, 1, 0, 42, 1, 0, 65587, 1, 0, 33, 1, 0, 34, 1, 0, 35, 1, 0, 36, 1, 0, 37, 1, 0, 852016, 1, 0, 852017, 1, 0, 852018, 1, 0, 852019, 1, 0, 786484, 1, 0, 786485, 1, 0, 786486, 1, 0, 786487, 1, 0, 786488, 1, 0, 852020, 1, 0, 524352, 131073, 0, 524353, 131073, 0, 524354, 131073, 0, 524355, 131073, 0, 786489, 1, 0, 786490, 1, 0, 786491, 1, 0, 786492, 1, 0, 786493, 1, 0, 786494, 1, 0, 786495, 1, 0, 786496, 1, 0, 786497, 1, 0, 786498, 1, 0, 786499, 1, 0, 786500, 1, 0, 786501, 1, 0, 786502, 1, 0, 786503, 1, 0, 720967, 1, 0, 393267, 1, 0, 393268, 1, 0, 393269, 1, 0, 327733, 1, 0, 262197, 1, 0, 196661, 1, 0, 196662, 1, 0, 131126, 1, 0, 131127, 1, 0, 131128, 1, 0, 131129, 1, 0, 655431, 1, 0, 655432, 1, 0, 589896, 1, 0, 524360, 1, 0, 524361, 1, 0, 458825, 1, 0, 393289, 1, 0, 327753, 1, 0, 262217, 1, 0, 196681, 1, 0, 131145, 1, 0, 65609, 1, 0, 73, 1, 0, 131130, 1, 0, 131131, 1, 0, 131132, 1, 0, 131133, 1, 0, 65597, 1, 0, 65598, 1, 0, 62, 1, 0, 327752, 131073, 0, 327751, 131073, 0, 327750, 131073, 0, 131144, 131073, 0, 131143, 131073, 0, 131142, 131073, 0, 524335, 131073, 0)
+metadata/_edit_lock_ = true
+
+[node name="DecoTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles90deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 1.5708
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 3.14159
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles270deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = -1.5708
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="-20_ENTITIES" type="CanvasGroup" parent="."]
+z_index = -20
+metadata/_edit_lock_ = true
+
+[node name="LevelObjects" type="Node2D" parent="-20_ENTITIES"]
+editor_description = "orbs, artifacts, ladders, etc."
+metadata/_edit_lock_ = true
+
+[node name="DashOrb" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("3_ugnib")]
+position = Vector2(208, 72)
+rotation = 0.785398
+
+[node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
+editor_description = "Any moving enemies/hazards/npcs"
+metadata/_edit_lock_ = true
+
+[node name="+20_FG" type="CanvasGroup" parent="."]
+editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"
+z_index = 20
+metadata/_edit_lock_ = true
