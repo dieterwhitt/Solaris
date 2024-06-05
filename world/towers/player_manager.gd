@@ -54,25 +54,23 @@ func update_player():
 		new_player.current_coyote = old_player.current_coyote
 		new_player.current_jump_buffer = old_player.current_jump_buffer
 		new_player.drop_timer = old_player.drop_timer
-		# in the future: also transfer temporary movedata multipliers
-		# detach camera transform and free old player
-		#old_player.remove_child(level_manager.cam_transform)
+		# detach camera transform and attach to new player
 		old_player.remove_child(level_manager.cam_transform)
 		new_player.add_child(level_manager.cam_transform)
-		#new_player.add_child(level_manager.camera)
-		#level_manager.camera.make_current()
+		# free old player
 		old_player.queue_free()
 	# update player
 	level_manager.add_child(new_player)
 	level_manager.player = new_player
 	# in the future: play player pull out animation
-	# calibrate camera
-	#level_manager.calibrate_camera()
+	# DO NOT CALIBRATE CAMERA HERE - WILL CAUSE ALIGNMENT ISSUES
 	
 	
 	
 
 # set equipped artifacts
 func set_artifacts(a1 : Artifact, a2 : Artifact):
-	pass
+	active_artifact = a1
+	backup_artifact = a2
+	update_player()
 

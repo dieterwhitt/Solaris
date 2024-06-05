@@ -89,18 +89,15 @@ func calibrate_camera():
 	if cam_transform not in player.get_children():
 		print("adding remote camera transform to player")
 		player.add_child(cam_transform)
-	print(camera.position)
-	print(player.position)
+	# teleport camera to avoid screen lag issue
 	camera.position = player.position
-	#camera.force_update_transform()
-	# set camera drag margins & limits
-	# current level dimensions must be considereed
+	# apply limits of current level
 	camera.limit_left = current.borders["left"]
 	camera.limit_right = current.borders["right"]
 	camera.limit_top = current.borders["top"]
 	camera.limit_bottom = current.borders["bottom"]
 	
-	print("resetting")
+	# reset smoothing
 	camera.reset_smoothing()
 
 # snaps camera to player
