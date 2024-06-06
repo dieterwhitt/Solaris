@@ -30,5 +30,5 @@ var INPUT_TERMINAL : float = 105.0 # 105
 var COYOTE_TIME : int = 5 # 5
 var JUMP_BUFFER : int = 5 # 5
 # new stuff
-var DOUBLE_JUMP_VELOCITY = -150 # -150
+var DOUBLE_JUMP_VELOCITY = -125 # -150
 var MOMENTUM_MULTIPLIER = 0.8 # friction multiplier at high speeds

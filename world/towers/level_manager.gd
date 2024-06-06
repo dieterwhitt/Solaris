@@ -39,7 +39,9 @@ If you have any questions dm me on discord.
 var loaded = {}
 # current tower rewource
 var tower : Tower = load("res://world/towers/tower1/tower1.gd").new()
-var spawn_lvl : String = "01" # current spawn level id
+var spawn_lvl : String = "01" # current spawn level id (checkpoint)
+# kindling bonfires (setting checkpoints) not established yet (need checkpoint scene)
+# for now just auto-set checkpoint when screen loads
 # current scene being rendered
 var current : Node = null
 var current_lvl : String = "" # current level id
@@ -64,12 +66,10 @@ var camera_smooth_timer = 0
 var camera_smooth_delay = 3
 
 func _ready():
-	# read save file and adjust current, checkpoint
-	respawn_player()
 	# initialize camera settings
 	initialize_camera()
-	# calibrate camera according to current level
-	calibrate_camera()
+	# read save file and adjust current, checkpoint
+	respawn_player()
 
 # one-time initialization of camera
 func initialize_camera():
@@ -111,6 +111,10 @@ func snap_camera():
 func start_current_level():
 	# now add current to tree
 	add_child(current)
+	# check if it's a checkpoint to auto-set spawn (will change later)
+	if current.checkpoint:
+		spawn_lvl = current_lvl
+		print("set new checkpoint: " + current_lvl)
 	# now we want to load all adjacent levels (smooth transitions)
 
 	# matrix rework, june 2:
@@ -159,8 +163,10 @@ func get_level_matrix_posn(lvl_id : String):
 func respawn_player():
 	# rework:
 	# free player, then create new player based on active player path
+	# make sure to preserve cam transform
 	if player:
 		player.queue_free()
+		player.remove_child(cam_transform)
 	player = load(active_player).instantiate()
 	# delete all loaded scenes and switch current scene to checkpoint
 	for level in loaded:
@@ -179,6 +185,8 @@ func respawn_player():
 		player.position = Spawn.position
 		invince_timer = invince_frames
 		add_child(player)
+		# calibrate camera for new room
+		calibrate_camera()
 	else:
 		print("spawn point not found, unable to spawn player")
 	
@@ -199,6 +207,8 @@ func update_invincibility():
 			player.set_physics_process(true)
 			
 # check borders reworked for matrix representation
+# add some kind of error checking for going in blank levels so the game doesnt
+# crash
 func check_borders():
 	var posn = player.position
 	# check left, right, top, bottom border

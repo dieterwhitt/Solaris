@@ -351,11 +351,7 @@ func _choose_animation():
 		_state_machine.travel("idle-run")
 
 func kill():
-	# kills the player and handles logic
-	# eventually will need to rig it up to reset the level
-	# for now just reset player position
-	# eventually we'll also have to define every level's 
-	# reset position/checkpoint position.
-	
-	#HARDCODED!!
-	get_tree().reload_current_scene()
+	# kills player
+	# get level manager parent and respawn player
+	# level manager MUST be a parent of player!!!
+	get_parent().respawn_player()
