@@ -165,6 +165,7 @@ centered = false
 metadata/_edit_lock_ = true
 
 [node name="BG_Rain" parent="-2_BG_LAYER" instance=ExtResource("3_qaju1")]
+amount = 500
 
 [node name="-1_LEVEL" type="CanvasGroup" parent="."]
 z_index = -1
@@ -355,3 +356,4 @@ z_index = 1
 metadata/_edit_lock_ = true
 
 [node name="FG_Rain" parent="+1_FG" instance=ExtResource("10_2f6ov")]
+amount = 1500

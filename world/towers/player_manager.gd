@@ -44,6 +44,7 @@ func update_player():
 	var old_player = level_manager.player
 	if old_player:
 		new_player.position = old_player.position
+		new_player.transform.x.x = old_player.transform.x.x
 		new_player.velocity = old_player.velocity
 		new_player.used_double_jump = old_player.used_double_jump
 		new_player.dashing = old_player.dashing
