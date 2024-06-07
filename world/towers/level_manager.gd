@@ -39,7 +39,7 @@ If you have any questions dm me on discord.
 var loaded = {}
 # current tower rewource
 var tower : Tower = load("res://world/towers/tower1/tower1.gd").new()
-var spawn_lvl : String = "06" # current spawn level id (checkpoint)
+var spawn_lvl : String = "11" # current spawn level id (checkpoint)
 # kindling bonfires (setting checkpoints) not established yet (need checkpoint scene)
 # for now just auto-set checkpoint when screen loads
 # current scene being rendered
@@ -275,9 +275,14 @@ func enter_border(lvl_id : String, posn : Vector2):
 	player.set_physics_process(false)
 	invince_timer = invince_frames
 	
-	current = loaded[lvl_id]
-	current_lvl = lvl_id
-	
-	start_current_level()
-	calibrate_camera()
-	print("adding player at %v" % posn)
+	# fail safe: kill player on undefined levels
+	if lvl_id == "  ":
+		print("player entered undefined level")
+		respawn_player()
+	else:
+		current = loaded[lvl_id]
+		current_lvl = lvl_id
+		
+		start_current_level()
+		calibrate_camera()
+		print("adding player at %v" % posn)
