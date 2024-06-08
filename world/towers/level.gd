@@ -117,9 +117,10 @@ func get_screen(posn : Vector2) -> Vector2:
 	
 	screen.x = posn.x / SCREEN_WIDTH
 	screen.y = posn.y / SCREEN_HEIGHT
-	# clamp
-	screen.x = clamp(screen.x, 0, width - 1)
-	screen.y = clamp(screen.y, 0, height - 1)
+	# clamp & floor
+	screen.x = floor(clamp(screen.x, 0, width - 1))
+	screen.y = floor(clamp(screen.y, 0, height - 1))
+	
 	return screen
 
 # returns the x coordinate relative to its screen segment
