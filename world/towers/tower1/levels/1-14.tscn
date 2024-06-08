@@ -303,15 +303,3 @@ text = "toxic curse above"
 
 [node name="Spawn" type="Node2D" parent="."]
 position = Vector2(176, 512)
-
-[node name="Label4" type="Label" parent="."]
-anchors_preset = -1
-anchor_left = -0.125
-anchor_top = 1.378
-anchor_right = -0.125
-anchor_bottom = 1.378
-offset_left = -24.0
-offset_top = -24.04
-offset_right = 85.0
-offset_bottom = -1.04
-text = "half block bug"

@@ -252,6 +252,20 @@ func check_borders():
 		# target position in target level
 		var target_position = current.adjust_coords(target_posn_relative, target_local_screen)
 		print("target position: %v" % target_position)
+		
+		# account for extra 4 pixls on screen - adjust
+		var current_local_y_screen = int(current.get_screen(posn).y)
+		var target_local_y_screen = int(target_local_screen.y)
+		if current_local_y_screen % 2 != target_local_y_screen % 2:
+			# misaligned screens
+			if current_local_y_screen % 2 == 1:
+				# odd to even: shift up 4 pixels
+				print("shifting player up 4 pixels")
+				target_position.y -= 4
+			elif target_local_y_screen % 2 == 1:
+				# even to odd: shift down 4 pixels
+				print("shifting player down 4 pixels")
+				target_position.y += 4		
 		# insert player
 		enter_border(dest_lvl_id, target_position)
 
