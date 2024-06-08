@@ -39,7 +39,7 @@ If you have any questions dm me on discord.
 var loaded = {}
 # current tower rewource
 var tower : Tower = load("res://world/towers/tower1/tower1.gd").new()
-var spawn_lvl : String = "11" # current spawn level id (checkpoint)
+var spawn_lvl : String = "06" # current spawn level id (checkpoint)
 # kindling bonfires (setting checkpoints) not established yet (need checkpoint scene)
 # for now just auto-set checkpoint when screen loads
 # current scene being rendered
@@ -254,9 +254,11 @@ func check_borders():
 		print("target position: %v" % target_position)
 		
 		# account for extra 4 pixls on screen - adjust
+		# don't adjust on the same x level (only horizontal transitions)
 		var current_local_y_screen = int(current.get_screen(posn).y)
 		var target_local_y_screen = int(target_local_screen.y)
-		if current_local_y_screen % 2 != target_local_y_screen % 2:
+		if current_local_y_screen % 2 != target_local_y_screen % 2 and \
+				current_matrix_posn.x != dest_matrix_posn.x:
 			# misaligned screens
 			if current_local_y_screen % 2 == 1:
 				# odd to even: shift up 4 pixels

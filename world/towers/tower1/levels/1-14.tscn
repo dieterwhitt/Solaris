@@ -15,7 +15,6 @@ size = Vector2(12, 12)
 [node name="1-14" type="Node"]
 editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
 script = ExtResource("1_gjn5t")
-checkpoint = true
 height = 3
 
 [node name="Borders" type="Node" parent="."]
