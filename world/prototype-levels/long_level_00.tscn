@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dcc6wre0hb31p"]
+[gd_scene load_steps=18 format=3 uid="uid://dcc6wre0hb31p"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_j2gyh"]
 [ext_resource type="Script" path="res://world/prototype-levels/long_level_00.gd" id="1_j03lr"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="7_36msg"]
 [ext_resource type="PackedScene" uid="uid://d0rkh45i2a8xl" path="res://world/objects/orbs/hop_orb.tscn" id="8_mnb8x"]
 [ext_resource type="PackedScene" uid="uid://jtl7uk1yuw3v" path="res://world/particles/fg_rain.tscn" id="10_2f6ov"]
+[ext_resource type="PackedScene" uid="uid://yri1y85csvlw" path="res://players/player_reworked/player_reworked.tscn" id="11_bkgxh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
 
@@ -357,3 +358,6 @@ metadata/_edit_lock_ = true
 
 [node name="FG_Rain" parent="+1_FG" instance=ExtResource("10_2f6ov")]
 amount = 1500
+
+[node name="PlayerReworked" parent="." instance=ExtResource("11_bkgxh")]
+position = Vector2(64, 128)

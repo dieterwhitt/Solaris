@@ -16,7 +16,7 @@ gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 [node name="BG_Rain" type="GPUParticles2D"]
 modulate = Color(0.301961, 0.34902, 0.423529, 1)
 position = Vector2(160, 0)
-amount = 1000
+amount = 1200
 process_material = SubResource("ParticleProcessMaterial_1di6c")
 texture = ExtResource("1_vspu2")
 visibility_rect = Rect2(-200, -200, 400, 400)

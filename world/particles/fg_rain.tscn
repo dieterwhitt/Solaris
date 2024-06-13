@@ -15,7 +15,7 @@ gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 [node name="FG_Rain" type="GPUParticles2D"]
 modulate = Color(0.356863, 0.4, 0.466667, 1)
 position = Vector2(160, 0)
-amount = 2000
+amount = 1500
 process_material = SubResource("ParticleProcessMaterial_nxqjd")
 texture = ExtResource("1_u81qv")
 lifetime = 0.5
