@@ -1,15 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0txu7q12ia6r"]
+[gd_scene load_steps=5 format=3 uid="uid://c0moqiv2deco5"]
 
-[ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_7ao63"]
-[ext_resource type="Script" path="res://world/towers/tower1/levels/1-25.gd" id="1_q6sqr"]
-[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_cu0vp"]
-[ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="4_tv0qg"]
+[ext_resource type="Script" path="res://world/towers/tower1/levels/1-30.gd" id="1_bothv"]
+[ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_ij308"]
+[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_1eki8"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
 
-[node name="1-25" type="Node"]
+[node name="1-30" type="Node"]
 editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
-script = ExtResource("1_q6sqr")
+script = ExtResource("1_bothv")
+checkpoint = true
 
 [node name="Borders" type="Node" parent="."]
 
@@ -22,7 +22,7 @@ anchor_bottom = 0.444
 offset_top = 0.0799936
 offset_right = 116.0
 offset_bottom = 23.08
-text = "Right: 1-27"
+text = "Right: 1-41 "
 metadata/_edit_lock_ = true
 
 [node name="Top" type="Label" parent="Borders"]
@@ -35,7 +35,7 @@ offset_left = 8.0
 offset_top = 0.0600035
 offset_right = 124.0
 offset_bottom = 23.06
-text = "Top: 1-26"
+text = "Top: Level_XX"
 metadata/_edit_lock_ = true
 
 [node name="Left" type="Label" parent="Borders"]
@@ -47,7 +47,7 @@ anchor_bottom = 0.444
 offset_top = 0.0799936
 offset_right = 116.0
 offset_bottom = 23.08
-text = "Left: 1-20"
+text = "Left: 1-31"
 metadata/_edit_lock_ = true
 
 [node name="Bottom" type="Label" parent="Borders"]
@@ -111,9 +111,9 @@ metadata/_edit_lock_ = true
 
 [node name="LayoutTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For level tiles, not including scene tiles (use scene tilemap)"
-tile_set = ExtResource("1_7ao63")
+tile_set = ExtResource("1_ij308")
 format = 2
-layer_0/tile_data = PackedInt32Array(458752, 1, 0, 786432, 1, 0, 393255, 1, 0, 10, 1, 0, 17, 1, 0, 458753, 1, 0, 393217, 1, 0, 327681, 1, 0, 262145, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 786433, 1, 0, 786434, 1, 0, 786435, 1, 0, 786436, 1, 0, 589839, 131073, 0, 917517, 1, 0, 917518, 1, 0, 917519, 1, 0, 917520, 1, 0, 589840, 65537, 0, 786454, 1, 0, 786455, 1, 0, 786456, 1, 0, 786457, 1, 0, 786458, 1, 0, 786459, 1, 0, 786460, 1, 0, 786461, 1, 0, 786451, 1, 0, 786452, 1, 0, 786453, 1, 0, 196642, 1, 0, 131106, 1, 0, 33, 1, 0, 32, 1, 0, 31, 1, 0, 30, 1, 0, 29, 1, 0, 28, 1, 0, 27, 1, 0, 26, 1, 0, 25, 1, 0, 24, 1, 0, 23, 1, 0, 22, 1, 0, 21, 1, 0, 20, 1, 0, 19, 1, 0, 18, 1, 0, 65546, 1, 0, 131082, 1, 0, 16, 1, 0, 655382, 327681, 1, 720918, 327681, 1, 786449, 1, 0, 786450, 1, 0, 786448, 1, 0, 851984, 1, 0, 655376, 1, 0, 720912, 1, 0, 786462, 1, 0, 851998, 1, 0, 917534, 1, 0, 983070, 1, 0, 1048606, 1, 0, 1114142, 1, 0, 1179678, 1, 0, 1245214, 1, 0, 1310750, 1, 0, 1376286, 1, 0, 1441822, 1, 0, 917540, 1, 0, 983076, 1, 0, 1048612, 1, 0, 1114148, 1, 0, 1179684, 1, 0, 1245220, 1, 0, 1310756, 1, 0, 1376292, 1, 0, 1441828, 1, 0, 852004, 1, 0, 852005, 1, 0, 852006, 1, 0, 852007, 1, 0, 65553, 1, 0, 131089, 65537, 0, 65555, 1, 0, 65562, 1, 0, 131098, 1, 0, 65569, 1, 0, 131105, 1, 0, 65554, 1, 0, 131099, 1, 0, 131100, 1, 0, 131101, 1, 0, 131102, 1, 0, 131103, 1, 0, 131104, 1, 0, 196643, 1, 0, 196644, 1, 0, 327719, 1, 0, 262183, 1, 0, 196646, 1, 0, 196645, 1, 0, 262182, 1, 0, 589838, 131073, 0, 589837, 131073, 0, 786437, 131073, 0, 917509, 1, 0, 786438, 131073, 0, 917510, 1, 0, 917511, 1, 0, 917512, 1, 0, 917513, 1, 0, 917514, 1, 0, 917515, 1, 0, 851972, 1, 0, 917508, 1, 0, 589833, 65537, 0, 655369, 65537, 0, 720905, 65537, 0, 786441, 65537, 0, 851977, 65537, 0, 524299, 65537, 0, 589835, 65537, 0, 655371, 65537, 0, 720907, 65537, 0, 786443, 65537, 0, 851979, 65537, 0, 917516, 1, 0, 589836, 131073, 0, 131077, 1, 0, 65541, 1, 0, 5, 1, 0, 6, 1, 0, 131076, 1, 0)
+layer_0/tile_data = PackedInt32Array(1114112, 1, 0, 1114113, 1, 0, 917532, 65537, 0, 917531, 65537, 0, 917530, 65537, 0, 917529, 65537, 0, 917528, 65537, 0, 917527, 65537, 0, 1114146, 1, 0, 196634, 1, 0, 196633, 1, 0, 196632, 1, 0, 131094, 1, 0, 65558, 1, 0, 1114114, 1, 0, 1114115, 1, 0, 1114116, 1, 0, 1114117, 1, 0, 1114118, 1, 0, 917512, 65537, 0, 917513, 65537, 0, 983048, 65537, 0, 1048584, 65537, 0, 1114120, 65537, 0, 1114119, 1, 0, 1179656, 1, 0, 1179657, 1, 0, 1179658, 1, 0, 1179659, 1, 0, 1179660, 1, 0, 1179661, 1, 0, 1179662, 1, 0, 1179663, 1, 0, 1179664, 1, 0, 1179665, 1, 0, 1179666, 1, 0, 1179667, 1, 0, 1179668, 1, 0, 1179669, 1, 0, 1179670, 1, 0, 1179671, 1, 0, 1179672, 1, 0, 1179673, 1, 0, 1179674, 1, 0, 1179675, 1, 0, 1179676, 1, 0, 1179677, 1, 0, 655380, 1, 0, 655381, 1, 0, 655382, 1, 0, 655383, 1, 0, 655384, 1, 0, 655385, 1, 0, 393231, 1, 0, 393230, 1, 0, 15, 1, 0, 65551, 1, 0, 131087, 1, 0, 196623, 1, 0, 262159, 1, 0, 327695, 1, 0, 655364, 1, 0, 524302, 1, 0, 589838, 1, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 458766, 1, 0, 131095, 1, 0, 131096, 1, 0, 1114143, 1, 0, 1114144, 1, 0, 1114145, 1, 0, 1114147, 1, 0, 786458, 327681, 1, 851994, 327681, 1, 983063, 65537, 0, 1048599, 65537, 0, 1114135, 65537, 0, 1114142, 1, 0, 1114141, 65537, 0, 917514, 65537, 0, 917515, 65537, 0, 917516, 65537, 0, 917517, 65537, 0, 917518, 65537, 0, 917519, 131073, 0, 917520, 131073, 0, 917521, 131073, 0, 917522, 131073, 0, 917523, 131073, 0, 917524, 131073, 0, 917525, 131073, 0, 917526, 131073, 0, 655379, 1, 0, 655386, 1, 0, 917533, 65537, 0, 983069, 65537, 0, 1048605, 65537, 0, 983054, 65537, 0, 1048590, 65537, 0, 1114126, 65537, 0, 458770, 1, 0, 524306, 1, 0, 589842, 1, 0, 655378, 1, 0, 22, 1, 0, 655397, 196609, 1, 655398, 196609, 1, 655399, 196609, 1, 786468, 1, 0, 852004, 1, 0, 917540, 1, 0, 983076, 1, 0, 1048612, 1, 0, 1114148, 1, 0, 458788, 1, 0, 458791, 1, 0, 524327, 196609, 1, 524326, 196609, 1, 589862, 196609, 1, 589861, 196609, 1, 524325, 196609, 1, 458789, 1, 0, 458790, 1, 0, 589863, 196609, 1, 327709, 1, 0, 327708, 1, 0, 327707, 1, 0, 262171, 1, 0, 196635, 1, 0, 786469, 1, 0, 786470, 1, 0, 786471, 1, 0, 720935, 196609, 1, 720934, 196609, 1, 720933, 196609, 1, 393245, 1, 0, 393246, 1, 0, 393247, 1, 0, 393248, 1, 0, 393249, 1, 0, 458785, 1, 0, 458786, 1, 0, 458787, 1, 0, 196624, 131073, 0, 196625, 131073, 0)
 metadata/_edit_lock_ = true
 
 [node name="DecoTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
@@ -122,25 +122,23 @@ metadata/_edit_lock_ = true
 
 [node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
-tile_set = ExtResource("3_cu0vp")
+tile_set = ExtResource("3_1eki8")
 format = 2
-layer_0/tile_data = PackedInt32Array(851974, 0, 196608, 851975, 0, 196608, 851976, 0, 196608, 851977, 0, 196608, 851978, 0, 196608, 851979, 0, 196608, 851980, 0, 196608, 851981, 0, 196608, 851982, 0, 196608, 851983, 0, 196608, 524297, 0, 65536, 458763, 0, 65536, 851973, 0, 196608)
+layer_0/tile_data = PackedInt32Array(1048607, 0, 65536, 1048608, 0, 65536, 1048609, 0, 65536, 1048610, 0, 65536, 1048606, 0, 65536, 1048611, 0, 65536)
 metadata/_edit_lock_ = true
 
 [node name="SceneTiles90deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = 1.5708
-tile_set = ExtResource("3_cu0vp")
 format = 2
-layer_0/tile_data = PackedInt32Array(-786432, 0, 196608, -786431, 0, 196608, -786430, 0, 196608)
 metadata/_edit_lock_ = true
 
 [node name="SceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = 3.14159
-tile_set = ExtResource("3_cu0vp")
+tile_set = ExtResource("3_1eki8")
 format = 2
-layer_0/tile_data = PackedInt32Array(-196642, 0, 196608, -196641, 0, 196608, -196640, 0, 196608, -196639, 0, 196608, -196638, 0, 196608, -196637, 0, 196608, -196636, 0, 196608, -196635, 0, 196608, -65562, 0, 196608, -65561, 0, 196608, -65560, 0, 196608, -65559, 0, 196608, -65558, 0, 196608, -65557, 0, 196608, -131092, 0, 196608, -131091, 0, 196608, -196626, 0, 65536, -262179, 0, 196608, -262180, 0, 196608, -262181, 0, 196608, -262182, 0, 196608)
+layer_0/tile_data = PackedInt32Array(-655366, 0, 196608, -655367, 0, 196608, -655368, 0, 196608, -655369, 0, 196608, -655370, 0, 196608, -655371, 0, 196608, -655372, 0, 196608, -655373, 0, 196608, -655374, 0, 196608, -655375, 0, 196608, -458768, 0, 196608, -720922, 0, 196608, -720921, 0, 196608, -720920, 0, 196608, -720919, 0, 196608, -720918, 0, 196608, -720917, 0, 196608, -262169, 0, 65536, -262170, 0, 65536, -262171, 0, 65536, -196632, 0, 65536, -196631, 0, 65536, -720916, 0, 196608, -720915, 0, 196608, -720923, 0, 196608)
 metadata/_edit_lock_ = true
 
 [node name="SceneTiles270deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
@@ -157,10 +155,6 @@ metadata/_edit_lock_ = true
 editor_description = "orbs, artifacts, ladders, etc."
 metadata/_edit_lock_ = true
 
-[node name="DashOrb" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("4_tv0qg")]
-position = Vector2(104, 24)
-glass = true
-
 [node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
 editor_description = "Any moving enemies/hazards/npcs"
 metadata/_edit_lock_ = true
@@ -171,15 +165,11 @@ z_index = 20
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="."]
-offset_left = 40.0
-offset_top = 48.0
-offset_right = 80.0
-offset_bottom = 71.0
-text = "toxic curse"
-
-[node name="Label2" type="Label" parent="."]
-offset_left = 152.0
-offset_top = 56.0
-offset_right = 276.0
-offset_bottom = 79.0
+offset_left = 176.0
+offset_top = 72.0
+offset_right = 300.0
+offset_bottom = 95.0
 text = "charging enemy"
+
+[node name="Spawn" type="Node2D" parent="."]
+position = Vector2(8, 120)

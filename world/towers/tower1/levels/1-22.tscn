@@ -10,7 +10,6 @@
 [node name="1-22" type="Node"]
 editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
 script = ExtResource("1_punhk")
-checkpoint = true
 height = 2
 
 [node name="Borders" type="Node" parent="."]
@@ -190,6 +189,3 @@ offset_top = 72.0
 offset_right = 112.0
 offset_bottom = 95.0
 text = "toxic curse"
-
-[node name="Spawn" type="Node2D" parent="."]
-position = Vector2(16, 136)
