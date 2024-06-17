@@ -203,8 +203,8 @@ editor_description = "Scene for creating an object that follows a path. Can be a
 curve = SubResource("Curve2D_nqwhh")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="-20_ENTITIES/MovingEntities/PathMovingObject/Path2D"]
-position = Vector2(317.351, 72)
-progress = 250.644
+position = Vector2(333.458, 72)
+progress = 234.541
 rotates = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="-20_ENTITIES/MovingEntities/PathMovingObject/Path2D/PathFollow2D"]
@@ -218,7 +218,7 @@ libraries = {
 autoplay = "movement_animation"
 
 [node name="TileMap" type="TileMap" parent="-20_ENTITIES/MovingEntities/PathMovingObject"]
-position = Vector2(317.351, 72)
+position = Vector2(333.458, 72)
 tile_set = ExtResource("1_8g17x")
 collision_animatable = true
 format = 2
