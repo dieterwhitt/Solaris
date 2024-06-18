@@ -1,0 +1,222 @@
+[gd_scene load_steps=9 format=3 uid="uid://blbdkpghl5bk4"]
+
+[ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_devo5"]
+[ext_resource type="Script" path="res://world/towers/tower1/levels/1-42.gd" id="1_y86ig"]
+[ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="3_30pjs"]
+[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_qmuce"]
+[ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="4_1jj8t"]
+[ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="5_cvy43"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykfev"]
+size = Vector2(12, 12)
+
+[node name="1-42" type="Node"]
+editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
+script = ExtResource("1_y86ig")
+
+[node name="Borders" type="Node" parent="."]
+
+[node name="Right" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 1.1
+anchor_top = 0.444
+anchor_right = 1.1
+anchor_bottom = 0.444
+offset_top = 0.0799936
+offset_right = 116.0
+offset_bottom = 23.08
+text = "Right: Level_XX"
+metadata/_edit_lock_ = true
+
+[node name="Top" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = -0.267
+anchor_right = 0.3
+anchor_bottom = -0.267
+offset_left = 8.0
+offset_top = 0.0600035
+offset_right = 124.0
+offset_bottom = 23.06
+text = "Top: 1-33"
+metadata/_edit_lock_ = true
+
+[node name="Left" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = -0.425
+anchor_top = 0.444
+anchor_right = -0.425
+anchor_bottom = 0.444
+offset_top = 0.0799936
+offset_right = 116.0
+offset_bottom = 23.08
+text = "Left: Level_XX"
+metadata/_edit_lock_ = true
+
+[node name="Bottom" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 1.156
+anchor_right = 0.3
+anchor_bottom = 1.156
+offset_top = -0.0800033
+offset_right = 134.0
+offset_bottom = 22.92
+text = "Bottom: Level_XX"
+metadata/_edit_lock_ = true
+
+[node name="PhysicsBorder" type="StaticBody2D" parent="Borders"]
+collision_layer = 24
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="TopBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(160, 2.08165e-12)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_0e1bx")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="BottomBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(160, 180)
+shape = SubResource("WorldBoundaryShape2D_0e1bx")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="LeftBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(2.08165e-12, 90)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_0e1bx")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="RightBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(320, 90)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_0e1bx")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="-40_BG_LAYER" type="CanvasGroup" parent="."]
+z_index = -40
+metadata/_edit_lock_ = true
+
+[node name="-30_LEVEL" type="CanvasGroup" parent="."]
+z_index = -30
+metadata/_edit_lock_ = true
+
+[node name="Tilemaps" type="Node2D" parent="-30_LEVEL"]
+metadata/_edit_lock_ = true
+
+[node name="LayoutTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For level tiles, not including scene tiles (use scene tilemap)"
+tile_set = ExtResource("1_devo5")
+format = 2
+layer_0/tile_data = PackedInt32Array(25, 1, 0, 31, 1, 0, 65561, 1, 0, 131097, 1, 0, 65567, 1, 0, 131103, 1, 0, 196639, 1, 0, 262175, 1, 0, 196633, 65537, 0, 327711, 1, 0, 393247, 1, 0, 458783, 1, 0, 524319, 1, 0, 589855, 1, 0, 655391, 1, 0, 720927, 1, 0, 786463, 1, 0, 786462, 1, 0, 786461, 1, 0, 786460, 1, 0, 786459, 1, 0, 786458, 1, 0, 786457, 1, 0, 851993, 1, 0, 851992, 1, 0, 851991, 1, 0, 851990, 1, 0, 851989, 1, 0, 851988, 1, 0, 851987, 1, 0, 851986, 1, 0, 851985, 1, 0, 851984, 1, 0, 851983, 1, 0, 851982, 1, 0, 851981, 1, 0, 851980, 1, 0, 851979, 1, 0, 851978, 1, 0, 851977, 1, 0, 851976, 1, 0, 851975, 1, 0, 131074, 1, 0, 196610, 1, 0, 196609, 1, 0, 262145, 1, 0, 786433, 1, 0, 851969, 1, 0, 851970, 1, 0, 851971, 1, 0, 851972, 1, 0, 851973, 1, 0, 851974, 1, 0, 655364, 65537, 0, 589829, 65537, 1, 655365, 65537, 0, 655366, 65537, 0, 458770, 65537, 0, 524306, 65537, 0, 589842, 65537, 0, 458769, 65537, 0, 524305, 65537, 0, 589841, 65537, 0, 720921, 65537, 0, 720922, 65537, 0, 720923, 65537, 0, 720924, 65537, 0, 720925, 65537, 0, 720926, 65537, 0, 655363, 65537, 0, 655362, 65537, 0, 786432, 1, 0, 720896, 1, 0, 655360, 1, 0, 327680, 1, 0, 262144, 1, 0, 393216, 1, 0, 458752, 1, 0, 524288, 1, 0, 589824, 1, 0, 655361, 65537, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 65552, 1, 0, 65553, 1, 0, 65554, 1, 0, 65555, 1, 0, 65556, 1, 0, 65557, 1, 0, 65558, 1, 0, 65559, 1, 0, 65560, 1, 0, 458762, 65537, 0, 524298, 65537, 0, 589834, 65537, 0, 458761, 65537, 0, 524297, 65537, 0, 589833, 65537, 0, 196634, 131073, 0, 196635, 131073, 0, 196636, 131073, 0, 458780, 131073, 0, 196637, 131073, 0, 458781, 131073, 0, 196638, 131073, 0, 458782, 131073, 0, 720909, 65537, 0, 720910, 65537, 0)
+metadata/_edit_lock_ = true
+
+[node name="DecoTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+tile_set = ExtResource("3_qmuce")
+format = 2
+layer_0/tile_data = PackedInt32Array(393234, 0, 65536, 393233, 0, 65536, 786434, 0, 196608, 786435, 0, 196608, 786436, 0, 196608, 786437, 0, 196608, 786438, 0, 196608, 786439, 0, 196608, 786440, 0, 196608, 786441, 0, 196608, 786442, 0, 196608, 786443, 0, 196608, 786444, 0, 196608, 786445, 0, 196608, 786446, 0, 196608, 786447, 0, 196608, 786448, 0, 196608, 786449, 0, 196608, 786450, 0, 196608, 786451, 0, 196608, 786452, 0, 196608, 786453, 0, 196608, 786454, 0, 196608, 786455, 0, 196608, 786456, 0, 196608, 393226, 0, 65536, 393225, 0, 65536, 655374, 0, 131072)
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles90deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 1.5708
+tile_set = ExtResource("3_qmuce")
+format = 2
+layer_0/tile_data = PackedInt32Array(-786425, 0, 196608, -786424, 0, 196608, -786423, 0, 196608)
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 3.14159
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles270deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = -1.5708
+tile_set = ExtResource("3_qmuce")
+format = 2
+layer_0/tile_data = PackedInt32Array(1114104, 0, 196608, 1114103, 0, 196608, 1114102, 0, 196608)
+metadata/_edit_lock_ = true
+
+[node name="-20_ENTITIES" type="CanvasGroup" parent="."]
+z_index = -20
+metadata/_edit_lock_ = true
+
+[node name="LevelObjects" type="Node2D" parent="-20_ENTITIES"]
+editor_description = "orbs, artifacts, ladders, etc."
+metadata/_edit_lock_ = true
+
+[node name="DashOrb" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("3_30pjs")]
+position = Vector2(176, 72)
+rotation = -0.785398
+
+[node name="TeleportOrbs" type="Node2D" parent="-20_ENTITIES/LevelObjects"]
+position = Vector2(16, 72)
+script = ExtResource("4_1jj8t")
+glass = true
+
+[node name="Area2D" type="Area2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
+collision_mask = 2
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs/Area2D"]
+position = Vector2(4, -4)
+shape = SubResource("RectangleShape2D_ykfev")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
+position = Vector2(4, -4)
+texture = ExtResource("5_cvy43")
+hframes = 4
+vframes = 4
+frame = 5
+metadata/_edit_lock_ = true
+
+[node name="Glass" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
+visible = false
+position = Vector2(4, -4)
+texture = ExtResource("5_cvy43")
+hframes = 4
+vframes = 4
+frame = 3
+
+[node name="Exit" type="Node2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
+position = Vector2(220, -28)
+
+[node name="Sprite2D" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs/Exit"]
+texture = ExtResource("5_cvy43")
+hframes = 4
+vframes = 4
+frame = 6
+
+[node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
+editor_description = "Any moving enemies/hazards/npcs"
+metadata/_edit_lock_ = true
+
+[node name="+20_FG" type="CanvasGroup" parent="."]
+editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"
+z_index = 20
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -8.0
+offset_top = 48.0
+offset_right = 84.0
+offset_bottom = 71.0
+text = "non effect 4"

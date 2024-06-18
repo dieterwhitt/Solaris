@@ -158,7 +158,7 @@ editor_description = "orbs, artifacts, ladders, etc."
 metadata/_edit_lock_ = true
 
 [node name="DashOrb" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("3_pyup7")]
-position = Vector2(176, 56)
+position = Vector2(176, 48)
 glass = true
 
 [node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
