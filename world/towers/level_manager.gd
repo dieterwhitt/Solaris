@@ -10,21 +10,12 @@ managing the player.
 By copying the level_template scene, you'll be able to create levels,
 and this file controls loading & switching between them
 
-as of may 6 2024:
 level_manager:
 	- loads levels
 	- moves the player across levels when they exit the screen
 	- spawns the player in on intial load
-
-level_manager DOES NOT YET:
 	- handle player powerup scenes
 	- save checkpoints and respawn player on death
-
-(the unadded features above will be necessary but I 
-haven't implemented them yet)
-
-If you have any questions dm me on discord.
-- dieter whittingham
 '''
 
 # this will probably be the longest file in the game
@@ -39,7 +30,7 @@ If you have any questions dm me on discord.
 var loaded = {}
 # current tower rewource
 var tower : Tower = load("res://world/towers/tower1/tower1.gd").new()
-var spawn_lvl : String = "28" # current spawn level id (checkpoint)
+var spawn_lvl : String = "51" # current spawn level id (checkpoint)
 # kindling bonfires (setting checkpoints) not established yet (need checkpoint scene)
 # for now just auto-set checkpoint when screen loads
 # current scene being rendered

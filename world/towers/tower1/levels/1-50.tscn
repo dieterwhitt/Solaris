@@ -1,0 +1,180 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxb8bdjpmqfdr"]
+
+[ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_q0q00"]
+[ext_resource type="Script" path="res://world/towers/tower1/levels/1-50.gd" id="1_vuk7t"]
+[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_ef2xo"]
+[ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="3_uarmd"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
+
+[node name="1-50" type="Node"]
+editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
+script = ExtResource("1_vuk7t")
+
+[node name="Borders" type="Node" parent="."]
+
+[node name="Right" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 1.1
+anchor_top = 0.444
+anchor_right = 1.1
+anchor_bottom = 0.444
+offset_top = 0.0799936
+offset_right = 116.0
+offset_bottom = 23.08
+text = "Right: 1-52"
+metadata/_edit_lock_ = true
+
+[node name="Top" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = -0.267
+anchor_right = 0.3
+anchor_bottom = -0.267
+offset_left = 8.0
+offset_top = 0.0600035
+offset_right = 124.0
+offset_bottom = 23.06
+text = "Top: 1-51"
+metadata/_edit_lock_ = true
+
+[node name="Left" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = -0.425
+anchor_top = 0.444
+anchor_right = -0.425
+anchor_bottom = 0.444
+offset_top = 0.0799936
+offset_right = 116.0
+offset_bottom = 23.08
+text = "Left: 1-49"
+metadata/_edit_lock_ = true
+
+[node name="Bottom" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 1.156
+anchor_right = 0.3
+anchor_bottom = 1.156
+offset_top = -0.0800033
+offset_right = 134.0
+offset_bottom = 22.92
+text = "Bottom: Level_XX"
+metadata/_edit_lock_ = true
+
+[node name="PhysicsBorder" type="StaticBody2D" parent="Borders"]
+collision_layer = 24
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="TopBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(160, 2.08165e-12)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_0e1bx")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="BottomBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(160, 180)
+shape = SubResource("WorldBoundaryShape2D_0e1bx")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="LeftBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(2.08165e-12, 90)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_0e1bx")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="RightBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(320, 90)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_0e1bx")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="-40_BG_LAYER" type="CanvasGroup" parent="."]
+z_index = -40
+metadata/_edit_lock_ = true
+
+[node name="-30_LEVEL" type="CanvasGroup" parent="."]
+z_index = -30
+metadata/_edit_lock_ = true
+
+[node name="Tilemaps" type="Node2D" parent="-30_LEVEL"]
+metadata/_edit_lock_ = true
+
+[node name="LayoutTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For level tiles, not including scene tiles (use scene tilemap)"
+tile_set = ExtResource("1_q0q00")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 917504, 65537, 0, 1048576, 196609, 0, 1114112, 196609, 0, 1179648, 196609, 0, 1245184, 196609, 0, 1310720, 196609, 0, 1376256, 196609, 0, 1441792, 196609, 0, 1048577, 196609, 0, 1114113, 196609, 0, 1179649, 196609, 0, 1245185, 196609, 0, 1310721, 196609, 0, 1376257, 196609, 0, 1441793, 196609, 0, 1048578, 196609, 0, 1114114, 196609, 0, 1179650, 196609, 0, 1245186, 196609, 0, 1310722, 196609, 0, 1376258, 196609, 0, 1441794, 196609, 0, 1048579, 196609, 0, 1114115, 196609, 0, 1179651, 196609, 0, 1245187, 196609, 0, 1310723, 196609, 0, 1376259, 196609, 0, 1441795, 196609, 0, 1048580, 196609, 0, 1114116, 196609, 0, 1179652, 196609, 0, 1245188, 196609, 0, 1310724, 196609, 0, 1376260, 196609, 0, 1441796, 196609, 0, 1048581, 196609, 0, 1114117, 196609, 0, 1179653, 196609, 0, 1245189, 196609, 0, 1310725, 196609, 0, 1376261, 196609, 0, 1441797, 196609, 0, 1048582, 196609, 0, 1114118, 196609, 0, 1179654, 196609, 0, 1245190, 196609, 0, 1310726, 196609, 0, 1376262, 196609, 0, 1441798, 196609, 0, 1048583, 196609, 0, 1114119, 196609, 0, 1179655, 196609, 0, 1245191, 196609, 0, 1310727, 196609, 0, 1376263, 196609, 0, 1441799, 196609, 0, 1048584, 196609, 0, 1114120, 196609, 0, 1179656, 196609, 0, 1245192, 196609, 0, 1310728, 196609, 0, 1376264, 196609, 0, 1441800, 196609, 0, 1048585, 196609, 0, 1114121, 196609, 0, 1179657, 196609, 0, 1245193, 196609, 0, 1310729, 196609, 0, 1376265, 196609, 0, 1441801, 196609, 0, 1048586, 196609, 0, 1114122, 196609, 0, 1179658, 196609, 0, 1245194, 196609, 0, 1310730, 196609, 0, 1376266, 196609, 0, 1441802, 196609, 0, 1048587, 196609, 0, 1114123, 196609, 0, 1179659, 196609, 0, 1245195, 196609, 0, 1310731, 196609, 0, 1376267, 196609, 0, 1441803, 196609, 0, 1048588, 196609, 0, 1114124, 196609, 0, 1179660, 196609, 0, 1245196, 196609, 0, 1310732, 196609, 0, 1376268, 196609, 0, 1441804, 196609, 0, 1048589, 196609, 0, 1114125, 196609, 0, 1179661, 196609, 0, 1245197, 196609, 0, 1310733, 196609, 0, 1376269, 196609, 0, 1441805, 196609, 0, 1048590, 196609, 0, 1114126, 196609, 0, 1179662, 196609, 0, 1245198, 196609, 0, 1310734, 196609, 0, 1376270, 196609, 0, 1441806, 196609, 0, 1048591, 196609, 0, 1114127, 196609, 0, 1179663, 196609, 0, 1245199, 196609, 0, 1310735, 196609, 0, 1376271, 196609, 0, 1441807, 196609, 0, 1048592, 196609, 0, 1114128, 196609, 0, 1179664, 196609, 0, 1245200, 196609, 0, 1310736, 196609, 0, 1376272, 196609, 0, 1441808, 196609, 0, 1048593, 196609, 0, 1114129, 196609, 0, 1179665, 196609, 0, 1245201, 196609, 0, 1310737, 196609, 0, 1376273, 196609, 0, 1441809, 196609, 0, 1048594, 196609, 0, 1114130, 196609, 0, 1179666, 196609, 0, 1245202, 196609, 0, 1310738, 196609, 0, 1376274, 196609, 0, 1441810, 196609, 0, 1048595, 196609, 0, 1114131, 196609, 0, 1179667, 196609, 0, 1245203, 196609, 0, 1310739, 196609, 0, 1376275, 196609, 0, 1441811, 196609, 0, 1048596, 196609, 0, 1114132, 196609, 0, 1179668, 196609, 0, 1245204, 196609, 0, 1310740, 196609, 0, 1376276, 196609, 0, 1441812, 196609, 0, 1048597, 196609, 0, 1114133, 196609, 0, 1179669, 196609, 0, 1245205, 196609, 0, 1310741, 196609, 0, 1376277, 196609, 0, 1441813, 196609, 0, 1048598, 196609, 0, 1114134, 196609, 0, 1179670, 196609, 0, 1245206, 196609, 0, 1310742, 196609, 0, 1376278, 196609, 0, 1441814, 196609, 0, 1048599, 196609, 0, 1114135, 196609, 0, 1179671, 196609, 0, 1245207, 196609, 0, 1310743, 196609, 0, 1376279, 196609, 0, 1441815, 196609, 0, 1048600, 196609, 0, 1114136, 196609, 0, 1179672, 196609, 0, 1245208, 196609, 0, 1310744, 196609, 0, 1376280, 196609, 0, 1441816, 196609, 0, 1048601, 196609, 0, 1114137, 196609, 0, 1179673, 196609, 0, 1245209, 196609, 0, 1310745, 196609, 0, 1376281, 196609, 0, 1441817, 196609, 0, 1048602, 196609, 0, 1114138, 196609, 0, 1179674, 196609, 0, 1245210, 196609, 0, 1310746, 196609, 0, 1376282, 196609, 0, 1441818, 196609, 0, 1048603, 196609, 0, 1114139, 196609, 0, 1179675, 196609, 0, 1245211, 196609, 0, 1310747, 196609, 0, 1376283, 196609, 0, 1441819, 196609, 0, 1048604, 196609, 0, 1114140, 196609, 0, 1179676, 196609, 0, 1245212, 196609, 0, 1310748, 196609, 0, 1376284, 196609, 0, 1441820, 196609, 0, 1048605, 196609, 0, 1114141, 196609, 0, 1179677, 196609, 0, 1245213, 196609, 0, 1310749, 196609, 0, 1376285, 196609, 0, 1441821, 196609, 0, 1048606, 196609, 0, 1114142, 196609, 0, 1179678, 196609, 0, 1245214, 196609, 0, 1310750, 196609, 0, 1376286, 196609, 0, 1441822, 196609, 0, 1048607, 196609, 0, 1114143, 196609, 0, 1179679, 196609, 0, 1245215, 196609, 0, 1310751, 196609, 0, 1376287, 196609, 0, 1441823, 196609, 0, 1048608, 196609, 0, 1114144, 196609, 0, 1179680, 196609, 0, 1245216, 196609, 0, 1310752, 196609, 0, 1376288, 196609, 0, 1441824, 196609, 0, 1048609, 196609, 0, 1114145, 196609, 0, 1179681, 196609, 0, 1245217, 196609, 0, 1310753, 196609, 0, 1376289, 196609, 0, 1441825, 196609, 0, 1048610, 196609, 0, 1114146, 196609, 0, 1179682, 196609, 0, 1245218, 196609, 0, 1310754, 196609, 0, 1376290, 196609, 0, 1441826, 196609, 0, 1048611, 196609, 0, 1114147, 196609, 0, 1179683, 196609, 0, 1245219, 196609, 0, 1310755, 196609, 0, 1376291, 196609, 0, 1441827, 196609, 0, 1048612, 196609, 0, 1114148, 196609, 0, 1179684, 196609, 0, 1245220, 196609, 0, 1310756, 196609, 0, 1376292, 196609, 0, 1441828, 196609, 0, 1048613, 196609, 0, 1114149, 196609, 0, 1179685, 196609, 0, 1245221, 196609, 0, 1310757, 196609, 0, 1376293, 196609, 0, 1441829, 196609, 0, 1048614, 196609, 0, 1114150, 196609, 0, 1179686, 196609, 0, 1245222, 196609, 0, 1310758, 196609, 0, 1376294, 196609, 0, 1441830, 196609, 0, 1048615, 196609, 0, 1114151, 196609, 0, 1179687, 196609, 0, 1245223, 196609, 0, 1310759, 196609, 0, 1376295, 196609, 0, 1441831, 196609, 0, 917505, 65537, 0, 917506, 65537, 0, 917507, 65537, 0, 917508, 65537, 0, 917509, 65537, 0, 917510, 65537, 0, 917511, 65537, 0, 917512, 65537, 0, 917513, 65537, 0, 917514, 65537, 0, 917515, 65537, 0, 917516, 65537, 0, 917517, 65537, 0, 917518, 65537, 0, 393219, 131073, 0, 393220, 131073, 0, 393221, 131073, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 196647, 1, 0, 196646, 1, 0, 196645, 1, 0, 196644, 1, 0, 131108, 1, 0, 65572, 1, 0, 36, 1, 0, 35, 1, 0, 34, 1, 0, 33, 1, 0, 32, 1, 0, 31, 1, 0, 30, 1, 0, 13, 1, 0, 14, 1, 0, 15, 1, 0, 16, 1, 0, 17, 1, 0, 917519, 65537, 0, 917520, 65537, 0, 917521, 131073, 0, 917522, 131073, 0, 917523, 131073, 0, 917524, 131073, 0, 983049, 65537, 0, 983056, 65537, 0, 786450, 196609, 1, 851986, 196609, 1, 786451, 196609, 1, 851987, 196609, 1, 29, 1, 0, 28, 1, 0, 27, 1, 0, 26, 1, 0, 25, 1, 0, 18, 1, 0, 65561, 1, 0, 131097, 1, 0, 196633, 1, 0, 262169, 1, 0, 851990, 327681, 1, 786454, 327681, 1, 720919, 327681, 1, 655383, 327681, 1, 589847, 327681, 1, 589848, 327681, 1, 524312, 327681, 1, 458776, 327681, 1, 458777, 327681, 1, 393241, 327681, 1, 393242, 327681, 1, 393243, 327681, 1, 393244, 327681, 1, 327708, 327681, 1, 327709, 327681, 1, 327710, 327681, 1, 327711, 327681, 1, 327712, 327681, 1, 393248, 327681, 1, 393249, 327681, 1, 393250, 327681, 1, 393251, 327681, 1, 852006, 327681, 1, 917542, 262145, 0, 917525, 262145, 0, 917526, 262145, 0, 917527, 262145, 0, 917528, 262145, 0, 917529, 262145, 0, 917530, 262145, 0, 917531, 262145, 0, 917532, 262145, 0, 917533, 262145, 0, 917534, 262145, 0, 917535, 262145, 0, 917536, 262145, 0, 917537, 262145, 0, 917538, 262145, 0, 917539, 262145, 0, 917540, 262145, 0, 917541, 262145, 0, 917543, 262145, 0, 393252, 327681, 1, 393253, 327681, 1, 393254, 327681, 1, 458791, 327681, 1, 524327, 327681, 1, 589863, 327681, 1, 655399, 327681, 1, 786471, 327681, 1, 852007, 327681, 1, 720935, 327681, 1, 524326, 327681, 1, 458790, 327681, 1, 524311, 327681, 1, 458775, 327681, 1, 458774, 327681, 1, 458773, 327681, 1, 458772, 327681, 1, 327690, 131073, 1, 327691, 131073, 1, 327692, 131073, 1, 327693, 65537, 0, 327694, 65537, 0, 327695, 131073, 1, 327696, 131073, 1, 327697, 131073, 1, 327698, 65537, 0, 327699, 65537, 0, 327700, 131073, 1, 327701, 131073, 1, 327702, 131073, 1, 327703, 1, 0, 327704, 1, 0, 655365, 131073, 0, 655364, 131073, 0, 655363, 131073, 0, 327705, 65537, 0, 983062, 327681, 1, 983079, 327681, 1, 19, 1, 0, 20, 1, 0, 21, 1, 0, 22, 1, 0)
+metadata/_edit_lock_ = true
+
+[node name="DecoTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+tile_set = ExtResource("3_ef2xo")
+format = 2
+layer_0/tile_data = PackedInt32Array(262157, 0, 196608, 262158, 0, 196608, 262162, 0, 196608, 262163, 0, 196608)
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles90deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 1.5708
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 3.14159
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles270deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = -1.5708
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="-20_ENTITIES" type="CanvasGroup" parent="."]
+z_index = -20
+metadata/_edit_lock_ = true
+
+[node name="LevelObjects" type="Node2D" parent="-20_ENTITIES"]
+editor_description = "orbs, artifacts, ladders, etc."
+metadata/_edit_lock_ = true
+
+[node name="DashOrb" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("3_uarmd")]
+position = Vector2(192, 32)
+
+[node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
+editor_description = "Any moving enemies/hazards/npcs"
+metadata/_edit_lock_ = true
+
+[node name="+20_FG" type="CanvasGroup" parent="."]
+editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"
+z_index = 20
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 233.0
+offset_bottom = 95.0
+text = "prompt to call lake beast"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 192.0
+offset_top = 48.0
+offset_right = 334.0
+offset_bottom = 71.0
+text = "head of lake beast"

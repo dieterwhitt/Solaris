@@ -1,0 +1,159 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds6v1ndly64vd"]
+
+[ext_resource type="Script" path="res://world/towers/tower1/levels/1-53.gd" id="1_3y6ur"]
+[ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_dkn7k"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
+
+[node name="1-53" type="Node"]
+editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
+script = ExtResource("1_3y6ur")
+
+[node name="Borders" type="Node" parent="."]
+
+[node name="Right" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 1.1
+anchor_top = 0.444
+anchor_right = 1.1
+anchor_bottom = 0.444
+offset_top = 0.0799936
+offset_right = 116.0
+offset_bottom = 23.08
+text = "Right: 1-54"
+metadata/_edit_lock_ = true
+
+[node name="Top" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = -0.267
+anchor_right = 0.3
+anchor_bottom = -0.267
+offset_left = 8.0
+offset_top = 0.0600035
+offset_right = 124.0
+offset_bottom = 23.06
+text = "Top: Level_XX"
+metadata/_edit_lock_ = true
+
+[node name="Left" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = -0.425
+anchor_top = 0.444
+anchor_right = -0.425
+anchor_bottom = 0.444
+offset_top = 0.0799936
+offset_right = 116.0
+offset_bottom = 23.08
+text = "Left: 1-51"
+metadata/_edit_lock_ = true
+
+[node name="Bottom" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 1.156
+anchor_right = 0.3
+anchor_bottom = 1.156
+offset_top = -0.0800033
+offset_right = 134.0
+offset_bottom = 22.92
+text = "Bottom: Level_XX"
+metadata/_edit_lock_ = true
+
+[node name="PhysicsBorder" type="StaticBody2D" parent="Borders"]
+collision_layer = 24
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="TopBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(160, 2.08165e-12)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_0e1bx")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="BottomBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(160, 180)
+shape = SubResource("WorldBoundaryShape2D_0e1bx")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="LeftBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(2.08165e-12, 90)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_0e1bx")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="RightBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(320, 90)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_0e1bx")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="-40_BG_LAYER" type="CanvasGroup" parent="."]
+z_index = -40
+metadata/_edit_lock_ = true
+
+[node name="-30_LEVEL" type="CanvasGroup" parent="."]
+z_index = -30
+metadata/_edit_lock_ = true
+
+[node name="Tilemaps" type="Node2D" parent="-30_LEVEL"]
+metadata/_edit_lock_ = true
+
+[node name="LayoutTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For level tiles, not including scene tiles (use scene tilemap)"
+tile_set = ExtResource("1_dkn7k")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 786432, 1, 0, 786433, 1, 0, 786434, 1, 0, 786435, 1, 0, 786436, 1, 0, 786437, 1, 0, 786438, 1, 0, 851974, 1, 0, 917510, 1, 0, 983046, 1, 0, 1048582, 1, 0, 1114118, 1, 0, 1179654, 1, 0, 1245190, 1, 0, 1310726, 1, 0, 1376262, 1, 0, 1441798, 1, 0, 917511, 65537, 0, 917512, 65537, 0, 917513, 65537, 0, 917514, 65537, 0, 917515, 65537, 0, 917516, 65537, 0, 917517, 65537, 0, 917518, 65537, 0, 917519, 65537, 0, 917520, 65537, 0, 917521, 65537, 0, 917522, 65537, 0, 917523, 65537, 0, 917524, 65537, 0, 917525, 65537, 0, 917526, 65537, 0, 917527, 65537, 0, 917528, 65537, 0, 917529, 65537, 0, 917530, 65537, 0, 917531, 65537, 0, 917532, 65537, 0, 917533, 65537, 0, 917534, 65537, 0, 917535, 65537, 0, 917536, 1, 0, 983072, 1, 0, 1048608, 1, 0, 1114145, 1, 0, 1179681, 1, 0, 1245217, 1, 0, 1310753, 1, 0, 1376289, 1, 0, 1441825, 1, 0, 917537, 1, 0, 917538, 1, 0, 917539, 1, 0, 917540, 1, 0, 917541, 1, 0, 917542, 1, 0, 917543, 1, 0, 1114144, 1, 0, 1048583, 196609, 0, 1114119, 196609, 0, 1179655, 196609, 0, 1245191, 196609, 0, 1310727, 196609, 0, 1376263, 196609, 0, 1441799, 196609, 0, 1048584, 196609, 0, 1114120, 196609, 0, 1179656, 196609, 0, 1245192, 196609, 0, 1310728, 196609, 0, 1376264, 196609, 0, 1441800, 196609, 0, 1048585, 196609, 0, 1114121, 196609, 0, 1179657, 196609, 0, 1245193, 196609, 0, 1310729, 196609, 0, 1376265, 196609, 0, 1441801, 196609, 0, 1048586, 196609, 0, 1114122, 196609, 0, 1179658, 196609, 0, 1245194, 196609, 0, 1310730, 196609, 0, 1376266, 196609, 0, 1441802, 196609, 0, 1048587, 196609, 0, 1114123, 196609, 0, 1179659, 196609, 0, 1245195, 196609, 0, 1310731, 196609, 0, 1376267, 196609, 0, 1441803, 196609, 0, 1048588, 196609, 0, 1114124, 196609, 0, 1179660, 196609, 0, 1245196, 196609, 0, 1310732, 196609, 0, 1376268, 196609, 0, 1441804, 196609, 0, 1048589, 196609, 0, 1114125, 196609, 0, 1179661, 196609, 0, 1245197, 196609, 0, 1310733, 196609, 0, 1376269, 196609, 0, 1441805, 196609, 0, 1048590, 196609, 0, 1114126, 196609, 0, 1179662, 196609, 0, 1245198, 196609, 0, 1310734, 196609, 0, 1376270, 196609, 0, 1441806, 196609, 0, 1048591, 196609, 0, 1114127, 196609, 0, 1179663, 196609, 0, 1245199, 196609, 0, 1310735, 196609, 0, 1376271, 196609, 0, 1441807, 196609, 0, 1048592, 196609, 0, 1114128, 196609, 0, 1179664, 196609, 0, 1245200, 196609, 0, 1310736, 196609, 0, 1376272, 196609, 0, 1441808, 196609, 0, 1048593, 196609, 0, 1114129, 196609, 0, 1179665, 196609, 0, 1245201, 196609, 0, 1310737, 196609, 0, 1376273, 196609, 0, 1441809, 196609, 0, 1048594, 196609, 0, 1114130, 196609, 0, 1179666, 196609, 0, 1245202, 196609, 0, 1310738, 196609, 0, 1376274, 196609, 0, 1441810, 196609, 0, 1048595, 196609, 0, 1114131, 196609, 0, 1179667, 196609, 0, 1245203, 196609, 0, 1310739, 196609, 0, 1376275, 196609, 0, 1441811, 196609, 0, 1048596, 196609, 0, 1114132, 196609, 0, 1179668, 196609, 0, 1245204, 196609, 0, 1310740, 196609, 0, 1376276, 196609, 0, 1441812, 196609, 0, 1048597, 196609, 0, 1114133, 196609, 0, 1179669, 196609, 0, 1245205, 196609, 0, 1310741, 196609, 0, 1376277, 196609, 0, 1441813, 196609, 0, 1048598, 196609, 0, 1114134, 196609, 0, 1179670, 196609, 0, 1245206, 196609, 0, 1310742, 196609, 0, 1376278, 196609, 0, 1441814, 196609, 0, 1048599, 196609, 0, 1114135, 196609, 0, 1179671, 196609, 0, 1245207, 196609, 0, 1310743, 196609, 0, 1376279, 196609, 0, 1441815, 196609, 0, 1048600, 196609, 0, 1114136, 196609, 0, 1179672, 196609, 0, 1245208, 196609, 0, 1310744, 196609, 0, 1376280, 196609, 0, 1441816, 196609, 0, 1048601, 196609, 0, 1114137, 196609, 0, 1179673, 196609, 0, 1245209, 196609, 0, 1310745, 196609, 0, 1376281, 196609, 0, 1441817, 196609, 0, 1048602, 196609, 0, 1114138, 196609, 0, 1179674, 196609, 0, 1245210, 196609, 0, 1310746, 196609, 0, 1376282, 196609, 0, 1441818, 196609, 0, 1048603, 196609, 0, 1114139, 196609, 0, 1179675, 196609, 0, 1245211, 196609, 0, 1310747, 196609, 0, 1376283, 196609, 0, 1441819, 196609, 0, 1048604, 196609, 0, 1114140, 196609, 0, 1179676, 196609, 0, 1245212, 196609, 0, 1310748, 196609, 0, 1376284, 196609, 0, 1441820, 196609, 0, 1048605, 196609, 0, 1114141, 196609, 0, 1179677, 196609, 0, 1245213, 196609, 0, 1310749, 196609, 0, 1376285, 196609, 0, 1441821, 196609, 0, 1048606, 196609, 0, 1114142, 196609, 0, 1179678, 196609, 0, 1245214, 196609, 0, 1310750, 196609, 0, 1376286, 196609, 0, 1441822, 196609, 0, 1048607, 196609, 0, 1114143, 196609, 0, 1179679, 196609, 0, 1245215, 196609, 0, 1310751, 196609, 0, 1376287, 196609, 0, 1441823, 196609, 0, 1179680, 196609, 0, 1245216, 196609, 0, 1310752, 196609, 0, 1376288, 196609, 0, 1441824, 196609, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 65552, 1, 0, 131088, 1, 0, 131089, 1, 0, 131090, 1, 0, 131091, 1, 0, 131092, 1, 0, 131093, 1, 0, 131094, 1, 0, 131095, 1, 0, 131096, 1, 0, 131097, 1, 0, 131098, 1, 0, 131099, 1, 0, 131100, 1, 0, 131101, 1, 0, 131102, 1, 0, 131103, 1, 0, 131104, 1, 0, 131105, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 196641, 1, 0, 196642, 1, 0, 196643, 1, 0, 196644, 1, 0, 196645, 1, 0, 196646, 1, 0, 196647, 1, 0)
+metadata/_edit_lock_ = true
+
+[node name="DecoTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles90deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 1.5708
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 3.14159
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles270deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = -1.5708
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="-20_ENTITIES" type="CanvasGroup" parent="."]
+z_index = -20
+metadata/_edit_lock_ = true
+
+[node name="LevelObjects" type="Node2D" parent="-20_ENTITIES"]
+editor_description = "orbs, artifacts, ladders, etc."
+metadata/_edit_lock_ = true
+
+[node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
+editor_description = "Any moving enemies/hazards/npcs"
+metadata/_edit_lock_ = true
+
+[node name="+20_FG" type="CanvasGroup" parent="."]
+editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"
+z_index = 20
+metadata/_edit_lock_ = true
