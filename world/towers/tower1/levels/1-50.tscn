@@ -155,6 +155,7 @@ metadata/_edit_lock_ = true
 
 [node name="DashOrb" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("3_uarmd")]
 position = Vector2(192, 32)
+glass = true
 
 [node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
 editor_description = "Any moving enemies/hazards/npcs"
