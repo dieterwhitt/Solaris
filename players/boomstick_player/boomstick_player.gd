@@ -6,7 +6,8 @@ extends ReworkedDefaultController
 
 # var direction2d = Vector2.ZERO
 const RECOIL_VELOCITY = 240
-@onready var pellets = $BoomstickPellets
+@onready var pellets : PackedScene = preload("res://players/boomstick_player/boomstick_pellets.tscn")
+@onready var killcasts = $KillCasts
 
 func _ready():
 	# override
@@ -37,38 +38,37 @@ func check_shoot():
 		# apply recoil
 		velocity.x = RECOIL_VELOCITY * recoil_direction
 		# restarting using subemitters doesn't work: need to resort to adding child scene
-		pellets.restart()
-		pellets.get_child(0).restart()
-		pellets.emitting = true
+		var new_pellets = pellets.instantiate()
+		add_child(new_pellets)
+		new_pellets.emitting = true
 		# play shooting animation
 		
-		
 		# check raycasts for enemies and kill all non-bulletproof ones
-		for raycast in $KillCasts.get_children():
-			pass
-		
-		
-'''
-
-func update_direction_2d():
-	direction2d.x = Input.get_axis("left", "right")
-	direction2d.y = Input.get_axis("up", "down")
-
-func check_shoot():
-	var recoil_direction = Vector2.ZERO
-	if Input.is_action_just_pressed("special"):
-		recoil_direction = -direction2d
-		if recoil_direction == Vector2.ZERO:
-			if transform.x.x == 1: recoil_direction.x = -1
-			else: recoil_direction.x = 1
-		recoil_direction = recoil_direction.normalized()
-		# recoil_direction.x = _sprite.flip_h
-		velocity = RECOIL_VELOCITY * recoil_direction
-		# emitting particles
-		var pellet_direction = Vector3.ZERO
-		# abs val because want to always shoot right, will be flipped by parent
-		pellet_direction.x = abs(recoil_direction.x)
-		pellet_direction.y = -recoil_direction.y
-		pellets.process_material.direction = pellet_direction
-		pellets.emitting = true
-'''
+		# if a bulletproof enemy is encountered, stop scanning the rest of the cast
+		# ie. penetrate all enemies that are not bulletproof
+		# right now, each raycast scans collision layer 1 (walls) and 5 (entity layer)
+		for raycast in killcasts.get_children():
+			# right now raycasts can only detect the first colliding object.
+			# we scan first object, add it as excpetion, and force raycast update until
+			# it is no longer colliding with anything.
+			while raycast.is_colliding():
+				var body = raycast.get_collider()
+				if body.is_in_group("Bulletproof") or body is TileMap:
+					# bulletproof entity or wall/floor
+					# play collision sound
+					
+					# stop scanning
+					break
+				elif body.is_in_group("Enemy"):
+					# non-bulletproof enemy: all enemies have kill function
+					body.kill()
+				
+				# bullet passes through: ignore the body from now on
+				raycast.add_exception(body)
+				# update raycast for next iteration
+				raycast.force_raycast_update()
+			# done scanning for this raycast: clear its exceptions
+			raycast.clear_exceptions()
+		# lastly delete new pellets after 1 second
+		await get_tree().create_timer(1.0).timeout
+		remove_child(new_pellets)

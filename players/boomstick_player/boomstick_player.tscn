@@ -255,3 +255,18 @@ lifetime = 0.2
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
+
+[node name="KillCasts" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="KillCasts"]
+target_position = Vector2(48, -16)
+collision_mask = 17
+
+[node name="RayCast2D2" type="RayCast2D" parent="KillCasts"]
+target_position = Vector2(48, 0)
+collision_mask = 17
+
+[node name="RayCast2D3" type="RayCast2D" parent="KillCasts"]
+target_position = Vector2(48, 16)
+collision_mask = 17
+hit_from_inside = true
