@@ -71,9 +71,12 @@ var parrying = false
 @export var debug = false
 # dependent on subclass: 
 # underscore indicates must define in subclass
-var _sprite : Sprite2D # may not need anymore due to new flip
+# var _sprite : Sprite2D # may not need anymore due to new flip
 var _animation_tree : AnimationTree
 var _state_machine : AnimationNodeStateMachinePlayback
+
+# need to give the player an area as well for aoe detection (ex. curse)
+# need to add temporary effects (temporary movedata multipliers)
 
 # to be added: temporary movedata multipliers
 

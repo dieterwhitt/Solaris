@@ -19,5 +19,6 @@ position = Vector2(160, 0)
 amount = 1200
 process_material = SubResource("ParticleProcessMaterial_1di6c")
 texture = ExtResource("1_vspu2")
+preprocess = 1.0
 visibility_rect = Rect2(-200, -200, 400, 400)
 local_coords = true

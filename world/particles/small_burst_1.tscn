@@ -6,13 +6,13 @@ spread = 180.0
 initial_velocity_min = 70.0
 initial_velocity_max = 90.0
 gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
-damping_min = 100.0
-damping_max = 100.0
+damping_min = 200.0
+damping_max = 200.0
 
 [node name="SmallBurst1" type="GPUParticles2D"]
 emitting = false
-amount = 6
 process_material = SubResource("ParticleProcessMaterial_ucleg")
 lifetime = 0.2
 one_shot = true
 explosiveness = 1.0
+fixed_fps = 60

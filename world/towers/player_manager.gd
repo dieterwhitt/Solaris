@@ -8,8 +8,10 @@
 extends Node
 
 # null -> use default player
+# testing various values. 
 var active_artifact : Artifact = null
-var backup_artifact : Artifact = null
+var backup_artifact : Artifact = \
+		load("res://world/artifacts/boomstick/boomstick.tres")
 @onready var level_manager : Node = get_parent()
 
 # on swap:
@@ -69,7 +71,7 @@ func update_player():
 	
 	
 
-# set equipped artifacts
+# set equipped artifacts. mainly to be used at checkpoints using select artifact menu
 func set_artifacts(a1 : Artifact, a2 : Artifact):
 	active_artifact = a1
 	backup_artifact = a2

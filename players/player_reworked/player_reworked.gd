@@ -14,7 +14,7 @@ func _ready():
 	_animation_tree = $AnimationTree
 	_animation_tree.active = true
 	# sprite and state machine
-	_sprite = $Sprite2D
+	# _sprite = $Sprite2D sprite not needed
 	_state_machine = _animation_tree.get("parameters/playback")
 	
 func _physics_process(delta):

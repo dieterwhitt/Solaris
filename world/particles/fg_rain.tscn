@@ -19,5 +19,6 @@ amount = 1500
 process_material = SubResource("ParticleProcessMaterial_nxqjd")
 texture = ExtResource("1_u81qv")
 lifetime = 0.5
+preprocess = 1.0
 visibility_rect = Rect2(-200, -200, 400, 400)
 local_coords = true
