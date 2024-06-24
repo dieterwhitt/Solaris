@@ -1,10 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://e6xtle4n6m5c"]
+[gd_scene load_steps=33 format=3 uid="uid://cjhfb2lx184tx"]
 
-[ext_resource type="Script" path="res://players/boomstick_player/boomstick_player.gd" id="1_04nso"]
-[ext_resource type="Texture2D" uid="uid://jxu2bhftq5r0" path="res://players/boomstick_player/RunRightGun.png" id="2_46nou"]
-[ext_resource type="SpriteFrames" uid="uid://dw13gbnr8x4fd" path="res://players/boomstick_player/boomstick_player_spriteframes.tres" id="2_jg2m5"]
-[ext_resource type="Texture2D" uid="uid://b4koh8a8g5s4k" path="res://players/boomstick_player/pellet.png" id="3_av6lb"]
-[ext_resource type="Shape2D" uid="uid://l0se2n0k15an" path="res://players/common/player_hitbox_rect.tres" id="4_vsvwg"]
+[ext_resource type="Texture2D" uid="uid://dfy1ludmwa1b5" path="res://players/sprites/Ninja.png" id="1_a8lmp"]
+[ext_resource type="SpriteFrames" uid="uid://r1qbqgnq6vyp" path="res://players/common/placeholder_spriteframes.tres" id="1_dfrwd"]
+[ext_resource type="Script" path="res://players/adrenaline_player/adrenaline_player.gd" id="1_ecq0k"]
+[ext_resource type="Shape2D" uid="uid://l0se2n0k15an" path="res://players/common/player_hitbox_rect.tres" id="2_mwx72"]
+[ext_resource type="PackedScene" uid="uid://b0erqklqwk3s1" path="res://players/adrenaline_player/adrenaline_particles.tscn" id="5_2anvy"]
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
 length = 0.001
@@ -33,7 +33,7 @@ tracks/1/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_1kaso"]
+[sub_resource type="Animation" id="Animation_gq5df"]
 resource_name = "fall"
 length = 0.200007
 loop_mode = 1
@@ -71,14 +71,14 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1, 2, 3, 4, 5, 6, 7, 8]
+"values": [&"idle"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -92,22 +92,39 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"idle"]
-}
 
 [sub_resource type="Animation" id="Animation_6de6d"]
 resource_name = "jump"
-length = 0.500008
+length = 0.400007
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"jump"]
+}
+
+[sub_resource type="Animation" id="Animation_dah5t"]
+resource_name = "parry"
+length = 0.333342
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -116,34 +133,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [18, 19, 20, 21, 22, 23, 24, 25]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"jump"]
+"values": [54, 55, 56, 57]
 }
 
 [sub_resource type="Animation" id="Animation_wh2cn"]
@@ -154,14 +147,14 @@ step = 0.0666667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1, 2, 3, 4, 5]
+"values": [&"run"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -175,25 +168,14 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"run"]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xaavk"]
 _data = {
 "RESET": SubResource("Animation_1s0tj"),
-"fall": SubResource("Animation_1kaso"),
+"fall": SubResource("Animation_gq5df"),
 "idle": SubResource("Animation_3usi4"),
 "jump": SubResource("Animation_6de6d"),
+"parry": SubResource("Animation_dah5t"),
 "run": SubResource("Animation_wh2cn")
 }
 
@@ -254,7 +236,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4574k"]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ij3gr"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mbnk5"]
 states/End/position = Vector2(684.5, 216)
 states/RESET/node = SubResource("AnimationNodeAnimation_2ytaj")
 states/RESET/position = Vector2(431.16, 352.5)
@@ -270,48 +252,32 @@ states/parry/position = Vector2(369.66, 84.5)
 transitions = ["Start", "idle-run", SubResource("AnimationNodeStateMachineTransition_pph1j"), "idle-run", "parry", SubResource("AnimationNodeStateMachineTransition_35p6w"), "idle-run", "jump", SubResource("AnimationNodeStateMachineTransition_t5l5l"), "idle-run", "RESET", SubResource("AnimationNodeStateMachineTransition_ayr5y"), "parry", "idle-run", SubResource("AnimationNodeStateMachineTransition_eroip"), "idle-run", "End", SubResource("AnimationNodeStateMachineTransition_ngvfd"), "RESET", "idle-run", SubResource("AnimationNodeStateMachineTransition_h7cax"), "fall", "idle-run", SubResource("AnimationNodeStateMachineTransition_3gtbi"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_y8rv8"), "jump", "idle-run", SubResource("AnimationNodeStateMachineTransition_b2yn0"), "idle-run", "fall", SubResource("AnimationNodeStateMachineTransition_4574k")]
 graph_offset = Vector2(35.9501, 36.3362)
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gr2xh"]
-particle_flag_disable_z = true
-spread = 20.0
-initial_velocity_min = 200.0
-initial_velocity_max = 300.0
-gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
-collision_mode = 1
-collision_friction = 0.5
-collision_bounce = 0.3
-sub_emitter_mode = 2
-sub_emitter_amount_at_end = 10
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_28dtu"]
-particle_flag_disable_z = true
-spread = 180.0
-initial_velocity_min = 40.0
-initial_velocity_max = 60.0
-gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
-
-[node name="BoomstickPlayer" type="CharacterBody2D" groups=["Player"]]
+[node name="adrenaline_player" type="CharacterBody2D" groups=["Player"]]
 z_as_relative = false
 collision_layer = 2
 collision_mask = 33
 platform_on_leave = 1
 platform_floor_layers = 4294901793
-script = ExtResource("1_04nso")
-MoveDataResourceFile = "res://players/boomstick_player/boomstick_movedata.tres"
+script = ExtResource("1_ecq0k")
+MoveDataResourceFile = "res://players/adrenaline_player/adrenaline_movedata.tres"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("2_jg2m5")
+sprite_frames = ExtResource("1_dfrwd")
 animation = &"idle"
 frame = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("2_46nou")
-hframes = 6
+position = Vector2(2.08165e-12, -8)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_a8lmp")
+hframes = 9
+vframes = 9
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6.5)
-shape = ExtResource("4_vsvwg")
+position = Vector2(0, 8.5)
+shape = ExtResource("2_mwx72")
 debug_color = Color(0.180392, 0.517647, 1, 0.419608)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -325,45 +291,9 @@ active = false
 libraries = {
 "": SubResource("AnimationLibrary_xaavk")
 }
-tree_root = SubResource("AnimationNodeStateMachine_ij3gr")
+tree_root = SubResource("AnimationNodeStateMachine_mbnk5")
 anim_player = NodePath("../AnimationPlayer")
 parameters/idle-run/blend_position = 0
 
-[node name="BoomstickPellets" type="GPUParticles2D" parent="."]
-position = Vector2(8, 0)
-emitting = false
-sub_emitter = NodePath("BoomstickPelletEnd")
-process_material = SubResource("ParticleProcessMaterial_gr2xh")
-texture = ExtResource("3_av6lb")
-lifetime = 0.2
-one_shot = true
-explosiveness = 1.0
-fixed_fps = 60
-interpolate = false
-fract_delta = false
-
-[node name="BoomstickPelletEnd" type="GPUParticles2D" parent="BoomstickPellets"]
-modulate = Color(0.623529, 0.623529, 0.623529, 1)
-position = Vector2(-8, 0)
-emitting = false
-amount = 16
-process_material = SubResource("ParticleProcessMaterial_28dtu")
-lifetime = 0.2
-one_shot = true
-explosiveness = 1.0
-fixed_fps = 60
-
-[node name="KillCasts" type="Node2D" parent="."]
-
-[node name="RayCast2D" type="RayCast2D" parent="KillCasts"]
-target_position = Vector2(48, -16)
-collision_mask = 17
-
-[node name="RayCast2D2" type="RayCast2D" parent="KillCasts"]
-target_position = Vector2(48, 0)
-collision_mask = 17
-
-[node name="RayCast2D3" type="RayCast2D" parent="KillCasts"]
-target_position = Vector2(48, 16)
-collision_mask = 17
-hit_from_inside = true
+[node name="AdrenalineParticles" parent="." instance=ExtResource("5_2anvy")]
+position = Vector2(0, 3)

@@ -24,7 +24,6 @@ func _ready():
 func _physics_process(delta):
 	# apply physics controller
 	super._physics_process(delta)
-	# update_direction_2d()
 	check_shoot()
 	# move and slide
 	move_and_slide()

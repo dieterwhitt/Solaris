@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=29 format=3 uid="uid://dw13gbnr8x4fd"]
+[gd_resource type="SpriteFrames" load_steps=27 format=3 uid="uid://dw13gbnr8x4fd"]
 
 [ext_resource type="Texture2D" uid="uid://cirpcumwumnag" path="res://players/boomstick_player/idlegun.png" id="1_ygm2x"]
 [ext_resource type="Texture2D" uid="uid://cyed2yi137ru7" path="res://players/boomstick_player/JumpRightGun.png" id="2_utir7"]
@@ -69,14 +69,6 @@ atlas = ExtResource("2_utir7")
 region = Rect2(150, 0, 25, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k1srk"]
-atlas = ExtResource("2_utir7")
-region = Rect2(175, 0, 25, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l0oc1"]
-atlas = ExtResource("2_utir7")
-region = Rect2(150, 0, 25, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7spmi"]
 atlas = ExtResource("2_utir7")
 region = Rect2(175, 0, 25, 28)
 
@@ -170,17 +162,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l0oc1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7spmi")
-}],
-"loop": false,
-"name": &"land",
 "speed": 5.0
 }, {
 "frames": [{

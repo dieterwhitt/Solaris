@@ -9,7 +9,8 @@ extends Node
 
 # null -> use default player
 # testing various values. 
-var active_artifact : Artifact = null
+var active_artifact : Artifact = \
+		load("res://world/artifacts/adrenaline_shot/adrenaline_shot.tres")
 var backup_artifact : Artifact = \
 		load("res://world/artifacts/boomstick/boomstick.tres")
 @onready var level_manager : Node = get_parent()
@@ -62,10 +63,13 @@ func update_player():
 		new_player.add_child(level_manager.cam_transform)
 		# free old player
 		old_player.queue_free()
+		
+		# need to transfer movedata multipliers too: undo all multipliers on old,
+		# apply all multipliers on new, copy over array
+		
 	# update player
 	level_manager.add_child(new_player)
 	level_manager.player = new_player
-	# in the future: play player pull out animation
 	# DO NOT CALIBRATE CAMERA HERE - WILL CAUSE ALIGNMENT ISSUES
 	
 	

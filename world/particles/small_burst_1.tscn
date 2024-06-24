@@ -1,17 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://df6uwfvv71qqn"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ucleg"]
-particle_flag_disable_z = true
-spread = 180.0
-initial_velocity_min = 70.0
-initial_velocity_max = 90.0
-gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
-damping_min = 200.0
-damping_max = 200.0
+[ext_resource type="Material" uid="uid://oteocce5lvl0" path="res://world/particles/small_burst_1_process_material.tres" id="1_aipf1"]
 
 [node name="SmallBurst1" type="GPUParticles2D"]
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_ucleg")
+process_material = ExtResource("1_aipf1")
 lifetime = 0.2
 one_shot = true
 explosiveness = 1.0

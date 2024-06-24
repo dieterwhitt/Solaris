@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=2 format=3 uid="uid://dthsgqiu8m5lt"]
+
+[ext_resource type="Script" path="res://world/artifacts/artifact.gd" id="1_fnkbj"]
+
+[resource]
+script = ExtResource("1_fnkbj")
+id = "adrenaline_shot"
+name = "Adrenaline Shot"
+description = "[Consumable] [3 Charges] A syringe filled with a potent serum giving a surge of adrenaline. Press [Special] to inject."
+icon16 = ""
+icon64 = ""
+playerScenePath = "res://players/adrenaline_player/adrenaline_player.tscn"

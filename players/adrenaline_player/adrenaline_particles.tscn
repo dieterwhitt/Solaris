@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0erqklqwk3s1"]
+
+[ext_resource type="Material" uid="uid://coh4hamlth4ri" path="res://players/adrenaline_player/adrenaline_process_material.tres" id="1_pfgwu"]
+
+[node name="AdrenalineParticles" type="GPUParticles2D"]
+amount = 10
+process_material = ExtResource("1_pfgwu")
+lifetime = 0.3
