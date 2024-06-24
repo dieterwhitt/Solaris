@@ -19,4 +19,6 @@ func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
 		body.velocity.y = pad_velocity
 		body.used_double_jump = false
+		body.used_jump = true
+		body._state_machine.start("jump")
 

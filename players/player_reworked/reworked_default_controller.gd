@@ -65,6 +65,10 @@ var on_floor : bool = false
 var direction : int = 0
 # new - parrying
 var parrying = false
+# for animation: to determine when to start jump animation
+var just_jumped = false
+var dying = false # when playing death animation
+const FALL_SPEED = 125 # minimum y speed to switch to fall animation
 # to disable input (physics still applies), ex. after ability usage
 @export var receive_input : bool = true
 # variable for print debug statements
@@ -99,8 +103,6 @@ func _physics_process(delta):
 	# pre calculate on floor
 	on_floor = is_on_floor()
 	update_direction()
-	# special - subclasses that use the special button override
-	_special()
 	
 	update_dash(delta)
 	if not dashing:
@@ -119,8 +121,6 @@ func _physics_process(delta):
 	# run move and slide (in subclass)
 	# move_and_slide()
 
-func _special():
-	pass
 
 func update_direction():
 	if receive_input:
@@ -210,6 +210,7 @@ func update_jump_elig():
 		apply_down_gravity = true
 
 func apply_jump():
+	just_jumped = false
 	update_coyote()
 	update_buffer()
 	update_jump_elig()
@@ -223,6 +224,7 @@ func apply_jump():
 		#regular jump
 		velocity.y = MoveData.JUMP_VELOCITY
 		used_jump = true
+		just_jumped = true
 		# cancel dash
 		dashing = false
 		dash_stopping = false
@@ -232,6 +234,7 @@ func apply_jump():
 		# determines whether to buffer or double jump
 		velocity.y = MoveData.DOUBLE_JUMP_VELOCITY
 		used_double_jump = true
+		just_jumped = true
 		# cancel dash
 		dashing = false
 		dash_stopping = false
@@ -319,11 +322,8 @@ func flip():
 
 func update_parry():
 	if Input.is_action_just_pressed("parry") and receive_input:
-		_state_machine.start("parry", true)
-		parrying = true
-	else:
-		# update parry status based on if animation is still playing
-		parrying = _state_machine.get_current_node() == "parry" 
+		_state_machine.start("parry")
+		# important: parry animation sets parry to false at the end
 
 func _update_animation():
 	# subclass can override
@@ -337,17 +337,18 @@ func _update_animation():
 # function for choosing the animation to play/travel to
 # subclasses with unique animations can override to adjust logic
 func _choose_animation():
-	if parrying:
-		pass
-	elif used_double_jump:
-		_state_machine.travel("jump")
-	elif used_jump:
-		# jump
-		_state_machine.travel("jump")
-	elif not on_floor:
+	#if parrying or dying:
+		#pass # continue with dying parry animation over everything
+	if just_jumped:
+		# jump: and start from beginning
+		_state_machine.start("jump")
+	elif not on_floor: #and velocity.y > FALL_SPEED:
 		# fall
-		pass
-	else:
+		_state_machine.travel("fall")
+	elif not on_floor and used_jump or used_double_jump:
+		# jump animation again
+		_state_machine.travel("jump")
+	elif on_floor:
 		# set blend
 		_animation_tree.set("parameters/idle-run/blend_position", direction)
 		# idle-run
@@ -355,6 +356,8 @@ func _choose_animation():
 
 func kill():
 	# kills player
+	dying = true
+	# _state_machine.travel("death")
 	# get level manager parent and respawn player
 	# level manager MUST be a parent of player!!!
 	get_parent().respawn_player()

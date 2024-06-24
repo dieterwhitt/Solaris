@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=2 format=3 uid="uid://yv0xj3p3iohg"]
+
+[ext_resource type="Script" path="res://world/artifacts/artifact.gd" id="1_x4mn2"]
+
+[resource]
+script = ExtResource("1_x4mn2")
+id = "severed_ear"
+name = "Severed Ear"
+description = "[Passive] An ear taken from a fanatic medium. reveals illusory walls when held."
+icon16 = ""
+icon64 = ""
+playerScenePath = ""

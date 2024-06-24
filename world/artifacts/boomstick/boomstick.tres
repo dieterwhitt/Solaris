@@ -6,7 +6,7 @@
 script = ExtResource("1_lqvs7")
 id = "boomstick"
 name = "Boomstick"
-description = "A trusty weapon which explosive power. Press [Special] to shoot."
+description = "[Weapon] A trusty shotgun with explosive power. Press [Special] to shoot."
 icon16 = ""
 icon64 = ""
 playerScenePath = "res://players/boomstick_player/boomstick_player.tscn"
