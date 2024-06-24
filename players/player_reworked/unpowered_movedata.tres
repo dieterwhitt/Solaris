@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="MoveData" load_steps=2 format=3 uid="uid://bo45qxe227o2e"]
+
+[ext_resource type="Script" path="res://players/common/reworked_default_controller_data.gd" id="1_0j7um"]
+
+[resource]
+script = ExtResource("1_0j7um")
+GRAVITY = 670.0
+ACCELERATION = 1000.0
+DECELERATION = 1500.0
+JUMP_VELOCITY = -207.0
+DOWN_MULTIPLIER = 1.2
+AIR_ACCEL_MULTIPLIER = 0.85
+AIR_DECEL_MULTIPLIER = 0.35
+TERMINAL_X = 400.0
+TERMINAL_Y = 250.0
+INPUT_TERMINAL = 105.0
+COYOTE_TIME = 5
+JUMP_BUFFER = 5
+DOUBLE_JUMP_VELOCITY = -125
+MOMENTUM_MULTIPLIER = 0.8

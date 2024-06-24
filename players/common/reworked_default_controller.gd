@@ -64,11 +64,10 @@ var on_floor : bool = false
 # represents the CURRENT input direction (left, none, right)
 var direction : int = 0
 # new - parrying
-var parrying = false
+#var parrying = false
 # for animation: to determine when to start jump animation
 var just_jumped = false
-var dying = false # when playing death animation
-const FALL_SPEED = 125 # minimum y speed to switch to fall animation
+#var dying = false # when playing death animation
 # to disable input (physics still applies), ex. after ability usage
 @export var receive_input : bool = true
 # variable for print debug statements
@@ -86,9 +85,8 @@ var _state_machine : AnimationNodeStateMachinePlayback
 
 # using move data: one to keep a reference to the default, one active
 # that way we can change active data while still having the default available
-@onready var MoveData : Resource = \
-		preload("res://players/player_reworked/reworked_default_controller_data.gd").new()
-@onready var DefaultDataReference : Resource = MoveData.duplicate()
+@export_file var MoveDataResource
+@onready var MoveData : MoveData = load(MoveDataResource)
 
 func _ready():
 	# subclasses define children HERE
@@ -331,18 +329,18 @@ func _update_animation():
 	# handles idle-run, jump, parry, fall
 	flip()
 	# all players can parry
-	update_parry()
+	#update_parry() # possibly combine into choose animation
 	_choose_animation()
 
 # function for choosing the animation to play/travel to
 # subclasses with unique animations can override to adjust logic
 func _choose_animation():
-	#if parrying or dying:
-		#pass # continue with dying parry animation over everything
-	if just_jumped:
+	if Input.is_action_just_pressed("parry") and receive_input:
+		_state_machine.start("parry")
+	elif just_jumped:
 		# jump: and start from beginning
 		_state_machine.start("jump")
-	elif not on_floor: #and velocity.y > FALL_SPEED:
+	elif not on_floor:
 		# fall
 		_state_machine.travel("fall")
 	elif not on_floor and used_jump or used_double_jump:
@@ -356,7 +354,6 @@ func _choose_animation():
 
 func kill():
 	# kills player
-	dying = true
 	# _state_machine.travel("death")
 	# get level manager parent and respawn player
 	# level manager MUST be a parent of player!!!
