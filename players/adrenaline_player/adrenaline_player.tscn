@@ -1,10 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://cjhfb2lx184tx"]
+[gd_scene load_steps=32 format=3 uid="uid://cjhfb2lx184tx"]
 
 [ext_resource type="Texture2D" uid="uid://dfy1ludmwa1b5" path="res://players/sprites/Ninja.png" id="1_a8lmp"]
 [ext_resource type="SpriteFrames" uid="uid://r1qbqgnq6vyp" path="res://players/common/placeholder_spriteframes.tres" id="1_dfrwd"]
 [ext_resource type="Script" path="res://players/adrenaline_player/adrenaline_player.gd" id="1_ecq0k"]
 [ext_resource type="Shape2D" uid="uid://l0se2n0k15an" path="res://players/common/player_hitbox_rect.tres" id="2_mwx72"]
-[ext_resource type="PackedScene" uid="uid://b0erqklqwk3s1" path="res://players/adrenaline_player/adrenaline_particles.tscn" id="5_2anvy"]
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
 length = 0.001
@@ -259,6 +258,7 @@ collision_mask = 33
 platform_on_leave = 1
 platform_floor_layers = 4294901793
 script = ExtResource("1_ecq0k")
+particle_scene = "res://players/adrenaline_player/adrenaline_particles.tscn"
 MoveDataResourceFile = "res://players/adrenaline_player/adrenaline_movedata.tres"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -294,6 +294,3 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_mbnk5")
 anim_player = NodePath("../AnimationPlayer")
 parameters/idle-run/blend_position = 0
-
-[node name="AdrenalineParticles" parent="." instance=ExtResource("5_2anvy")]
-position = Vector2(0, 3)

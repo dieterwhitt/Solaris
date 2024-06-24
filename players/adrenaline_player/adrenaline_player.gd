@@ -14,7 +14,7 @@ var charges : int = 3 # total charges remaining
 var COOLDOWN_LENGTH_S = 8 # cooldown in seconds
 var cooldown_timer = 0 # frames
 
-@onready var particles = $AdrenalineParticles
+@export_file var particle_scene
 
 func _ready():
 	# override
@@ -25,7 +25,6 @@ func _ready():
 	# sprite and state machine (sprite not needed anymore)
 	# _sprite = $Sprite2D
 	_state_machine = _animation_tree.get("parameters/playback")
-	particles.emitting = false
 
 func _physics_process(delta):
 	# apply physics controller
@@ -46,10 +45,21 @@ func check_adrenaline():
 		add_multiplier("DECELERATION", DECEL_MULT, frame_duration)
 		cooldown_timer = COOLDOWN_LENGTH_S * 60
 		
-		# lastly add particles
-		particles.emitting = true
-		await get_tree().create_timer(DURATION_S).timeout
-		particles.emitting = false
+		var apply = func apply_particles(player):
+			print("applying adrenaline particles")
+			# add particles (effect)
+			var particles = load(particle_scene).instantiate()
+			add_child(particles)
+			particles.name = "AdrenalineParticles"
+			particles.emitting = true
+		
+		var remove = func remove_particles(player):
+			# remove particels (effect)
+			print("removing adrenaline particles")
+			print(get_children())
+			remove_child($AdrenalineParticles)
+			
+		add_effect(self, frame_duration, apply, remove)
 
 # updates the cooldown
 func update_cooldown(delta):
