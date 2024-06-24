@@ -5,7 +5,7 @@
 extends ReworkedDefaultController
 
 const DURATION_S : int = 5 # duration in seconds per charge, must *60 to convert to frames
-const RUN_SPEED_MULT : float = 1.3
+const RUN_SPEED_MULT : float = 1.35
 const ACCEL_MULT : float = 2
 const DECEL_MULT : float = 1.8
 var charges : int = 3 # total charges remaining

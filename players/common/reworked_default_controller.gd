@@ -104,11 +104,11 @@ class Multiplier:
 	func tick():
 		self.timer -= 1
 		if self.timer == 0:
-			self.timeout()
+			self.remove()
 			
 	# timer runs out: undo multiplier and delete self
-	func timeout():
-		print("active multiplier timed out")
+	func remove():
+		print("removing active multiplier")
 		self.movedata[attribute] /= self.value
 		# self.free() freeing causing issues due to freeing movedata reference
 	
@@ -119,6 +119,28 @@ class Multiplier:
 		
 # array of multipliers (active multipliers)
 var movedata_multipliers : Array = []
+
+# need to track temporary effects too
+# non-movedata multipliers – do not touch movedata or it will cause scaling issues
+class Effect:
+	var player : Node
+	var timer : int
+	var apply : Callable # takes player as param
+	var remove : Callable
+	
+	func _init(player, timer, apply, remove):
+		self.player = player
+		self.timer = timer
+		self.apply = apply
+		self.remove = remove
+	
+	func tick():
+		self.timer -= 1
+		if self.timer == 0:
+			self.remove.call(player)
+
+var effects : Array = []
+
 
 func _ready():
 	# subclasses define children HERE
@@ -133,7 +155,7 @@ func _physics_process(delta):
 	# pre calculate on floor
 	on_floor = is_on_floor()
 	update_direction()
-	update_multipliers()
+	update_multipliers_effects()
 	
 	update_dash(delta)
 	if not dashing:
@@ -156,13 +178,14 @@ func update_direction():
 		# -1, 0, 1
 		direction = Input.get_axis("left", "right")
 
-# updating movedata multipliers
-func update_multipliers():
-	# tick all multipliers
-	for multiplier in movedata_multipliers:
-		multiplier.tick()
-	# filter all timed out multipliers (timer = 0)
-	movedata_multipliers = movedata_multipliers.filter(func(x): return x.timer > 0)
+# updating movedata multipliers and temporary effects
+func update_multipliers_effects():
+	for array in [movedata_multipliers, effects]:
+		# tick all multipliers & effects
+		for multiplier in array:
+			multiplier.tick()
+		# filter all timed out multipliers and effects (timer = 0)
+		array = array.filter(func(x): return x.timer > 0)
 
 # creates a new multiplier and adds it to the array of multipliers
 func add_multiplier(attribute : String, value : float, timer : int):
@@ -171,6 +194,13 @@ func add_multiplier(attribute : String, value : float, timer : int):
 	# apply it
 	new_multiplier.apply()
 	movedata_multipliers.append(new_multiplier)
+
+func add_effect(player : Node, timer : int, apply : Callable, remove : Callable):
+	print("creating new effect with timer %s" % timer)
+	var new_effect = Effect.new(player, timer, apply, remove)
+	# apply it
+	new_effect.apply.call(player)
+	effects.append(new_effect)
 
 func apply_gravity(delta):
 	# apply gravity if the player is in the air and 
@@ -401,7 +431,12 @@ func _choose_animation():
 
 func kill():
 	# kills player
+	
+	# need to remove all effects and multipliers upon death. new player scene will still have
+	# the same movedata
+	
 	# _state_machine.travel("death")
 	# get level manager parent and respawn player
 	# level manager MUST be a parent of player!!!
+	
 	get_parent().respawn_player()
