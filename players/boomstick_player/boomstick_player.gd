@@ -6,6 +6,8 @@ extends ReworkedDefaultController
 
 # var direction2d = Vector2.ZERO
 const RECOIL_VELOCITY = 240
+const COOLDOWN_FRAMES = 45 # cooldown time in frames
+var cooldown_timer = 0
 @onready var pellets : PackedScene = preload("res://players/boomstick_player/boomstick_pellets.tscn")
 @onready var killcasts = $KillCasts
 
@@ -32,7 +34,10 @@ func _physics_process(delta):
 # applies recoil in opposite direction.
 # need to add cooldown, for now just shoots infinite amount
 func check_shoot():
-	if Input.is_action_just_pressed("special"):
+	if cooldown_timer > 0:
+		# sitll on cooldown
+		cooldown_timer -= 1
+	elif Input.is_action_just_pressed("special") and cooldown_timer == 0:
 		# set recoil to opposite current x facing direction
 		var recoil_direction = -transform.x.x
 		# apply recoil
@@ -41,6 +46,8 @@ func check_shoot():
 		var new_pellets = pellets.instantiate()
 		add_child(new_pellets)
 		new_pellets.emitting = true
+		# set cooldown
+		cooldown_timer = COOLDOWN_FRAMES
 		# play shooting animation
 		
 		# check raycasts for enemies and kill all non-bulletproof ones
@@ -72,3 +79,4 @@ func check_shoot():
 		# lastly delete new pellets after 1 second
 		await get_tree().create_timer(1.0).timeout
 		remove_child(new_pellets)
+	
