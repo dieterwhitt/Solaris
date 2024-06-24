@@ -81,12 +81,42 @@ var _state_machine : AnimationNodeStateMachinePlayback
 # need to give the player an area as well for aoe detection (ex. curse)
 # need to add temporary effects (temporary movedata multipliers)
 
-# to be added: temporary movedata multipliers
 
-# using move data: one to keep a reference to the default, one active
-# that way we can change active data while still having the default available
+# using move data resource. must be added in inspector or will crash
 @export_file var MoveDataResource
 @onready var MoveData : MoveData = load(MoveDataResource)
+
+# to be added: temporary movedata multipliers
+# inner class definition for multiplier object
+class Multiplier:
+	var attribute
+	var value : float
+	var timer : int
+	# constructor
+	func _init(attribute, value, timer):
+		self.attribute = attribute
+		self.value = value
+		self.timer = timer
+		
+	
+	# tick
+	func tick():
+		self.timer -= 1
+		if self.timer == 0:
+			self.timeout()
+			
+	# timer runs out: undo multiplier and delete self
+	func timeout():
+		print("active multiplier timed out")
+		self.attribute /= self.value
+		self.free()
+	
+	# applies multiplier
+	func apply():
+		self.attribute *= self.value
+		
+# array of multipliers (active multipliers)
+var movedata_multipliers : Array = []
 
 func _ready():
 	# subclasses define children HERE
@@ -101,6 +131,7 @@ func _physics_process(delta):
 	# pre calculate on floor
 	on_floor = is_on_floor()
 	update_direction()
+	update_multipliers()
 	
 	update_dash(delta)
 	if not dashing:
@@ -111,7 +142,6 @@ func _physics_process(delta):
 	check_drop()
 	
 	# handling animations
-	# common animations: run/idle, jump
 	_update_animation()
 	
 	_print_debug()
@@ -119,11 +149,26 @@ func _physics_process(delta):
 	# run move and slide (in subclass)
 	# move_and_slide()
 
-
 func update_direction():
 	if receive_input:
 		# -1, 0, 1
 		direction = Input.get_axis("left", "right")
+
+# updating movedata multipliers
+func update_multipliers():
+	# tick all multipliers
+	for multiplier in movedata_multipliers:
+		multiplier.tick()
+	# filter all nulls from array (multipliers that timed out and were freed)
+	movedata_multipliers = movedata_multipliers.filter(func(x): return x != null)
+
+# creates a new multiplier and adds it to the array of multipliers
+func add_multiplier(attribute, value : float, timer : int):
+	print("creating new multiplier with timer %s" % timer)
+	var new_multiplier = Multiplier.new(attribute, value, timer)
+	# apply it
+	new_multiplier.apply()
+	movedata_multipliers.append(new_multiplier)
 
 func apply_gravity(delta):
 	# apply gravity if the player is in the air and 
