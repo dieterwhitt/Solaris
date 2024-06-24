@@ -6,7 +6,7 @@
 extends Resource
 # player data resource with default values
 
-class_name MoveData
+class_name MoveDataResource
 
 # gravity
 @export var GRAVITY : float = 670.0 # 670

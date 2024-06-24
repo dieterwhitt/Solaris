@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MoveData" load_steps=2 format=3 uid="uid://bo45qxe227o2e"]
+[gd_resource type="Resource" script_class="MoveDataResource" load_steps=2 format=3 uid="uid://620ta8h75fiv"]
 
 [ext_resource type="Script" path="res://players/common/reworked_default_controller_data.gd" id="1_0j7um"]
 

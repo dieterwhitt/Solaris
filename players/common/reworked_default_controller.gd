@@ -83,22 +83,23 @@ var _state_machine : AnimationNodeStateMachinePlayback
 
 
 # using move data resource. must be added in inspector or will crash
-@export_file var MoveDataResource
-@onready var MoveData : MoveData = load(MoveDataResource)
+@export_file var MoveDataResourceFile
+@onready var MoveData : MoveDataResource = load(MoveDataResourceFile)
 
 # to be added: temporary movedata multipliers
 # inner class definition for multiplier object
 class Multiplier:
-	var attribute
+	var movedata : MoveDataResource
+	var attribute : String # accessing movedata resource fields using bracket notation
 	var value : float
 	var timer : int
 	# constructor
-	func _init(attribute, value, timer):
+	func _init(movedata, attribute, value, timer):
+		self.movedata = movedata
 		self.attribute = attribute
 		self.value = value
 		self.timer = timer
 		
-	
 	# tick
 	func tick():
 		self.timer -= 1
@@ -108,12 +109,13 @@ class Multiplier:
 	# timer runs out: undo multiplier and delete self
 	func timeout():
 		print("active multiplier timed out")
-		self.attribute /= self.value
-		self.free()
+		self.movedata[attribute] /= self.value
+		# self.free() freeing causing issues due to freeing movedata reference
 	
 	# applies multiplier
 	func apply():
-		self.attribute *= self.value
+		print("applying %sx multiplier on %s for %s frames" % [value, attribute, timer])
+		self.movedata[attribute] *= self.value
 		
 # array of multipliers (active multipliers)
 var movedata_multipliers : Array = []
@@ -159,13 +161,13 @@ func update_multipliers():
 	# tick all multipliers
 	for multiplier in movedata_multipliers:
 		multiplier.tick()
-	# filter all nulls from array (multipliers that timed out and were freed)
-	movedata_multipliers = movedata_multipliers.filter(func(x): return x != null)
+	# filter all timed out multipliers (timer = 0)
+	movedata_multipliers = movedata_multipliers.filter(func(x): return x.timer > 0)
 
 # creates a new multiplier and adds it to the array of multipliers
-func add_multiplier(attribute, value : float, timer : int):
+func add_multiplier(attribute : String, value : float, timer : int):
 	print("creating new multiplier with timer %s" % timer)
-	var new_multiplier = Multiplier.new(attribute, value, timer)
+	var new_multiplier = Multiplier.new(MoveData, attribute, value, timer)
 	# apply it
 	new_multiplier.apply()
 	movedata_multipliers.append(new_multiplier)
