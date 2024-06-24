@@ -180,12 +180,18 @@ func update_direction():
 
 # updating movedata multipliers and temporary effects
 func update_multipliers_effects():
-	for array in [movedata_multipliers, effects]:
-		# tick all multipliers & effects
-		for multiplier in array:
-			multiplier.tick()
-		# filter all timed out multipliers and effects (timer = 0)
-		array = array.filter(func(x): return x.timer > 0)
+	# tick all multipliers
+	for multiplier in movedata_multipliers:
+		multiplier.tick()
+	# filter all timed out multipliers (timer = 0)
+	movedata_multipliers = movedata_multipliers.filter(func(x): return x.timer > 0)
+	# tick all effects
+	for effect in effects:
+		effect.tick()
+	# filter all timed out effects (timer = 0)
+	effects = effects.filter(func(x): return x.timer > 0)
+	print(effects)
+	print(movedata_multipliers)
 
 # creates a new multiplier and adds it to the array of multipliers
 func add_multiplier(attribute : String, value : float, timer : int):
@@ -434,6 +440,8 @@ func kill():
 	
 	# need to remove all effects and multipliers upon death. new player scene will still have
 	# the same movedata
+	for multiplier in movedata_multipliers:
+		multiplier.remove()
 	
 	# _state_machine.travel("death")
 	# get level manager parent and respawn player

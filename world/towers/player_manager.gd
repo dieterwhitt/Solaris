@@ -45,6 +45,11 @@ func update_player():
 	# instantiate
 	var new_player = load(player_path).instantiate()
 	var old_player = level_manager.player
+	# update player
+	level_manager.add_child(new_player)
+	level_manager.player = new_player
+	# DO NOT CALIBRATE CAMERA HERE - WILL CAUSE ALIGNMENT ISSUES
+	# transfer data from old player
 	if old_player:
 		new_player.position = old_player.position
 		new_player.transform.x.x = old_player.transform.x.x
@@ -61,16 +66,24 @@ func update_player():
 		# detach camera transform and attach to new player
 		old_player.remove_child(level_manager.cam_transform)
 		new_player.add_child(level_manager.cam_transform)
+		
+		# need to transfer effects and movedata multipliers too: undo all multipliers on old,
+		# apply all multipliers on new, copy over array
+
+		# apply all effects + multipliers on new player, remove old effects + multipliers
+		for mult in old_player.movedata_multipliers:
+			new_player.add_multiplier(mult.attribute,  mult.value, mult.timer)
+			mult.remove()
+		for effect in old_player.effects:
+			new_player.add_effect(new_player, effect.timer, effect.apply, effect.remove)
+			effect.remove.call(old_player)
+		
 		# free old player
 		old_player.queue_free()
 		
-		# need to transfer movedata multipliers too: undo all multipliers on old,
-		# apply all multipliers on new, copy over array
 		
-	# update player
-	level_manager.add_child(new_player)
-	level_manager.player = new_player
-	# DO NOT CALIBRATE CAMERA HERE - WILL CAUSE ALIGNMENT ISSUES
+		
+	
 	
 	
 	
