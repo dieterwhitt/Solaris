@@ -45,21 +45,9 @@ func check_adrenaline():
 		add_multiplier("INPUT_TERMINAL", RUN_SPEED_MULT, frame_duration)
 		add_multiplier("DECELERATION", DECEL_MULT, frame_duration)
 		cooldown_timer = COOLDOWN_LENGTH_S * 60
-		# apply and remove moved to another file to prevent dangling function pointers
-		'''
-		var apply = func apply_particles(player):
-			print("applying adrenaline particles")
-			# add particles (effect)
-			var particles = load(particle_scene).instantiate()
-			player.add_child(particles)
-			particles.name = "AdrenalineParticles"
-			particles.emitting = true
 		
-		var remove = func remove_particles(player):
-			# remove particels (effect)
-			print("removing adrenaline particles")
-			player.remove_child($AdrenalineParticles)
-		'''
+		# apply and remove moved to another file to prevent dangling function pointers
+
 		add_effect(self, frame_duration, adrenaline_effect.apply, adrenaline_effect.remove)
 
 # updates the cooldown

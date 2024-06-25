@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvbn8ur7xitxc"]
+
+[ext_resource type="Script" path="res://world/objects/illusory_wall_highlight.gd" id="1_k6umh"]
+
+[sub_resource type="Curve" id="Curve_b66q0"]
+_data = [Vector2(0.00316456, 0.996532), 0.0, 0.0, 0, 0, Vector2(0.992089, 0.167778), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a11vl"]
+curve = SubResource("Curve_b66q0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gpo31"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 2.08165e-12, 1)
+direction = Vector3(2.08165e-12, -1, 2.08165e-12)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+alpha_curve = SubResource("CurveTexture_a11vl")
+
+[sub_resource type="Animation" id="Animation_fnmdy"]
+resource_name = "pulse"
+length = 2.00001
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Line2D:default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.603922, 0.603922, 0.603922, 0.454902), Color(0.913725, 0.913725, 0.913725, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5xnyd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Line2D:default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.603922, 0.603922, 0.603922, 0.454902)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pyvhc"]
+_data = {
+"RESET": SubResource("Animation_5xnyd"),
+"pulse": SubResource("Animation_fnmdy")
+}
+
+[node name="IllusoryWallHighlight" type="Node2D"]
+script = ExtResource("1_k6umh")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(2.08165e-12, 4)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_gpo31")
+lifetime = 0.75
+preprocess = 1.0
+randomness = 0.5
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(2.08165e-12, 5)
+points = PackedVector2Array(-4, 0, 4, 0)
+width = 1.0
+default_color = Color(0.603922, 0.603922, 0.603922, 0.454902)
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pyvhc")
+}
+autoplay = "pulse"

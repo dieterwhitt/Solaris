@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0erqklqwk3s1"]
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://jkiifkyk8ibx"]
 
 [sub_resource type="Gradient" id="Gradient_1jeae"]
 colors = PackedColorArray(0.80125, 0.000105311, 5.77238e-05, 1, 1, 0, 0.431373, 1)
@@ -6,7 +6,7 @@ colors = PackedColorArray(0.80125, 0.000105311, 5.77238e-05, 1, 1, 0, 0.431373, 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_52lox"]
 gradient = SubResource("Gradient_1jeae")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_je0m6"]
+[resource]
 particle_flag_disable_z = true
 spread = 180.0
 initial_velocity_min = 40.0
@@ -15,8 +15,3 @@ gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 damping_min = 50.0
 damping_max = 60.0
 color_ramp = SubResource("GradientTexture1D_52lox")
-
-[node name="AdrenalineParticles" type="GPUParticles2D"]
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_je0m6")
-lifetime = 0.3

@@ -16,7 +16,6 @@ class_name MoveDataResource
 @export var DECELERATION : float = 1500.0 # 1425 1400
 
 # jump height and air time (pixels, seconds) used to calculate jump velocity with kinematic eqns
-# currently: 0.3s to peak (0.6s total), 30px jump
 @export var JUMP_VELOCITY = -207.0 # -200
 # down gravity multiplier
 @export var DOWN_MULTIPLIER : float = 1.2 # 1.2

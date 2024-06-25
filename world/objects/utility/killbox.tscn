@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dyrpmbpr8barb"]
 
-[ext_resource type="Script" path="res://world/objects/killbox.gd" id="1_jo17a"]
+[ext_resource type="Script" path="res://world/objects/utility/killbox.gd" id="1_jo17a"]
 
 [node name="Killbox" type="Area2D"]
 collision_layer = 4

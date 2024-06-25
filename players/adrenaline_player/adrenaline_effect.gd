@@ -15,4 +15,4 @@ func apply(player : Node):
 func remove(player : Node):
 	# remove particels (effect)
 	print("removing adrenaline particles")
-	player.remove_child(player.get_node("AdrenalineParticles"))
+	player.get_node("AdrenalineParticles").emitting = false

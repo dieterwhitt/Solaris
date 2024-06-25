@@ -190,8 +190,8 @@ func update_multipliers_effects():
 		effect.tick()
 	# filter all timed out effects (timer = 0)
 	effects = effects.filter(func(x): return x.timer > 0)
-	print(effects)
-	print(movedata_multipliers)
+	# print(effects)
+	# print(movedata_multipliers)
 
 # creates a new multiplier and adds it to the array of multipliers
 func add_multiplier(attribute : String, value : float, timer : int):
@@ -389,6 +389,7 @@ func _print_debug():
 		print("velocity: %v" % velocity)
 		print("direction: %d" % direction)
 		print("recieve input: %s" % receive_input)
+		# to do: print multipliers &effects as well
 		
 
 func _process(delta):
@@ -442,6 +443,8 @@ func kill():
 	# the same movedata
 	for multiplier in movedata_multipliers:
 		multiplier.remove()
+	for effect in effects:
+		effect.remove.call()
 	
 	# _state_machine.travel("death")
 	# get level manager parent and respawn player
