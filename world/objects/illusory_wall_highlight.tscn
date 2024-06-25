@@ -1,23 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvbn8ur7xitxc"]
+[gd_scene load_steps=6 format=3 uid="uid://dvbn8ur7xitxc"]
 
 [ext_resource type="Script" path="res://world/objects/illusory_wall_highlight.gd" id="1_k6umh"]
-
-[sub_resource type="Curve" id="Curve_b66q0"]
-_data = [Vector2(0.00316456, 0.996532), 0.0, 0.0, 0, 0, Vector2(0.992089, 0.167778), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_a11vl"]
-curve = SubResource("Curve_b66q0")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gpo31"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(4, 2.08165e-12, 1)
-direction = Vector3(2.08165e-12, -1, 2.08165e-12)
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
-gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
-alpha_curve = SubResource("CurveTexture_a11vl")
+[ext_resource type="Material" uid="uid://bhmlrjkrl7to5" path="res://world/particles/small_rising_particles.tres" id="2_xx1yv"]
 
 [sub_resource type="Animation" id="Animation_fnmdy"]
 resource_name = "pulse"
@@ -64,9 +48,9 @@ script = ExtResource("1_k6umh")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(2.08165e-12, 4)
 amount = 6
-process_material = SubResource("ParticleProcessMaterial_gpo31")
+process_material = ExtResource("2_xx1yv")
 lifetime = 0.75
-preprocess = 1.0
+preprocess = 0.3
 randomness = 0.5
 
 [node name="Line2D" type="Line2D" parent="."]

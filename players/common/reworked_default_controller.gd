@@ -84,7 +84,8 @@ var _state_machine : AnimationNodeStateMachinePlayback
 
 # using move data resource. must be added in inspector or will crash
 @export_file var MoveDataResourceFile
-@onready var MoveData : MoveDataResource = load(MoveDataResourceFile)
+# duplicating to not effect original file when making modifications
+@onready var MoveData : MoveDataResource = load(MoveDataResourceFile).duplicate()
 
 # to be added: temporary movedata multipliers
 # inner class definition for multiplier object

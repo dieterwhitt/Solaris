@@ -1,8 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://cjhfb2lx184tx"]
+[gd_scene load_steps=31 format=3 uid="uid://dhai1nkygsdf4"]
 
-[ext_resource type="Script" path="res://players/adrenaline_player/adrenaline_player.gd" id="1_ecq0k"]
-[ext_resource type="SpriteFrames" uid="uid://cqi2d555en011" path="res://players/adrenaline_player/adrenaline_sprite_frames.tres" id="2_83jwp"]
-[ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://players/common/player_hitbox.tscn" id="5_qdfr2"]
+[ext_resource type="SpriteFrames" uid="uid://r1qbqgnq6vyp" path="res://players/common/placeholder_spriteframes.tres" id="1_jdxrc"]
+[ext_resource type="Script" path="res://players/aeramen_pendant_player/aeramen_pendant_player.gd" id="1_kype8"]
+[ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://players/common/player_hitbox.tscn" id="2_34ejy"]
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
 length = 0.001
@@ -214,19 +214,18 @@ states/parry/position = Vector2(369.66, 84.5)
 transitions = ["Start", "idle-run", SubResource("AnimationNodeStateMachineTransition_pph1j"), "idle-run", "parry", SubResource("AnimationNodeStateMachineTransition_35p6w"), "idle-run", "jump", SubResource("AnimationNodeStateMachineTransition_t5l5l"), "idle-run", "RESET", SubResource("AnimationNodeStateMachineTransition_ayr5y"), "parry", "idle-run", SubResource("AnimationNodeStateMachineTransition_eroip"), "idle-run", "End", SubResource("AnimationNodeStateMachineTransition_ngvfd"), "RESET", "idle-run", SubResource("AnimationNodeStateMachineTransition_h7cax"), "fall", "idle-run", SubResource("AnimationNodeStateMachineTransition_3gtbi"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_y8rv8"), "jump", "idle-run", SubResource("AnimationNodeStateMachineTransition_b2yn0"), "idle-run", "fall", SubResource("AnimationNodeStateMachineTransition_4574k")]
 graph_offset = Vector2(35.9501, 36.3362)
 
-[node name="AdrenalinePlayer" type="CharacterBody2D" groups=["Player"]]
+[node name="AeramenPendantPlayer" type="CharacterBody2D" groups=["Player"]]
 z_as_relative = false
 collision_layer = 2
 collision_mask = 33
 platform_on_leave = 1
 platform_floor_layers = 4294901793
-script = ExtResource("1_ecq0k")
-particle_scene = "res://players/adrenaline_player/adrenaline_particles.tscn"
-MoveDataResourceFile = "res://players/adrenaline_player/adrenaline_movedata.tres"
+script = ExtResource("1_kype8")
+MoveDataResourceFile = "res://players/aeramen_pendant_player/aeramen_pendant_movedata.tres"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("2_83jwp")
-animation = &"run"
+sprite_frames = ExtResource("1_jdxrc")
+animation = &"idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 callback_mode_process = 0
@@ -243,4 +242,4 @@ tree_root = SubResource("AnimationNodeStateMachine_mbnk5")
 anim_player = NodePath("../AnimationPlayer")
 parameters/idle-run/blend_position = 0
 
-[node name="PlayerHitbox" parent="." instance=ExtResource("5_qdfr2")]
+[node name="PlayerHitbox" parent="." instance=ExtResource("2_34ejy")]
