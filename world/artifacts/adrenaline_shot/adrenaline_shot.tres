@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_fnkbj")
 id = "adrenaline_shot"
-name = "Adrenaline Shot"
+name = "Adrenaline Serum"
 description = "[Consumable] [3 Charges] A syringe filled with a potent serum giving a surge of adrenaline. Press [Special] to inject. Charges may be refreshed at checkpoints."
 icon16 = ""
 icon64 = ""

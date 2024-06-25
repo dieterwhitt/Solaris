@@ -444,7 +444,7 @@ func kill():
 	for multiplier in movedata_multipliers:
 		multiplier.remove()
 	for effect in effects:
-		effect.remove.call()
+		effect.remove.call(self)
 	
 	# _state_machine.travel("death")
 	# get level manager parent and respawn player

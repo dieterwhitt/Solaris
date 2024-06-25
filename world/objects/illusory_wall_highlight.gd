@@ -14,7 +14,7 @@ func _ready():
 # checks if player is severed ear
 func _physics_process(delta):
 	var player = get_node("/root/LevelManager").player
-	if player.name == "SeveredEarPlayer":
+	if player and player.name == "SeveredEarPlayer":
 		particles.emitting = true
 		line.show()
 	else:

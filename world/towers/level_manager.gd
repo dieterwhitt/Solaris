@@ -149,8 +149,12 @@ func respawn_player():
 	if player:
 		player.queue_free()
 		player.remove_child(cam_transform)
-	#player = load(active_player).instantiate()
-	player_manager.update_player()
+	var artifact = player_manager.active_artifact
+	var player_scene = "res://players/player_reworked/player_reworked.tscn"
+	if artifact:
+		player_scene = artifact.playerScenePath
+	print(player_scene)
+	player = load(player_scene).instantiate()
 	# delete all loaded scenes and switch current scene to checkpoint
 	for level in loaded:
 		loaded[level].queue_free()
@@ -167,7 +171,7 @@ func respawn_player():
 	if Spawn:
 		player.position = Spawn.position
 		invince_timer = invince_frames
-		#add_child(player)
+		add_child(player)
 		# calibrate camera for new room
 		calibrate_camera()
 	else:

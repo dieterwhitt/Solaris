@@ -80,12 +80,7 @@ func update_player():
 		# free old player
 		old_player.queue_free()
 		
-		
-		
-	
-	
-	
-	
+
 
 # set equipped artifacts. mainly to be used at checkpoints using select artifact menu
 func set_artifacts(a1 : Artifact, a2 : Artifact):
