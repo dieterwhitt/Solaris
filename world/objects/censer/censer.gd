@@ -2,7 +2,7 @@
 # june 26 2024
 # censer.gd
 
-extends Sprite2D
+extends Node2D
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
@@ -19,7 +19,7 @@ func idle():
 	emitting = false
 	if first_cycle:
 		# first cycle idle interval
-		timer.start(rng.randf_range(0, 15))
+		timer.start(rng.randf_range(0, 12))
 		first_cycle = false
 	else:
 		# regular idle interval
@@ -31,7 +31,7 @@ func idle():
 func emit():
 	if not emitting:
 		emitting = true
-		timer.start(rng.randf_range(2, 3))
+		timer.start(rng.randf_range(3, 4))
 		await timer.timeout
 		state_machine.travel("stop")
 		# print("stopping censer")
