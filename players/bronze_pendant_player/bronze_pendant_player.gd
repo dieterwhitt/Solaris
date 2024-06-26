@@ -1,6 +1,6 @@
 # dieter whittingham
 # june 25 2024
-# aeramen pendant player
+# bronze pendant player
 
 extends ReworkedDefaultController
 
@@ -18,7 +18,7 @@ var overdrive : bool = false # whether the player is currently in overdrive
 
 func _ready():
 	# override
-	print("aeramen pendant player")
+	print("bronze pendant player")
 	# activate animation tree
 	_animation_tree = $AnimationTree
 	_animation_tree.active = true

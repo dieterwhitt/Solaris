@@ -1,8 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://dhai1nkygsdf4"]
+[gd_scene load_steps=31 format=3 uid="uid://cporgjlcii7hk"]
 
-[ext_resource type="Script" path="res://players/bronze_pendant_player/bronze_pendant_player.gd" id="1_jxfq1"]
-[ext_resource type="SpriteFrames" uid="uid://r1qbqgnq6vyp" path="res://players/common/placeholder_spriteframes.tres" id="2_rko6u"]
-[ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://players/common/player_hitbox.tscn" id="3_wk1px"]
+[ext_resource type="SpriteFrames" uid="uid://r1qbqgnq6vyp" path="res://players/common/placeholder_spriteframes.tres" id="1_5awpy"]
+[ext_resource type="Script" path="res://players/pan_flute_player/pan_flute_player.gd" id="1_e7pc8"]
+[ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://players/common/player_hitbox.tscn" id="2_bnree"]
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
 length = 0.001
@@ -214,17 +214,19 @@ states/parry/position = Vector2(369.66, 84.5)
 transitions = ["Start", "idle-run", SubResource("AnimationNodeStateMachineTransition_pph1j"), "idle-run", "parry", SubResource("AnimationNodeStateMachineTransition_35p6w"), "idle-run", "jump", SubResource("AnimationNodeStateMachineTransition_t5l5l"), "idle-run", "RESET", SubResource("AnimationNodeStateMachineTransition_ayr5y"), "parry", "idle-run", SubResource("AnimationNodeStateMachineTransition_eroip"), "idle-run", "End", SubResource("AnimationNodeStateMachineTransition_ngvfd"), "RESET", "idle-run", SubResource("AnimationNodeStateMachineTransition_h7cax"), "fall", "idle-run", SubResource("AnimationNodeStateMachineTransition_3gtbi"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_y8rv8"), "jump", "idle-run", SubResource("AnimationNodeStateMachineTransition_b2yn0"), "idle-run", "fall", SubResource("AnimationNodeStateMachineTransition_4574k")]
 graph_offset = Vector2(35.9501, 36.3362)
 
-[node name="BronzePendantPlayer" type="CharacterBody2D" groups=["Player"]]
+[node name="PanFlutePlayer" type="CharacterBody2D" groups=["Player"]]
+editor_description = "Player template.
+1. attach script and inherit from ReworkedDefaultController
+2. in the animated sprite 2d, choose the sprite frames to use (reusable – unpowered, placeholder). if you intend to make any deviations from these reusable sprite frames (like unique animations), then make it unique and save that. don't make any changes to any reused sprite frames."
 z_as_relative = false
 collision_layer = 2
 collision_mask = 33
 platform_on_leave = 1
 platform_floor_layers = 4294901793
-script = ExtResource("1_jxfq1")
-MoveDataResourceFile = "res://players/common/default_movedata.tres"
+script = ExtResource("1_e7pc8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("2_rko6u")
+sprite_frames = ExtResource("1_5awpy")
 animation = &"idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -242,7 +244,4 @@ tree_root = SubResource("AnimationNodeStateMachine_mbnk5")
 anim_player = NodePath("../AnimationPlayer")
 parameters/idle-run/blend_position = 0
 
-[node name="PlayerHitbox" parent="." instance=ExtResource("3_wk1px")]
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
+[node name="PlayerHitbox" parent="." instance=ExtResource("2_bnree")]

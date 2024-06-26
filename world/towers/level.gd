@@ -105,9 +105,6 @@ const SCREEN_HEIGHT : int = 180
 func _ready():
 	print("level added to tree for the first time: " + name)
 
-func _process(delta):
-	pass
-
 # returns the current screen segment of posn as a vector2 [x, y]
 # relative to top left screen (0,0)
 # if out of bounds, return the nearest screen
