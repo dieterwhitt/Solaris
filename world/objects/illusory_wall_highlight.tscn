@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dvbn8ur7xitxc"]
 
 [ext_resource type="Script" path="res://world/objects/illusory_wall_highlight.gd" id="1_k6umh"]
-[ext_resource type="Material" uid="uid://bhmlrjkrl7to5" path="res://world/particles/small_rising_particles.tres" id="2_xx1yv"]
+[ext_resource type="Material" uid="uid://bhmlrjkrl7to5" path="res://world/particles/small_rising_particles/small_rising_particles.tres" id="2_xx1yv"]
 
 [sub_resource type="Animation" id="Animation_5xnyd"]
 length = 0.001

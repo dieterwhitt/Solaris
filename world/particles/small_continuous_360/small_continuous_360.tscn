@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3utvmri3v4qq"]
+
+[ext_resource type="Material" uid="uid://jkiifkyk8ibx" path="res://world/particles/small_continuous_360/small-continuous-360.tres" id="1_wc2d0"]
+
+[node name="SmallContinuous360" type="GPUParticles2D"]
+process_material = ExtResource("1_wc2d0")
+lifetime = 0.3

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=2 format=3 uid="uid://cx1ncndgqyeal"]
+
+[ext_resource type="Script" path="res://world/artifacts/artifact.gd" id="1_0rpkb"]
+
+[resource]
+script = ExtResource("1_0rpkb")
+id = "pan_flute"
+name = "Pan Flute"
+description = "[Consumable] [Infinite Charges] A wooden instrument with an enchanting aura. It is said that the melodies from this flute can charm some of the most exotic beings."
+icon16 = ""
+icon64 = ""
+playerScenePath = "res://players/pan_flute_player/pan_flute_player.tscn"

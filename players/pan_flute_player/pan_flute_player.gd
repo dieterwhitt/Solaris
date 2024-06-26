@@ -30,6 +30,7 @@ func play_flute():
 		# _animation_tree.travel("play")
 		# animation will be a looping animation and particles will be emitted.
 		timer.start(TUNE_DURATION)
+		# show progress bar
 		await timer.timeout
 		if playing:
 			# when timer runs out, stops playing if hasn't been stopped yet
@@ -47,3 +48,4 @@ func stop_playing():
 	playing = false
 	_animation_tree.travel("idle")
 	# stop music
+	# hide progress bar

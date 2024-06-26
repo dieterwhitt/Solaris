@@ -4,6 +4,9 @@
 
 extends ReworkedDefaultController
 
+# switch to using timers instead of frame timers (for progress bar)
+# prolly will have to rework the effect/movedata multipliers for timers too
+
 const DURATION_S : int = 5 # duration in seconds per charge, must *60 to convert to frames
 const RUN_SPEED_MULT : float = 1.35
 const ACCEL_MULT : float = 2
