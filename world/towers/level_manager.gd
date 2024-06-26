@@ -202,7 +202,7 @@ func check_borders():
 	var target_posn_relative = Vector2.ZERO
 	# direction of what screen to travel to on matrix
 	var target_dir = Vector2.ZERO
-	if posn.y < current.borders["top"]:
+	if posn.y < current.borders["top"] - 4: # hardcoded - moving top border by 4 to prevent clipping
 		target_dir.y = -1
 		# keep relative x, set y to bottom of screen
 		target_posn_relative = Vector2(current.get_relative_x(posn.x),

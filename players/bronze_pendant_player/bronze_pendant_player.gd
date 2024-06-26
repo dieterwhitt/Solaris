@@ -6,7 +6,7 @@ extends ReworkedDefaultController
 
 const INPUT_TERMINAL_MULT = 1.2
 const ACCEL_MULT = 1.4
-const MOMENTUM_MULT = 0.5 # double momentum, on cooldown
+const MOMENTUM_MULT = 0.7 # increase momentum
 
 const CHARGE_FRAMES = 50 # number of frames at top speed to enter overdrive
 const COOLDOWN_FRAMES = 25 # cools down when not at top speed

@@ -6,7 +6,7 @@
 script = ExtResource("1_x4mn2")
 id = "severed_ear"
 name = "Severed Ear"
-description = "[Passive] An ear taken from a fanatic medium. reveals illusory walls when held."
+description = "[Passive] An ear taken from a fanatic medium. Reveals illusory walls when held."
 icon16 = ""
 icon64 = ""
 playerScenePath = "res://players/severed_ear_player/severed_ear_player.tscn"

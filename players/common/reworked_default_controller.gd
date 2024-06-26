@@ -163,7 +163,7 @@ func _physics_process(delta):
 		apply_gravity(delta)
 		apply_x_accel(delta)
 		
-	apply_jump()
+	apply_jump(delta)
 	check_drop()
 	
 	# handling animations
@@ -267,20 +267,20 @@ func apply_friction(delta, multiplier):
 	# decelerate
 	velocity.x = move_toward(velocity.x, 0, MoveData.DECELERATION * multiplier * delta)
 
-func update_coyote():
+func update_coyote(delta):
 	# set timer to the coyote time when on the ground
 	if on_floor:
 		current_coyote = MoveData.COYOTE_TIME
 	elif current_coyote > 0:
 		# decrease the coyote timer for each frame off the ground
-		current_coyote -= 1
+		current_coyote -= delta * 60 # 1 frame on 60fps
 
-func update_buffer():
+func update_buffer(delta):
 	# queue buffer
 	if Input.is_action_just_pressed("jump") and not on_floor:
 		current_jump_buffer = MoveData.JUMP_BUFFER
 	elif current_jump_buffer > 0:
-		current_jump_buffer -= 1
+		current_jump_buffer -= delta * 60 # 1 frame on 60fps
 	
 		
 func update_jump_elig():
@@ -291,10 +291,10 @@ func update_jump_elig():
 		# also reset down gravity to true
 		apply_down_gravity = true
 
-func apply_jump():
+func apply_jump(delta):
 	just_jumped = false
-	update_coyote()
-	update_buffer()
+	update_coyote(delta)
+	update_buffer(delta)
 	update_jump_elig()
 	# jump if the user can jump and the user just pressed space and is 
 	# still on the floor or in coyote time
@@ -354,8 +354,8 @@ func dash(direction : Vector2, dash_frames : int, dash_velocity :
 func update_dash(delta):
 	if dashing and dash_timer > 0:
 		# preserve velocity
-		dash_timer -= 1
-	elif dashing and dash_timer == 0:
+		dash_timer -= delta * 60
+	elif dashing and dash_timer <= 0:
 		# just hit 0: switch to stopping (friction)
 		dashing = false
 		dash_stopping = true
@@ -364,8 +364,8 @@ func update_dash(delta):
 		# apply friction and decrease timer
 		velocity.x = move_toward(velocity.x, 0, dash_friction * delta)
 		velocity.y = move_toward(velocity.y, 0, dash_friction * delta)
-		dash_friction_timer -= 1
-	elif dash_stopping and dash_friction_timer == 0:
+		dash_friction_timer -= delta * 60
+	elif dash_stopping and dash_friction_timer <= 0:
 		# apply regular physics again
 		dash_stopping = false
 
