@@ -10,7 +10,7 @@ extends Node
 # null -> use default player
 # testing various values. 
 var active_artifact : Artifact = \
-		load("res://world/artifacts/bronze_pendant/bronze_pendant.tres")
+		load("res://world/artifacts/adrenaline_shot/adrenaline_shot.tres")
 var backup_artifact : Artifact = load("res://world/artifacts/severed_ear/severed_ear.tres")
 @onready var level_manager : Node = get_parent()
 
@@ -18,6 +18,7 @@ var backup_artifact : Artifact = load("res://world/artifacts/severed_ear/severed
 # switch active and backup artifact
 func _physics_process(delta):
 	# check swap
+	# consumable: need to check for cooldowns and # of charges
 	if Input.is_action_just_pressed("swap-artifact"):
 		print("swapping artifacts")
 		var temp = active_artifact
@@ -71,7 +72,7 @@ func update_player():
 
 		# apply all effects + multipliers on new player, remove old effects + multipliers
 		for mult in old_player.movedata_multipliers:
-			new_player.add_multiplier(mult.attribute,  mult.value, mult.timer)
+			new_player.add_multiplier(mult.attribute, mult.value, mult.timer)
 			mult.remove()
 		for effect in old_player.effects:
 			new_player.add_effect(new_player, effect.timer, effect.apply, effect.remove)

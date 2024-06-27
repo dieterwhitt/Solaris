@@ -90,32 +90,63 @@ var _state_machine : AnimationNodeStateMachinePlayback
 # to be added: temporary movedata multipliers
 # inner class definition for multiplier object
 class Multiplier:
+	extends Node2D # needs to extend node to have timer and progress bar child
+	var timer : Timer 
+	var progress_bar = null
+	
+	# constructor variables
 	var movedata : MoveDataResource
 	var attribute : String # accessing movedata resource fields using bracket notation
 	var value : float
-	var timer : int
+	var time_s : float
+	var between_players : bool # whether the multiplier stays after switching players
+	var show_progress_bar : bool # whether to show progress bar
+	var progress_bar_color : Color
+	
 	# constructor
-	func _init(movedata, attribute, value, timer):
+	func _init(movedata, attribute, value, time_s, between_players = false, 
+	show_progress_bar = false, progress_bar_color = Color.WHITE):
 		self.movedata = movedata
 		self.attribute = attribute
 		self.value = value
-		self.timer = timer
+		self.time_s = time_s
+		self.between_players = between_players
+		self.show_progress_bar = show_progress_bar
+		self.progress_bar_color = progress_bar_color
 		
-	# tick
-	func tick():
-		self.timer -= 1
-		if self.timer == 0:
-			self.remove()
+	func _ready():
+		# set up timer and progress bar
+		# connect timer to timeout function and start it
+		timer = Timer.new()
+		timer.process_callback = Timer.TIMER_PROCESS_PHYSICS
+		timer.timeout.connect(self._on_timer_timeout)
+		add_child(timer)
+		timer.start(time_s)
+		# check progress bar
+		if show_progress_bar:
+			progress_bar = load("res://players/common/progress_bar.tscn").instantiate()
+			add_child(progress_bar)
+			progress_bar.color = progress_bar_color
+			# make it track timer
+			# print(timer.get_path())
+			# progress_bar.timer_path = timer.get_path()
+			progress_bar.timer = timer
+			print(progress_bar.visible)
 			
+	func _on_timer_timeout():
+		# remove and free itself
+		self.remove()
+		
+
 	# timer runs out: undo multiplier and delete self
 	func remove():
 		print("removing active multiplier")
 		self.movedata[attribute] /= self.value
-		# self.free() freeing causing issues due to freeing movedata reference
+		self.queue_free()
 	
 	# applies multiplier
 	func apply():
-		print("applying %sx multiplier on %s for %s frames" % [value, attribute, timer])
+		print("applying %sx multiplier on %s for %s seconds" % [value, attribute, timer.time_left])
 		self.movedata[attribute] *= self.value
 		
 # array of multipliers (active multipliers)
@@ -143,7 +174,6 @@ class Effect:
 			self.remove.call(player)
 
 var effects : Array = []
-
 
 func _ready():
 	# subclasses define children HERE
@@ -183,11 +213,9 @@ func update_direction():
 
 # updating movedata multipliers and temporary effects
 func update_multipliers_effects():
-	# tick all multipliers
-	for multiplier in movedata_multipliers:
-		multiplier.tick()
 	# filter all timed out multipliers (timer = 0)
-	movedata_multipliers = movedata_multipliers.filter(func(x): return x.timer > 0)
+	movedata_multipliers = movedata_multipliers.filter(func(x): return x != null)
+	# print(movedata_multipliers)
 	# tick all effects
 	for effect in effects:
 		effect.tick()
@@ -195,11 +223,23 @@ func update_multipliers_effects():
 	effects = effects.filter(func(x): return x.timer > 0)
 	# print(effects)
 	# print(movedata_multipliers)
-
+'''
+self.movedata = movedata
+		self.attribute = attribute
+		self.value = value
+		self.timer = timer
+		self.between_players = between_players
+		self.show_progress_bar = show_progress_bar
+		self.progress_bar = progress_bar
+'''
 # creates a new multiplier and adds it to the array of multipliers
-func add_multiplier(attribute : String, value : float, timer : int):
-	print("creating new multiplier with timer %s" % timer)
-	var new_multiplier = Multiplier.new(MoveData, attribute, value, timer)
+func add_multiplier(attribute : String, value : float, time_s : float, between_players : bool = false,
+		show_progress_bar : bool = false, progress_bar_color : Color = Color.WHITE ):
+	print("creating new multiplier with timer %s" % time_s)
+	var new_multiplier = Multiplier.new(MoveData, attribute, value, time_s, 
+	between_players, show_progress_bar, progress_bar_color)
+	# add child
+	add_child(new_multiplier)
 	# apply it
 	new_multiplier.apply()
 	movedata_multipliers.append(new_multiplier)

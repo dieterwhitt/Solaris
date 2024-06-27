@@ -38,20 +38,21 @@ func _process(delta):
 		print("progress bar: timer not found, deleting")
 		queue_free()
 	# first handle edge case: 0 sec wait time (avoid div by 0)
-	if timer.wait_time == 0:
+	elif timer and timer.wait_time == 0:
 		print("timer wait time at 0, can't render progress bar. deleting")
 		queue_free()
-	# percent already progressed
-	var percent : float = 1 - timer.time_left / timer.wait_time
-	# set bar accordingly
-	var bar_length : int = floor(percent * 20) # 0-20 pixels
-	var bar_scale : float = float(bar_length) / 20.0
-	var bar_shift : float = -10 + bar_scale * 10
-	
-	bar.scale.x = bar_scale
-	bar.position.x = bar_shift
-
-	if bar_length == 0 and not show_empty:
-		base.default_color = Color8(0, 0, 0, 0) # make base invisible
 	else:
-		base.default_color = BASE_COLOR
+		# percent already progressed
+		var percent : float = 1 - timer.time_left / timer.wait_time
+		# set bar accordingly
+		var bar_length : int = floor(percent * 20) # 0-20 pixels
+		var bar_scale : float = float(bar_length) / 20.0
+		var bar_shift : float = -10 + bar_scale * 10
+		
+		bar.scale.x = bar_scale
+		bar.position.x = bar_shift
+
+		if bar_length == 0 and not show_empty:
+			base.default_color = Color8(0, 0, 0, 0) # make base invisible
+		else:
+			base.default_color = BASE_COLOR
