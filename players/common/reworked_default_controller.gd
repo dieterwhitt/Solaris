@@ -99,17 +99,19 @@ class Multiplier:
 	var attribute : String # accessing movedata resource fields using bracket notation
 	var value : float
 	var time_s : float
+	var total_time_s : float # total time from the beginning (for progress bar)
 	var between_players : bool # whether the multiplier stays after switching players
 	var show_progress_bar : bool # whether to show progress bar
 	var progress_bar_color : Color
 	
 	# constructor
-	func _init(movedata, attribute, value, time_s, between_players = false, 
+	func _init(movedata, attribute, value, time_s, total_time_s, between_players = false, 
 	show_progress_bar = false, progress_bar_color = Color.WHITE):
 		self.movedata = movedata
 		self.attribute = attribute
 		self.value = value
 		self.time_s = time_s
+		self.total_time_s = total_time_s
 		self.between_players = between_players
 		self.show_progress_bar = show_progress_bar
 		self.progress_bar_color = progress_bar_color
@@ -128,10 +130,8 @@ class Multiplier:
 			add_child(progress_bar)
 			progress_bar.color = progress_bar_color
 			# make it track timer
-			# print(timer.get_path())
-			# progress_bar.timer_path = timer.get_path()
 			progress_bar.timer = timer
-			print(progress_bar.visible)
+			progress_bar.total_time_override = total_time_s
 			
 	func _on_timer_timeout():
 		# remove and free itself
@@ -233,11 +233,12 @@ self.movedata = movedata
 		self.progress_bar = progress_bar
 '''
 # creates a new multiplier and adds it to the array of multipliers
-func add_multiplier(attribute : String, value : float, time_s : float, between_players : bool = false,
-		show_progress_bar : bool = false, progress_bar_color : Color = Color.WHITE ):
+func add_multiplier(attribute : String, value : float, time_s : float, total_time_s : float, 
+		between_players : bool = false, show_progress_bar : bool = false, 
+		progress_bar_color : Color = Color.WHITE ):
 	print("creating new multiplier with timer %s" % time_s)
 	var new_multiplier = Multiplier.new(MoveData, attribute, value, time_s, 
-	between_players, show_progress_bar, progress_bar_color)
+	total_time_s, between_players, show_progress_bar, progress_bar_color)
 	# add child
 	add_child(new_multiplier)
 	# apply it

@@ -71,8 +71,11 @@ func update_player():
 		# apply all multipliers on new, copy over array
 
 		# apply all effects + multipliers on new player, remove old effects + multipliers
+		# set time to current timer time
 		for mult in old_player.movedata_multipliers:
-			new_player.add_multiplier(mult.attribute, mult.value, mult.timer)
+			new_player.add_multiplier(mult.attribute, mult.value, mult.timer.time_left, 
+			mult.total_time_s, mult.between_players, mult.show_progress_bar, 
+			mult.progress_bar_color)
 			mult.remove()
 		for effect in old_player.effects:
 			new_player.add_effect(new_player, effect.timer, effect.apply, effect.remove)

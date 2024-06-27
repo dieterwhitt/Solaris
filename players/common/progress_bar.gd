@@ -13,6 +13,7 @@ extends Node2D
 @onready var bar = $Bar
 @onready var base = $Base
 var timer : Timer
+var total_time_override : float = 0
 const BASE_COLOR = Color8(125, 125, 125, 255)
 
 func _ready():
@@ -33,6 +34,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# set global transform so it isn't flipped
+	global_transform.x.x = 1
 	# check if timer actually still exists
 	if not timer:
 		print("progress bar: timer not found, deleting")
@@ -43,7 +46,11 @@ func _process(delta):
 		queue_free()
 	else:
 		# percent already progressed
-		var percent : float = 1 - timer.time_left / timer.wait_time
+		var quotient = timer.wait_time
+		if total_time_override > 0:
+			# incase manual quotient was set
+			quotient = total_time_override
+		var percent : float = 1 - timer.time_left / quotient
 		# set bar accordingly
 		var bar_length : int = floor(percent * 20) # 0-20 pixels
 		var bar_scale : float = float(bar_length) / 20.0
