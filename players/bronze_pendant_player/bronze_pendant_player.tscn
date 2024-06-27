@@ -222,6 +222,7 @@ collision_mask = 33
 platform_on_leave = 1
 platform_floor_layers = 4294901793
 script = ExtResource("1_jxfq1")
+MoveDataResourceFile = "res://players/common/default_movedata.tres"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_rko6u")

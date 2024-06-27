@@ -28,14 +28,27 @@ func _ready():
 		timer = get_node(timer_path)
 	if color:
 		bar.default_color = color
-	# check all siblings for a progress bar. for each one, shift this one up 4px
-	var parent = get_parent()
-	if parent:
-		for node in parent.get_children():
-			# all other progress bars
-			if node != self and node.is_in_group("ProgressBar"):
-				print("progress bar sibling found")
-				self.position.y -= 4
+	# recursively check all nodes in player children for another progress bar. 
+	# for each one, shift this one up 4px
+	var level_manager = get_node("/root/LevelManager")
+	if level_manager:
+		var player = level_manager.player
+		scan_node(player)
+		
+		# all other progress bars
+		#if node != self and node.is_in_group("ProgressBar"):
+		#self.position.y -= 4
+
+func scan_node(node):
+	# base case: null
+	if not node:
+		return
+	if node:
+		if node.is_in_group("ProgressBar") and node != self:
+			self.position.y -= 4
+		# scan all children
+		for child in node.get_children():
+			scan_node(child)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

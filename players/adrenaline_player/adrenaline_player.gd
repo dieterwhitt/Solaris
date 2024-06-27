@@ -45,7 +45,7 @@ func check_adrenaline():
 		var frame_duration = DURATION_S * 60
 		# apply speed boost
 		add_multiplier("ACCELERATION", ACCEL_MULT, DURATION_S, DURATION_S, true, false)
-		add_multiplier("INPUT_TERMINAL", RUN_SPEED_MULT, DURATION_S, DURATION_S, true, false)
+		add_multiplier("INPUT_TERMINAL", RUN_SPEED_MULT, DURATION_S, DURATION_S, true, true)
 		add_multiplier("DECELERATION", DECEL_MULT, DURATION_S, DURATION_S, true, false)
 		cooldown_timer = COOLDOWN_LENGTH_S * 60
 		

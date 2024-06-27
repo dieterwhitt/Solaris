@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://players/common/progress_bar.gd" id="1_fisnh"]
 
-[node name="ProgressBar" type="Node2D"]
+[node name="ProgressBar" type="Node2D" groups=["ProgressBar"]]
 script = ExtResource("1_fisnh")
 timer_path = NodePath("")
 
