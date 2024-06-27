@@ -1,30 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://bym1vkwgro4vv"]
+[gd_scene load_steps=30 format=3 uid="uid://bym1vkwgro4vv"]
 
 [ext_resource type="SpriteFrames" uid="uid://r1qbqgnq6vyp" path="res://players/common/placeholder_spriteframes.tres" id="2_3fyai"]
 [ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://players/common/player_hitbox.tscn" id="3_ciuvf"]
-
-[sub_resource type="GDScript" id="GDScript_1ih3q"]
-script/source = "# player template
-# for any artifact script NOT including consumable artifacts / weapon artifacts
-
-extends ReworkedDefaultController
-
-func _ready():
-	# override
-	print(\"aeramen pendant player\")
-	# activate animation tree
-	_animation_tree = $AnimationTree
-	_animation_tree.active = true
-	_state_machine = _animation_tree.get(\"parameters/playback\")
-
-func _physics_process(delta):
-	# apply physics controller
-	super._physics_process(delta)
-	# call any unique functions here
-	# move and slide
-	move_and_slide()
-
-"
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
 length = 0.001
@@ -245,7 +222,6 @@ collision_layer = 2
 collision_mask = 33
 platform_on_leave = 1
 platform_floor_layers = 4294901793
-script = SubResource("GDScript_1ih3q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_3fyai")

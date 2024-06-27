@@ -14,7 +14,7 @@ var used = false
 # loading the glass scene
 @onready var glass_scene
 # glass particles (freed if glass disabled)
-@onready var glass_particle = load("res://world/particles/small_burst_1.tscn").instantiate()
+@onready var glass_particle = load("res://world/particles/small_burst_1/small_burst_1.tscn").instantiate()
 # getting the orb hitbox
 @onready var hitbox = $Area2D
 # time for orbs to come back after being hit

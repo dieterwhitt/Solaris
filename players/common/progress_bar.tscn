@@ -4,7 +4,7 @@
 
 [node name="ProgressBar" type="Node2D"]
 script = ExtResource("1_fisnh")
-timer_path = NodePath("Timer")
+timer_path = NodePath("")
 
 [node name="Base" type="Line2D" parent="."]
 position = Vector2(2.08165e-12, -8)
@@ -16,7 +16,3 @@ default_color = Color(0.482353, 0.482353, 0.482353, 1)
 position = Vector2(2.08165e-12, -8)
 points = PackedVector2Array(-10, -2.08165e-12, 10, -2.08165e-12)
 width = 1.0
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-autostart = true
