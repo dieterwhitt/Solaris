@@ -41,11 +41,8 @@ class Multiplier:
 		# check progress bar
 		if show_progress_bar:
 			progress_bar = load("res://players/common/progress_bar.tscn").instantiate()
+			progress_bar._init(timer.get_path(), progress_bar_color, true, total_time_s)
 			add_child(progress_bar)
-			progress_bar.color = progress_bar_color
-			# make it track timer
-			progress_bar.timer = timer
-			progress_bar.total_time_override = total_time_s
 			
 	func _on_timer_timeout():
 		# remove and free itself
@@ -62,10 +59,6 @@ class Multiplier:
 	func apply():
 		print("applying %sx multiplier on %s for %s seconds" % [value, attribute, timer.time_left])
 		self.movedata[attribute] *= self.value
-		
-# array of multipliers (active multipliers)
-# don't really need this anymore
-var movedata_multipliers : Array = []
 
 # need to track temporary effects too
 # non-movedata multipliers – do not touch movedata or it will cause scaling issues
@@ -108,13 +101,9 @@ class Effect:
 		# check progress bar
 		if show_progress_bar:
 			progress_bar = load("res://players/common/progress_bar.tscn").instantiate()
+			progress_bar._init(timer.get_path(), progress_bar_color, true, total_time_s)
 			add_child(progress_bar)
-			progress_bar.color = progress_bar_color
-			# make it track timer
-			progress_bar.timer = timer
-			progress_bar.total_time_override = total_time_s
 			
-	
 	# wrapper for apply function
 	func apply():
 		self.apply_func.call(player)
