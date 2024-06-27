@@ -8,20 +8,23 @@ extends Node2D
 
 # timer node to track progress of
 @export_node_path("Timer") var timer_path
+@export var color : Color # color of bar
 @onready var bar = $Bar
 var timer : Timer
 
 func _ready():
 	if timer_path:
 		timer = get_node(timer_path)
-	# check all siblings for a progress bar. for each one, shift this one up 6px
+	if color:
+		bar.default_color = color
+	# check all siblings for a progress bar. for each one, shift this one up 4px
 	var parent = get_parent()
 	if parent:
 		for node in parent.get_children():
 			# all other progress bars
 			if node != self and node.is_in_group("ProgressBar"):
 				print("progress bar sibling found")
-				self.position.y -= 6
+				self.position.y -= 4
 				
 
 
