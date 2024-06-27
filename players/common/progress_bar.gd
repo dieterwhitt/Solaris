@@ -9,8 +9,11 @@ extends Node2D
 # timer node to track progress of
 @export_node_path("Timer") var timer_path
 @export var color : Color # color of bar
+@export var show_empty : bool = true # whether to show the bar when at 0%
 @onready var bar = $Bar
+@onready var base = $Base
 var timer : Timer
+const BASE_COLOR = Color8(125, 125, 125, 255)
 
 func _ready():
 	if timer_path:
@@ -47,4 +50,8 @@ func _process(delta):
 	
 	bar.scale.x = bar_scale
 	bar.position.x = bar_shift
-	
+
+	if bar_length == 0 and not show_empty:
+		base.default_color = Color8(0, 0, 0, 0) # make base invisible
+	else:
+		base.default_color = BASE_COLOR

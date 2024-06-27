@@ -10,7 +10,7 @@ timer_path = NodePath("")
 position = Vector2(2.08165e-12, -8)
 points = PackedVector2Array(-10, -2.08165e-12, 10, -2.08165e-12)
 width = 1.0
-default_color = Color(0.482353, 0.482353, 0.482353, 1)
+default_color = Color(0.490196, 0.490196, 0.490196, 1)
 
 [node name="Bar" type="Line2D" parent="."]
 position = Vector2(2.08165e-12, -8)

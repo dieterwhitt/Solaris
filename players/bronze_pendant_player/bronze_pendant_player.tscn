@@ -247,6 +247,8 @@ parameters/idle-run/blend_position = 0
 
 [node name="ProgressBar" parent="." instance=ExtResource("4_05u1h")]
 timer_path = NodePath("../Timer")
+color = Color(0.929412, 0.478431, 0.290196, 1)
+show_empty = false
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
