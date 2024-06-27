@@ -28,6 +28,7 @@ func _ready():
 	_animation_tree.active = true
 	_state_machine = _animation_tree.get("parameters/playback")
 	# set timers
+	timer.wait_time = CHARGE_S
 	#charge_timer = CHARGE_FRAMES
 	#cooldown_timer = COOLDOWN_FRAMES
 
@@ -51,7 +52,7 @@ func update_overdrive():
 			timer.paused = true
 		else:
 			# check charge timer timeout
-			if timer.time_left == 0:
+			if timer.is_stopped():
 				enter_overdrive()
 	else:
 		# not top speed
@@ -59,7 +60,7 @@ func update_overdrive():
 			# print("in overdrive, cooling down")
 			# on cooldown: timer ticking cooldown
 			timer.paused = false
-			if timer.time_left == 0:
+			if timer.is_stopped:
 				exit_overdrive()
 		else:
 			# not overdrive, not top speed, reset timer

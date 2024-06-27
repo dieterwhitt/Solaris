@@ -14,6 +14,12 @@ var active_artifact : Artifact = \
 var backup_artifact : Artifact = load("res://world/artifacts/adrenaline_shot/adrenaline_shot.tres")
 @onready var level_manager : Node = get_parent()
 
+# for consumables
+var backup_charges
+var backup_time
+var backup_total_time
+
+
 # on swap:
 # switch active and backup artifact
 func _physics_process(delta):

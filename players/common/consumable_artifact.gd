@@ -10,5 +10,6 @@ extends ReworkedDefaultController
 class_name ConsumableArtifact
 
 # there must always be a cooldown timer
-@export_node_path("Timer") var cooldown_timer
-var charges_left : int
+@export_node_path("Timer") var _cooldown_timer_path
+@onready var _cooldown_timer = get_node(_cooldown_timer_path)
+var _charges_left : int

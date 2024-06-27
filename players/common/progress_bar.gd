@@ -12,8 +12,8 @@ extends Node2D
 @export var show_empty : bool = true # whether to show the bar when at 0%
 @onready var bar = $Bar
 @onready var base = $Base
+@export var total_time_override : float = 0
 var timer : Timer
-var total_time_override : float = 0
 const BASE_COLOR = Color8(125, 125, 125, 255)
 
 # can init before adding to tree
@@ -28,27 +28,7 @@ func _ready():
 		timer = get_node(timer_path)
 	if color:
 		bar.default_color = color
-	# recursively check all nodes in player children for another progress bar. 
-	# for each one, shift this one up 4px
-	var level_manager = get_node("/root/LevelManager")
-	if level_manager:
-		var player = level_manager.player
-		scan_node(player)
 		
-		# all other progress bars
-		#if node != self and node.is_in_group("ProgressBar"):
-		#self.position.y -= 4
-
-func scan_node(node):
-	# base case: null
-	if not node:
-		return
-	if node:
-		if node.is_in_group("ProgressBar") and node != self:
-			self.position.y -= 4
-		# scan all children
-		for child in node.get_children():
-			scan_node(child)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -79,5 +59,9 @@ func _process(delta):
 
 		if bar_length == 0 and not show_empty:
 			base.default_color = Color8(0, 0, 0, 0) # make base invisible
+		elif timer.is_stopped():
+			base.default_color = Color8(0, 0, 0, 0)
+			bar.default_color = Color8(0, 0, 0, 0)
 		else:
 			base.default_color = BASE_COLOR
+			bar.default_color = color

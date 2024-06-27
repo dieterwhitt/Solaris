@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://cjhfb2lx184tx"]
+[gd_scene load_steps=32 format=3 uid="uid://cjhfb2lx184tx"]
 
 [ext_resource type="Script" path="res://players/adrenaline_player/adrenaline_player.gd" id="1_ecq0k"]
 [ext_resource type="SpriteFrames" uid="uid://cqi2d555en011" path="res://players/adrenaline_player/adrenaline_sprite_frames.tres" id="2_83jwp"]
+[ext_resource type="PackedScene" uid="uid://dxybw0lxrmnw6" path="res://players/common/progress_bar.tscn" id="4_ox8ol"]
 [ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://players/common/player_hitbox.tscn" id="5_qdfr2"]
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
@@ -222,6 +223,7 @@ platform_on_leave = 1
 platform_floor_layers = 4294901793
 script = ExtResource("1_ecq0k")
 particle_scene = "res://players/common/default_movedata.tres"
+_cooldown_timer_path = NodePath("CooldownTimer")
 MoveDataResourceFile = "res://players/common/default_movedata.tres"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -244,3 +246,11 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/idle-run/blend_position = 0
 
 [node name="PlayerHitbox" parent="." instance=ExtResource("5_qdfr2")]
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[node name="ProgressBar" parent="." instance=ExtResource("4_ox8ol")]
+timer_path = NodePath("../CooldownTimer")
+color = Color(0.658824, 0.658824, 0.658824, 1)
