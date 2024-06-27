@@ -123,6 +123,8 @@ var movedata_multipliers : Array = []
 
 # need to track temporary effects too
 # non-movedata multipliers – do not touch movedata or it will cause scaling issues
+# the lambda functions apply and remove MUST ORIGINATE FROM A RESOURCE
+# OTHERWISE YOU MAY REFERENCE A FREED FUNCTION POINTER
 class Effect:
 	var player : Node
 	var timer : int
