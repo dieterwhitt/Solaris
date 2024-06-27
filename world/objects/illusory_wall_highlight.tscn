@@ -54,7 +54,7 @@ preprocess = 0.3
 randomness = 0.5
 
 [node name="Line2D" type="Line2D" parent="."]
-position = Vector2(2.08165e-12, 5)
+position = Vector2(2.08165e-12, 4.5)
 points = PackedVector2Array(-4, 0, 4, 0)
 width = 1.0
 default_color = Color(0.603922, 0.603922, 0.603922, 0.454902)
