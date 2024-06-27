@@ -14,11 +14,11 @@ var active_artifact : Artifact = \
 var backup_artifact : Artifact = load("res://world/artifacts/adrenaline_shot/adrenaline_shot.tres")
 @onready var level_manager : Node = get_parent()
 
-# for consumables
-var backup_charges
-var backup_time
-var backup_total_time
-
+# for consumables to prevent swapping out and resetting cooldowns/charges
+var backup_consumable : bool
+var backup_charges : int
+var backup_time : float
+var backup_total_time : float
 
 # on swap:
 # switch active and backup artifact
@@ -73,8 +73,28 @@ func update_player():
 		old_player.remove_child(level_manager.cam_transform)
 		new_player.add_child(level_manager.cam_transform)
 		
-		# need to transfer effects and movedata multipliers too: undo all multipliers on old,
-		# apply all multipliers on new, copy over array
+		# check if upcoming player is consumable, set cached data
+		if new_player is ConsumableArtifact and backup_consumable:
+			print("setting saved info on backup player")
+			new_player._charges_left = backup_charges
+			if new_player._cooldown_timer:
+				new_player._cooldown_timer.start(backup_time)
+				new_player._cooldown_timer.wait_time = backup_total_time
+			
+		# check if old player was a consumable, then save data
+		if old_player is ConsumableArtifact:
+			print("saving info on backup player")
+			backup_consumable = true
+			backup_charges = old_player._charges_left
+			if old_player._cooldown_timer:
+				backup_time = old_player._cooldown_timer.time_left
+				# may need to change how i get total time
+				backup_total_time = old_player._cooldown_timer.wait_time
+			else:
+				# no timer - instant cooldown
+				backup_time = 0
+				backup_total_time = 0
+		
 
 		# apply all effects + multipliers on new player, remove old effects + multipliers
 		# set time to current timer time
@@ -96,10 +116,15 @@ func update_player():
 		old_player.queue_free()
 		
 
-
 # set equipped artifacts. mainly to be used at checkpoints using select artifact menu
 func set_artifacts(a1 : Artifact, a2 : Artifact):
 	active_artifact = a1
 	backup_artifact = a2
 	update_player()
 
+# reset stored data about backup player
+func reset_backup_data():
+	var backup_consumable = false
+	var backup_charges = -1
+	var backup_time = 0
+	var backup_total_time = 0

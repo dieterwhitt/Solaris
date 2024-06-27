@@ -11,5 +11,7 @@ class_name ConsumableArtifact
 
 # there must always be a cooldown timer
 @export_node_path("Timer") var _cooldown_timer_path
+# null means no cooldown - instant use
 @onready var _cooldown_timer = get_node(_cooldown_timer_path)
-var _charges_left : int
+# -1 means infinite charges
+var _charges_left : int = -1
