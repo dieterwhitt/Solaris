@@ -15,8 +15,6 @@ func _ready():
 	_animation_tree.active = true
 	# state machine
 	_state_machine = _animation_tree.get("parameters/playback")
-	# set name so can be detected by highlight
-	name = "SeveredEarPlayer"
 	
 func _physics_process(delta):
 	# apply physics controller

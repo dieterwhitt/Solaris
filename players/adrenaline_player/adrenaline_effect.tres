@@ -1,6 +1,0 @@
-[gd_resource type="Resource" script_class="AdrenalineEffect" load_steps=2 format=3 uid="uid://brklnjm4odc4b"]
-
-[ext_resource type="Script" path="res://players/adrenaline_player/adrenaline_effect.gd" id="1_sdaqh"]
-
-[resource]
-script = ExtResource("1_sdaqh")

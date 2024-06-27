@@ -226,7 +226,7 @@ states/parry/position = Vector2(369.66, 84.5)
 transitions = ["Start", "idle-run", SubResource("AnimationNodeStateMachineTransition_pph1j"), "idle-run", "parry", SubResource("AnimationNodeStateMachineTransition_35p6w"), "idle-run", "jump", SubResource("AnimationNodeStateMachineTransition_t5l5l"), "idle-run", "RESET", SubResource("AnimationNodeStateMachineTransition_ayr5y"), "parry", "idle-run", SubResource("AnimationNodeStateMachineTransition_eroip"), "idle-run", "End", SubResource("AnimationNodeStateMachineTransition_ngvfd"), "RESET", "idle-run", SubResource("AnimationNodeStateMachineTransition_h7cax"), "fall", "idle-run", SubResource("AnimationNodeStateMachineTransition_3gtbi"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_y8rv8"), "jump", "idle-run", SubResource("AnimationNodeStateMachineTransition_b2yn0"), "idle-run", "fall", SubResource("AnimationNodeStateMachineTransition_4574k")]
 graph_offset = Vector2(35.9501, 36.3362)
 
-[node name="SeveredEarPlayer" type="CharacterBody2D" groups=["Player"]]
+[node name="SeveredEarPlayer" type="CharacterBody2D" groups=["Player", "SeveredEarPlayer"]]
 z_as_relative = false
 collision_layer = 2
 collision_mask = 33

@@ -72,14 +72,19 @@ func update_player():
 
 		# apply all effects + multipliers on new player, remove old effects + multipliers
 		# set time to current timer time
+		# only apply effects where between_players is true
 		for mult in old_player.movedata_multipliers:
-			new_player.add_multiplier(mult.attribute, mult.value, mult.timer.time_left, 
-			mult.total_time_s, mult.between_players, mult.show_progress_bar, 
-			mult.progress_bar_color)
-			mult.remove()
+			if mult.between_players:
+				new_player.add_multiplier(mult.attribute, mult.value, mult.timer.time_left, 
+				mult.total_time_s, mult.between_players, mult.show_progress_bar, 
+				mult.progress_bar_color)
+				mult.remove()
 		for effect in old_player.effects:
-			new_player.add_effect(new_player, effect.timer, effect.apply, effect.remove)
-			effect.remove.call(old_player)
+			if effect.between_players:
+				new_player.add_effect(new_player, effect.apply_func, effect.remove_func,
+						effect.timer.time_left, effect.total_time_s, effect.between_players,
+						effect.show_progress_bar, effect.progress_bar_color)
+				effect.remove()
 		
 		# free old player
 		old_player.queue_free()

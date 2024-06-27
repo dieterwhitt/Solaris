@@ -67,7 +67,7 @@ var direction : int = 0
 #var parrying = false
 # for animation: to determine when to start jump animation
 var just_jumped = false
-#var dying = false # when playing death animation
+# var dying = false # when playing death animation
 # to disable input (physics still applies), ex. after ability usage
 @export var receive_input : bool = true
 # variable for print debug statements
@@ -79,15 +79,14 @@ var _animation_tree : AnimationTree
 var _state_machine : AnimationNodeStateMachinePlayback
 
 # need to give the player an area as well for aoe detection (ex. curse)
-# need to add temporary effects (temporary movedata multipliers)
-
 
 # using move data resource. must be added in inspector or will crash
 @export_file var MoveDataResourceFile
 # duplicating to not effect original file when making modifications
 @onready var MoveData : MoveDataResource = load(MoveDataResourceFile).duplicate()
+@onready var multipliers_effects = load("res://players/common/multipliers_effects.gd")
+# to do: move multipliers and effects to new file
 
-# to be added: temporary movedata multipliers
 # inner class definition for multiplier object
 class Multiplier:
 	extends Node2D # needs to extend node to have timer and progress bar child
@@ -127,11 +126,8 @@ class Multiplier:
 		# check progress bar
 		if show_progress_bar:
 			progress_bar = load("res://players/common/progress_bar.tscn").instantiate()
+			progress_bar._init(timer.get_path(), progress_bar_color, true, total_time_s)
 			add_child(progress_bar)
-			progress_bar.color = progress_bar_color
-			# make it track timer
-			progress_bar.timer = timer
-			progress_bar.total_time_override = total_time_s
 			
 	func _on_timer_timeout():
 		# remove and free itself
@@ -157,21 +153,57 @@ var movedata_multipliers : Array = []
 # the lambda functions apply and remove MUST ORIGINATE FROM A RESOURCE
 # OTHERWISE YOU MAY REFERENCE A FREED FUNCTION POINTER
 class Effect:
+	extends Node2D
+	var timer : Timer 
+	var progress_bar = null
+	
+	# constructor
+	var apply_func : Callable # takes player as param
+	var remove_func : Callable
 	var player : Node
-	var timer : int
-	var apply : Callable # takes player as param
-	var remove : Callable
+	var time_s : int
+	var total_time_s : float # total time from the beginning (for progress bar)
+	var between_players : bool # whether the multiplier stays after switching players
+	var show_progress_bar : bool # whether to show progress bar
+	var progress_bar_color : Color
 	
-	func _init(player, timer, apply, remove):
+	func _init(player, apply_func, remove_func, time_s, total_time_s, between_players = false, 
+	show_progress_bar = false, progress_bar_color = Color.WHITE):
 		self.player = player
-		self.timer = timer
-		self.apply = apply
-		self.remove = remove
+		self.apply_func = apply_func
+		self.remove_func = remove_func
+		self.time_s = time_s
+		self.total_time_s = total_time_s
+		self.between_players = between_players
+		self.show_progress_bar = show_progress_bar
+		self.progress_bar_color = progress_bar_color
 	
-	func tick():
-		self.timer -= 1
-		if self.timer == 0:
-			self.remove.call(player)
+	func _ready():
+		# set up timer and progress bar
+		# connect timer to timeout function and start it
+		timer = Timer.new()
+		timer.process_callback = Timer.TIMER_PROCESS_PHYSICS
+		timer.timeout.connect(self._on_timer_timeout)
+		add_child(timer)
+		timer.start(time_s)
+		# check progress bar
+		if show_progress_bar:
+			progress_bar = load("res://players/common/progress_bar.tscn").instantiate()
+			progress_bar._init(timer.get_path(), progress_bar_color, true, total_time_s)
+			add_child(progress_bar)
+			
+	# wrapper for apply function
+	func apply():
+		self.apply_func.call(player)
+	
+	# wrapper for removal
+	func remove():
+		self.remove_func.call(player)
+		self.queue_free()
+		
+	func _on_timer_timeout():
+		# remove and free itself
+		self.remove()
 
 var effects : Array = []
 
@@ -216,22 +248,10 @@ func update_multipliers_effects():
 	# filter all timed out multipliers (timer = 0)
 	movedata_multipliers = movedata_multipliers.filter(func(x): return x != null)
 	# print(movedata_multipliers)
-	# tick all effects
-	for effect in effects:
-		effect.tick()
 	# filter all timed out effects (timer = 0)
-	effects = effects.filter(func(x): return x.timer > 0)
+	effects = effects.filter(func(x): return x != null)
 	# print(effects)
-	# print(movedata_multipliers)
-'''
-self.movedata = movedata
-		self.attribute = attribute
-		self.value = value
-		self.timer = timer
-		self.between_players = between_players
-		self.show_progress_bar = show_progress_bar
-		self.progress_bar = progress_bar
-'''
+
 # creates a new multiplier and adds it to the array of multipliers
 func add_multiplier(attribute : String, value : float, time_s : float, total_time_s : float, 
 		between_players : bool = false, show_progress_bar : bool = false, 
@@ -245,11 +265,17 @@ func add_multiplier(attribute : String, value : float, time_s : float, total_tim
 	new_multiplier.apply()
 	movedata_multipliers.append(new_multiplier)
 
-func add_effect(player : Node, timer : int, apply : Callable, remove : Callable):
-	print("creating new effect with timer %s" % timer)
-	var new_effect = Effect.new(player, timer, apply, remove)
+func add_effect(player : Node, apply_func, remove_func, 
+		time_s : float, total_time_s : float, 
+		between_players : bool = false, show_progress_bar : bool = false, 
+		progress_bar_color : Color = Color.WHITE ):
+	print("creating new effect with timer %s" % time_s)
+	var new_effect = Effect.new(player, apply_func, remove_func, time_s, 
+	total_time_s, between_players, show_progress_bar, progress_bar_color)
+	# add child
+	add_child(new_effect)
 	# apply it
-	new_effect.apply.call(player)
+	new_effect.apply()
 	effects.append(new_effect)
 
 func apply_gravity(delta):

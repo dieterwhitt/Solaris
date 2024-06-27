@@ -16,6 +16,13 @@ var timer : Timer
 var total_time_override : float = 0
 const BASE_COLOR = Color8(125, 125, 125, 255)
 
+# can init before adding to tree
+func _init(timer_path = "", color = Color.BLACK, show_empty = true, total_time_override = 0):
+	self.timer_path = timer_path
+	self.color = color
+	self.show_empty = show_empty
+	self.total_time_override = total_time_override
+
 func _ready():
 	if timer_path:
 		timer = get_node(timer_path)
@@ -29,8 +36,6 @@ func _ready():
 			if node != self and node.is_in_group("ProgressBar"):
 				print("progress bar sibling found")
 				self.position.y -= 4
-				
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

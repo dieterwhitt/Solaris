@@ -16,7 +16,7 @@ func _physics_process(delta):
 	var level_manager = get_node("/root/LevelManager")
 	if level_manager:
 		var player = level_manager.player
-		if player and player.name == "SeveredEarPlayer":
+		if player and player.is_in_group("SeveredEarPlayer"):
 			particles.emitting = true
 			line.show()
 		else:
