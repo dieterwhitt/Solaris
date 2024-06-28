@@ -297,6 +297,7 @@ collision_mask = 33
 platform_on_leave = 1
 platform_floor_layers = 4294901793
 script = ExtResource("1_04nso")
+_cooldown_bar_path = NodePath("ProgressBar")
 _cooldown_timer_path = NodePath("CooldownTimer")
 MoveDataResourceFile = "res://players/common/default_movedata.tres"
 

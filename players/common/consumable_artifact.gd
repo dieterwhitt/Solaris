@@ -9,8 +9,9 @@ extends ReworkedDefaultController
 
 class_name ConsumableArtifact
 
-@export_node_path("Node2D") var _progress_bar_path
-@onready var _progress_bar = get_node(_progress_bar_path)
+# progress bar path and node (for setting cooldown override)
+@export_node_path("Node2D") var _cooldown_bar_path
+@onready var _cooldown_bar = get_node(_cooldown_bar_path)
 
 # there must always be a cooldown timer
 @export_node_path("Timer") var _cooldown_timer_path

@@ -10,15 +10,16 @@ extends Node
 # null -> use default player
 # testing various values. 
 var active_artifact : Artifact = \
-		load("res://world/artifacts/pan_flute/pan_flute.tres")
+		load("res://world/artifacts/boomstick/boomstick.tres")
 var backup_artifact : Artifact = load("res://world/artifacts/adrenaline_shot/adrenaline_shot.tres")
 @onready var level_manager : Node = get_parent()
 
 # for consumables to prevent swapping out and resetting cooldowns/charges
 var backup_consumable : bool
 var backup_charges : int
-var backup_time : float
-var backup_total_time : float
+# cooldown times (active and total)
+var backup_cooldown_time : float
+var backup_total_cooldown_time : float
 
 # on swap:
 # switch active and backup artifact
@@ -79,30 +80,32 @@ func update_player():
 			charges left: %s\n
 			time left: %s\n
 			total time: %s\n"  %
-			[new_player.name, backup_charges, backup_time, backup_total_time])
+			[new_player.name, backup_charges, backup_cooldown_time, backup_total_cooldown_time])
 			new_player._charges_left = backup_charges
-			if new_player._cooldown_timer:
-				# problem: can't change both in the same frame
-				new_player._cooldown_timer.wait_time = backup_total_time
-				new_player._cooldown_timer.start(backup_time)
+			if new_player._cooldown_timer and backup_cooldown_time != 0:
+				new_player._cooldown_timer.start(backup_cooldown_time)
+				if new_player._cooldown_bar:
+					# problem: can't change both in the same frame
+					# set progress bar override
+					new_player._cooldown_bar.total_time_override = backup_total_cooldown_time
 			
 		# check if old player was a consumable, then save data
 		if old_player is ConsumableArtifact:
 			backup_consumable = true
 			backup_charges = old_player._charges_left
 			if old_player._cooldown_timer:
-				backup_time = old_player._cooldown_timer.time_left
+				backup_cooldown_time = old_player._cooldown_timer.time_left
 				# may need to change how i get total time
-				backup_total_time = old_player._cooldown_timer.wait_time
+				backup_total_cooldown_time = old_player._cooldown_length
 			else:
 				# no timer - instant cooldown
-				backup_time = 0
-				backup_total_time = 0
+				backup_cooldown_time = 0
+				backup_total_cooldown_time = 0
 			print("saving info on backup player %s:\n
 			charges left: %s\n
 			time left: %s\n
 			total time: %s\n"  %
-			[old_player.name, backup_charges, backup_time, backup_total_time])
+			[old_player.name, backup_charges, backup_cooldown_time, backup_total_cooldown_time])
 		
 
 		# apply all effects + multipliers on new player, remove old effects + multipliers

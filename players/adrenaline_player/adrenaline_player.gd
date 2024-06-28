@@ -11,8 +11,7 @@ const DURATION_S : int = 5 # duration in seconds per charge, must *60 to convert
 const RUN_SPEED_MULT : float = 1.35
 const ACCEL_MULT : float = 2
 const DECEL_MULT : float = 1.8
-
-
+const COOLDOWN_TIME = 8
 # cooldown - 8 seconds
 
 @export_file var particle_scene
@@ -28,7 +27,8 @@ func _ready():
 	# state machine
 	_state_machine = _animation_tree.get("parameters/playback")
 	_charges_left = 3 # total charges remaining
-	_cooldown_length = DURATION_S
+	_cooldown_length = COOLDOWN_TIME
+	$CooldownTimer.wait_time = COOLDOWN_TIME
 
 func _physics_process(delta):
 	# apply physics controller
