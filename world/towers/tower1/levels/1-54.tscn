@@ -9,6 +9,8 @@
 editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
 script = ExtResource("1_88mfu")
 checkpoint = true
+width = null
+height = null
 
 [node name="Borders" type="Node" parent="."]
 
