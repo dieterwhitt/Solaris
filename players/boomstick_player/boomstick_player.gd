@@ -2,14 +2,16 @@
 # june 1st 2024
 # boomstick_player.gd
 
-extends ReworkedDefaultController
+extends ConsumableArtifact
 
 # var direction2d = Vector2.ZERO
 const RECOIL_VELOCITY = 240
-const COOLDOWN_FRAMES = 45 # cooldown time in frames
-var cooldown_timer = 0
-@onready var pellets : PackedScene = preload("res://players/boomstick_player/boomstick_pellets.tscn")
+# const COOLDOWN_FRAMES = 45 # cooldown time in frames
+# var cooldown_timer = 0
+const COOLDOWN_TIME = 0.75 # s
+
 @onready var killcasts = $KillCasts
+@onready var boomstick_effect = load("res://players/boomstick_player/boomstick_effect.gd")
 
 func _ready():
 	# override
@@ -20,6 +22,8 @@ func _ready():
 	# sprite and state machine (sprite not needed anymore)
 	# _sprite = $Sprite2D
 	_state_machine = _animation_tree.get("parameters/playback")
+	_charges_left = -1 # infinite charges
+	_cooldown_length = COOLDOWN_TIME # setting cooldown length variable
 
 func _physics_process(delta):
 	# apply physics controller
@@ -28,25 +32,19 @@ func _physics_process(delta):
 	# move and slide
 	move_and_slide()
 
+# rework: use effect system to spawn pellets
+
 # shoots pellets, killing all non-bulletproof enemies
 # currently shoots left and right with 25 deg spread
 # applies recoil in opposite direction.
-# need to add cooldown, for now just shoots infinite amount
 func check_shoot():
-	if cooldown_timer > 0:
-		# sitll on cooldown
-		cooldown_timer -= 1
-	elif Input.is_action_just_pressed("special") and cooldown_timer == 0:
+	if Input.is_action_just_pressed("special") and _cooldown_timer.time_left == 0:
 		# set recoil to opposite current x facing direction
 		var recoil_direction = -transform.x.x
 		# apply recoil
 		velocity.x = RECOIL_VELOCITY * recoil_direction
-		# restarting using subemitters doesn't work: need to resort to adding child scene
-		var new_pellets = pellets.instantiate()
-		add_child(new_pellets)
-		new_pellets.emitting = true
 		# set cooldown
-		cooldown_timer = COOLDOWN_FRAMES
+		_cooldown_timer.start(COOLDOWN_TIME)
 		# play shooting animation
 		
 		# check raycasts for enemies and kill all non-bulletproof ones
@@ -75,7 +73,6 @@ func check_shoot():
 				raycast.force_raycast_update()
 			# done scanning for this raycast: clear its exceptions
 			raycast.clear_exceptions()
-		# lastly delete new pellets after 1 second
-		await get_tree().create_timer(1.0).timeout
-		remove_child(new_pellets)
+		# shooting effect
+		add_effect(self, boomstick_effect.apply, boomstick_effect.remove, 1, 1, true, false)
 	

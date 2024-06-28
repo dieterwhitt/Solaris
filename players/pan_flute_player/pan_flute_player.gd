@@ -7,6 +7,7 @@ extends ReworkedDefaultController
 const TUNE_DURATION = 10 # length of the tune for how long the animation will play
 var playing : bool = false
 @onready var timer = $Timer
+@onready var progress_bar = $ProgressBar
 
 func _ready():
 	# override
@@ -31,6 +32,7 @@ func play_flute():
 		# animation will be a looping animation and particles will be emitted.
 		timer.start(TUNE_DURATION)
 		# show progress bar
+		progress_bar.show()
 		await timer.timeout
 		if playing:
 			# when timer runs out, stops playing if hasn't been stopped yet
@@ -49,3 +51,4 @@ func stop_playing():
 	_animation_tree.travel("idle")
 	# stop music
 	# hide progress bar
+	progress_bar.hide()

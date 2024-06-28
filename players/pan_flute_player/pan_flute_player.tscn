@@ -1,8 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://cporgjlcii7hk"]
+[gd_scene load_steps=32 format=3 uid="uid://cporgjlcii7hk"]
 
 [ext_resource type="SpriteFrames" uid="uid://r1qbqgnq6vyp" path="res://players/common/placeholder_spriteframes.tres" id="1_5awpy"]
 [ext_resource type="Script" path="res://players/pan_flute_player/pan_flute_player.gd" id="1_e7pc8"]
 [ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://players/common/player_hitbox.tscn" id="2_bnree"]
+[ext_resource type="PackedScene" uid="uid://dxybw0lxrmnw6" path="res://players/common/progress_bar.tscn" id="4_l1dao"]
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
 length = 0.001
@@ -224,6 +225,7 @@ collision_mask = 33
 platform_on_leave = 1
 platform_floor_layers = 4294901793
 script = ExtResource("1_e7pc8")
+MoveDataResourceFile = "res://players/common/default_movedata.tres"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_5awpy")
@@ -247,3 +249,8 @@ parameters/idle-run/blend_position = 0
 [node name="PlayerHitbox" parent="." instance=ExtResource("2_bnree")]
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ProgressBar" parent="." instance=ExtResource("4_l1dao")]
+timer_path = NodePath("../Timer")
+color = Color(0.427451, 0.517647, 0.847059, 1)

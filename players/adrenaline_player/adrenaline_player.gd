@@ -28,6 +28,7 @@ func _ready():
 	# state machine
 	_state_machine = _animation_tree.get("parameters/playback")
 	_charges_left = 3 # total charges remaining
+	_cooldown_length = DURATION_S
 
 func _physics_process(delta):
 	# apply physics controller

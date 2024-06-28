@@ -1,10 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://e6xtle4n6m5c"]
+[gd_scene load_steps=35 format=3 uid="uid://e6xtle4n6m5c"]
 
 [ext_resource type="Script" path="res://players/boomstick_player/boomstick_player.gd" id="1_04nso"]
 [ext_resource type="Texture2D" uid="uid://jxu2bhftq5r0" path="res://players/boomstick_player/RunRightGun.png" id="2_46nou"]
 [ext_resource type="SpriteFrames" uid="uid://dw13gbnr8x4fd" path="res://players/boomstick_player/boomstick_player_spriteframes.tres" id="2_jg2m5"]
 [ext_resource type="Texture2D" uid="uid://b4koh8a8g5s4k" path="res://players/boomstick_player/pellet.png" id="3_av6lb"]
 [ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://players/common/player_hitbox.tscn" id="5_2tgoo"]
+[ext_resource type="PackedScene" uid="uid://dxybw0lxrmnw6" path="res://players/common/progress_bar.tscn" id="6_eoxw5"]
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
 length = 0.001
@@ -296,6 +297,7 @@ collision_mask = 33
 platform_on_leave = 1
 platform_floor_layers = 4294901793
 script = ExtResource("1_04nso")
+_cooldown_timer_path = NodePath("CooldownTimer")
 MoveDataResourceFile = "res://players/common/default_movedata.tres"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -364,3 +366,10 @@ collision_mask = 17
 hit_from_inside = true
 
 [node name="PlayerHitbox" parent="." instance=ExtResource("5_2tgoo")]
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ProgressBar" parent="." instance=ExtResource("6_eoxw5")]
+timer_path = NodePath("../CooldownTimer")
+color = Color(0.666667, 0.666667, 0.666667, 1)

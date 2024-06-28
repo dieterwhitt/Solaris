@@ -223,6 +223,7 @@ platform_on_leave = 1
 platform_floor_layers = 4294901793
 script = ExtResource("1_ecq0k")
 particle_scene = "res://players/common/default_movedata.tres"
+_progress_bar_path = NodePath("ProgressBar")
 _cooldown_timer_path = NodePath("CooldownTimer")
 MoveDataResourceFile = "res://players/common/default_movedata.tres"
 
@@ -253,4 +254,4 @@ one_shot = true
 
 [node name="ProgressBar" parent="." instance=ExtResource("4_ox8ol")]
 timer_path = NodePath("../CooldownTimer")
-color = Color(0.658824, 0.658824, 0.658824, 1)
+color = Color(0.666667, 0.666667, 0.666667, 1)

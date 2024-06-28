@@ -21,7 +21,7 @@ initial_velocity_min = 40.0
 initial_velocity_max = 60.0
 gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 
-[node name="BoomstickPellets" type="GPUParticles2D"]
+[node name="BoomstickPellets" type="GPUParticles2D" groups=["BoomstickPellets"]]
 position = Vector2(8, 0)
 emitting = false
 sub_emitter = NodePath("BoomstickPelletEnd")
