@@ -5,12 +5,14 @@
 # handles player as a child to level manager
 # artifact swap, changing player, set equipped artifacts
 
+# this file is a horrifying mess i really tried my best
+
 extends Node
 
 # null -> use default player
 # testing various values. 
 var active_artifact : Artifact = \
-		load("res://world/artifacts/boomstick/boomstick.tres")
+		load("res://world/artifacts/pineal_gland/pineal_gland.tres")
 var backup_artifact : Artifact = load("res://world/artifacts/adrenaline_shot/adrenaline_shot.tres")
 @onready var level_manager : Node = get_parent()
 

@@ -14,7 +14,6 @@ const DECEL_MULT : float = 1.8
 const COOLDOWN_TIME = 8
 # cooldown - 8 seconds
 
-@export_file var particle_scene
 # loading script containing effect apply/remove functions
 @onready var adrenaline_effect = preload("res://players/adrenaline_player/adrenaline_effect.gd")
 
@@ -28,7 +27,7 @@ func _ready():
 	_state_machine = _animation_tree.get("parameters/playback")
 	_charges_left = 3 # total charges remaining
 	_cooldown_length = COOLDOWN_TIME
-	$CooldownTimer.wait_time = COOLDOWN_TIME
+	_cooldown_timer.wait_time = COOLDOWN_TIME
 
 func _physics_process(delta):
 	# apply physics controller

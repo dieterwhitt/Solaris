@@ -1,8 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://bkemet4nucnmq"]
+[gd_scene load_steps=32 format=3 uid="uid://bkemet4nucnmq"]
 
 [ext_resource type="Script" path="res://players/pineal_gland_player/pineal_gland_player.gd" id="1_loia5"]
 [ext_resource type="SpriteFrames" uid="uid://r1qbqgnq6vyp" path="res://players/common/placeholder_spriteframes.tres" id="1_qiycc"]
 [ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://players/common/player_hitbox.tscn" id="2_qukuj"]
+[ext_resource type="Material" uid="uid://k3u8w2dydwhk" path="res://world/particles/small_inward_particles/small_inward_particles.tres" id="4_o64ay"]
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
 length = 0.001
@@ -224,6 +225,9 @@ collision_mask = 33
 platform_on_leave = 1
 platform_floor_layers = 4294901793
 script = ExtResource("1_loia5")
+_cooldown_bar_path = NodePath("")
+_cooldown_timer_path = NodePath("")
+MoveDataResourceFile = "res://players/common/default_movedata.tres"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_qiycc")
@@ -245,3 +249,10 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/idle-run/blend_position = 0
 
 [node name="PlayerHitbox" parent="." instance=ExtResource("2_qukuj")]
+
+[node name="GlandItemParticle" type="GPUParticles2D" parent="."]
+editor_description = "make it follow gland sprite"
+position = Vector2(8, 1)
+amount = 6
+process_material = ExtResource("4_o64ay")
+lifetime = 0.45

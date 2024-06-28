@@ -395,9 +395,11 @@ func kill():
 	# need to remove all effects and multipliers upon death. new player scene will still have
 	# the same movedata
 	for multiplier in movedata_multipliers:
-		multiplier.remove()
+		if multiplier != null:
+			multiplier.remove()
 	for effect in effects:
-		effect.remove.call(self)
+		if effect != null:
+			effect.remove()
 	
 	# _state_machine.travel("death")
 	# get level manager parent and respawn player

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://i013ie5voj83"]
+
+[ext_resource type="Material" uid="uid://cjyg824e0nd21" path="res://world/particles/box_emit_long/box_emit_long.tres" id="1_sdffd"]
+
+[node name="WarpParticles" type="GPUParticles2D" groups=["WarpParticles"]]
+position = Vector2(0, 4)
+amount = 10
+process_material = ExtResource("1_sdffd")
+lifetime = 0.3
