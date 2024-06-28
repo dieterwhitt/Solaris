@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=2 format=3 uid="uid://cxp27rqyl077t"]
+
+[ext_resource type="Script" path="res://world/artifacts/artifact.gd" id="1_ydjnc"]
+
+[resource]
+script = ExtResource("1_ydjnc")
+id = "pineal_gland"
+name = "Pineal Gland"
+description = "[Consumable] [1 Charge] A pineal gland taken from the brain of a divine being. [Special] to activate, temporarily sending the holder into an alternate dimension."
+icon16 = ""
+icon64 = ""
+playerScenePath = "res://players/pineal_gland_player/pineal_gland_player.tscn"

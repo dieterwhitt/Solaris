@@ -30,20 +30,17 @@ level_manager:
 var loaded = {}
 # current tower rewource
 var tower : Tower = load("res://world/towers/tower1/tower1.gd").new()
-var spawn_lvl : String = "54" # current spawn level id (checkpoint)
+var spawn_lvl : String = "19" # current spawn level id (checkpoint)
 # kindling bonfires (setting checkpoints) not established yet (need checkpoint scene)
 # for now just auto-set checkpoint when screen loads
 # current scene being rendered
 var current : Node = null
 var current_lvl : String = "" # current level id
-# active player and other available players (not implemented yet)
-# switch to checking value in player manager instead
-var active_player : String = "res://players/boomstick_player/boomstick_player.tscn"
-var backup_player : String # other equipped powerup
 # player (node)
 # 
 var player : Node = null
-
+# player manager
+@onready var player_manager = $PlayerManager
 # new - camera settings
 @onready var camera : Camera2D = Camera2D.new()
 # to control camera movement
@@ -91,12 +88,6 @@ func calibrate_camera():
 	
 	# reset smoothing
 	camera.reset_smoothing()
-
-# snaps camera to player
-func snap_camera():
-	camera.position_smoothing_enabled = false
-	camera_smooth_timer = camera_smooth_delay
-
 
 # starts the current level by adding it to the tree and loading its
 # adjacent levels. does NOT spawn player
@@ -160,7 +151,12 @@ func respawn_player():
 	if player:
 		player.queue_free()
 		player.remove_child(cam_transform)
-	player = load(active_player).instantiate()
+	var artifact = player_manager.active_artifact
+	var player_scene = "res://players/player_reworked/player_reworked.tscn"
+	if artifact:
+		player_scene = artifact.playerScenePath
+	print(player_scene)
+	player = load(player_scene).instantiate()
 	# delete all loaded scenes and switch current scene to checkpoint
 	for level in loaded:
 		loaded[level].queue_free()
@@ -208,7 +204,7 @@ func check_borders():
 	var target_posn_relative = Vector2.ZERO
 	# direction of what screen to travel to on matrix
 	var target_dir = Vector2.ZERO
-	if posn.y < current.borders["top"]:
+	if posn.y < current.borders["top"] - 4: # hardcoded - moving top border by 4 to prevent clipping
 		target_dir.y = -1
 		# keep relative x, set y to bottom of screen
 		target_posn_relative = Vector2(current.get_relative_x(posn.x),

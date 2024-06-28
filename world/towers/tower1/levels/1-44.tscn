@@ -161,3 +161,10 @@ metadata/_edit_lock_ = true
 
 [node name="Spawn" type="Node2D" parent="."]
 position = Vector2(112, 136)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 56.0
+offset_top = 56.0
+offset_right = 188.0
+offset_bottom = 79.0
+text = "Part IV: Stomach."

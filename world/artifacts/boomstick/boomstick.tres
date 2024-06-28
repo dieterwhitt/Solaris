@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=2 format=3 uid="uid://bpv67yoe3j2yh"]
+
+[ext_resource type="Script" path="res://world/artifacts/artifact.gd" id="1_lqvs7"]
+
+[resource]
+script = ExtResource("1_lqvs7")
+id = "boomstick"
+name = "Boomstick"
+description = "[Weapon] A trusty shotgun with explosive power. Press [Special] to shoot."
+icon16 = ""
+icon64 = ""
+playerScenePath = "res://players/boomstick_player/boomstick_player.tscn"

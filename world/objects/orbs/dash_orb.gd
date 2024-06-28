@@ -3,6 +3,8 @@
 
 extends Orb
 
+# export rotation, rotate start in _ready
+
 # dash velocity
 const DASH_VELOCITY = 300 # 275 250 #300
 # number of frames into dash before applying friction

@@ -157,3 +157,10 @@ metadata/_edit_lock_ = true
 editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"
 z_index = 20
 metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 88.0
+offset_bottom = 39.0
+text = "Part I: Sphincter."

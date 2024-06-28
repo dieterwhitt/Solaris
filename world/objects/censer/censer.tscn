@@ -1,0 +1,175 @@
+[gd_scene load_steps=18 format=3 uid="uid://vlihgtwi2h1v"]
+
+[ext_resource type="Texture2D" uid="uid://dfiblf7fa8l7d" path="res://world/objects/censer/censerwsmokeupdated.png" id="1_8soas"]
+[ext_resource type="Script" path="res://world/objects/censer/censer.gd" id="2_5edpb"]
+
+[sub_resource type="Animation" id="Animation_yd6vr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_7cp05"]
+resource_name = "emitting"
+length = 0.500017
+loop_mode = 1
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_babi8"]
+resource_name = "idle"
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"idle"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_xnnh0"]
+resource_name = "start"
+length = 0.500018
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0afaf"]
+_data = {
+"RESET": SubResource("Animation_yd6vr"),
+"emitting": SubResource("Animation_7cp05"),
+"idle": SubResource("Animation_babi8"),
+"start": SubResource("Animation_xnnh0")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6twny"]
+animation = &"emitting"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c0lq1"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_orllo"]
+animation = &"start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wrgdv"]
+animation = &"start"
+play_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mu3b7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vfffd"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p4yxw"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_se4ss"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p34pu"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rex84"]
+states/Start/position = Vector2(181, 101)
+states/emitting/node = SubResource("AnimationNodeAnimation_6twny")
+states/emitting/position = Vector2(517, 210)
+states/idle/node = SubResource("AnimationNodeAnimation_c0lq1")
+states/idle/position = Vector2(372.812, 100)
+states/start/node = SubResource("AnimationNodeAnimation_orllo")
+states/start/position = Vector2(526, 100.5)
+states/stop/node = SubResource("AnimationNodeAnimation_wrgdv")
+states/stop/position = Vector2(373.125, 210.5)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_mu3b7"), "start", "emitting", SubResource("AnimationNodeStateMachineTransition_vfffd"), "stop", "idle", SubResource("AnimationNodeStateMachineTransition_p4yxw"), "idle", "start", SubResource("AnimationNodeStateMachineTransition_se4ss"), "emitting", "stop", SubResource("AnimationNodeStateMachineTransition_p34pu")]
+graph_offset = Vector2(0, 51.9571)
+
+[node name="Censer" type="Node2D"]
+script = ExtResource("2_5edpb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, -0.5)
+texture = ExtResource("1_8soas")
+hframes = 6
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_0afaf")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_0afaf")
+}
+tree_root = SubResource("AnimationNodeStateMachine_rex84")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

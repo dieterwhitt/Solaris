@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=2 format=3 uid="uid://kk6j6fbq215q"]
+
+[ext_resource type="Script" path="res://world/artifacts/artifact.gd" id="1_va3xm"]
+
+[resource]
+script = ExtResource("1_va3xm")
+id = "aeramen_pendant"
+name = "Aeramen Pendant"
+description = "[Passive] A lustrous pendant made from a mysterious metal. When held, the player gains increased speed and momentum when moving at high speeds."
+icon16 = ""
+icon64 = ""
+playerScenePath = "res://players/bronze_pendant_player/bronze_pendant_player.tscn"

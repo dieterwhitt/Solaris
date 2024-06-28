@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://djwya0fxfj11e"]
+
+[ext_resource type="Texture2D" uid="uid://b4koh8a8g5s4k" path="res://players/boomstick_player/pellet.png" id="1_cjgtb"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t0b68"]
+particle_flag_disable_z = true
+spread = 20.0
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+collision_mode = 1
+collision_friction = 0.5
+collision_bounce = 0.3
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 10
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_obpkw"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[node name="BoomstickPellets" type="GPUParticles2D" groups=["BoomstickPellets"]]
+position = Vector2(8, 0)
+emitting = false
+sub_emitter = NodePath("BoomstickPelletEnd")
+process_material = SubResource("ParticleProcessMaterial_t0b68")
+texture = ExtResource("1_cjgtb")
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+interpolate = false
+fract_delta = false
+
+[node name="BoomstickPelletEnd" type="GPUParticles2D" parent="."]
+modulate = Color(0.623529, 0.623529, 0.623529, 1)
+position = Vector2(-8, 0)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_obpkw")
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
