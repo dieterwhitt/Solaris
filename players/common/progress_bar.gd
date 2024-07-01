@@ -32,6 +32,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	update_height()
 	# set global transform so it isn't flipped
 	global_transform.x.x = 1
 	# check if timer actually still exists
@@ -65,3 +66,18 @@ func _process(delta):
 		else:
 			base.default_color = BASE_COLOR
 			bar.default_color = color
+
+func update_height():
+	# get array of bars
+	var bars = get_tree().get_nodes_in_group("ProgressBar")
+	# based on index of current, shift up 4px
+	var count = 0 # number of bars before self
+	for bar in bars:
+		if bar == self:
+			# shift up
+			self.position.y = -4 * count
+			break
+		else:
+			if bar:
+				# bar exists
+				count += 1

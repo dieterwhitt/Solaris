@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://hfikpg8mh53v"]
+
+[ext_resource type="Script" path="res://world/objects/axe.gd" id="1_vckdp"]
+
+[node name="Axe" type="Node2D"]
+script = ExtResource("1_vckdp")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dux7exh3qy8gl"]
+[gd_scene load_steps=7 format=3 uid="uid://dux7exh3qy8gl"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_64hqj"]
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-34.gd" id="1_sn8ab"]
 [ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_rymt0"]
+[ext_resource type="TileSet" uid="uid://btp05tgwulpae" path="res://world/towers/tower1/levels/tower1deco.tres" id="4_5gubf"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="4_rsrgx"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
@@ -148,6 +149,12 @@ tile_set = ExtResource("3_rymt0")
 format = 2
 layer_0/tile_data = PackedInt32Array(720884, 0, 196608, 720883, 0, 196608, 720882, 0, 196608, 720885, 0, 196608)
 metadata/_edit_lock_ = true
+
+[node name="illusory" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+rotation = 4.71239
+tile_set = ExtResource("4_5gubf")
+format = 2
+layer_0/tile_data = PackedInt32Array(2424821, 7, 65536, 2424820, 7, 65536, 2424819, 7, 65536, 2424818, 7, 65536)
 
 [node name="-20_ENTITIES" type="CanvasGroup" parent="."]
 z_index = -20
