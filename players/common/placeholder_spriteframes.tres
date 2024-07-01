@@ -1,7 +1,8 @@
-[gd_resource type="SpriteFrames" load_steps=25 format=3 uid="uid://r1qbqgnq6vyp"]
+[gd_resource type="SpriteFrames" load_steps=30 format=3 uid="uid://r1qbqgnq6vyp"]
 
 [ext_resource type="Texture2D" uid="uid://fxctsy2cu21f" path="res://players/common/idleplholderfixed.png" id="2_dwip7"]
 [ext_resource type="Texture2D" uid="uid://3j1i2pbts3l" path="res://players/common/jumpplholderfixed.png" id="3_kwm03"]
+[ext_resource type="Texture2D" uid="uid://dbuc0ist14ill" path="res://players/common/parrynogun.png" id="3_rljjv"]
 [ext_resource type="Texture2D" uid="uid://c86hxikq4vnq" path="res://players/common/runplholderfixed.png" id="4_21g6s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mtv4b"]
@@ -63,6 +64,22 @@ region = Rect2(128, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wud04"]
 atlas = ExtResource("3_kwm03")
 region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihnaq"]
+atlas = ExtResource("3_rljjv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qds6i"]
+atlas = ExtResource("3_rljjv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kt8j0"]
+atlas = ExtResource("3_rljjv")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h45js"]
+atlas = ExtResource("3_rljjv")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2sa2"]
 atlas = ExtResource("4_21g6s")
@@ -148,6 +165,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihnaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qds6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kt8j0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h45js")
+}],
+"loop": true,
+"name": &"parry",
 "speed": 5.0
 }, {
 "frames": [{

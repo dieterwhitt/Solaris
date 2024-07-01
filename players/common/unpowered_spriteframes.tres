@@ -1,8 +1,9 @@
-[gd_resource type="SpriteFrames" load_steps=25 format=3 uid="uid://bdvcb0ab46uj8"]
+[gd_resource type="SpriteFrames" load_steps=30 format=3 uid="uid://bdvcb0ab46uj8"]
 
 [ext_resource type="Texture2D" uid="uid://d05ltcjb58cs7" path="res://players/player_reworked/idlenogunfixed.png" id="1_mqbtx"]
 [ext_resource type="Texture2D" uid="uid://bfo2xteqr24f" path="res://players/player_reworked/jumpnogunfixed.png" id="2_135xd"]
 [ext_resource type="Texture2D" uid="uid://ddn2pyco1nkra" path="res://players/player_reworked/runnogunfixed.png" id="3_mnfee"]
+[ext_resource type="Texture2D" uid="uid://dbuc0ist14ill" path="res://players/common/parrynogun.png" id="3_p3mkb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_klm0a"]
 atlas = ExtResource("2_135xd")
@@ -63,6 +64,22 @@ region = Rect2(128, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_rd8qq"]
 atlas = ExtResource("2_135xd")
 region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_din65"]
+atlas = ExtResource("3_p3mkb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mr1m0"]
+atlas = ExtResource("3_p3mkb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmok0"]
+atlas = ExtResource("3_p3mkb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eewgd"]
+atlas = ExtResource("3_p3mkb")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n3pjb"]
 atlas = ExtResource("3_mnfee")
@@ -148,6 +165,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_din65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mr1m0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmok0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eewgd")
+}],
+"loop": true,
+"name": &"parry",
 "speed": 5.0
 }, {
 "frames": [{

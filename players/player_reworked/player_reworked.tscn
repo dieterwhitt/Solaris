@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://yri1y85csvlw"]
+[gd_scene load_steps=32 format=3 uid="uid://yri1y85csvlw"]
 
 [ext_resource type="Script" path="res://players/player_reworked/player_reworked.gd" id="1_wcno6"]
 [ext_resource type="SpriteFrames" uid="uid://bdvcb0ab46uj8" path="res://players/common/unpowered_spriteframes.tres" id="3_670jp"]
+[ext_resource type="PackedScene" uid="uid://n7ddc0vjwm5p" path="res://players/common/player_area.tscn" id="4_v76gy"]
 [ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://players/common/player_hitbox.tscn" id="4_ypqtj"]
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
@@ -111,6 +112,30 @@ tracks/1/keys = {
 resource_name = "parry"
 length = 0.333342
 step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"parry"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
 
 [sub_resource type="Animation" id="Animation_wh2cn"]
 resource_name = "run"
@@ -180,7 +205,7 @@ blend_mode = 1
 animation = &"jump"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nobc1"]
-animation = &"swing1"
+animation = &"parry"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pph1j"]
 advance_mode = 2
@@ -190,10 +215,6 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t5l5l"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ayr5y"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eroip"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ngvfd"]
 
@@ -209,6 +230,10 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4574k"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eroip"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vsi7h"]
 states/End/position = Vector2(684.5, 216)
 states/RESET/node = SubResource("AnimationNodeAnimation_2ytaj")
@@ -222,8 +247,8 @@ states/jump/node = SubResource("AnimationNodeAnimation_7tuwn")
 states/jump/position = Vector2(530.16, 72.5)
 states/parry/node = SubResource("AnimationNodeAnimation_nobc1")
 states/parry/position = Vector2(369.66, 84.5)
-transitions = ["Start", "idle-run", SubResource("AnimationNodeStateMachineTransition_pph1j"), "idle-run", "parry", SubResource("AnimationNodeStateMachineTransition_35p6w"), "idle-run", "jump", SubResource("AnimationNodeStateMachineTransition_t5l5l"), "idle-run", "RESET", SubResource("AnimationNodeStateMachineTransition_ayr5y"), "parry", "idle-run", SubResource("AnimationNodeStateMachineTransition_eroip"), "idle-run", "End", SubResource("AnimationNodeStateMachineTransition_ngvfd"), "RESET", "idle-run", SubResource("AnimationNodeStateMachineTransition_h7cax"), "fall", "idle-run", SubResource("AnimationNodeStateMachineTransition_3gtbi"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_y8rv8"), "jump", "idle-run", SubResource("AnimationNodeStateMachineTransition_b2yn0"), "idle-run", "fall", SubResource("AnimationNodeStateMachineTransition_4574k")]
-graph_offset = Vector2(35.9501, 36.3362)
+transitions = ["Start", "idle-run", SubResource("AnimationNodeStateMachineTransition_pph1j"), "idle-run", "parry", SubResource("AnimationNodeStateMachineTransition_35p6w"), "idle-run", "jump", SubResource("AnimationNodeStateMachineTransition_t5l5l"), "idle-run", "RESET", SubResource("AnimationNodeStateMachineTransition_ayr5y"), "idle-run", "End", SubResource("AnimationNodeStateMachineTransition_ngvfd"), "RESET", "idle-run", SubResource("AnimationNodeStateMachineTransition_h7cax"), "fall", "idle-run", SubResource("AnimationNodeStateMachineTransition_3gtbi"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_y8rv8"), "jump", "idle-run", SubResource("AnimationNodeStateMachineTransition_b2yn0"), "idle-run", "fall", SubResource("AnimationNodeStateMachineTransition_4574k"), "parry", "idle-run", SubResource("AnimationNodeStateMachineTransition_eroip")]
+graph_offset = Vector2(-47.6824, 32.4587)
 
 [node name="PlayerReworked" type="CharacterBody2D" groups=["Player"]]
 z_as_relative = false
@@ -255,3 +280,5 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_vsi7h")
 anim_player = NodePath("../AnimationPlayer")
 parameters/idle-run/blend_position = 0
+
+[node name="PlayerArea" parent="." instance=ExtResource("4_v76gy")]

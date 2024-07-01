@@ -11,8 +11,7 @@ extends Node
 
 # null -> use default player
 # testing various values. 
-var active_artifact : Artifact = \
-		load("res://world/artifacts/pineal_gland/pineal_gland.tres")
+var active_artifact : Artifact = null
 var backup_artifact : Artifact = load("res://world/artifacts/adrenaline_shot/adrenaline_shot.tres")
 @onready var level_manager : Node = get_parent()
 

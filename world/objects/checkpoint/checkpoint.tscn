@@ -1,0 +1,152 @@
+[gd_scene load_steps=17 format=3 uid="uid://jttcj28mbwsg"]
+
+[ext_resource type="Script" path="res://world/objects/checkpoint/checkpoint.gd" id="1_o8eth"]
+[ext_resource type="Texture2D" uid="uid://dejy8oxqop0x1" path="res://world/objects/checkpoint/bowelscheckpoint.png" id="1_vcfjb"]
+
+[sub_resource type="Animation" id="Animation_xgxg5"]
+resource_name = "unreached"
+length = 0.10001
+loop_mode = 1
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qe3vc"]
+resource_name = "growing"
+length = 0.500017
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_4xaci"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_kctjt"]
+resource_name = "reached"
+length = 0.166683
+loop_mode = 1
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m1ln4"]
+_data = {
+"RESET": SubResource("Animation_4xaci"),
+"growing": SubResource("Animation_qe3vc"),
+"reached": SubResource("Animation_kctjt"),
+"unreached": SubResource("Animation_xgxg5")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1x17h"]
+animation = &"growing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1x6vn"]
+animation = &"reached"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0vnxj"]
+animation = &"unreached"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a8b37"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8ji5n"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yaelk"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_22cfx"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qgru7"]
+states/growing/node = SubResource("AnimationNodeAnimation_1x17h")
+states/growing/position = Vector2(345.79, -26.56)
+states/reached/node = SubResource("AnimationNodeAnimation_1x6vn")
+states/reached/position = Vector2(536.79, -15.56)
+states/unreached/node = SubResource("AnimationNodeAnimation_0vnxj")
+states/unreached/position = Vector2(356.43, 100.995)
+transitions = ["Start", "unreached", SubResource("AnimationNodeStateMachineTransition_a8b37"), "unreached", "growing", SubResource("AnimationNodeStateMachineTransition_8ji5n"), "unreached", "reached", SubResource("AnimationNodeStateMachineTransition_yaelk"), "growing", "reached", SubResource("AnimationNodeStateMachineTransition_22cfx")]
+graph_offset = Vector2(-141.21, -93.06)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7uvx"]
+size = Vector2(79, 40)
+
+[node name="Checkpoint" type="Node2D"]
+script = ExtResource("1_o8eth")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, -3)
+texture = ExtResource("1_vcfjb")
+hframes = 5
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m1ln4")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m1ln4")
+}
+tree_root = SubResource("AnimationNodeStateMachine_qgru7")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 66
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 4)
+shape = SubResource("RectangleShape2D_f7uvx")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -8.0
+offset_top = -56.0
+offset_right = 16.0
+offset_bottom = -33.0
+text = "[E]"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

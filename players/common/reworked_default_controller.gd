@@ -86,6 +86,9 @@ var _state_machine : AnimationNodeStateMachinePlayback
 @onready var MoveData : MoveDataResource = load(MoveDataResourceFile).duplicate()
 @onready var multipliers_effects = load("res://players/common/multipliers_effects.gd")
 
+# player area (curse, etc.)
+@onready var player_area = $PlayerArea
+
 # array of multipliers (active multipliers)
 var movedata_multipliers : Array = []
 var effects : Array = []
@@ -400,6 +403,8 @@ func kill():
 	for effect in effects:
 		if effect != null:
 			effect.remove()
+	
+	# reset backup data in player manager
 	
 	# _state_machine.travel("death")
 	# get level manager parent and respawn player
