@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://hltv8fdmxmyo"]
+[gd_scene load_steps=11 format=3 uid="uid://hltv8fdmxmyo"]
 
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-32.gd" id="1_02ya5"]
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_8g17x"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="3_0t210"]
 [ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_m7i11"]
+[ext_resource type="PackedScene" uid="uid://hfikpg8mh53v" path="res://world/objects/axe/axe.tscn" id="5_5o2oc"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
 
@@ -223,6 +224,10 @@ tile_set = ExtResource("1_8g17x")
 collision_animatable = true
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 1, 1, 1, 1, 1, 2, 1, 1, 3, 1, 1)
+
+[node name="Axe" parent="-20_ENTITIES/MovingEntities" instance=ExtResource("5_5o2oc")]
+position = Vector2(56, 40)
+max_angle = 55.0
 
 [node name="+20_FG" type="CanvasGroup" parent="."]
 editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"

@@ -11,7 +11,6 @@
 radius = 0.0
 
 [node name="Axe" type="Node2D"]
-position = Vector2(96, 16)
 script = ExtResource("1_vckdp")
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -38,7 +37,7 @@ position = Vector2(0, 8)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AxeBody/Killbox"]
 position = Vector2(0, -40)
-polygon = PackedVector2Array(-24, 32, 0, 48, 24, 32)
+polygon = PackedVector2Array(-22, 32, -2.08165e-12, 49, 22, 32)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
