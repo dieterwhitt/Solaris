@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwh3iqqnwcnse"]
+[gd_scene load_steps=10 format=3 uid="uid://dwh3iqqnwcnse"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_a2hvd"]
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-12.gd" id="1_vl1u1"]
@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_pu14x"]
 [ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="4_bbpwl"]
 [ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="5_143el"]
+[ext_resource type="PackedScene" uid="uid://hfikpg8mh53v" path="res://world/objects/axe/axe.tscn" id="7_fjvrh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
 
@@ -208,6 +209,9 @@ frame = 6
 [node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
 editor_description = "Any moving enemies/hazards/npcs"
 metadata/_edit_lock_ = true
+
+[node name="Axe" parent="-20_ENTITIES/MovingEntities" instance=ExtResource("7_fjvrh")]
+position = Vector2(152, 40)
 
 [node name="+20_FG" type="CanvasGroup" parent="."]
 editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"

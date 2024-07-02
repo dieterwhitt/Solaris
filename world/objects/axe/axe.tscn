@@ -1,15 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://hfikpg8mh53v"]
+[gd_scene load_steps=7 format=3 uid="uid://hfikpg8mh53v"]
 
 [ext_resource type="Script" path="res://world/objects/axe/axe.gd" id="1_vckdp"]
+[ext_resource type="Script" path="res://world/objects/axe/body.gd" id="2_8bpn5"]
 [ext_resource type="Texture2D" uid="uid://n3rdgr1ksutt" path="res://world/objects/axe/axe.png" id="2_qyk8j"]
 [ext_resource type="PackedScene" uid="uid://dyrpmbpr8barb" path="res://world/objects/utility/killbox.tscn" id="3_gffhu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a7a5s"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_55lqr"]
+radius = 0.0
+
 [node name="Axe" type="Node2D"]
 position = Vector2(96, 16)
-
-[node name="Pivot" type="Node2D" parent="."]
+script = ExtResource("1_vckdp")
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 32)
@@ -17,11 +20,11 @@ width = 2.0
 default_color = Color(0.356863, 0.164706, 0.0705882, 1)
 
 [node name="AxeBody" type="RigidBody2D" parent="."]
-position = Vector2(0, 32)
+position = Vector2(2.08165e-12, 32)
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 1.66533e-16
-script = ExtResource("1_vckdp")
+script = ExtResource("2_8bpn5")
 
 [node name="Sprite2D" type="Sprite2D" parent="AxeBody"]
 position = Vector2(2.08165e-12, 8)
@@ -36,3 +39,14 @@ position = Vector2(0, 8)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AxeBody/Killbox"]
 position = Vector2(0, -40)
 polygon = PackedVector2Array(-24, 32, 0, 48, 24, 32)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_55lqr")
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("../StaticBody2D")
+node_b = NodePath("../AxeBody")
