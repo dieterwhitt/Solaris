@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://8wt45uebyitn"]
+[gd_scene load_steps=5 format=3 uid="uid://8wt45uebyitn"]
 
 [ext_resource type="Script" path="res://world/objects/orbs/dash_orb.gd" id="1_slnlk"]
 [ext_resource type="Texture2D" uid="uid://4rcqj4tpgk5q" path="res://world/tiles/random-tiles.png" id="2_kebol"]
+[ext_resource type="PackedScene" uid="uid://d0372iweuqreu" path="res://world/particles/dash/dash_particles.tscn" id="3_lv4wo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubfba"]
 size = Vector2(12, 12)
@@ -31,3 +32,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(4, -4)
 shape = SubResource("RectangleShape2D_ubfba")
+
+[node name="DashParticles" parent="." instance=ExtResource("3_lv4wo")]
+position = Vector2(4, 0)

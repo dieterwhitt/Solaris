@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dyrpmbpr8barb" path="res://world/objects/utility/killbox.tscn" id="2_ijyaq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hj14"]
-size = Vector2(7, 2)
+size = Vector2(6, 2)
 
 [node name="SmallSpikes" type="Node2D"]
 
@@ -16,6 +16,6 @@ vframes = 4
 [node name="Killbox" parent="." instance=ExtResource("2_ijyaq")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killbox"]
-position = Vector2(-0.5, 3)
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_2hj14")
 debug_color = Color(1, 0, 0, 0.419608)

@@ -13,6 +13,8 @@ const DASH_FRAMES : int = 6 #6
 const DASH_FRICTION : float = 950 # 1600 100 #2750
 const FRICTION_FRAMES : int = 5 # 4 #3
 
+@onready var dash_particles = $DashParticles
+
 func _ready():
 	super()
 
@@ -31,5 +33,6 @@ func _orb_function(body):
 			mult = 1/sqrt(2)
 		body.dash(direction, DASH_FRAMES, DASH_VELOCITY, 
 				FRICTION_FRAMES, DASH_FRICTION * mult)
+		dash_particles.emitting = true
 	else:
 		print("invalid jump orb rotation")

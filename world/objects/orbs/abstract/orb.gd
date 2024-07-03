@@ -52,7 +52,7 @@ func remove():
 	used = true
 	# hide all children except particles
 	for node in get_children():
-		if node != glass_particle:
+		if not node is GPUParticles2D:
 			node.hide()
 	# pause after removing
 	await get_tree().create_timer(RESET_TIME).timeout
