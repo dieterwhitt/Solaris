@@ -111,6 +111,29 @@ tile_set = ExtResource("1_74rp0")
 format = 2
 metadata/_edit_lock_ = true
 
+[node name="LayoutSceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="LayoutSceneTiles90deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 1.5708
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="LayoutSceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 3.14159
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="LayoutSceneTiles270deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = -1.5708
+format = 2
+metadata/_edit_lock_ = true
+
 [node name="DecoTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 format = 2
 metadata/_edit_lock_ = true

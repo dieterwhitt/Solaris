@@ -8,7 +8,7 @@ extends ReworkedDefaultController
 # glow scene.
 
 func _ready():
-	# override
+	super()
 	print("creating severed ear player")
 	# activate animation tree
 	_animation_tree = $AnimationTree

@@ -72,9 +72,8 @@ var just_jumped = false
 @export var receive_input : bool = true
 # variable for print debug statements
 @export var debug = false
-# dependent on subclass: 
-# underscore indicates must define in subclass
-# var _sprite : Sprite2D # may not need anymore due to new flip
+
+# todo: make export variable, configure in _ready
 var _animation_tree : AnimationTree
 var _state_machine : AnimationNodeStateMachinePlayback
 
@@ -87,15 +86,19 @@ var _state_machine : AnimationNodeStateMachinePlayback
 @onready var multipliers_effects = load("res://players/common/multipliers_effects.gd")
 
 # player area (curse, etc.)
-@onready var player_area = $PlayerArea
+# add via code
+@onready var player_area : Area2D = load("res://players/common/player_area.tscn").instantiate()
+var curse_stage : float = 0
+var curse_death : int = 480 # total number of frames until curse death
+var curse_speed_mult : float = 1 # multiplier on curse speed
+var curse_decay_mult : float = 2 # how much slower/faster curse decays
 
 # array of multipliers (active multipliers)
 var movedata_multipliers : Array = []
 var effects : Array = []
 
 func _ready():
-	# subclasses define children HERE
-	# NOT in _init since children aren't loaded yet!!!
+	add_child(player_area)
 	pass
 
 # runs every physics frame
@@ -107,7 +110,7 @@ func _physics_process(delta):
 	on_floor = is_on_floor()
 	update_direction()
 	update_multipliers_effects()
-	
+	update_curse(delta)
 	update_dash(delta)
 	if not dashing:
 		apply_gravity(delta)
@@ -324,17 +327,28 @@ func update_dash(delta):
 		# apply regular physics again
 		dash_stopping = false
 
-func update_curse():
+func update_curse(delta):
 	# updates the current curse status of the player
 	# player needs area2d
-	# check if player area interesect with area2d in group "curse"
-	# if yes increment player curse tick and if it meets target curse tick,
-	# increment curse stage and call specific curse function
-	# kill player at curse stage 8
-	
-	# if there is no curse
-	# reduce curse tick/stage
-	pass
+	# check if player area interesect with area2d in group "Curse"
+	# we will have a paused timer with a progress bar that we will manually
+	# manipulate
+	var cursed = false
+	for node in player_area.get_overlapping_areas():
+		if node.is_in_group("Curse"):
+			cursed = true
+			break
+	if cursed:
+		# increase timer
+		curse_stage += 1 * curse_speed_mult * delta * 60
+		print(curse_stage)
+		if curse_stage > curse_death:
+			kill()
+	elif curse_stage > 0:
+		# decrease timer
+		curse_stage -= 1 * curse_decay_mult * delta * 60
+		if curse_stage < 0:
+			curse_stage = 0
 
 # debug function which prints data on the character
 # subclasses may override to print additional data

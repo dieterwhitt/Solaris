@@ -21,7 +21,7 @@ var top_speed : bool = false # whether the player is a top speed
 var overdrive : bool = false # whether the player is currently in overdrive
 
 func _ready():
-	# override
+	super()
 	print("bronze pendant player")
 	# activate animation tree
 	_animation_tree = $AnimationTree

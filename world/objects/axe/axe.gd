@@ -28,7 +28,6 @@ func _ready():
 	axe_body.position.y = length
 
 func _physics_process(delta):
-	print(axe_body.position.y)
 	# update line
 	line.set_point_position(1, axe_body.position)
 	

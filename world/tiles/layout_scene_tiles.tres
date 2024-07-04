@@ -1,0 +1,15 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bdwynd1cyshwk"]
+
+[ext_resource type="PackedScene" uid="uid://b7uh2up3p5ga0" path="res://world/objects/normal_spike.tscn" id="1_0vsy5"]
+[ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/jump_pad.tscn" id="2_qlj4w"]
+[ext_resource type="PackedScene" uid="uid://cdqyy8r71bnmi" path="res://world/objects/small_spikes.tscn" id="3_olqt3"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5aat0"]
+resource_name = "Static"
+scenes/1/scene = ExtResource("1_0vsy5")
+scenes/2/scene = ExtResource("2_qlj4w")
+scenes/3/scene = ExtResource("3_olqt3")
+
+[resource]
+tile_size = Vector2i(8, 8)
+sources/0 = SubResource("TileSetScenesCollectionSource_5aat0")

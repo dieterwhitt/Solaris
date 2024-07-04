@@ -17,7 +17,7 @@ const BAR_COLOR : Color = Color8(215, 203, 108, 255)
 @onready var warp_effect = preload("res://players/pineal_gland_player/warp_effect.gd")
 
 func _ready():
-	# override
+	super()
 	print("creating player")
 	# activate animation tree
 	_animation_tree = $AnimationTree

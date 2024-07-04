@@ -1,8 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://yri1y85csvlw"]
+[gd_scene load_steps=31 format=3 uid="uid://yri1y85csvlw"]
 
 [ext_resource type="Script" path="res://players/player_reworked/player_reworked.gd" id="1_wcno6"]
 [ext_resource type="SpriteFrames" uid="uid://bdvcb0ab46uj8" path="res://players/common/unpowered_spriteframes.tres" id="3_670jp"]
-[ext_resource type="PackedScene" uid="uid://n7ddc0vjwm5p" path="res://players/common/player_area.tscn" id="4_v76gy"]
 [ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://players/common/player_hitbox.tscn" id="4_ypqtj"]
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
@@ -280,5 +279,3 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_vsi7h")
 anim_player = NodePath("../AnimationPlayer")
 parameters/idle-run/blend_position = 0
-
-[node name="PlayerArea" parent="." instance=ExtResource("4_v76gy")]

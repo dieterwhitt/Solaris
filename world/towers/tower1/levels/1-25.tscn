@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_7ao63"]
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-25.gd" id="1_q6sqr"]
-[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_cu0vp"]
+[ext_resource type="TileSet" uid="uid://bdwynd1cyshwk" path="res://world/tiles/layout_scene_tiles.tres" id="3_3cqrv"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="4_tv0qg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
@@ -122,7 +122,7 @@ metadata/_edit_lock_ = true
 
 [node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
-tile_set = ExtResource("3_cu0vp")
+tile_set = ExtResource("3_3cqrv")
 format = 2
 layer_0/tile_data = PackedInt32Array(851974, 0, 196608, 851975, 0, 196608, 851976, 0, 196608, 851977, 0, 196608, 851978, 0, 196608, 851979, 0, 196608, 851980, 0, 196608, 851981, 0, 196608, 851982, 0, 196608, 851983, 0, 196608, 524297, 0, 65536, 458763, 0, 65536, 851973, 0, 196608)
 metadata/_edit_lock_ = true
@@ -130,7 +130,7 @@ metadata/_edit_lock_ = true
 [node name="SceneTiles90deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = 1.5708
-tile_set = ExtResource("3_cu0vp")
+tile_set = ExtResource("3_3cqrv")
 format = 2
 layer_0/tile_data = PackedInt32Array(-786432, 0, 196608, -786431, 0, 196608, -786430, 0, 196608)
 metadata/_edit_lock_ = true
@@ -138,7 +138,7 @@ metadata/_edit_lock_ = true
 [node name="SceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = 3.14159
-tile_set = ExtResource("3_cu0vp")
+tile_set = ExtResource("3_3cqrv")
 format = 2
 layer_0/tile_data = PackedInt32Array(-196642, 0, 196608, -196641, 0, 196608, -196640, 0, 196608, -196639, 0, 196608, -196638, 0, 196608, -196637, 0, 196608, -196636, 0, 196608, -196635, 0, 196608, -65562, 0, 196608, -65561, 0, 196608, -65560, 0, 196608, -65559, 0, 196608, -65558, 0, 196608, -65557, 0, 196608, -131092, 0, 196608, -131091, 0, 196608, -196626, 0, 65536, -262179, 0, 196608, -262180, 0, 196608, -262181, 0, 196608, -262182, 0, 196608)
 metadata/_edit_lock_ = true

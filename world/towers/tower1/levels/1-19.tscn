@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_q7pux"]
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-19.gd" id="1_xgdvq"]
-[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_m3dnh"]
+[ext_resource type="TileSet" uid="uid://bdwynd1cyshwk" path="res://world/tiles/layout_scene_tiles.tres" id="3_5hwsf"]
 [ext_resource type="PackedScene" uid="uid://vlihgtwi2h1v" path="res://world/objects/censer/censer.tscn" id="4_f1pi5"]
 [ext_resource type="PackedScene" uid="uid://jttcj28mbwsg" path="res://world/objects/checkpoint/checkpoint.tscn" id="5_v2x0t"]
 
@@ -127,7 +127,7 @@ metadata/_edit_lock_ = true
 
 [node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
-tile_set = ExtResource("3_m3dnh")
+tile_set = ExtResource("3_5hwsf")
 format = 2
 layer_0/tile_data = PackedInt32Array(1114138, 0, 131072)
 metadata/_edit_lock_ = true

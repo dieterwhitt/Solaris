@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-38.gd" id="1_h6jnx"]
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="2_1pb4s"]
-[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_1dq8l"]
+[ext_resource type="TileSet" uid="uid://bdwynd1cyshwk" path="res://world/tiles/layout_scene_tiles.tres" id="3_lh6op"]
 [ext_resource type="PackedScene" uid="uid://hfikpg8mh53v" path="res://world/objects/axe/axe.tscn" id="4_gkotv"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
@@ -122,7 +122,7 @@ metadata/_edit_lock_ = true
 
 [node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
-tile_set = ExtResource("3_1dq8l")
+tile_set = ExtResource("3_lh6op")
 format = 2
 layer_0/tile_data = PackedInt32Array(786458, 0, 65536, 786459, 0, 65536, 851993, 0, 65536, 917528, 0, 65536, 983063, 0, 65536, 851996, 0, 65536)
 metadata/_edit_lock_ = true

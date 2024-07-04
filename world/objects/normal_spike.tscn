@@ -9,7 +9,7 @@ size = Vector2(2.125, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idij8"]
 size = Vector2(6, 1)
 
-[node name="NormalSpike" type="Node2D"]
+[node name="NormalLayoutSpike" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_rkqr5")

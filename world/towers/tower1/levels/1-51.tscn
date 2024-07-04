@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-51.gd" id="1_8ol8r"]
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_f6oi7"]
-[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_jhkix"]
+[ext_resource type="TileSet" uid="uid://bdwynd1cyshwk" path="res://world/tiles/layout_scene_tiles.tres" id="3_tftb4"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="4_ty4l5"]
 [ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="5_7dgua"]
 [ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="6_mgei7"]
@@ -135,7 +135,7 @@ metadata/_edit_lock_ = true
 
 [node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
-tile_set = ExtResource("3_jhkix")
+tile_set = ExtResource("3_tftb4")
 format = 2
 layer_0/tile_data = PackedInt32Array(1048612, 0, 131072, 1114140, 0, 65536, 1114139, 0, 65536, 1245213, 0, 196608, 1245214, 0, 196608, 1245215, 0, 196608, 1245216, 0, 196608, 1245217, 0, 196608, 1245218, 0, 196608, 1245219, 0, 196608, 1245220, 0, 196608, 1245221, 0, 196608, 1245222, 0, 196608, 1245223, 0, 196608, 1245224, 0, 196608, 1245225, 0, 196608, 1245226, 0, 196608, 1245227, 0, 196608, 1245228, 0, 196608, 1245229, 0, 196608, 1245230, 0, 196608, 1245231, 0, 196608, 1245232, 0, 196608, 1245233, 0, 196608, 1245234, 0, 196608, 1245235, 0, 196608, 1245236, 0, 196608, 1245237, 0, 196608, 1245238, 0, 196608, 1245239, 0, 196608, 1245240, 0, 196608, 1245241, 0, 196608, 1245242, 0, 196608, 1245243, 0, 196608, 1245244, 0, 196608, 1245245, 0, 196608, 1245246, 0, 196608, 1245247, 0, 196608, 1245248, 0, 196608, 1245249, 0, 196608, 1245250, 0, 196608, 1245251, 0, 196608, 1245252, 0, 196608, 1245253, 0, 196608, 1245254, 0, 196608, 1245255, 0, 196608, 1245256, 0, 196608, 1245257, 0, 196608, 1245258, 0, 196608, 1245259, 0, 196608, 1245260, 0, 196608, 1245261, 0, 196608, 1245262, 0, 196608, 1245263, 0, 196608, 720938, 0, 65536, 786485, 0, 196608, 786486, 0, 196608, 786473, 0, 65536, 720939, 0, 65536, 655404, 0, 65536, 720941, 0, 65536, 393264, 0, 65536, 458801, 0, 65536, 786487, 0, 196608, 917565, 0, 65536, 852026, 0, 65536, 917563, 0, 196608, 917564, 0, 196608, 983102, 0, 196608, 983103, 0, 65536, 1048640, 0, 65536, 1114177, 0, 65536, 393297, 0, 65536, 327760, 0, 196608, 262228, 0, 65536, 458837, 0, 65536, 262244, 0, 65536, 589934, 0, 65536, 393267, 0, 196608, 393268, 0, 196608, 524388, 0, 65536)
 metadata/_edit_lock_ = true
@@ -143,7 +143,7 @@ metadata/_edit_lock_ = true
 [node name="SceneTiles90deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = 1.5708
-tile_set = ExtResource("3_jhkix")
+tile_set = ExtResource("3_tftb4")
 format = 2
 layer_0/tile_data = PackedInt32Array(-5439475, 0, 65536, -5439473, 0, 65536, -5439471, 0, 65536, -5439470, 0, 65536, -7012351, 0, 196608, -7012350, 0, 196608, -7012349, 0, 196608, -7012348, 0, 196608, -7012347, 0, 196608, -6684667, 0, 65536, -7012346, 0, 196608, -7012345, 0, 196608, -7012344, 0, 196608, -7012343, 0, 196608, -7012342, 0, 196608, -7012341, 0, 196608, -7012340, 0, 196608, -6684663, 0, 65536)
 metadata/_edit_lock_ = true
@@ -151,7 +151,7 @@ metadata/_edit_lock_ = true
 [node name="SceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = 3.14159
-tile_set = ExtResource("3_jhkix")
+tile_set = ExtResource("3_tftb4")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65617, 0, 65536, -196693, 0, 65536, -458813, 0, 65536, -458812, 0, 65536, -458811, 0, 65536, -393274, 0, 65536, -524399, 0, 65536, -65645, 0, 65536, -65644, 0, 65536, -393317, 0, 65536, -655461, 0, 65536)
 metadata/_edit_lock_ = true
@@ -159,7 +159,7 @@ metadata/_edit_lock_ = true
 [node name="SceneTiles270deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = -1.5708
-tile_set = ExtResource("3_jhkix")
+tile_set = ExtResource("3_tftb4")
 format = 2
 layer_0/tile_data = PackedInt32Array(5505009, 0, 65536, 5505007, 0, 65536, 5505011, 0, 65536, 3735550, 0, 196608, 3735549, 0, 196608, 3735548, 0, 196608, 3735547, 0, 196608, 3735546, 0, 196608, 6881272, 0, 196608, 7208952, 0, 196608, 6881273, 0, 196608, 7208953, 0, 196608, 6553594, 0, 65536, 6881274, 0, 196608, 7208954, 0, 196608, 6881275, 0, 196608, 7208955, 0, 196608, 6881276, 0, 196608, 7208956, 0, 196608, 6881277, 0, 196608, 7208957, 0, 196608, 6881278, 0, 196608, 7208958, 0, 196608, 7536636, 0, 65536, 7536635, 0, 65536, 7536634, 0, 65536, 6881270, 0, 196608, 6881271, 0, 196608, 6881267, 0, 196608, 6881268, 0, 196608, 6881269, 0, 196608, 6553590, 0, 65536)
 metadata/_edit_lock_ = true

@@ -1,0 +1,15 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://wjnjir5wf6c1"]
+
+[ext_resource type="PackedScene" uid="uid://dvbn8ur7xitxc" path="res://world/objects/illusory_wall_highlight.tscn" id="1_uj8dp"]
+[ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/jump_pad.tscn" id="1_yv8o6"]
+[ext_resource type="PackedScene" uid="uid://dkjc317vea7hk" path="res://world/objects/toxic-gas/gas_cloud.tscn" id="2_vub0a"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5aat0"]
+resource_name = "Static"
+scenes/2/scene = ExtResource("1_yv8o6")
+scenes/4/scene = ExtResource("1_uj8dp")
+scenes/5/scene = ExtResource("2_vub0a")
+
+[resource]
+tile_size = Vector2i(8, 8)
+sources/0 = SubResource("TileSetScenesCollectionSource_5aat0")

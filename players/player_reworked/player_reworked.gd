@@ -8,7 +8,7 @@ extends ReworkedDefaultController
 
 # get child nodes for animation
 func _ready():
-	# override
+	super()
 	print("creating reworked player")
 	# activate animation tree
 	_animation_tree = $AnimationTree

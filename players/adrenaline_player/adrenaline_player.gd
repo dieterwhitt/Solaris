@@ -18,7 +18,7 @@ const COOLDOWN_TIME = 8
 @onready var adrenaline_effect = preload("res://players/adrenaline_player/adrenaline_effect.gd")
 
 func _ready():
-	# override
+	super()
 	print("creating adrenaline shot player")
 	# activate animation tree
 	_animation_tree = $AnimationTree

@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_a2hvd"]
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-12.gd" id="1_vl1u1"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="3_56f78"]
-[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_pu14x"]
+[ext_resource type="TileSet" uid="uid://bdwynd1cyshwk" path="res://world/tiles/layout_scene_tiles.tres" id="3_udq24"]
 [ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="4_bbpwl"]
 [ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="5_143el"]
 [ext_resource type="PackedScene" uid="uid://hfikpg8mh53v" path="res://world/objects/axe/axe.tscn" id="7_fjvrh"]
@@ -128,7 +128,7 @@ metadata/_edit_lock_ = true
 
 [node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
-tile_set = ExtResource("3_pu14x")
+tile_set = ExtResource("3_udq24")
 format = 2
 layer_0/tile_data = PackedInt32Array(1179658, 0, 65536, 1179657, 0, 65536, 1179656, 0, 65536, 1179655, 0, 65536, 1179654, 0, 65536, 1048581, 0, 65536, 1048580, 0, 65536, 786455, 0, 65536, 786456, 0, 65536, 786457, 0, 65536, 1179670, 0, 65536, 786466, 0, 65536, 786468, 0, 65536, 786469, 0, 65536, 852006, 0, 65536, 852007, 0, 65536, 720929, 0, 196608, 720928, 0, 196608, 720927, 0, 196608, 720926, 0, 196608, 720925, 0, 196608, 720924, 0, 196608, 720923, 0, 196608, 720922, 0, 196608)
 metadata/_edit_lock_ = true
@@ -142,7 +142,7 @@ metadata/_edit_lock_ = true
 [node name="SceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = 3.14159
-tile_set = ExtResource("3_pu14x")
+tile_set = ExtResource("3_udq24")
 format = 2
 layer_0/tile_data = PackedInt32Array(-720906, 0, 196608)
 metadata/_edit_lock_ = true
@@ -150,7 +150,7 @@ metadata/_edit_lock_ = true
 [node name="SceneTiles270deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = -1.5708
-tile_set = ExtResource("3_pu14x")
+tile_set = ExtResource("3_udq24")
 format = 2
 layer_0/tile_data = PackedInt32Array(589819, 0, 196608, 589818, 0, 196608, 589817, 0, 196608, 589816, 0, 196608, 589815, 0, 196608, 589814, 0, 196608, 589813, 0, 196608)
 metadata/_edit_lock_ = true

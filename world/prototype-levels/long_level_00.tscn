@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_j2gyh"]
 [ext_resource type="Script" path="res://world/prototype-levels/long_level_00.gd" id="1_j03lr"]
 [ext_resource type="Texture2D" uid="uid://dicpn63thecj8" path="res://world/backgrounds/finn-sketch1.png" id="2_bw8jt"]
-[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_lu7wd"]
+[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/scene_tiles.tres" id="3_lu7wd"]
 [ext_resource type="PackedScene" uid="uid://dqtprroieu5mk" path="res://world/particles/rain/bg_rain.tscn" id="3_qaju1"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="6_8msbr"]
 [ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="6_gayy5"]

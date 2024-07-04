@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-32.gd" id="1_02ya5"]
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_8g17x"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="3_0t210"]
-[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_m7i11"]
+[ext_resource type="TileSet" uid="uid://bdwynd1cyshwk" path="res://world/tiles/layout_scene_tiles.tres" id="3_ttt2n"]
 [ext_resource type="PackedScene" uid="uid://hfikpg8mh53v" path="res://world/objects/axe/axe.tscn" id="5_5o2oc"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
@@ -157,7 +157,7 @@ metadata/_edit_lock_ = true
 
 [node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
-tile_set = ExtResource("3_m7i11")
+tile_set = ExtResource("3_ttt2n")
 format = 2
 layer_0/tile_data = PackedInt32Array(786466, 0, 65536, 786467, 0, 65536, 786468, 0, 65536, 786469, 0, 65536, 786470, 0, 65536, 786471, 0, 65536, 786472, 0, 65536, 786473, 0, 65536, 786474, 0, 65536, 786475, 0, 65536, 786476, 0, 65536, 786477, 0, 65536, 655392, 0, 196608, 655393, 0, 196608, 720942, 0, 65536, 720943, 0, 65536, 720944, 0, 65536, 720945, 0, 65536, 852018, 0, 65536, 852019, 0, 65536, 852020, 0, 65536, 1114166, 0, 196608, 1114167, 0, 196608, 1114168, 0, 196608, 1114169, 0, 196608, 1179706, 0, 196608, 1179707, 0, 196608, 1179653, 0, 65536, 1179654, 0, 65536, 1179655, 0, 65536, 1179656, 0, 65536, 1114116, 0, 65536, 1179657, 0, 65536, 1179658, 0, 65536)
 metadata/_edit_lock_ = true
@@ -171,7 +171,7 @@ metadata/_edit_lock_ = true
 [node name="SceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = 3.14159
-tile_set = ExtResource("3_m7i11")
+tile_set = ExtResource("3_ttt2n")
 format = 2
 layer_0/tile_data = PackedInt32Array(-327685, 0, 196608, -327686, 0, 196608, -327687, 0, 196608, -327688, 0, 196608)
 metadata/_edit_lock_ = true

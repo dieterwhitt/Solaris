@@ -14,7 +14,7 @@ const COOLDOWN_TIME = 0.75 # s
 @onready var boomstick_effect = load("res://players/boomstick_player/boomstick_effect.gd")
 
 func _ready():
-	# override
+	super()
 	print("creating boomstick player")
 	# activate animation tree
 	_animation_tree = $AnimationTree

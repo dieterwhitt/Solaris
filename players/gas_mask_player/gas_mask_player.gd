@@ -7,7 +7,7 @@ extends ReworkedDefaultController
 const CURSE_MULTIPLIER = 0.5
 
 func _ready():
-	# override
+	super()
 	print("creating adrenaline shot player")
 	# activate animation tree
 	_animation_tree = $AnimationTree

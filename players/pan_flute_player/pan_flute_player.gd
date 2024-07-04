@@ -10,7 +10,7 @@ var playing : bool = false
 @onready var progress_bar = $ProgressBar
 
 func _ready():
-	# override
+	super()
 	print("creating pan flute player")
 	# activate animation tree
 	_animation_tree = $AnimationTree

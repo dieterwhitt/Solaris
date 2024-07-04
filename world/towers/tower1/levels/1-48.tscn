@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cm12lw8s7ia27"]
+[gd_scene load_steps=7 format=3 uid="uid://cm12lw8s7ia27"]
 
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-48.gd" id="1_hwul7"]
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_kbom1"]
-[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_vd6g1"]
+[ext_resource type="TileSet" uid="uid://bdwynd1cyshwk" path="res://world/tiles/layout_scene_tiles.tres" id="3_a0bwc"]
+[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/scene_tiles.tres" id="3_vd6g1"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="4_7ec0x"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
@@ -123,7 +124,7 @@ metadata/_edit_lock_ = true
 
 [node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
-tile_set = ExtResource("3_vd6g1")
+tile_set = ExtResource("3_a0bwc")
 format = 2
 layer_0/tile_data = PackedInt32Array(655398, 0, 65536, 655399, 0, 65536, 852022, 0, 131072, 655397, 0, 65536)
 metadata/_edit_lock_ = true
@@ -137,7 +138,7 @@ metadata/_edit_lock_ = true
 [node name="SceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = 3.14159
-tile_set = ExtResource("3_vd6g1")
+tile_set = ExtResource("3_a0bwc")
 format = 2
 metadata/_edit_lock_ = true
 

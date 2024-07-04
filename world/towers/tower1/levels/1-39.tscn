@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_w3ltd"]
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-39.gd" id="1_ylhnq"]
-[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_gvhbh"]
+[ext_resource type="TileSet" uid="uid://bdwynd1cyshwk" path="res://world/tiles/layout_scene_tiles.tres" id="3_f87er"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="3_ss0t3"]
 [ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="4_ix03n"]
 [ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="5_p6yor"]
@@ -128,7 +128,7 @@ metadata/_edit_lock_ = true
 
 [node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
-tile_set = ExtResource("3_gvhbh")
+tile_set = ExtResource("3_f87er")
 format = 2
 layer_0/tile_data = PackedInt32Array(1245229, 0, 196608, 1245228, 0, 196608, 1245227, 0, 196608, 1245226, 0, 196608, 1245225, 0, 196608, 1245224, 0, 196608, 1245223, 0, 196608, 1245222, 0, 196608, 1245221, 0, 196608, 1245220, 0, 196608, 1245219, 0, 196608, 1245218, 0, 196608, 1245217, 0, 196608, 1245216, 0, 196608, 1245215, 0, 196608, 1179694, 0, 196608, 1179695, 0, 196608, 1179696, 0, 196608, 1179697, 0, 196608, 1114162, 0, 196608, 1048627, 0, 196608, 1048628, 0, 196608, 1048629, 0, 196608, 1048630, 0, 196608, 1048631, 0, 196608, 1048632, 0, 196608, 983097, 0, 196608, 1114140, 0, 65536, 655372, 0, 65536, 655373, 0, 65536, 720910, 0, 196608, 720911, 0, 196608)
 metadata/_edit_lock_ = true
@@ -142,7 +142,7 @@ metadata/_edit_lock_ = true
 [node name="SceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = 3.14159
-tile_set = ExtResource("3_gvhbh")
+tile_set = ExtResource("3_f87er")
 format = 2
 layer_0/tile_data = PackedInt32Array(-786475, 0, 65536, -720940, 0, 65536, -720941, 0, 65536, -720938, 0, 65536, -655407, 0, 196608, -655406, 0, 196608, -720937, 0, 196608, -655400, 0, 196608, -524336, 0, 196608, -458801, 0, 196608, -458802, 0, 196608, -458803, 0, 196608, -458804, 0, 196608, -458805, 0, 196608, -458806, 0, 196608, -458807, 0, 196608, -458808, 0, 196608, -458809, 0, 196608, -458810, 0, 196608, -524347, 0, 196608, -589884, 0, 196608, -589885, 0, 196608, -589886, 0, 196608, -589887, 0, 196608, -589843, 0, 196608, -589844, 0, 196608, -589845, 0, 196608, -589846, 0, 196608, -589847, 0, 196608)
 metadata/_edit_lock_ = true

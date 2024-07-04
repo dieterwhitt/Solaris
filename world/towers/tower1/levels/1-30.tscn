@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-30.gd" id="1_bothv"]
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_ij308"]
-[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/static_tiles.tres" id="3_1eki8"]
-[ext_resource type="TileSet" uid="uid://btp05tgwulpae" path="res://world/towers/tower1/levels/tower1deco.tres" id="4_c3p5c"]
+[ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/scene_tiles.tres" id="3_1eki8"]
+[ext_resource type="TileSet" uid="uid://bdwynd1cyshwk" path="res://world/tiles/layout_scene_tiles.tres" id="3_rcfn5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
 
@@ -117,13 +117,9 @@ format = 2
 layer_0/tile_data = PackedInt32Array(1114112, 1, 0, 1114113, 1, 0, 917532, 65537, 0, 917531, 65537, 0, 917530, 65537, 0, 917529, 65537, 0, 917528, 65537, 0, 917527, 65537, 0, 1114146, 1, 0, 196634, 1, 0, 196633, 1, 0, 196632, 1, 0, 131094, 1, 0, 65558, 1, 0, 1114114, 1, 0, 1114115, 1, 0, 1114116, 1, 0, 1114117, 1, 0, 1114118, 1, 0, 917512, 65537, 0, 917513, 65537, 0, 983048, 65537, 0, 1048584, 65537, 0, 1114120, 65537, 0, 1114119, 1, 0, 1179656, 1, 0, 1179657, 1, 0, 1179658, 1, 0, 1179659, 1, 0, 1179660, 1, 0, 1179661, 1, 0, 1179662, 1, 0, 1179663, 1, 0, 1179664, 1, 0, 1179665, 1, 0, 1179666, 1, 0, 1179667, 1, 0, 1179668, 1, 0, 1179669, 1, 0, 1179670, 1, 0, 1179671, 1, 0, 1179672, 1, 0, 1179673, 1, 0, 1179674, 1, 0, 1179675, 1, 0, 1179676, 1, 0, 1179677, 1, 0, 655380, 1, 0, 655381, 1, 0, 655382, 1, 0, 655383, 1, 0, 655384, 1, 0, 655385, 1, 0, 393231, 1, 0, 393230, 1, 0, 15, 1, 0, 65551, 1, 0, 131087, 1, 0, 196623, 1, 0, 262159, 1, 0, 327695, 1, 0, 655364, 1, 0, 524302, 1, 0, 589838, 1, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 458766, 1, 0, 131095, 1, 0, 131096, 1, 0, 1114143, 1, 0, 1114144, 1, 0, 1114145, 1, 0, 1114147, 1, 0, 786458, 327681, 1, 851994, 327681, 1, 983063, 65537, 0, 1048599, 65537, 0, 1114135, 65537, 0, 1114142, 1, 0, 1114141, 65537, 0, 917514, 65537, 0, 917515, 65537, 0, 917516, 65537, 0, 917517, 65537, 0, 917518, 65537, 0, 917519, 131073, 0, 917520, 131073, 0, 917521, 131073, 0, 917522, 131073, 0, 917523, 131073, 0, 917524, 131073, 0, 917525, 131073, 0, 917526, 131073, 0, 655379, 1, 0, 655386, 1, 0, 917533, 65537, 0, 983069, 65537, 0, 1048605, 65537, 0, 983054, 65537, 0, 1048590, 65537, 0, 1114126, 65537, 0, 458770, 1, 0, 524306, 1, 0, 589842, 1, 0, 655378, 1, 0, 22, 1, 0, 655397, 196609, 1, 655398, 196609, 1, 655399, 196609, 1, 786468, 1, 0, 852004, 1, 0, 917540, 1, 0, 983076, 1, 0, 1048612, 1, 0, 1114148, 1, 0, 458788, 1, 0, 458791, 1, 0, 524327, 196609, 1, 524326, 196609, 1, 589862, 196609, 1, 589861, 196609, 1, 524325, 196609, 1, 458789, 1, 0, 458790, 1, 0, 589863, 196609, 1, 327709, 1, 0, 327708, 1, 0, 327707, 1, 0, 262171, 1, 0, 196635, 1, 0, 786469, 1, 0, 786470, 1, 0, 786471, 1, 0, 720935, 196609, 1, 720934, 196609, 1, 720933, 196609, 1, 393245, 1, 0, 393246, 1, 0, 393247, 1, 0, 393248, 1, 0, 393249, 1, 0, 458785, 1, 0, 458786, 1, 0, 458787, 1, 0, 196624, 131073, 0, 196625, 131073, 0)
 metadata/_edit_lock_ = true
 
-[node name="DecoTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
-format = 2
-metadata/_edit_lock_ = true
-
 [node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
-tile_set = ExtResource("3_1eki8")
+tile_set = ExtResource("3_rcfn5")
 format = 2
 layer_0/tile_data = PackedInt32Array(1048607, 0, 65536, 1048608, 0, 65536, 1048609, 0, 65536, 1048610, 0, 65536, 1048606, 0, 65536, 1048611, 0, 65536)
 metadata/_edit_lock_ = true
@@ -137,7 +133,7 @@ metadata/_edit_lock_ = true
 [node name="SceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = 3.14159
-tile_set = ExtResource("3_1eki8")
+tile_set = ExtResource("3_rcfn5")
 format = 2
 layer_0/tile_data = PackedInt32Array(-655366, 0, 196608, -655367, 0, 196608, -655368, 0, 196608, -655369, 0, 196608, -655370, 0, 196608, -655371, 0, 196608, -655372, 0, 196608, -655373, 0, 196608, -655374, 0, 196608, -655375, 0, 196608, -458768, 0, 196608, -720922, 0, 196608, -720921, 0, 196608, -720920, 0, 196608, -720919, 0, 196608, -720918, 0, 196608, -720917, 0, 196608, -262169, 0, 65536, -262170, 0, 65536, -262171, 0, 65536, -196632, 0, 65536, -196631, 0, 65536, -720916, 0, 196608, -720915, 0, 196608, -720923, 0, 196608)
 metadata/_edit_lock_ = true
@@ -148,11 +144,34 @@ rotation = -1.5708
 format = 2
 metadata/_edit_lock_ = true
 
-[node name="illusory" type="TileMap" parent="-30_LEVEL/Tilemaps"]
-rotation = 4.71239
-tile_set = ExtResource("4_c3p5c")
+[node name="DecoTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 format = 2
-layer_0/tile_data = PackedInt32Array(2424823, 7, 65536, 2424822, 7, 65536, 2424821, 7, 65536, 2424820, 7, 65536)
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles0deg2" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles90deg2" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 1.5708
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles180deg2" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 3.14159
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles270deg2" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = -1.5708
+tile_set = ExtResource("3_1eki8")
+format = 2
+layer_0/tile_data = PackedInt32Array(2424823, 0, 262144, 2424822, 0, 262144, 2424821, 0, 262144, 2424820, 0, 262144)
+metadata/_edit_lock_ = true
 
 [node name="-20_ENTITIES" type="CanvasGroup" parent="."]
 z_index = -20
