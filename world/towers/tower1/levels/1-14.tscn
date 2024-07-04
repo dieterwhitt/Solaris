@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bk6oh6ijbqq8r"]
+[gd_scene load_steps=11 format=3 uid="uid://bk6oh6ijbqq8r"]
 
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-14.gd" id="1_gjn5t"]
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="2_gjoig"]
@@ -7,6 +7,7 @@
 [ext_resource type="TileSet" uid="uid://wjnjir5wf6c1" path="res://world/tiles/scene_tiles.tres" id="3_qksg6"]
 [ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="5_3h88c"]
 [ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="6_rupsm"]
+[ext_resource type="PackedScene" uid="uid://vlihgtwi2h1v" path="res://world/objects/censer/censer.tscn" id="8_t4st3"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
 
@@ -159,7 +160,9 @@ metadata/_edit_lock_ = true
 
 [node name="SceneTiles0deg2" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
+tile_set = ExtResource("3_qksg6")
 format = 2
+layer_0/tile_data = PackedInt32Array(1638426, 0, 327680, 1703967, 0, 327680, 1572900, 0, 327680, 1835044, 0, 327680, 1376287, 0, 327680, 1376282, 0, 327680, 1179677, 0, 327680, 1179683, 0, 327680, 1048600, 0, 327680, 917534, 0, 327680, 786466, 0, 327680, 524315, 0, 327680, 720923, 0, 327680, 524319, 0, 327680, 589860, 0, 327680, 262181, 0, 327680, 327712, 0, 327680, 262172, 0, 327680, 65569, 0, 327680, 786454, 0, 327680, 917520, 0, 327680, 1114132, 0, 327680, 589838, 0, 327680, 720914, 0, 327680, 393224, 0, 327680, 393219, 0, 327680, 589829, 0, 327680, 786440, 0, 327680, 589833, 0, 327680, 851981, 0, 327680, 1114123, 0, 327680, 851971, 0, 327680, 1114114, 0, 327680, 1048583, 0, 327680, 1310726, 0, 327680, 1310731, 0, 327680, 1245200, 0, 327680, 1507349, 0, 327680, 1310741, 0, 327680)
 metadata/_edit_lock_ = true
 
 [node name="SceneTiles90deg2" type="TileMap" parent="-30_LEVEL/Tilemaps"]
@@ -286,6 +289,14 @@ texture = ExtResource("6_rupsm")
 hframes = 4
 vframes = 4
 frame = 6
+
+[node name="Censer" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("8_t4st3")]
+position = Vector2(176, 128)
+
+[node name="Censer2" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("8_t4st3")]
+z_index = -31
+z_as_relative = false
+position = Vector2(303, 24)
 
 [node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
 editor_description = "Any moving enemies/hazards/npcs"

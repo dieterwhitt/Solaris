@@ -88,8 +88,9 @@ var _state_machine : AnimationNodeStateMachinePlayback
 # player area (curse, etc.)
 # add via code
 @onready var player_area : Area2D = load("res://players/common/player_area.tscn").instantiate()
+@onready var curse_bar : Node2D = load("res://world/objects/toxic-gas/curse_bar.tscn").instantiate()
 var curse_stage : float = 0
-var curse_death : int = 480 # total number of frames until curse death
+const CURSE_DEATH : int = 480 # total number of frames until curse death
 var curse_speed_mult : float = 1 # multiplier on curse speed
 var curse_decay_mult : float = 2 # how much slower/faster curse decays
 
@@ -99,7 +100,8 @@ var effects : Array = []
 
 func _ready():
 	add_child(player_area)
-	pass
+	add_child(curse_bar)
+	curse_bar.total = CURSE_DEATH
 
 # runs every physics frame
 # for updating physics
@@ -341,14 +343,15 @@ func update_curse(delta):
 	if cursed:
 		# increase timer
 		curse_stage += 1 * curse_speed_mult * delta * 60
-		print(curse_stage)
-		if curse_stage > curse_death:
+		if curse_stage > CURSE_DEATH:
 			kill()
 	elif curse_stage > 0:
 		# decrease timer
 		curse_stage -= 1 * curse_decay_mult * delta * 60
 		if curse_stage < 0:
 			curse_stage = 0
+	# update curse bar
+	curse_bar.stage = curse_stage
 
 # debug function which prints data on the character
 # subclasses may override to print additional data

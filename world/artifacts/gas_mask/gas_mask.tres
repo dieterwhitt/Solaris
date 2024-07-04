@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=2 format=3 uid="uid://b4g07g35knjqp"]
+
+[ext_resource type="Script" path="res://world/artifacts/artifact.gd" id="1_gc767"]
+
+[resource]
+script = ExtResource("1_gc767")
+id = "gas_mask"
+name = "Gas Mask"
+description = "[Passive] A gas mask, perhaps left behind by a previous explorer. Increases resilience to toxic gas when worn."
+icon16 = ""
+icon64 = ""
+playerScenePath = "res://players/gas_mask_player/gas_mask_player.tscn"

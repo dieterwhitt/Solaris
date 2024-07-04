@@ -28,10 +28,9 @@ func _ready():
 		timer = get_node(timer_path)
 	if color:
 		bar.default_color = color
-		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	update_height()
 	# set global transform so it isn't flipped
 	global_transform.x.x = 1
@@ -52,15 +51,13 @@ func _process(delta):
 		var percent : float = 1 - timer.time_left / quotient
 		# set bar accordingly
 		var bar_length : int = floor(percent * 20) # 0-20 pixels
-		var bar_scale : float = float(bar_length) / 20.0
-		var bar_shift : float = -10 + bar_scale * 10
+		bar.set_point_position(1, Vector2(bar_length - 10, 0))
 		
-		bar.scale.x = bar_scale
-		bar.position.x = bar_shift
-
+		# below: avoiding show/hide to avoid external interference
 		if bar_length == 0 and not show_empty:
 			base.default_color = Color8(0, 0, 0, 0) # make base invisible
 		elif timer.is_stopped():
+			# make bar invisible when timeout
 			base.default_color = Color8(0, 0, 0, 0)
 			bar.default_color = Color8(0, 0, 0, 0)
 		else:

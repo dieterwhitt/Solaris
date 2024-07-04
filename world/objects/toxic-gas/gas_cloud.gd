@@ -16,6 +16,8 @@ func _ready():
 	sprite.play()
 	# choose random animatino player speed (hover animation)
 	animation_player.speed_scale = rng.randf_range(0.7, 1.3)
+	sprite.speed_scale = rng.randf_range(0.3, 0.7)
+	# whether to reverse float animation
 	var reverse_float = rng.randi_range(0, 1)
 	if reverse_float == 1:
 		animation_player.speed_scale *= -1

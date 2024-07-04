@@ -12,7 +12,7 @@ extends Node
 # null -> use default player
 # testing various values. 
 var active_artifact : Artifact = load("res://world/artifacts/severed_ear/severed_ear.tres")
-var backup_artifact : Artifact = load("res://world/artifacts/adrenaline_shot/adrenaline_shot.tres")
+var backup_artifact : Artifact = load("res://world/artifacts/gas_mask/gas_mask.tres")
 @onready var level_manager : Node = get_parent()
 
 # for consumables to prevent swapping out and resetting cooldowns/charges
@@ -124,6 +124,9 @@ func update_player():
 						effect.timer.time_left, effect.total_time_s, effect.between_players,
 						effect.show_progress_bar, effect.progress_bar_color)
 				effect.remove()
+		
+		# apply curse
+		new_player.curse_stage = old_player.curse_stage
 		
 		# free old player
 		old_player.queue_free()
