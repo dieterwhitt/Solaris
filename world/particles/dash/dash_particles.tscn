@@ -1,14 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://d0372iweuqreu"]
 
 [sub_resource type="Curve" id="Curve_dj074"]
-_data = [Vector2(0, 0.998348), 0.0, 0.0, 0, 0, Vector2(0.769231, 0.468107), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.998348), 0.0, 0.0, 0, 0, Vector2(0.775264, 0.68615), 0.0, 0.0, 0, 0, Vector2(1, 0.273189), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_yx2at"]
 curve = SubResource("Curve_dj074")
 
 [sub_resource type="Curve" id="Curve_jw1nq"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.598793, 0.669631), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.892911, 0.894282), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_2ic5q"]
@@ -27,11 +27,11 @@ emission_shape = 3
 emission_box_extents = Vector3(10, 1, 1)
 direction = Vector3(2.08165e-12, -1, 2.08165e-12)
 spread = 0.0
-initial_velocity_min = 220.0
-initial_velocity_max = 220.0
+initial_velocity_min = 240.0
+initial_velocity_max = 260.0
 gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
-damping_min = 350.0
-damping_max = 350.0
+damping_min = 325.0
+damping_max = 400.0
 damping_curve = SubResource("CurveTexture_2ic5q")
 color = Color(1, 0.713726, 0.992157, 1)
 alpha_curve = SubResource("CurveTexture_yx2at")
@@ -41,6 +41,7 @@ turbulence_influence_over_life = SubResource("CurveTexture_g8nus")
 emitting = false
 amount = 10
 process_material = SubResource("ParticleProcessMaterial_6bu0v")
-lifetime = 0.9
+lifetime = 0.8
 one_shot = true
 explosiveness = 0.85
+randomness = 0.3

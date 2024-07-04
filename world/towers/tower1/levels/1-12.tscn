@@ -212,8 +212,8 @@ metadata/_edit_lock_ = true
 
 [node name="Axe" parent="-20_ENTITIES/MovingEntities" instance=ExtResource("7_fjvrh")]
 position = Vector2(152, 16)
-length = 64
-max_angle = 55.0
+length = 56
+max_angle = 50.0
 
 [node name="+20_FG" type="CanvasGroup" parent="."]
 editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"
