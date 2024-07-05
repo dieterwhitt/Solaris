@@ -7,6 +7,7 @@ size = Vector2(8, 16)
 
 [node name="Blowdart" type="CharacterBody2D"]
 collision_layer = 16
+collision_mask = 33
 script = ExtResource("1_xlven")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

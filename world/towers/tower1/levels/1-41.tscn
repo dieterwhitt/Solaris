@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhwuwsr0getrr"]
+[gd_scene load_steps=7 format=3 uid="uid://bhwuwsr0getrr"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_1qbh2"]
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-41.gd" id="1_altyc"]
 [ext_resource type="TileSet" uid="uid://bdwynd1cyshwk" path="res://world/tiles/layout_scene_tiles.tres" id="3_lmin4"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="4_7jy5n"]
+[ext_resource type="PackedScene" uid="uid://dhxxp3nvcr6g5" path="res://world/objects/enemies/blowdart/blowdart.tscn" id="5_47ace"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
 
@@ -162,6 +163,9 @@ glass = true
 [node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
 editor_description = "Any moving enemies/hazards/npcs"
 metadata/_edit_lock_ = true
+
+[node name="Blowdart" parent="-20_ENTITIES/MovingEntities" instance=ExtResource("5_47ace")]
+position = Vector2(264, 32)
 
 [node name="+20_FG" type="CanvasGroup" parent="."]
 editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"
