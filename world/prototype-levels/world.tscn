@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dicpn63thecj8" path="res://world/backgrounds/finn-sketch1.png" id="1_if87x"]
 [ext_resource type="PackedScene" uid="uid://3w1xvg136m3q" path="res://world/tiles/tile_map.tscn" id="2_feglb"]
 [ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/jump_pad.tscn" id="5_h55ax"]
-[ext_resource type="PackedScene" uid="uid://bvw780c0vet6v" path="res://world/objects/enemies/walking_enemy.tscn" id="6_oexp7"]
+[ext_resource type="PackedScene" uid="uid://bvw780c0vet6v" path="res://world/objects/enemies/prototype-enemies/walking_enemy.tscn" id="6_oexp7"]
 [ext_resource type="PackedScene" uid="uid://cdqyy8r71bnmi" path="res://world/objects/small_spikes.tscn" id="7_ks5pe"]
 [ext_resource type="PackedScene" uid="uid://b7uh2up3p5ga0" path="res://world/objects/normal_spike.tscn" id="8_ntkoo"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="9_xab1v"]

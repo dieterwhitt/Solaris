@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhxxp3nvcr6g5"]
+
+[ext_resource type="Script" path="res://world/objects/enemies/blowdart/blowdart.gd" id="1_xlven"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1qr4"]
+size = Vector2(8, 16)
+
+[node name="Blowdart" type="CharacterBody2D"]
+collision_layer = 16
+script = ExtResource("1_xlven")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_d1qr4")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Spawn" type="Node2D" parent="."]
+position = Vector2(4, 0)

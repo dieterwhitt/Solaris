@@ -102,14 +102,17 @@ script = ExtResource("1_qvv7l")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.156863)
 position = Vector2(2, 2.08165e-12)
+scale = Vector2(2.5, 1)
 sprite_frames = SubResource("SpriteFrames_dsl0v")
 animation = &"cloud1"
 
 [node name="GasArea" type="Area2D" parent="." groups=["Curse"]]
+scale = Vector2(2.5, 1)
 collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GasArea"]
+scale = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_gqvw4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

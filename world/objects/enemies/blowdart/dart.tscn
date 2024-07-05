@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://lxtheq6f1flp"]
+
+[ext_resource type="Script" path="res://world/objects/enemies/blowdart/dart.gd" id="1_fpuiw"]
+[ext_resource type="PackedScene" uid="uid://dyrpmbpr8barb" path="res://world/objects/utility/killbox.tscn" id="1_oa8ad"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ro2yw"]
+size = Vector2(4, 2)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_617w7"]
+radius = 0.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nc1hm"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 15.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+damping_min = 5.0
+damping_max = 5.0
+
+[node name="Dart" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_fpuiw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Killbox" parent="." instance=ExtResource("1_oa8ad")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killbox"]
+shape = SubResource("RectangleShape2D_ro2yw")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_617w7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(2, 0)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_nc1hm")

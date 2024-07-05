@@ -30,7 +30,7 @@ level_manager:
 var loaded = {}
 # current tower rewource
 var tower : Tower = load("res://world/towers/tower1/tower1.gd").new()
-var spawn_lvl : String = "11" # current spawn level id (checkpoint)
+var spawn_lvl : String = "40" # current spawn level id (checkpoint)
 # kindling bonfires (setting checkpoints) not established yet (need checkpoint scene)
 # for now just auto-set checkpoint when screen loads
 # current scene being rendered

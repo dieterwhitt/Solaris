@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://1m6larhfi3hm"]
 
-[ext_resource type="Script" path="res://world/objects/enemies/charging_enemy.gd" id="1_41gjj"]
+[ext_resource type="Script" path="res://world/objects/enemies/prototype-enemies/charging_enemy.gd" id="1_41gjj"]
 [ext_resource type="Texture2D" uid="uid://bkpks82ek3ibv" path="res://online-assets/kenney_pixel-platformer/Tilemap/tilemap-characters_packed.png" id="1_x2tm5"]
 [ext_resource type="PackedScene" uid="uid://dyrpmbpr8barb" path="res://world/objects/utility/killbox.tscn" id="3_marnq"]
 
