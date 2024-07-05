@@ -296,7 +296,7 @@ position = Vector2(176, 128)
 [node name="Censer2" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("8_t4st3")]
 z_index = -31
 z_as_relative = false
-position = Vector2(303, 24)
+position = Vector2(299, 24)
 
 [node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
 editor_description = "Any moving enemies/hazards/npcs"

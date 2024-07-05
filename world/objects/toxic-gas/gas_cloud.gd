@@ -17,6 +17,9 @@ func _ready():
 	# choose random animatino player speed (hover animation)
 	animation_player.speed_scale = rng.randf_range(0.7, 1.3)
 	sprite.speed_scale = rng.randf_range(0.3, 0.7)
+	# random scale and opacity
+	sprite.scale.x = rng.randf_range(2.5, 3.5)
+	sprite.modulate = Color8(255, 255, 255, rng.randi_range(20, 50))
 	# whether to reverse float animation
 	var reverse_float = rng.randi_range(0, 1)
 	if reverse_float == 1:
