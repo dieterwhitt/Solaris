@@ -1,9 +1,54 @@
-[gd_scene load_steps=40 format=3 uid="uid://e4nec1kv7p2e"]
+[gd_scene load_steps=41 format=3 uid="uid://e4nec1kv7p2e"]
 
 [ext_resource type="Script" path="res://boss/Warmadillo.gd" id="1_yvgv0"]
 [ext_resource type="Texture2D" uid="uid://525ditmeknli" path="res://online-assets/Boss_Sprites/IDLE.png" id="2_46v61"]
 [ext_resource type="Texture2D" uid="uid://dxrx2qhp4jee1" path="res://online-assets/Boss_Sprites/RUN.png" id="3_2nno4"]
 [ext_resource type="Texture2D" uid="uid://d1uqiw7bach1b" path="res://online-assets/Boss_Sprites/ATTACK 1.png" id="4_a1f11"]
+
+[sub_resource type="Animation" id="Animation_o7spf"]
+length = 0.001
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_bu2mc"]
+resource_name = "attack"
+length = 0.83335
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"sneeze"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
 
 [sub_resource type="Animation" id="Animation_p6uyt"]
 resource_name = "idle"
@@ -35,26 +80,9 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4]
 }
 
-[sub_resource type="Animation" id="Animation_o7spf"]
-length = 0.001
-step = 0.166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
 [sub_resource type="Animation" id="Animation_tixvg"]
 resource_name = "roll"
 length = 1.16668
-loop_mode = 1
 step = 0.166667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -79,35 +107,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 7]
-}
-
-[sub_resource type="Animation" id="Animation_bu2mc"]
-resource_name = "attack"
-length = 0.83335
-step = 0.166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"sneeze"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1s64s"]
@@ -146,13 +145,13 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_v2le2"]
 states/attack/node = SubResource("AnimationNodeAnimation_f78m1")
-states/attack/position = Vector2(572.829, -38.2349)
+states/attack/position = Vector2(572.829, -37.9537)
 states/idle/node = SubResource("AnimationNodeAnimation_dkc6u")
 states/idle/position = Vector2(462.555, 101.75)
 states/roll/node = SubResource("AnimationNodeAnimation_mwfeq")
-states/roll/position = Vector2(378.829, -37.1099)
+states/roll/position = Vector2(378.829, -37.6724)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_jnxvl"), "idle", "roll", SubResource("AnimationNodeStateMachineTransition_6l5n4"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_wu6wc"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_7bl1x"), "roll", "idle", SubResource("AnimationNodeStateMachineTransition_grwcv"), "idle", "End", SubResource("AnimationNodeStateMachineTransition_qpv5h")]
-graph_offset = Vector2(-160.441, -54.7874)
+graph_offset = Vector2(236.827, -97.4399)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bw0vj"]
 atlas = ExtResource("2_46v61")
@@ -304,7 +303,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxx0h"]
-size = Vector2(20, 34)
+size = Vector2(18, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sco4u"]
+size = Vector2(26, 26)
 
 [node name="Warmadillo" type="CharacterBody2D"]
 collision_layer = 16
@@ -327,5 +329,21 @@ sprite_frames = SubResource("SpriteFrames_cf1ab")
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 33)
+position = Vector2(-1, 33)
 shape = SubResource("RectangleShape2D_rxx0h")
+
+[node name="SneezeTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="RollTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="RollCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 40)
+shape = SubResource("RectangleShape2D_sco4u")
+disabled = true
+
+[connection signal="timeout" from="SneezeTimer" to="." method="_on_sneeze_timer_timeout"]
+[connection signal="timeout" from="RollTimer" to="." method="_on_roll_timer_timeout"]
