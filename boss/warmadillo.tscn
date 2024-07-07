@@ -1,9 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://e4nec1kv7p2e"]
+[gd_scene load_steps=44 format=3 uid="uid://e4nec1kv7p2e"]
 
 [ext_resource type="Script" path="res://boss/Warmadillo.gd" id="1_yvgv0"]
 [ext_resource type="Texture2D" uid="uid://525ditmeknli" path="res://online-assets/Boss_Sprites/IDLE.png" id="2_46v61"]
 [ext_resource type="Texture2D" uid="uid://dxrx2qhp4jee1" path="res://online-assets/Boss_Sprites/RUN.png" id="3_2nno4"]
 [ext_resource type="Texture2D" uid="uid://d1uqiw7bach1b" path="res://online-assets/Boss_Sprites/ATTACK 1.png" id="4_a1f11"]
+[ext_resource type="PackedScene" uid="uid://dyrpmbpr8barb" path="res://world/objects/utility/killbox.tscn" id="5_lh4l2"]
 
 [sub_resource type="Animation" id="Animation_o7spf"]
 length = 0.001
@@ -305,8 +306,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxx0h"]
 size = Vector2(18, 34)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sco4u"]
-size = Vector2(26, 26)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vyln"]
+size = Vector2(26, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lc255"]
+size = Vector2(15, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aj5kk"]
+size = Vector2(26, 25)
 
 [node name="Warmadillo" type="CharacterBody2D"]
 collision_layer = 16
@@ -334,16 +341,32 @@ shape = SubResource("RectangleShape2D_rxx0h")
 
 [node name="SneezeTimer" type="Timer" parent="."]
 wait_time = 5.0
+one_shot = true
 autostart = true
 
 [node name="RollTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 15.0
+one_shot = true
 autostart = true
 
 [node name="RollCollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 40)
-shape = SubResource("RectangleShape2D_sco4u")
-disabled = true
+position = Vector2(-1, 37.5)
+shape = SubResource("RectangleShape2D_7vyln")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Killbox" parent="." instance=ExtResource("5_lh4l2")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killbox"]
+position = Vector2(-0.5, 34)
+shape = SubResource("RectangleShape2D_lc255")
+debug_color = Color(0.901961, 0.27451, 0.388235, 0.419608)
+
+[node name="Killbox2" parent="." instance=ExtResource("5_lh4l2")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killbox2"]
+position = Vector2(-1, 37.5)
+shape = SubResource("RectangleShape2D_aj5kk")
+debug_color = Color(0.909804, 0.247059, 0.431373, 0.419608)
 
 [connection signal="timeout" from="SneezeTimer" to="." method="_on_sneeze_timer_timeout"]
 [connection signal="timeout" from="RollTimer" to="." method="_on_roll_timer_timeout"]

@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 # Constants for movement
-const SPEED = 70.0
+const SPEED = 90.0
+var speed_mult = 2.4
+var accel_val = 50
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -24,7 +26,8 @@ var player: CharacterBody2D
 # ref to timer
 var attack_timer: Timer
 
-
+@onready var col_boxes = [$CollisionShape2D, $RollCollisionShape2D]
+@onready var kill_boxes = [$Killbox, $Killbox2]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,6 +39,8 @@ func _ready():
 	attack_timer = $SneezeTimer
 	attack_timer.start()
 	state_machine.travel("idle")
+	remove_child(col_boxes[1])
+	remove_child(kill_boxes[1])
 
 # Called every frame, delta is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -73,7 +78,7 @@ func handle_movement(delta):
 		velocity.x =  - direction_to_player.x * SPEED
 		
 	if is_rolling == 2:
-		velocity.x = velocity.x
+		velocity.x += delta * accel_val * direction
 	# change this to a conditional to chase after player only after a certain time
 	if velocity.x < 0:
 		direction = -1
@@ -92,12 +97,23 @@ func handle_collisions():
 			state_machine.travel("roll")
 			var direction_to_player = global_position.direction_to(player.global_position)
 			# Move towards the player
-			velocity.x = direction_to_player.x * SPEED * 2
+			velocity.x = direction_to_player.x * SPEED * speed_mult
+			remove_child(col_boxes[0])
+			add_child(col_boxes[1])
+			remove_child(kill_boxes[0])
+			add_child(kill_boxes[1])
 		# if he's running, add 1 to counter
 		elif is_rolling == 2:
 			state_machine.travel("idle")
+			
 			wall_counter += 1
 			is_rolling = 0
+			
+			await get_tree().create_timer(0.3).timeout
+			remove_child(col_boxes[1])
+			add_child(col_boxes[0])
+			remove_child(kill_boxes[1])
+			add_child(kill_boxes[0])
 		
 		await get_tree().create_timer(1.0).timeout
 		# add conditional to check if wall_counter is = to ... for animations
@@ -108,7 +124,6 @@ func update_animation():
 		$AnimatedSprite2D.flip_h = false
 	else:
 		$AnimatedSprite2D.flip_h = true
-		
 	#state_machine.travel("idle")
 
 func flip():
@@ -125,10 +140,18 @@ func die():
 	queue_free()  # Remove the enemy from the scene after death animation
 
 func _on_sneeze_timer_timeout():
-	state_machine.travel("attack")
+	var rng = RandomNumberGenerator.new()
+	$RollTimer.start(rng.randf_range(4, 6))
+	if is_rolling == 0:
+		state_machine.travel("attack")
+		# aoe code
+	
 
 func _on_roll_timer_timeout():
+	var rng = RandomNumberGenerator.new()
+	$RollTimer.start(rng.randf_range(7, 10))
 	#prepare_to_roll()
 	if is_rolling == 0 and get_node("/root/LevelManager").player.global_position.y > 480:
 		is_rolling = 1
+	
 	
