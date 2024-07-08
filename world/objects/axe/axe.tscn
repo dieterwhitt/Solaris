@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://hfikpg8mh53v"]
+[gd_scene load_steps=8 format=3 uid="uid://hfikpg8mh53v"]
 
 [ext_resource type="Script" path="res://world/objects/axe/axe.gd" id="1_vckdp"]
 [ext_resource type="Script" path="res://world/objects/axe/body.gd" id="2_8bpn5"]
 [ext_resource type="Texture2D" uid="uid://n3rdgr1ksutt" path="res://world/objects/axe/axe.png" id="2_qyk8j"]
 [ext_resource type="PackedScene" uid="uid://dyrpmbpr8barb" path="res://world/objects/utility/killbox.tscn" id="3_gffhu"]
+
+[sub_resource type="Gradient" id="Gradient_uvxr2"]
+colors = PackedColorArray(0.290654, 0.138478, 0.0432645, 1, 0.356863, 0.164706, 0.0705882, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a7a5s"]
 
@@ -17,6 +20,7 @@ script = ExtResource("1_vckdp")
 points = PackedVector2Array(0, 0, 0, 32)
 width = 2.0
 default_color = Color(0.356863, 0.164706, 0.0705882, 1)
+gradient = SubResource("Gradient_uvxr2")
 
 [node name="AxeBody" type="RigidBody2D" parent="."]
 position = Vector2(2.08165e-12, 32)

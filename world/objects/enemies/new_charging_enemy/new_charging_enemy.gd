@@ -1,5 +1,4 @@
-# dieter apr 27
-# charging enemy
+# new charging enemy
 
 extends CharacterBody2D
 
@@ -7,15 +6,15 @@ extends CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # idle speed
 var idle_speed = 30
-var charge_speed = 130
+var charge_speed = 110
 var charge_decel = 200
 # direction - start facing left
-var direction = -1
+var direction = 1
 var charging : bool = false
 var growing : bool = false
 
-@onready var left = $RayCast2DLeft
-@onready var right = $RayCast2DRight
+@onready var back = $RayCast2DBack
+@onready var front = $RayCast2DFront
 @onready var scan = $Scan
 
 @onready var coll_boxes = [$SmallCollisionBox, $BigCollisionBox]
@@ -27,10 +26,6 @@ var growing : bool = false
 
 
 func _ready():
-	# ignore self in raycast checks
-	left.add_exception(self)
-	right.add_exception(self)
-	scan.add_exception(self)
 	# start in idle mode: remove large collision and damage box
 	remove_child(coll_boxes[1])
 	remove_child(kill_boxes[1])
@@ -73,15 +68,18 @@ func update_direction():
 	# does not check ledges if charging
 	if is_on_wall():
 		direction *= -1
-	elif not left.is_colliding() and not right.is_colliding():
+	elif not back.is_colliding() and not front.is_colliding():
 		# in air
 		pass
+		'''
 	elif not charging and not growing and not left.is_colliding():
+		print("flipping to right")
 		# left side over edge: move right
 		direction = 1
-	elif not charging and not growing and not right.is_colliding():
+		'''
+	elif not charging and not growing and not front.is_colliding():
 		# right side over edge
-		direction = -1
+		direction *= -1
 	
 	# flip sprite and scan direction
 	if direction < 0:

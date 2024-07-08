@@ -1,0 +1,120 @@
+[gd_scene load_steps=16 format=3 uid="uid://c7plc034506xt"]
+
+[ext_resource type="Texture2D" uid="uid://cwyj34f6m7jwy" path="res://world/objects/toxic-gas/skulltimer.png" id="1_wwqop"]
+
+[sub_resource type="Animation" id="Animation_r7vhs"]
+resource_name = "fade-in"
+length = 0.10001
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p85mi"]
+resource_name = "visible"
+length = 0.10001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h8mkp"]
+resource_name = "invisible"
+length = 0.10001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qyd40"]
+_data = {
+"fade-in": SubResource("Animation_r7vhs"),
+"invisible": SubResource("Animation_h8mkp"),
+"visible": SubResource("Animation_p85mi")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gbmd5"]
+animation = &"fade-in"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r1asd"]
+animation = &"fade-in"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_immgc"]
+animation = &"invisible"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u4qmj"]
+animation = &"visible"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2bifn"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_canwc"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_00yp7"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ksvnn"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0y6t8"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_t03yn"]
+states/Start/position = Vector2(196, 103.5)
+states/fade-in/node = SubResource("AnimationNodeAnimation_gbmd5")
+states/fade-in/position = Vector2(488.5, 19)
+states/fade-out/node = SubResource("AnimationNodeAnimation_r1asd")
+states/fade-out/position = Vector2(477.5, 191)
+states/invisible/node = SubResource("AnimationNodeAnimation_immgc")
+states/invisible/position = Vector2(393.5, 107)
+states/visible/node = SubResource("AnimationNodeAnimation_u4qmj")
+states/visible/position = Vector2(568, 107.5)
+transitions = ["Start", "invisible", SubResource("AnimationNodeStateMachineTransition_2bifn"), "fade-in", "visible", SubResource("AnimationNodeStateMachineTransition_canwc"), "fade-out", "invisible", SubResource("AnimationNodeStateMachineTransition_00yp7"), "invisible", "fade-in", SubResource("AnimationNodeStateMachineTransition_ksvnn"), "visible", "fade-out", SubResource("AnimationNodeStateMachineTransition_0y6t8")]
+
+[node name="Skull" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("1_wwqop")
+offset = Vector2(2.08165e-12, 0.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qyd40")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qyd40")
+}
+tree_root = SubResource("AnimationNodeStateMachine_t03yn")
+anim_player = NodePath("../AnimationPlayer")

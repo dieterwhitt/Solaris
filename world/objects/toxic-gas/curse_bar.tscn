@@ -1,21 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://e050nnypu8vh"]
+[gd_scene load_steps=3 format=3 uid="uid://e050nnypu8vh"]
 
 [ext_resource type="Script" path="res://world/objects/toxic-gas/curse_bar.gd" id="1_vbrtl"]
+[ext_resource type="PackedScene" uid="uid://c7plc034506xt" path="res://world/objects/toxic-gas/skull.tscn" id="2_fwsac"]
 
 [node name="CurseBar" type="Node2D"]
+z_index = 10
 script = ExtResource("1_vbrtl")
 
-[node name="Base" type="Line2D" parent="."]
-position = Vector2(2.08165e-12, 18.5)
-points = PackedVector2Array(-10, -2.08165e-12, 10, 0)
-width = 1.0
-default_color = Color(0.490196, 0.490196, 0.490196, 1)
+[node name="Skulls" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, 6.5)
 
-[node name="Bar" type="Line2D" parent="."]
-position = Vector2(2.08165e-12, 18.5)
-points = PackedVector2Array(-10, -2.08165e-12, 10, -2.08165e-12)
-width = 1.0
-default_color = Color(0.12549, 0.12549, 0.12549, 1)
+[node name="Skull" parent="Skulls" instance=ExtResource("2_fwsac")]
+position = Vector2(2.08165e-12, -15)
 
-[node name="Skull" type="Sprite2D" parent="."]
-position = Vector2(-16, 18)
+[node name="Skull2" parent="Skulls" instance=ExtResource("2_fwsac")]
+position = Vector2(13, -7)
+
+[node name="Skull3" parent="Skulls" instance=ExtResource("2_fwsac")]
+position = Vector2(13, 7)
+
+[node name="Skull4" parent="Skulls" instance=ExtResource("2_fwsac")]
+position = Vector2(2.08165e-12, 15)
+
+[node name="Skull5" parent="Skulls" instance=ExtResource("2_fwsac")]
+position = Vector2(-13, 7)
+
+[node name="Skull6" parent="Skulls" instance=ExtResource("2_fwsac")]
+position = Vector2(-13, -7)

@@ -124,7 +124,7 @@ metadata/_edit_lock_ = true
 editor_description = "For scene tiles at a 0 degree rotation"
 tile_set = ExtResource("3_lh6op")
 format = 2
-layer_0/tile_data = PackedInt32Array(786458, 0, 65536, 786459, 0, 65536, 851993, 0, 65536, 917528, 0, 65536, 983063, 0, 65536, 851996, 0, 65536)
+layer_0/tile_data = PackedInt32Array(786458, 0, 65536, 786459, 0, 65536, 851993, 0, 65536, 917528, 0, 65536, 983063, 0, 65536, 851996, 0, 65536, 458784, 0, 65536)
 metadata/_edit_lock_ = true
 
 [node name="SceneTiles90deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]

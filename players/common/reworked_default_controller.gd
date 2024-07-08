@@ -411,7 +411,10 @@ func _choose_animation():
 
 func kill():
 	# kills player
-	
+	# erase backup data
+	var player_manager = get_node("/root/LevelManager/PlayerManager")
+	if player_manager:
+		player_manager.backup_consumable = false
 	# need to remove all effects and multipliers upon death. new player scene will still have
 	# the same movedata
 	for multiplier in movedata_multipliers:

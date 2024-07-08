@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://clubt6phenp7h"]
+[gd_scene load_steps=8 format=3 uid="uid://clubt6phenp7h"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_ew2js"]
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-27.gd" id="1_gdr3y"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="3_p32g8"]
 [ext_resource type="TileSet" uid="uid://bdwynd1cyshwk" path="res://world/tiles/layout_scene_tiles.tres" id="3_vahqo"]
 [ext_resource type="PackedScene" uid="uid://hfikpg8mh53v" path="res://world/objects/axe/axe.tscn" id="5_r30yt"]
+[ext_resource type="PackedScene" uid="uid://b00cn2t5fy4hb" path="res://world/objects/enemies/new_charging_enemy/new_charging_enemy.tscn" id="6_8ia32"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
 
@@ -172,6 +173,9 @@ metadata/_edit_lock_ = true
 [node name="Axe" parent="-20_ENTITIES/MovingEntities" instance=ExtResource("5_r30yt")]
 position = Vector2(156, 88)
 length = 40
+
+[node name="NewChargingEnemy" parent="-20_ENTITIES/MovingEntities" instance=ExtResource("6_8ia32")]
+position = Vector2(248, 144)
 
 [node name="+20_FG" type="CanvasGroup" parent="."]
 editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"
