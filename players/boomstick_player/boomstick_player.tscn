@@ -299,6 +299,7 @@ platform_floor_layers = 4294901793
 script = ExtResource("1_04nso")
 _cooldown_bar_path = NodePath("ProgressBar")
 _cooldown_timer_path = NodePath("CooldownTimer")
+animation_tree_path = NodePath("AnimationTree")
 MoveDataResourceFile = "res://players/common/default_movedata.tres"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

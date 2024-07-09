@@ -73,9 +73,10 @@ var just_jumped = false
 # variable for print debug statements
 @export var debug = false
 
-# todo: make export variable, configure in _ready
-var _animation_tree : AnimationTree
-var _state_machine : AnimationNodeStateMachinePlayback
+@export_node_path("AnimationTree") var animation_tree_path : NodePath
+@onready var _animation_tree : AnimationTree = get_node(animation_tree_path)
+@onready var _state_machine : AnimationNodeStateMachinePlayback = \
+		_animation_tree.get("parameters/playback")
 
 # need to give the player an area as well for aoe detection (ex. curse)
 
@@ -98,10 +99,15 @@ var curse_decay_mult : float = 2 # how much slower/faster curse decays
 var movedata_multipliers : Array = []
 var effects : Array = []
 
+
+
 func _ready():
+	# adding player area and curse bar for detecting curse/aoe effects
 	add_child(player_area)
 	add_child(curse_bar)
 	curse_bar.total = CURSE_DEATH
+	# common stuff - 
+	_animation_tree.active = true
 
 # runs every physics frame
 # for updating physics

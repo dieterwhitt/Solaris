@@ -23,10 +23,6 @@ var overdrive : bool = false # whether the player is currently in overdrive
 func _ready():
 	super()
 	print("bronze pendant player")
-	# activate animation tree
-	_animation_tree = $AnimationTree
-	_animation_tree.active = true
-	_state_machine = _animation_tree.get("parameters/playback")
 	# set timers
 	timer.wait_time = CHARGE_S
 	#charge_timer = CHARGE_FRAMES

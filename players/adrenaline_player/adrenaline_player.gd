@@ -20,11 +20,6 @@ const COOLDOWN_TIME = 8
 func _ready():
 	super()
 	print("creating adrenaline shot player")
-	# activate animation tree
-	_animation_tree = $AnimationTree
-	_animation_tree.active = true
-	# state machine
-	_state_machine = _animation_tree.get("parameters/playback")
 	_charges_left = 3 # total charges remaining
 	_cooldown_length = COOLDOWN_TIME
 	_cooldown_timer.wait_time = COOLDOWN_TIME

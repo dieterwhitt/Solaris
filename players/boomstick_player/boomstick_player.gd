@@ -16,12 +16,6 @@ const COOLDOWN_TIME = 0.75 # s
 func _ready():
 	super()
 	print("creating boomstick player")
-	# activate animation tree
-	_animation_tree = $AnimationTree
-	_animation_tree.active = true
-	# sprite and state machine (sprite not needed anymore)
-	# _sprite = $Sprite2D
-	_state_machine = _animation_tree.get("parameters/playback")
 	_charges_left = -1 # infinite charges
 	_cooldown_length = COOLDOWN_TIME # setting cooldown length variable
 

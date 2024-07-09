@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=2 format=3 uid="uid://c578dtgqe7u7r"]
+
+[ext_resource type="Script" path="res://world/artifacts/artifact.gd" id="1_p0qdq"]
+
+[resource]
+script = ExtResource("1_p0qdq")
+id = "golem_anatomia"
+name = "Golem Anatomia"
+description = "[No Effect]"
+icon8 = ""
+icon64 = ""
+equippable = false
+playerScenePath = ""

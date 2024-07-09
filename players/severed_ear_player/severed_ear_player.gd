@@ -10,11 +10,6 @@ extends ReworkedDefaultController
 func _ready():
 	super()
 	print("creating severed ear player")
-	# activate animation tree
-	_animation_tree = $AnimationTree
-	_animation_tree.active = true
-	# state machine
-	_state_machine = _animation_tree.get("parameters/playback")
 	
 func _physics_process(delta):
 	# apply physics controller

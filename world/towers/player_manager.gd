@@ -9,10 +9,12 @@
 
 extends Node
 
+# to do - for saving: export variables for filepaths and load @onready
+
 # null -> use default player
 # testing various values. 
 var active_artifact : Artifact = load("res://world/artifacts/severed_ear/severed_ear.tres")
-var backup_artifact : Artifact = load("res://world/artifacts/gas_mask/gas_mask.tres")
+var backup_artifact : Artifact = load("res://world/artifacts/bronze_pendant/bronze_pendant.tres")
 @onready var level_manager : Node = get_parent()
 
 # for consumables to prevent swapping out and resetting cooldowns/charges
