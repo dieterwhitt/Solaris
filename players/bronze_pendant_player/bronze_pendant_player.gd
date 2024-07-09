@@ -25,12 +25,13 @@ func _ready():
 	print("bronze pendant player")
 	# set timers
 	timer.wait_time = CHARGE_S
-	#charge_timer = CHARGE_FRAMES
-	#cooldown_timer = COOLDOWN_FRAMES
+	# not overdrive, not top speed, reset timer
+	timer.start(CHARGE_S)
 
 func _physics_process(delta):
 	# apply physics controller
 	super._physics_process(delta)
+	print(timer.time_left)
 	update_overdrive()
 	# move and slide
 	move_and_slide()
@@ -48,15 +49,15 @@ func update_overdrive():
 			timer.paused = true
 		else:
 			# check charge timer timeout
-			if timer.is_stopped():
+			if timer.time_left == 0:
 				enter_overdrive()
 	else:
 		# not top speed
 		if overdrive:
-			# print("in overdrive, cooling down")
+			print("in overdrive, cooling down")
 			# on cooldown: timer ticking cooldown
 			timer.paused = false
-			if timer.is_stopped:
+			if timer.time_left == 0:
 				exit_overdrive()
 		else:
 			# not overdrive, not top speed, reset timer

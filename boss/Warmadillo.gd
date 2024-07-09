@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 # Constants for movement
-const SPEED = 90.0
-var speed_mult = 2.4
+const SPEED = 60.0
+var speed_mult = 4
 var accel_val = 50
 const JUMP_VELOCITY = -400.0
 
@@ -141,7 +141,7 @@ func die():
 
 func _on_sneeze_timer_timeout():
 	var rng = RandomNumberGenerator.new()
-	$RollTimer.start(rng.randf_range(4, 6))
+	$SneezeTimer.start(rng.randf_range(4, 6))
 	if is_rolling == 0:
 		state_machine.travel("attack")
 		# aoe code
@@ -149,7 +149,7 @@ func _on_sneeze_timer_timeout():
 
 func _on_roll_timer_timeout():
 	var rng = RandomNumberGenerator.new()
-	$RollTimer.start(rng.randf_range(7, 10))
+	$RollTimer.start(rng.randf_range(5, 8))
 	#prepare_to_roll()
 	if is_rolling == 0 and get_node("/root/LevelManager").player.global_position.y > 480:
 		is_rolling = 1

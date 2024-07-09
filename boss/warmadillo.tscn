@@ -345,7 +345,7 @@ one_shot = true
 autostart = true
 
 [node name="RollTimer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 10.0
 one_shot = true
 autostart = true
 
