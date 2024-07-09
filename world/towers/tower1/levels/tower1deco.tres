@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b5k5dhcaqs37o" path="res://world/tiles/tower-1-deco/redbricktileset.png" id="1_6y4j1"]
 [ext_resource type="Texture2D" uid="uid://booakaxl6xid" path="res://world/tiles/tower-1-deco/smallspikes.png" id="2_otpb4"]
 [ext_resource type="Texture2D" uid="uid://bk71wpsmaydws" path="res://world/tiles/tower-1-deco/big spikes.png" id="3_ekmu8"]
-[ext_resource type="PackedScene" uid="uid://dvbn8ur7xitxc" path="res://world/objects/illusory_wall_highlight.tscn" id="4_v30em"]
+[ext_resource type="PackedScene" uid="uid://dvbn8ur7xitxc" path="res://world/objects/level-objects/illusory_wall_highlight.tscn" id="4_v30em"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dut4c"]
 texture = ExtResource("1_6y4j1")

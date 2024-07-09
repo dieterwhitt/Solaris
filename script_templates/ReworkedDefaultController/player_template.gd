@@ -4,12 +4,8 @@
 extends ReworkedDefaultController
 
 func _ready():
-	# override
+	super()
 	print("creating player")
-	# activate animation tree
-	_animation_tree = $AnimationTree
-	_animation_tree.active = true
-	_state_machine = _animation_tree.get("parameters/playback")
 
 func _physics_process(delta):
 	# apply physics controller

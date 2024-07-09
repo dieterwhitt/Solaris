@@ -138,6 +138,7 @@ layer_0/tile_data = PackedInt32Array(1179709, 1, 0, 1310782, 65537, 0, 1376318, 
 
 [node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
+visible = false
 tile_set = ExtResource("5_0445l")
 format = 2
 layer_0/tile_data = PackedInt32Array(1376319, 0, 65536, 1376320, 0, 65536, 1376321, 0, 65536, 1376322, 0, 65536, 1376323, 0, 65536, 1376324, 0, 65536, 1376325, 0, 65536, 1376326, 0, 65536, 1376327, 0, 65536, 1376328, 0, 65536, 1376329, 0, 65536, 1376330, 0, 65536, 1376331, 0, 65536, 1376332, 0, 65536, 1376333, 0, 65536, 1376334, 0, 65536, 1310782, 0, 196608, 1179709, 0, 196608)

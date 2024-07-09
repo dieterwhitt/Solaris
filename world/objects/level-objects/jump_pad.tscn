@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://f7gioc8rm7mh"]
 
-[ext_resource type="Script" path="res://world/objects/jump_pad.gd" id="1_1he0v"]
+[ext_resource type="Script" path="res://world/objects/level-objects/jump_pad.gd" id="1_1he0v"]
 [ext_resource type="Texture2D" uid="uid://on4r8vxid03u" path="res://online-assets/kenney_pixel-platformer/Tilemap/tilemap.png" id="2_7dph4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_el87w"]
