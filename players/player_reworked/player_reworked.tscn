@@ -237,7 +237,7 @@ advance_mode = 2
 states/End/position = Vector2(684.5, 216)
 states/RESET/node = SubResource("AnimationNodeAnimation_2ytaj")
 states/RESET/position = Vector2(431.16, 352.5)
-states/Start/position = Vector2(155, 217)
+states/Start/position = Vector2(155, 216.5)
 states/fall/node = SubResource("AnimationNodeAnimation_rygee")
 states/fall/position = Vector2(668.95, 110.836)
 states/idle-run/node = SubResource("AnimationNodeBlendSpace1D_gyae5")
@@ -261,7 +261,7 @@ MoveDataResourceFile = "res://players/common/default_movedata.tres"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("3_670jp")
-animation = &"idle"
+animation = &"run"
 frame = 1
 
 [node name="PlayerHitbox" parent="." instance=ExtResource("4_ypqtj")]

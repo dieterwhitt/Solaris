@@ -30,13 +30,14 @@ level_manager:
 var loaded = {}
 # current tower rewource
 var tower : Tower = load("res://world/towers/tower1/tower1.gd").new()
-var spawn_lvl : String = "28" # current spawn level id (checkpoint)
+var spawn_lvl : String = "54" # current spawn level id (checkpoint)
 # kindling bonfires (setting checkpoints) not established yet (need checkpoint scene)
 # for now just auto-set checkpoint when screen loads
 # current scene being rendered
 var current : Node = null
 var current_lvl : String = "" # current level id
 # player (node)
+# 
 var player : Node = null
 # player manager
 @onready var player_manager = $PlayerManager
@@ -134,6 +135,7 @@ func load_lvl(matrix_posn : Vector2):
 func get_level_matrix_posn(lvl_id : String):
 	# get top left coordinates
 	# levels can only be rectangles, so scan top to bottom left to right
+
 	for y in range(tower._height):
 		for x in range(tower._width):
 			if tower._level_matrix[y][x] == lvl_id:
@@ -234,6 +236,8 @@ func check_borders():
 		var dest_lvl_id = tower._level_matrix[dest_matrix_posn.y][dest_matrix_posn.x]
 		print("target level: " + dest_lvl_id)
 		# destination screen relative to destination level
+		print(dest_matrix_posn)
+		print(get_level_matrix_posn(dest_lvl_id))
 		var target_local_screen = dest_matrix_posn - get_level_matrix_posn(dest_lvl_id)
 		print("target screen: %v" % target_local_screen)
 		# target position in target level
