@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1kodthk6ir6d"]
+
+[ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="2_xtr4k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_siojd"]
+size = Vector2(32, 4)
+
+[node name="platform" type="AnimatableBody2D"]
+
+[node name="platformTiles" type="TileMap" parent="."]
+position = Vector2(-16, -1.85515e-09)
+rotation = 0.00378556
+tile_set = ExtResource("2_xtr4k")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 131073, 0, 1, 131073, 0, 2, 131073, 0, 3, 131073, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["platforms"]]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_siojd")
+one_way_collision = true

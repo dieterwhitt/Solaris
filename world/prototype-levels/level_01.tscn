@@ -276,7 +276,6 @@ rotation = 1.5708
 [node name="DashOrb2" parent="Level/Static" instance=ExtResource("4_iqwo0")]
 position = Vector2(-80, 56)
 rotation = 0.785398
-GLASS = true
 
 [node name="DashOrb3" parent="Level/Static" instance=ExtResource("4_iqwo0")]
 position = Vector2(-40, 16)
@@ -292,19 +291,7 @@ rotation = 2.35619
 
 [node name="TeleportOrbs" parent="Level/Static" instance=ExtResource("5_qovld")]
 
-[node name="Enter" parent="Level/Static/TeleportOrbs" index="0"]
-position = Vector2(48, 56)
-
-[node name="Sprite2D" parent="Level/Static/TeleportOrbs/Enter" index="0"]
-metadata/_edit_lock_ = true
-
-[node name="Area2D" parent="Level/Static/TeleportOrbs/Enter" index="2"]
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" parent="Level/Static/TeleportOrbs/Enter/Area2D" index="0"]
-metadata/_edit_lock_ = true
-
-[node name="Exit" parent="Level/Static/TeleportOrbs" index="1"]
+[node name="Exit" parent="Level/Static/TeleportOrbs" index="3"]
 position = Vector2(96, 40)
 
 [node name="Sprite2D" parent="Level/Static/TeleportOrbs/Exit" index="0"]
@@ -312,21 +299,8 @@ position = Vector2(0, 2.08165e-12)
 metadata/_edit_lock_ = true
 
 [node name="TeleportOrbs2" parent="Level/Static" instance=ExtResource("5_qovld")]
-GLASS = true
 
-[node name="Enter" parent="Level/Static/TeleportOrbs2" index="0"]
-position = Vector2(131, 64)
-
-[node name="Sprite2D" parent="Level/Static/TeleportOrbs2/Enter" index="0"]
-metadata/_edit_lock_ = true
-
-[node name="Area2D" parent="Level/Static/TeleportOrbs2/Enter" index="2"]
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" parent="Level/Static/TeleportOrbs2/Enter/Area2D" index="0"]
-metadata/_edit_lock_ = true
-
-[node name="Exit" parent="Level/Static/TeleportOrbs2" index="1"]
+[node name="Exit" parent="Level/Static/TeleportOrbs2" index="3"]
 position = Vector2(133, -60)
 
 [node name="DashOrb6" parent="Level/Static" instance=ExtResource("4_iqwo0")]
@@ -335,29 +309,14 @@ rotation = 4.71239
 
 [node name="DashOrb7" parent="Level/Static" instance=ExtResource("4_iqwo0")]
 position = Vector2(80, -16)
-GLASS = true
 
 [node name="DashOrb8" parent="Level/Static" instance=ExtResource("4_iqwo0")]
 position = Vector2(88, -56)
 rotation = 4.71239
-GLASS = true
 
 [node name="TeleportOrbs3" parent="Level/Static" instance=ExtResource("5_qovld")]
-GLASS = true
 
-[node name="Enter" parent="Level/Static/TeleportOrbs3" index="0"]
-position = Vector2(40, -56)
-
-[node name="Sprite2D" parent="Level/Static/TeleportOrbs3/Enter" index="0"]
-metadata/_edit_lock_ = true
-
-[node name="Area2D" parent="Level/Static/TeleportOrbs3/Enter" index="2"]
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" parent="Level/Static/TeleportOrbs3/Enter/Area2D" index="0"]
-metadata/_edit_lock_ = true
-
-[node name="Exit" parent="Level/Static/TeleportOrbs3" index="1"]
+[node name="Exit" parent="Level/Static/TeleportOrbs3" index="3"]
 position = Vector2(-8, -56)
 
 [node name="DashOrb9" parent="Level/Static" instance=ExtResource("4_iqwo0")]
