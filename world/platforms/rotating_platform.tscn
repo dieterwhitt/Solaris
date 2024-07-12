@@ -3,19 +3,17 @@
 [ext_resource type="PackedScene" uid="uid://d1kodthk6ir6d" path="res://world/platforms/platform.tscn" id="3_12nkr"]
 [ext_resource type="Script" path="res://world/platforms/OrbitController.gd" id="3_hks3d"]
 
-[node name="RotatingPlatform" type="Node2D"]
-
-[node name="OrbitController" type="Node2D" parent="."]
+[node name="OrbitController" type="Node2D"]
 script = ExtResource("3_hks3d")
 
-[node name="platform" parent="OrbitController" groups=["platforms"] instance=ExtResource("3_12nkr")]
-position = Vector2(32, 0)
+[node name="platform" parent="." groups=["platforms"] instance=ExtResource("3_12nkr")]
+position = Vector2(-15.9507, -1.25535)
 
-[node name="platform2" parent="OrbitController" groups=["platforms"] instance=ExtResource("3_12nkr")]
-position = Vector2(0, -16)
+[node name="platform2" parent="." groups=["platforms"] instance=ExtResource("3_12nkr")]
+position = Vector2(1.25535, -15.9507)
 
-[node name="platform3" parent="OrbitController" groups=["platforms"] instance=ExtResource("3_12nkr")]
-position = Vector2(5.34091, -15.0823)
+[node name="platform3" parent="." groups=["platforms"] instance=ExtResource("3_12nkr")]
+position = Vector2(15.9507, 1.25535)
 
-[node name="platform4" parent="OrbitController" groups=["platforms"] instance=ExtResource("3_12nkr")]
-position = Vector2(-32, 0)
+[node name="platform4" parent="." groups=["platforms"] instance=ExtResource("3_12nkr")]
+position = Vector2(-1.25535, 15.9507)

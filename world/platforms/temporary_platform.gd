@@ -30,8 +30,8 @@ func _start_platform_removal():
 # Coroutine to handle the platform readdition
 func _start_platform_readdition():
 	await get_tree().create_timer(4).timeout
-	$AnimationPlayer.play("reappear")
 	add_child(platform)
 	add_child(tiles)
+	$AnimationPlayer.play("reappear")
 
 

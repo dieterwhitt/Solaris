@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://wjnjir5wf6c1"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c8c3to5y0br5j"]
 
 [ext_resource type="PackedScene" uid="uid://dvbn8ur7xitxc" path="res://world/objects/level-objects/illusory_wall_highlight.tscn" id="1_uj8dp"]
 [ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/level-objects/jump_pad.tscn" id="1_yv8o6"]

@@ -1,6 +1,5 @@
 # axe.gd
 # pendulum axe
-
 extends Node2D
 
 const GRAVITY : float = 670
