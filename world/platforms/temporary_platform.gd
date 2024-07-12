@@ -26,12 +26,16 @@ func _start_platform_removal():
 	remove_child(tiles)
 	_start_platform_readdition()
 
-
 # Coroutine to handle the platform readdition
 func _start_platform_readdition():
-	await get_tree().create_timer(4).timeout
+	var timer := Timer.new()
+	add_child(timer)
+	timer.one_shot = true
+	timer.start(3.5)
+	timer.timeout.connect(_on_timer_timeout)
+
+func _on_timer_timeout():
 	add_child(platform)
 	add_child(tiles)
 	$AnimationPlayer.play("reappear")
-
 
