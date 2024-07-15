@@ -4,11 +4,14 @@
 extends Node2D
 
 const pad_velocity = -285
+var state_machine
+@onready var tree = $AnimationTree
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass 
-
+	tree.active = true
+	state_machine = tree.get("parameters/playback")
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -21,4 +24,7 @@ func _on_area_2d_body_entered(body):
 		body.used_double_jump = false
 		body.used_jump = true
 		body._state_machine.start("jump")
+		# play jump pad animation
+		state_machine.start("spring")
+		
 

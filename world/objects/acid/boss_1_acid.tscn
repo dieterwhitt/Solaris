@@ -2,6 +2,21 @@
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_odvqn"]
 
+[sub_resource type="Animation" id="Animation_6q5dv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TileMap:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.08165e-12, 540)]
+}
+
 [sub_resource type="Animation" id="Animation_2ut1y"]
 resource_name = "rise-sequence"
 length = 50.0
@@ -17,21 +32,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(2.08165e-12, 540), Vector2(2.08165e-12, 64), Vector2(2.08165e-12, 64), Vector2(2.08165e-12, 540)]
-}
-
-[sub_resource type="Animation" id="Animation_6q5dv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TileMap:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2.08165e-12, 540)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3ts1k"]
