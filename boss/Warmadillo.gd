@@ -13,8 +13,9 @@ var animation_tree: AnimationTree
 var state_machine: AnimationNodeStateMachinePlayback
 
 # State variables
+var phase = "build" # 1 - build/spit, 2 - roll, 3 - stagger
 var direction = 0
-var is_dead = false
+var is_dead = false # load from save
 # boolean to keep track of rolling state
 var is_rolling = 0
 
@@ -41,6 +42,8 @@ func _ready():
 	state_machine.travel("idle")
 	remove_child(col_boxes[1])
 	remove_child(kill_boxes[1])
+	if phase == "build":
+		flip()
 
 # Called every frame, delta is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -49,17 +52,24 @@ func _physics_process(delta):
 	if wall_counter == 5:
 		print('lava starts rising. cue scene')
 	if is_dead:
-		return
+		queue_free()
 	# Add gravity
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
-	# Handle collisions and state changes
-	handle_collisions()
-	# Update the enemy's animation based on its state
-	update_animation()
-	# Handle movement direction (AI or predefined path)
-	handle_movement(delta)
+	
+	
+	if phase == "build":
+		# spit. when timer times out, 
+		pass
+	elif phase == "roll":
+		# Handle collisions and state changes
+		handle_collisions()
+		# Update the enemy's animation based on its state
+		update_animation()
+		# Handle movement direction (AI or predefined path)
+		handle_movement(delta)
+	elif phase == "stagger":
+		pass
 	# Apply movement
 	move_and_slide()
 
@@ -140,6 +150,9 @@ func die():
 	queue_free()  # Remove the enemy from the scene after death animation
 
 func _on_sneeze_timer_timeout():
+	# only in roll phase
+	if phase != "roll":
+		return
 	var rng = RandomNumberGenerator.new()
 	$SneezeTimer.start(rng.randf_range(4, 6))
 	if is_rolling == 0:
@@ -148,6 +161,9 @@ func _on_sneeze_timer_timeout():
 	
 
 func _on_roll_timer_timeout():
+	# only in roll phase
+	if phase != "roll":
+		return
 	var rng = RandomNumberGenerator.new()
 	$RollTimer.start(rng.randf_range(5, 8))
 	#prepare_to_roll()
