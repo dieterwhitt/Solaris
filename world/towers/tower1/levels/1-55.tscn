@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="3_vbskn"]
 [ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="5_1nbd7"]
 [ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="6_86amr"]
-[ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/level-objects/jump_pad.tscn" id="7_ig2ju"]
+[ext_resource type="PackedScene" uid="uid://dg3fanjbcq1ae" path="res://world/objects/level-objects/jump_pad/jump_pad.tscn" id="7_ig2ju"]
 [ext_resource type="PackedScene" uid="uid://e4nec1kv7p2e" path="res://boss/warmadillo.tscn" id="8_o6bob"]
 [ext_resource type="PackedScene" uid="uid://ddd7hydnkridh" path="res://world/objects/acid/boss_1_acid.tscn" id="9_8isva"]
 
