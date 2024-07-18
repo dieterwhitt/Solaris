@@ -1,14 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://b00cn2t5fy4hb"]
+[gd_scene load_steps=17 format=3 uid="uid://bwi582bms0oxp"]
 
-[ext_resource type="Script" path="res://world/objects/enemies/new_charging_enemy/new_charging_enemy.gd" id="1_ac3c1"]
-[ext_resource type="Texture2D" uid="uid://bkpks82ek3ibv" path="res://online-assets/kenney_pixel-platformer/Tilemap/tilemap-characters_packed.png" id="2_0dhk5"]
-[ext_resource type="PackedScene" uid="uid://dyrpmbpr8barb" path="res://world/objects/utility/killbox.tscn" id="3_asrva"]
+[ext_resource type="Script" path="res://walking_enemy.gd" id="1_mkt87"]
+[ext_resource type="Texture2D" uid="uid://bkpks82ek3ibv" path="res://online-assets/kenney_pixel-platformer/Tilemap/tilemap-characters_packed.png" id="2_w73nu"]
+[ext_resource type="PackedScene" uid="uid://dyrpmbpr8barb" path="res://world/objects/utility/killbox.tscn" id="3_5sfbx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4w6ij"]
-size = Vector2(10, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0sb05"]
+size = Vector2(10, 7)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7nnr"]
-size = Vector2(8, 14)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_651ng"]
+size = Vector2(12, 9)
 
 [sub_resource type="Animation" id="Animation_pondf"]
 length = 0.001
@@ -116,9 +116,6 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w60ww"]
 animation = &"aggro"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p22sa"]
-animation = &"charge"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7cj44"]
 animation = &"idle"
 
@@ -127,51 +124,42 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s1mt2"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4j3ko"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tg3s8"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6m7b2"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bxaob"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cy3oc"]
 states/End/position = Vector2(701, 101)
 states/aggro/node = SubResource("AnimationNodeAnimation_w60ww")
 states/aggro/position = Vector2(427.75, -33.1963)
-states/charge/node = SubResource("AnimationNodeAnimation_p22sa")
-states/charge/position = Vector2(591.5, -32.9463)
 states/idle/node = SubResource("AnimationNodeAnimation_7cj44")
 states/idle/position = Vector2(429.5, 104)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_65am7"), "idle", "aggro", SubResource("AnimationNodeStateMachineTransition_s1mt2"), "aggro", "charge", SubResource("AnimationNodeStateMachineTransition_4j3ko"), "charge", "idle", SubResource("AnimationNodeStateMachineTransition_6m7b2")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_65am7"), "idle", "aggro", SubResource("AnimationNodeStateMachineTransition_s1mt2"), "aggro", "idle", SubResource("AnimationNodeStateMachineTransition_tg3s8")]
 graph_offset = Vector2(0, -99.1963)
 
-[node name="NewChargingEnemy" type="CharacterBody2D"]
-collision_layer = 16
-collision_mask = 49
-script = ExtResource("1_ac3c1")
+[node name="WalkingEnemy" type="CharacterBody2D"]
+script = ExtResource("1_mkt87")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_0dhk5")
+texture = ExtResource("2_w73nu")
 hframes = 9
 vframes = 3
 frame = 18
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_4w6ij")
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_0sb05")
 
-[node name="Killbox" parent="." instance=ExtResource("3_asrva")]
+[node name="Killbox" parent="." instance=ExtResource("3_5sfbx")]
+position = Vector2(0, 6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killbox"]
-shape = SubResource("RectangleShape2D_e7nnr")
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_651ng")
 debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="RayCast2DFront" type="RayCast2D" parent="."]
-target_position = Vector2(7, 13)
-collision_mask = 33
-
-[node name="RayCast2DBack" type="RayCast2D" parent="."]
-target_position = Vector2(-7, 13)
+target_position = Vector2(8, 13)
 collision_mask = 33
 
 [node name="Scan" type="RayCast2D" parent="."]
@@ -189,5 +177,9 @@ callback_mode_process = 0
 libraries = {
 "": SubResource("AnimationLibrary_d0cgw")
 }
-tree_root = SubResource("AnimationNodeStateMachine_bxaob")
+tree_root = SubResource("AnimationNodeStateMachine_cy3oc")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="RayCast2DBack" type="RayCast2D" parent="."]
+target_position = Vector2(-7, 13)
+collision_mask = 33
