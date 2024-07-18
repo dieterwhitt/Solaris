@@ -1,6 +1,6 @@
 [gd_scene load_steps=44 format=3 uid="uid://e4nec1kv7p2e"]
 
-[ext_resource type="Script" path="res://boss/Warmadillo.gd" id="1_yvgv0"]
+[ext_resource type="Script" path="res://boss/warmadillo/Warmadillo.gd" id="1_yvgv0"]
 [ext_resource type="Texture2D" uid="uid://525ditmeknli" path="res://online-assets/Boss_Sprites/IDLE.png" id="2_46v61"]
 [ext_resource type="Texture2D" uid="uid://dxrx2qhp4jee1" path="res://online-assets/Boss_Sprites/RUN.png" id="3_2nno4"]
 [ext_resource type="Texture2D" uid="uid://d1uqiw7bach1b" path="res://online-assets/Boss_Sprites/ATTACK 1.png" id="4_a1f11"]
@@ -368,5 +368,12 @@ position = Vector2(-1, 37.5)
 shape = SubResource("RectangleShape2D_aj5kk")
 debug_color = Color(0.909804, 0.247059, 0.431373, 0.419608)
 
+[node name="SpitTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="SpitSpawn" type="Node2D" parent="."]
+position = Vector2(12, 24)
+
 [connection signal="timeout" from="SneezeTimer" to="." method="_on_sneeze_timer_timeout"]
 [connection signal="timeout" from="RollTimer" to="." method="_on_roll_timer_timeout"]
+[connection signal="timeout" from="SpitTimer" to="." method="_on_spit_timer_timeout"]

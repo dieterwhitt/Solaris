@@ -13,8 +13,8 @@ var animation_tree: AnimationTree
 var state_machine: AnimationNodeStateMachinePlayback
 
 # State variables
-var phase = "build" # 1 - build/spit, 2 - roll, 3 - stagger
-var direction = 0
+var phase = "build" # 0 - idle - 1 - build/spit, 2 - roll, 3 - stagger
+var direction : int = 0
 var is_dead = false # load from save
 # boolean to keep track of rolling state
 var is_rolling = 0
@@ -30,6 +30,17 @@ var attack_timer: Timer
 @onready var col_boxes = [$CollisionShape2D, $RollCollisionShape2D]
 @onready var kill_boxes = [$Killbox, $Killbox2]
 
+# spitting
+var aggro = false
+var spits_left = 40
+@onready var spit_timer : Timer = $SpitTimer
+
+const SPIT_VELO = 70
+@onready var spit : PackedScene = load("res://boss/warmadillo/spit.tscn")
+@onready var spit_spawn = $SpitSpawn
+
+var rng = RandomNumberGenerator.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation_tree = $AnimationTree
@@ -43,7 +54,7 @@ func _ready():
 	remove_child(col_boxes[1])
 	remove_child(kill_boxes[1])
 	if phase == "build":
-		flip()
+		direction = -1
 
 # Called every frame, delta is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -57,15 +68,15 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
+	update_flip()
 	
 	if phase == "build":
-		# spit. when timer times out, 
-		pass
+		# spit. when timer times out, switch to roll
+		build()
 	elif phase == "roll":
 		# Handle collisions and state changes
 		handle_collisions()
 		# Update the enemy's animation based on its state
-		update_animation()
 		# Handle movement direction (AI or predefined path)
 		handle_movement(delta)
 	elif phase == "stagger":
@@ -100,7 +111,6 @@ func handle_collisions():
 	if is_on_wall():
 		direction = -direction
 		# Change direction on wall collision
-		#flip()
 		# if boss reaches other side, then hes ready to attack again
 		if is_rolling == 1:
 			is_rolling = 2
@@ -128,22 +138,40 @@ func handle_collisions():
 		await get_tree().create_timer(1.0).timeout
 		# add conditional to check if wall_counter is = to ... for animations
 
-# Update the enemy's animation based on its state
-func update_animation():
-	if direction > 0:
-		$AnimatedSprite2D.flip_h = false
-	else:
-		$AnimatedSprite2D.flip_h = true
-	#state_machine.travel("idle")
-
-func flip():
-	direction = -direction
-	if direction > 0:
-		$AnimatedSprite2D.flip_h = false
-	else:
-		$AnimatedSprite2D.flip_h = true
+func build():
+	if not aggro and position.distance_to(player.position) < 150:
+		aggro = true
+		# start building spit phase when player in range (start spitting)
+		print("starting spitting")
+		spit_timer.start()
+	elif spits_left == 0:
+		# stop spitting
+		spit_timer.paused = true
+		# wait, then go to roll
+		await get_tree().create_timer(5)
+		phase = "roll"
 		
-	
+
+func spit_func():
+	# print("spitting")
+	spits_left -= 1
+	# spitting to the left.
+	var proj_direction = Vector2(-1, 0)
+	# add some y variance
+	proj_direction.y = rng.randf_range(-0.05, 0.15)
+	var proj = spit.instantiate()
+	add_sibling(proj)
+	# set spit projectil position and velocity
+	proj.global_position = spit_spawn.global_position
+	proj.velocity = SPIT_VELO * proj_direction
+
+# Update the enemy's animation based on its state
+func update_flip():
+	if direction > 0:
+		transform.x.x = 1
+	else:
+		transform.x.x = -1
+
 # Example: Enemy death
 func die():
 	is_dead = true
@@ -169,5 +197,13 @@ func _on_roll_timer_timeout():
 	#prepare_to_roll()
 	if is_rolling == 0 and get_node("/root/LevelManager").player.global_position.y > 480:
 		is_rolling = 1
-	
-	
+
+func _on_spit_timer_timeout():
+	if phase == "build":
+		spit_func()
+		# spits more often as it spits more
+		# 40 -> 1, 1 -> 3
+		var speed_factor : float = (-float(spits_left) / 20.0) + 3.0
+		print(speed_factor)
+		var next = rng.randf_range(2, 3) / speed_factor
+		spit_timer.start(next)

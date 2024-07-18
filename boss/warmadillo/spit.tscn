@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsrmtcmbeupvl"]
+
+[ext_resource type="PackedScene" uid="uid://dyrpmbpr8barb" path="res://world/objects/utility/killbox.tscn" id="1_dbayj"]
+[ext_resource type="Script" path="res://boss/warmadillo/spit.gd" id="1_inq8f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r027d"]
+size = Vector2(10, 10)
+
+[node name="Spit" type="CharacterBody2D"]
+script = ExtResource("1_inq8f")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(1.5, 1)
+polygon = PackedVector2Array(-4, -6, 4, -6, 4, 6, -4, 6)
+
+[node name="Killbox" parent="." instance=ExtResource("1_dbayj")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killbox"]
+shape = SubResource("RectangleShape2D_r027d")
+debug_color = Color(1, 0, 0, 0.419608)
