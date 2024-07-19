@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
 # Constants for movement
-const SPEED = 60.0
-var speed_mult = 4
-var accel_val = 50
+const ACCEL = 600.0
+var speed = 70.0 # speeds up as it takes damage
+var speed_mult = 3.7
+var roll_accel = 50
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -18,14 +19,13 @@ var direction : int = 0
 var is_dead = false # load from save
 # boolean to keep track of rolling state
 var is_rolling = 0
-
+var queue_roll_direction : int = 0
 # counter for how many times has hit wall while rolling
-var wall_counter = 0
+var wall_counter : int = 6
+@onready var roll_timer = $RollTimer
+
 # Reference to the player node
 var player: CharacterBody2D
-
-# ref to timer
-var attack_timer: Timer
 
 @onready var col_boxes = [$CollisionShape2D, $RollCollisionShape2D]
 @onready var kill_boxes = [$Killbox, $Killbox2]
@@ -35,11 +35,20 @@ var aggro = false
 var spits_left = 40
 @onready var spit_timer : Timer = $SpitTimer
 
-const SPIT_VELO = 70
+const SPIT_VELO = 75
 @onready var spit : PackedScene = load("res://boss/warmadillo/spit.tscn")
 @onready var spit_spawn = $SpitSpawn
 
 var rng = RandomNumberGenerator.new()
+
+# aoe attack
+@onready var sneeze_timer = $SneezeTimer
+@onready var aoe_area = $AOE
+var in_aoe : bool = false
+const AOE_START_TIME = 0.9
+const AOE_DURATION = 2.5
+@onready var aoe_start_timer = $AOE_START
+@onready var aoe_duration_timer = $AOE_DURATION
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,20 +57,22 @@ func _ready():
 	state_machine = animation_tree.get("parameters/playback")
 	print("Ready function called. AnimationTree active:", animation_tree.active)
 	# Find and start the attack timer
-	attack_timer = $SneezeTimer
-	attack_timer.start()
 	state_machine.travel("idle")
 	remove_child(col_boxes[1])
 	remove_child(kill_boxes[1])
 	if phase == "build":
 		direction = -1
+	# remove aoe
+	remove_child(aoe_area)
 
 # Called every frame, delta is the elapsed time since the previous frame.
 func _physics_process(delta):
 	player = get_node("/root/LevelManager").player
 	
-	if wall_counter == 5:
+	if wall_counter == 0 and phase != "stagger":
 		print('lava starts rising. cue scene')
+		phase = "stagger"
+		# emit signal to start acid rising
 	if is_dead:
 		queue_free()
 	# Add gravity
@@ -89,21 +100,25 @@ func handle_movement(delta):
 	# Example: simple horizontal patrol
 	if direction == 0:
 		direction = 1
+	# aoe check before movement/rolling
+	if in_aoe:
+		# stop moving
+		velocity.x = move_toward(velocity.x, 0, 100 * delta)
 	# Move in the current direction
-	if is_rolling == 0:
-		velocity.x = direction * SPEED
-		
-	if is_rolling == 1:
+	elif is_rolling == 0:
+		velocity.x += direction * ACCEL * delta
+		velocity.x = clamp(velocity.x, -speed, speed)
+	elif is_rolling == 1:
 		# walk away first, then roll
-		var direction_to_player = global_position.direction_to(player.global_position)
-		velocity.x =  - direction_to_player.x * SPEED
-		
-	if is_rolling == 2:
-		velocity.x += delta * accel_val * direction
+		# var direction_to_player = global_position.direction_to(player.global_position)
+		velocity.x +=  queue_roll_direction * ACCEL * delta
+		velocity.x = clamp(velocity.x, -speed, speed)
+	elif is_rolling == 2:
+		velocity.x += delta * roll_accel * direction
 	# change this to a conditional to chase after player only after a certain time
 	if velocity.x < 0:
 		direction = -1
-	else:
+	elif velocity.x > 0:
 		direction = 1
 	
 # Handle collisions and state changes
@@ -117,7 +132,7 @@ func handle_collisions():
 			state_machine.travel("roll")
 			var direction_to_player = global_position.direction_to(player.global_position)
 			# Move towards the player
-			velocity.x = direction_to_player.x * SPEED * speed_mult
+			velocity.x = direction_to_player.x * speed * speed_mult
 			remove_child(col_boxes[0])
 			add_child(col_boxes[1])
 			remove_child(kill_boxes[0])
@@ -126,7 +141,9 @@ func handle_collisions():
 		elif is_rolling == 2:
 			state_machine.travel("idle")
 			
-			wall_counter += 1
+			wall_counter -= 1
+			# increase speed
+			speed += 4
 			is_rolling = 0
 			
 			await get_tree().create_timer(0.3).timeout
@@ -139,7 +156,7 @@ func handle_collisions():
 		# add conditional to check if wall_counter is = to ... for animations
 
 func build():
-	if not aggro and position.distance_to(player.position) < 150:
+	if not aggro and position.distance_to(player.position) < 160:
 		aggro = true
 		# start building spit phase when player in range (start spitting)
 		print("starting spitting")
@@ -148,9 +165,10 @@ func build():
 		# stop spitting
 		spit_timer.paused = true
 		# wait, then go to roll
-		await get_tree().create_timer(5)
+		await get_tree().create_timer(5).timeout
 		phase = "roll"
-		
+		sneeze_timer.start()
+		roll_timer.start()
 
 func spit_func():
 	# print("spitting")
@@ -182,21 +200,25 @@ func _on_sneeze_timer_timeout():
 	if phase != "roll":
 		return
 	var rng = RandomNumberGenerator.new()
-	$SneezeTimer.start(rng.randf_range(4, 6))
-	if is_rolling == 0:
-		state_machine.travel("attack")
+	sneeze_timer.start(rng.randf_range(12, 20))
+	print("attempting aoe")
+	if is_rolling == 0 and position.distance_to(player.position) < 160:
 		# aoe code
-	
+		in_aoe = true
+		aoe_start_timer.start(AOE_START_TIME)
 
 func _on_roll_timer_timeout():
 	# only in roll phase
 	if phase != "roll":
 		return
 	var rng = RandomNumberGenerator.new()
-	$RollTimer.start(rng.randf_range(5, 8))
+	roll_timer.start(rng.randf_range(6, 10))
 	#prepare_to_roll()
-	if is_rolling == 0 and get_node("/root/LevelManager").player.global_position.y > 480:
+	# not in aoe
+	if is_rolling == 0 and get_node("/root/LevelManager").player.global_position.y > 480\
+	and not in_aoe:
 		is_rolling = 1
+		queue_roll_direction = -direction
 
 func _on_spit_timer_timeout():
 	if phase == "build":
@@ -207,3 +229,19 @@ func _on_spit_timer_timeout():
 		print(speed_factor)
 		var next = rng.randf_range(2, 3) / speed_factor
 		spit_timer.start(next)
+
+
+func _on_aoe_start_timeout():
+	print("starting aoe shooting")
+	# start shooting
+	# play animation, spawn particles
+	state_machine.travel("attack")
+	add_child(aoe_area)
+	# start duration timer
+	aoe_duration_timer.start(AOE_DURATION)
+
+func _on_aoe_duration_timeout():
+	print("ending aoe")
+	# end aoe
+	in_aoe = false
+	remove_child(aoe_area)

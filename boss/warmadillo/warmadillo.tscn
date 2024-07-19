@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://e4nec1kv7p2e"]
+[gd_scene load_steps=45 format=3 uid="uid://e4nec1kv7p2e"]
 
 [ext_resource type="Script" path="res://boss/warmadillo/Warmadillo.gd" id="1_yvgv0"]
 [ext_resource type="Texture2D" uid="uid://525ditmeknli" path="res://online-assets/Boss_Sprites/IDLE.png" id="2_46v61"]
@@ -315,6 +315,9 @@ size = Vector2(15, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aj5kk"]
 size = Vector2(26, 25)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cyktu"]
+size = Vector2(80, 50)
+
 [node name="Warmadillo" type="CharacterBody2D"]
 collision_layer = 16
 script = ExtResource("1_yvgv0")
@@ -342,12 +345,10 @@ shape = SubResource("RectangleShape2D_rxx0h")
 [node name="SneezeTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
-autostart = true
 
 [node name="RollTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
-autostart = true
 
 [node name="RollCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 37.5)
@@ -370,10 +371,27 @@ debug_color = Color(0.909804, 0.247059, 0.431373, 0.419608)
 
 [node name="SpitTimer" type="Timer" parent="."]
 wait_time = 5.0
+one_shot = true
 
 [node name="SpitSpawn" type="Node2D" parent="."]
 position = Vector2(12, 24)
 
+[node name="AOE" parent="." instance=ExtResource("5_lh4l2")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AOE"]
+position = Vector2(0, 25)
+shape = SubResource("RectangleShape2D_cyktu")
+debug_color = Color(0.690196, 0.290196, 1, 0.419608)
+
+[node name="AOE_START" type="Timer" parent="."]
+one_shot = true
+
+[node name="AOE_DURATION" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="timeout" from="SneezeTimer" to="." method="_on_sneeze_timer_timeout"]
 [connection signal="timeout" from="RollTimer" to="." method="_on_roll_timer_timeout"]
 [connection signal="timeout" from="SpitTimer" to="." method="_on_spit_timer_timeout"]
+[connection signal="timeout" from="AOE_START" to="." method="_on_aoe_start_timeout"]
+[connection signal="timeout" from="AOE_DURATION" to="." method="_on_aoe_duration_timeout"]
