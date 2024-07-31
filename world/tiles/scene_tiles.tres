@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c8c3to5y0br5j"]
 
 [ext_resource type="PackedScene" uid="uid://dvbn8ur7xitxc" path="res://world/objects/level-objects/illusory_wall_highlight.tscn" id="1_uj8dp"]
-[ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/level-objects/jump_pad.tscn" id="1_yv8o6"]
+[ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/level-objects/jump_pad/jump_pad.tscn" id="1_yv8o6"]
 [ext_resource type="PackedScene" uid="uid://dkjc317vea7hk" path="res://world/objects/toxic-gas/gas_cloud.tscn" id="2_vub0a"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5aat0"]
