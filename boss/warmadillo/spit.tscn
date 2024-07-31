@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r027d"]
 size = Vector2(10, 10)
 
-[node name="Spit" type="CharacterBody2D"]
+[node name="Spit" type="CharacterBody2D" groups=["Projectile"]]
 script = ExtResource("1_inq8f")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]

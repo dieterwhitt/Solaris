@@ -255,3 +255,6 @@ offset_top = 384.0
 offset_right = 488.0
 offset_bottom = 440.0
 text = "appear after acid rising"
+
+[connection signal="started_rolling" from="-20_ENTITIES/MovingEntities/Warmadillo" to="." method="_on_warmadillo_started_rolling"]
+[connection signal="started_staggering" from="-20_ENTITIES/MovingEntities/Warmadillo" to="." method="_on_warmadillo_started_staggering"]

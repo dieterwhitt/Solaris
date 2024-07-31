@@ -18,7 +18,7 @@ gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 damping_min = 5.0
 damping_max = 5.0
 
-[node name="Dart" type="CharacterBody2D"]
+[node name="Dart" type="CharacterBody2D" groups=["Projectile"]]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_fpuiw")

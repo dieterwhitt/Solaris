@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+signal started_rolling
+signal started_staggering
+
 # Constants for movement
 const ACCEL = 600.0
 var speed = 70.0 # speeds up as it takes damage
@@ -73,6 +76,7 @@ func _physics_process(delta):
 		print('lava starts rising. cue scene')
 		phase = "stagger"
 		# emit signal to start acid rising
+		started_staggering.emit()
 	if is_dead:
 		queue_free()
 	# Add gravity
@@ -169,6 +173,8 @@ func build():
 		phase = "roll"
 		sneeze_timer.start()
 		roll_timer.start()
+		# emit signal (gates opening)
+		started_rolling.emit()
 
 func spit_func():
 	# print("spitting")
@@ -215,8 +221,7 @@ func _on_roll_timer_timeout():
 	roll_timer.start(rng.randf_range(6, 10))
 	#prepare_to_roll()
 	# not in aoe
-	if is_rolling == 0 and get_node("/root/LevelManager").player.global_position.y > 480\
-	and not in_aoe:
+	if is_rolling == 0 and not in_aoe:
 		is_rolling = 1
 		queue_roll_direction = -direction
 
