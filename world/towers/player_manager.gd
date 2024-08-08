@@ -24,6 +24,8 @@ var backup_charges : int
 var backup_cooldown_time : float
 var backup_total_cooldown_time : float
 
+var is_game_paused = false
+
 # on swap:
 # switch active and backup artifact
 func _physics_process(delta):

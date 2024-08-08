@@ -39,6 +39,11 @@ var current_lvl : String = "" # current level id
 # player (node)
 # 
 var player : Node = null
+
+#pause feature
+var is_paused = false
+@onready var pause_menu = $Menu
+
 # player manager
 @onready var player_manager = $PlayerManager
 # new - camera settings
@@ -59,6 +64,21 @@ func _ready():
 	initialize_camera()
 	# read save file and adjust current, checkpoint
 	respawn_player()
+	pause_menu.hide()
+	
+func _unhandled_input(event):
+	if event.is_action_pressed("Pause"):
+		toggle_pause()
+		
+func toggle_pause():
+	is_paused = !is_paused
+	get_tree().paused = is_paused
+	if is_paused:
+		if camera:
+			pause_menu.global_position = camera.get_screen_center_position() - pause_menu.size / 2
+		pause_menu.show()
+	else:
+		pause_menu.hide()
 
 # one-time initialization of camera
 func initialize_camera():
