@@ -31,7 +31,7 @@ func _ready():
 func _physics_process(delta):
 	# apply physics controller
 	super._physics_process(delta)
-	print(timer.time_left)
+	# print(timer.time_left)
 	update_overdrive()
 	# move and slide
 	move_and_slide()

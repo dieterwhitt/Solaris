@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://btdkdo7mxxbv7"]
+
+[ext_resource type="Texture2D" uid="uid://s43aixjuyuch" path="res://world/objects/level-objects/gravity-field/gravity-field-placeholder.png" id="1_16rbv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amw1w"]
+size = Vector2(8, 8)
+
+[node name="GravityField" type="Area2D" groups=["GravityField"]]
+collision_layer = 8
+collision_mask = 66
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_amw1w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_16rbv")

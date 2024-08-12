@@ -1,12 +1,16 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c8c3to5y0br5j"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://c8c3to5y0br5j"]
 
+[ext_resource type="PackedScene" uid="uid://btdkdo7mxxbv7" path="res://world/objects/level-objects/gravity-field/gravity_field.tscn" id="1_lgxby"]
 [ext_resource type="PackedScene" uid="uid://dvbn8ur7xitxc" path="res://world/objects/level-objects/illusory_wall_highlight.tscn" id="1_uj8dp"]
-[ext_resource type="PackedScene" uid="uid://f7gioc8rm7mh" path="res://world/objects/level-objects/jump_pad/jump_pad.tscn" id="1_yv8o6"]
+[ext_resource type="PackedScene" uid="uid://dg3fanjbcq1ae" path="res://world/objects/level-objects/jump_pad/jump_pad.tscn" id="1_yv8o6"]
 [ext_resource type="PackedScene" uid="uid://dkjc317vea7hk" path="res://world/objects/toxic-gas/gas_cloud.tscn" id="2_vub0a"]
+[ext_resource type="PackedScene" uid="uid://fk3y1d2hulei" path="res://world/platforms/temporary_platform.tscn" id="3_ut1as"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5aat0"]
 resource_name = "Static"
+scenes/1/scene = ExtResource("1_lgxby")
 scenes/2/scene = ExtResource("1_yv8o6")
+scenes/3/scene = ExtResource("3_ut1as")
 scenes/4/scene = ExtResource("1_uj8dp")
 scenes/5/scene = ExtResource("2_vub0a")
 

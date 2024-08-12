@@ -29,7 +29,7 @@ level_manager:
 # level id (string) : node
 var loaded = {}
 # current tower rewource
-var tower : Tower = load("res://world/towers/tower1/tower1.gd").new()
+var tower : Tower = load("res://world/towers/tower2/tower2.gd").new()
 var spawn_lvl : String = "01" # current spawn level id (checkpoint)
 # kindling bonfires (setting checkpoints) not established yet (need checkpoint scene)
 # for now just auto-set checkpoint when screen loads
@@ -228,6 +228,8 @@ func check_borders():
 		# current screen on level matrix
 		var current_matrix_posn = \
 				get_level_matrix_posn(current_lvl) + current.get_screen(posn)
+		# future improvment HERE:
+		# upwardvelocity boost when entering from below
 		print("current matrix position: %v" % current_matrix_posn)
 		# destination screen on level matrix
 		var dest_matrix_posn = current_matrix_posn + target_dir

@@ -73,6 +73,7 @@ func update_player():
 		new_player.current_coyote = old_player.current_coyote
 		new_player.current_jump_buffer = old_player.current_jump_buffer
 		new_player.drop_timer = old_player.drop_timer
+		new_player.antigrav_cooldown = old_player.antigrav_cooldown
 		# detach camera transform and attach to new player
 		old_player.remove_child(level_manager.cam_transform)
 		new_player.add_child(level_manager.cam_transform)

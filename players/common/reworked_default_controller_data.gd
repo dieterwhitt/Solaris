@@ -32,5 +32,5 @@ class_name MoveDataResource
 @export var COYOTE_TIME : int = 5 # 5
 @export var JUMP_BUFFER : int = 5 # 5
 # new stuff
-@export var DOUBLE_JUMP_VELOCITY = -125 # -150
+@export var DOUBLE_JUMP_VELOCITY = -130 # -150
 @export var MOMENTUM_MULTIPLIER = 0.8 # friction multiplier at high speeds

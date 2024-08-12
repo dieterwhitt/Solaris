@@ -99,7 +99,10 @@ var curse_decay_mult : float = 2 # how much slower/faster curse decays
 var movedata_multipliers : Array = []
 var effects : Array = []
 
-
+# antigravity status from PREVIOUS frame
+var prev_antigravity = false
+# antigravity cooldown to ignore down gravity
+var antigrav_cooldown = false
 
 func _ready():
 	# adding player area and curse bar for detecting curse/aoe effects
@@ -181,17 +184,50 @@ func apply_gravity(delta):
 	# apply the down gravity multiplier if used jump and are on the way down
 	# i.e the user already jumped and is now falling
 	var down_multiplier = 1
-	if used_jump and velocity.y > 0 and apply_down_gravity:
+	if used_jump and velocity.y > 0 and apply_down_gravity and not antigrav_cooldown:
 		down_multiplier = MoveData.DOWN_MULTIPLIER
+	# update antigravity status
+	var antigravity : bool = false
+	for area in player_area.get_overlapping_areas():
+		if area.is_in_group("GravityField"):
+			antigravity = true
+	
+	# adjustments based on entering/exiting gravity field
+	if antigravity != prev_antigravity:
+		if antigravity:
+			# just entered
+			# print("entering gravity field")
+			# cap y velocity for consistency
+			if velocity.y < -50:
+				velocity.y = -50
+				print("capping upwards")
+			elif velocity.y >= 0 and velocity.y < 50:
+				# give boost when going down
+				print("downwards boost")
+				velocity.y = 50
+		else:
+			# just exited
+			# print("exiting gravity field")
+			pass
 	
 	# apply gravity
-	if not on_floor and velocity.y < MoveData.TERMINAL_Y:
+	if antigravity and velocity.y > -MoveData.TERMINAL_Y:
+		# anti-gravity addition
+		velocity.y -= MoveData.GRAVITY * delta
+	elif not on_floor and velocity.y < MoveData.TERMINAL_Y:
 		velocity.y += MoveData.GRAVITY * down_multiplier * delta
 	
 	# cap at terminal (falling speed only!)
 	# do not cap if dash_stopping
 	if not dash_stopping:
 		velocity.y = min(velocity.y, MoveData.TERMINAL_Y)
+		
+	prev_antigravity = antigravity
+	# antigravity cooldown
+	if antigravity:
+		antigrav_cooldown = true
+	elif on_floor:
+		antigrav_cooldown = false
 
 # handles logic for when to accelerate/decelerate player
 func apply_x_accel(delta):	
@@ -437,3 +473,4 @@ func kill():
 	# level manager MUST be a parent of player!!!
 	
 	get_parent().respawn_player()
+
