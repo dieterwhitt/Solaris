@@ -3,7 +3,7 @@
 
 extends Orb
 
-const JUMP_VELOCITY = -165
+const JUMP_VELOCITY = -185 
 
 
 func _ready():
