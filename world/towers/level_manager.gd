@@ -30,7 +30,7 @@ level_manager:
 var loaded = {}
 # current tower rewource
 var tower : Tower = load("res://world/towers/tower2/tower2.gd").new()
-var spawn_lvl : String = "01" # current spawn level id (checkpoint)
+var spawn_lvl : String = "04" # current spawn level id (checkpoint)
 # kindling bonfires (setting checkpoints) not established yet (need checkpoint scene)
 # for now just auto-set checkpoint when screen loads
 # current scene being rendered
@@ -209,6 +209,10 @@ func check_borders():
 		# keep relative x, set y to bottom of screen
 		target_posn_relative = Vector2(current.get_relative_x(posn.x),
 				 current.SCREEN_HEIGHT)
+		# future improvment HERE:
+		# upwardvelocity boost when entering from below
+		if player.velocity.y > -190:
+			player.velocity.y = -190
 	elif posn.y > current.borders["bottom"]:
 		target_dir.y = 1
 		# keep relative x, set y to top of screen
@@ -228,8 +232,7 @@ func check_borders():
 		# current screen on level matrix
 		var current_matrix_posn = \
 				get_level_matrix_posn(current_lvl) + current.get_screen(posn)
-		# future improvment HERE:
-		# upwardvelocity boost when entering from below
+		
 		print("current matrix position: %v" % current_matrix_posn)
 		# destination screen on level matrix
 		var dest_matrix_posn = current_matrix_posn + target_dir
