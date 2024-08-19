@@ -28,6 +28,10 @@ a bit complex.
 - dieter whittingham
 '''
 
+# august 18
+# i wanna nerf double jump by taking it away after orbs, jump pads
+# and to make things more consistent
+
 
 class_name ReworkedDefaultController
 
