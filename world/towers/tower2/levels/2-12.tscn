@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://voyjlu53bjwk"]
+[gd_scene load_steps=8 format=3 uid="uid://voyjlu53bjwk"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_h2cmi"]
 [ext_resource type="Script" path="res://world/towers/tower2/levels/2-12.gd" id="1_s8cnw"]
@@ -9,6 +9,9 @@
 distance = 0.00014197
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ykfev"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_atv7i"]
 size = Vector2(12, 12)
 
 [node name="2-12" type="Node"]
@@ -212,6 +215,45 @@ frame = 3
 position = Vector2(4, -84)
 
 [node name="Sprite2D" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs/Exit"]
+texture = ExtResource("4_64crr")
+hframes = 4
+vframes = 4
+frame = 6
+
+[node name="TeleportOrbs2" type="Node2D" parent="-20_ENTITIES/LevelObjects"]
+position = Vector2(16, 80)
+script = ExtResource("3_h2n40")
+glass = true
+
+[node name="Area2D" type="Area2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs2"]
+collision_mask = 2
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs2/Area2D"]
+position = Vector2(4, -4)
+shape = SubResource("RectangleShape2D_atv7i")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs2"]
+position = Vector2(4, -4)
+texture = ExtResource("4_64crr")
+hframes = 4
+vframes = 4
+frame = 5
+metadata/_edit_lock_ = true
+
+[node name="Glass" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs2"]
+visible = false
+position = Vector2(4, -4)
+texture = ExtResource("4_64crr")
+hframes = 4
+vframes = 4
+frame = 3
+
+[node name="Exit" type="Node2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs2"]
+position = Vector2(264, -48)
+
+[node name="Sprite2D" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs2/Exit"]
 texture = ExtResource("4_64crr")
 hframes = 4
 vframes = 4

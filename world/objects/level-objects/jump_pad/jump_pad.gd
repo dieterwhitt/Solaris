@@ -3,7 +3,7 @@
 
 extends Node2D
 
-const pad_velocity = -285
+const pad_velocity = -300
 var state_machine
 @onready var tree = $AnimationTree
 
@@ -21,7 +21,7 @@ func _on_area_2d_body_entered(body):
 	print("jump pad collision with %s" %body)
 	if body.is_in_group("Player"):
 		body.velocity.y = pad_velocity
-		body.used_double_jump = false
+		body.used_double_jump = false #future: take away doulbe jump
 		body.used_jump = true
 		body._state_machine.start("jump")
 		# play jump pad animation
