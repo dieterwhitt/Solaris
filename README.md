@@ -1,6 +1,9 @@
 # [Game]
 ### By Dieter Whittingham, Kevin Wu, Fanelle Pang, and Finnegan Van Dreumel
 ***
+Bonded by our shared childhood love of video games, we all had a common goal: to create something others could enjoy as much as we did. With this in mind, we combined our skills and brought this project to life.
+Throughout the process, we challenged ourselves to create something that would not only be fun to play but also meaningful in its story and gameplay.
+
 We are incredibly proud to share [Game]: an innovative 2d platforming experience created in the Godot engine using GDScript.
 Across 3 towers set in a mysterious world, players will encounter over 150 skill-testing rooms, unique enemies & bosses, original hand-placed pixel art, 
 and unique gameplay inspired by Celeste, Super Mario Bros, and Geometry Dash.
@@ -41,7 +44,7 @@ Feel free to contact us!
 | Name                 |  Contact    |
 | :---------------- | :------: |
 | Dieter Whittingham        |   dieter.whitt@gmail.com   |
-| Kevin Wu                  |      |
+| Kevin Wu                  |   k33wu@uwaterloo.ca   |
 | Fanelle Pang              |      |
 | Finnegan Van Dreumel      |      |
 
