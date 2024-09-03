@@ -30,9 +30,13 @@ We are incredibly proud to say that 100% of the visuals in [Game] are original c
 Below is a showcase of some of their amazing work:
 
 ### Concept Art
-[multiple screenshots]
+
+![concept art 1](https://github.com/dieterwhitt/game/blob/main/gallery/finn-sketch2-crop.png)
+![concept art 2](https://github.com/dieterwhitt/game/blob/main/gallery/finn-sketch3-crop.png)
+![concept art 3](https://github.com/dieterwhitt/game/blob/main/gallery/finn-sketch4-crop.png)
+
 ### In-Game
-[multiple screenshots]
+![bg 1](https://github.com/dieterwhitt/game/blob/main/gallery/bowelsbg1good.png)
 
 ## Release
 Our planned release date for [Game] is summer 2025. We plan on releasing free-to-play on Steam and Itch.io, with the possibility of paid DLC content.
