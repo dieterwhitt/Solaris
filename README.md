@@ -1,6 +1,9 @@
 # Solaris
 ### By Dieter Whittingham, Kevin Wu, Fanelle Pang, and Finnegan Van Dreumel
 ***
+
+https://github.com/user-attachments/assets/b29f43f6-c964-45e8-b01e-7ca64d0f3ea7
+
 Bonded by our shared childhood love of video games, we all had a common goal: to create something others could enjoy as much as we did. With this in mind, we combined our skills and brought this project to life.
 Throughout the process, we challenged ourselves to create something that would not only be fun to play but also meaningful in its story and gameplay.
 
