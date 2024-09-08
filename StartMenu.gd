@@ -10,7 +10,6 @@ func _ready():
 func _process(delta):
 	pass
 
-
 func _on_start_pressed():
 	get_tree().change_scene_to_file("res://world/towers/level_manager.tscn")
 	pass # Replace with function body.

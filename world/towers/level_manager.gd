@@ -44,6 +44,9 @@ var player : Node = null
 var is_paused = false
 @onready var pause_menu = $Menu
 
+var artifact_menu_display = false
+@onready var artifact_menu = $ArtifactMenu
+
 # player manager
 @onready var player_manager = $PlayerManager
 # new - camera settings
@@ -60,25 +63,46 @@ var camera_smooth_timer = 0
 var camera_smooth_delay = 3
 
 func _ready():
+	
+	# hide menus
+	pause_menu.hide()
+	artifact_menu.hide()
+	
 	# initialize camera settings
 	initialize_camera()
 	# read save file and adjust current, checkpoint
 	respawn_player()
-	pause_menu.hide()
 	
 func _unhandled_input(event):
 	if event.is_action_pressed("Pause"):
-		toggle_pause()
+		if artifact_menu_display:
+			artifact_menu.hide()
+		else:
+			toggle_pause()
 		
 func toggle_pause():
+	
 	is_paused = !is_paused
 	get_tree().paused = is_paused
+	
 	if is_paused:
 		if camera:
 			pause_menu.global_position = camera.get_screen_center_position() - pause_menu.size / 2
 		pause_menu.show()
 	else:
 		pause_menu.hide()
+
+func manage_artifacts():
+	
+	artifact_menu_display = !artifact_menu_display
+	
+	if artifact_menu_display:
+		artifact_menu.show()
+		pause_menu.hide()
+	else:
+		artifact_menu.hide()
+		pause_menu.show()
+	
 
 # one-time initialization of camera
 func initialize_camera():

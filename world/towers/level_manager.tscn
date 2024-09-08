@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://duveprttiws0m"]
+[gd_scene load_steps=5 format=3 uid="uid://duveprttiws0m"]
 
 [ext_resource type="Script" path="res://world/towers/level_manager.gd" id="1_f187e"]
 [ext_resource type="Script" path="res://world/towers/player_manager.gd" id="2_y6dts"]
 [ext_resource type="PackedScene" uid="uid://d3eorghkojmq5" path="res://Menu.tscn" id="3_mxkqe"]
+[ext_resource type="PackedScene" uid="uid://yn1pibonkg40" path="res://ArtifactMenu.tscn" id="4_wtu3b"]
 
 [node name="LevelManager" type="Node"]
 script = ExtResource("1_f187e")
@@ -12,3 +13,5 @@ script = ExtResource("2_y6dts")
 
 [node name="Menu" parent="." instance=ExtResource("3_mxkqe")]
 top_level = true
+
+[node name="ArtifactMenu" parent="." instance=ExtResource("4_wtu3b")]

@@ -31,7 +31,8 @@ text = "Start"
 
 [node name="Options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Options (Artifacts)"
+text = "Options
+"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
