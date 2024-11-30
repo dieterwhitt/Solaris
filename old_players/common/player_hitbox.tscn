@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd6x5b8aw8bq4"]
+
+[ext_resource type="Shape2D" uid="uid://l0se2n0k15an" path="res://old_players/common/player_hitbox_rect.tres" id="1_tbbdl"]
+
+[node name="PlayerHitbox" type="CollisionShape2D"]
+position = Vector2(2.08165e-12, 8.5)
+shape = ExtResource("1_tbbdl")
+debug_color = Color(0, 0.619608, 1, 0.419608)
+metadata/_edit_lock_ = true
