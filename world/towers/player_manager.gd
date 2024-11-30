@@ -13,8 +13,8 @@ extends Node
 
 # null -> use default player
 # testing various values. 
-var active_artifact : Artifact = load("res://world/artifacts/severed_ear/severed_ear.tres")
-var backup_artifact : Artifact = load("res://world/artifacts/bronze_pendant/bronze_pendant.tres")
+var active_artifact : Artifact = null
+var backup_artifact : Artifact = load("res://world/artifacts/pineal_gland/pineal_gland.tres")
 @onready var level_manager : Node = get_parent()
 
 # for consumables to prevent swapping out and resetting cooldowns/charges
@@ -73,6 +73,7 @@ func update_player():
 		new_player.current_coyote = old_player.current_coyote
 		new_player.current_jump_buffer = old_player.current_jump_buffer
 		new_player.drop_timer = old_player.drop_timer
+		new_player.antigrav_cooldown = old_player.antigrav_cooldown
 		# detach camera transform and attach to new player
 		old_player.remove_child(level_manager.cam_transform)
 		new_player.add_child(level_manager.cam_transform)

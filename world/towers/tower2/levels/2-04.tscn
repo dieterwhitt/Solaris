@@ -1,0 +1,265 @@
+[gd_scene load_steps=12 format=3 uid="uid://wojabvg4hctc"]
+
+[ext_resource type="Script" path="res://world/towers/tower2/levels/2-04.gd" id="1_chorh"]
+[ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_o63t6"]
+[ext_resource type="TileSet" uid="uid://dgjiqrgsc00lg" path="res://world/tiles/layout_scene_tiles.tres" id="3_pkw2l"]
+[ext_resource type="TileSet" uid="uid://c8c3to5y0br5j" path="res://world/tiles/scene_tiles.tres" id="4_cgqlc"]
+[ext_resource type="PackedScene" uid="uid://d0rkh45i2a8xl" path="res://world/objects/orbs/hop_orb.tscn" id="4_i1rek"]
+[ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="6_u167q"]
+[ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="7_ejbq1"]
+[ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="8_mq0in"]
+[ext_resource type="PackedScene" uid="uid://fk3y1d2hulei" path="res://world/platforms/temporary_platform.tscn" id="9_ea4ef"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ber4b"]
+distance = 0.00014197
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykfev"]
+size = Vector2(12, 12)
+
+[node name="2-04" type="Node"]
+editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
+script = ExtResource("1_chorh")
+checkpoint = true
+height = 3
+
+[node name="Borders" type="Node" parent="."]
+
+[node name="Right" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 1.1
+anchor_top = 0.444
+anchor_right = 1.1
+anchor_bottom = 0.444
+offset_top = 0.0799936
+offset_right = 116.0
+offset_bottom = 23.08
+text = "Right: Level_XX"
+metadata/_edit_lock_ = true
+
+[node name="Top" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = -0.267
+anchor_right = 0.3
+anchor_bottom = -0.267
+offset_left = 8.0
+offset_top = 0.0600035
+offset_right = 124.0
+offset_bottom = 23.06
+text = "Top: Level_XX"
+metadata/_edit_lock_ = true
+
+[node name="Left" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = -0.425
+anchor_top = 0.444
+anchor_right = -0.425
+anchor_bottom = 0.444
+offset_top = 0.0799936
+offset_right = 116.0
+offset_bottom = 23.08
+text = "Left: Level_XX"
+metadata/_edit_lock_ = true
+
+[node name="Bottom" type="Label" parent="Borders"]
+anchors_preset = -1
+anchor_left = 0.275
+anchor_top = 3.244
+anchor_right = 0.275
+anchor_bottom = 3.244
+offset_left = 8.0
+offset_top = 0.0799646
+offset_right = 142.0
+offset_bottom = 23.08
+text = "Bottom: Level_XX"
+
+[node name="PhysicsBorder" type="StaticBody2D" parent="Borders"]
+collision_layer = 24
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="TopBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(160, 2.08165e-12)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_ber4b")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="BottomBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(160, 540)
+shape = SubResource("WorldBoundaryShape2D_ber4b")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="LeftBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(2.08165e-12, 90)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_ber4b")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="RightBorder" type="CollisionShape2D" parent="Borders/PhysicsBorder"]
+position = Vector2(320, 90)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_ber4b")
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="-40_BG_LAYER" type="CanvasGroup" parent="."]
+z_index = -40
+metadata/_edit_lock_ = true
+
+[node name="-30_LEVEL" type="CanvasGroup" parent="."]
+z_index = -30
+metadata/_edit_lock_ = true
+
+[node name="Tilemaps" type="Node2D" parent="-30_LEVEL"]
+metadata/_edit_lock_ = true
+
+[node name="LayoutTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For level tiles, not including scene tiles (use scene tilemap)"
+tile_set = ExtResource("1_o63t6")
+format = 2
+layer_0/tile_data = PackedInt32Array(4128768, 1, 0, 3735552, 1, 0, 4128769, 1, 0, 4128770, 1, 0, 4128771, 1, 0, 4128772, 1, 0, 4194308, 1, 0, 4259844, 1, 0, 4325380, 1, 0, 4390916, 1, 0, 3997706, 1, 0, 4063242, 1, 0, 4128778, 1, 0, 4194314, 1, 0, 4259850, 1, 0, 4325386, 1, 0, 4390922, 1, 0, 3997707, 1, 0, 3997708, 1, 0, 4063244, 1, 0, 4128780, 1, 0, 4194316, 1, 0, 4259852, 1, 0, 4325388, 1, 0, 4390924, 1, 0, 3801106, 1, 0, 3866642, 1, 0, 3932178, 1, 0, 3997714, 1, 0, 4063250, 1, 0, 4128786, 1, 0, 4194322, 1, 0, 4259858, 1, 0, 4325394, 1, 0, 4390930, 1, 0, 3801107, 1, 0, 3801108, 1, 0, 3866644, 1, 0, 3932180, 1, 0, 3997716, 1, 0, 4063252, 1, 0, 4128788, 1, 0, 4194324, 1, 0, 4325396, 1, 0, 4390932, 1, 0, 4259860, 1, 0, 3735553, 1, 0, 3670017, 1, 0, 3604481, 1, 0, 3538945, 1, 0, 3473409, 1, 0, 3407873, 1, 0, 3407872, 1, 0, 3342336, 1, 0, 3276800, 1, 0, 3145728, 1, 0, 3080192, 1, 0, 3014656, 1, 0, 3211264, 1, 0, 2949120, 1, 0, 2883584, 1, 0, 2818048, 1, 0, 2752512, 1, 0, 3538974, 65537, 0, 3538972, 131073, 0, 3538973, 131073, 0, 3538971, 131073, 0, 3538975, 1, 0, 3538976, 1, 0, 3538977, 1, 0, 3538978, 1, 0, 3538979, 1, 0, 3604515, 1, 0, 1507367, 1, 0, 1572903, 1, 0, 1638439, 1, 0, 1703975, 1, 0, 1769511, 1, 0, 1835047, 1, 0, 1900583, 1, 0, 1966119, 1, 0, 2031655, 1, 0, 2097191, 1, 0, 2162727, 1, 0, 2228263, 1, 0, 2228262, 1, 0, 2293798, 1, 0, 2359334, 1, 0, 2424870, 1, 0, 2490406, 1, 0, 2555942, 1, 0, 2621478, 1, 0, 2687014, 1, 0, 3342374, 1, 0, 3538982, 1, 0, 2752550, 1, 0, 2818086, 1, 0, 2883622, 1, 0, 2949158, 1, 0, 3014694, 1, 0, 3080230, 1, 0, 3145766, 1, 0, 3211302, 1, 0, 3276838, 1, 0, 3538980, 1, 0, 3538981, 1, 0, 3473446, 1, 0, 3407910, 1, 0, 3604516, 1, 0, 3604517, 1, 0, 3604518, 1, 0, 3407908, 327681, 1, 3473444, 327681, 1, 3407874, 131073, 0, 3407875, 131073, 0, 3407876, 131073, 0, 3276827, 131073, 0, 3276828, 131073, 0, 3276829, 131073, 0, 3014683, 131073, 0, 3014684, 131073, 0, 3014685, 131073, 0, 3014686, 131073, 0, 3014687, 131073, 0, 3014688, 131073, 0, 3014689, 131073, 0, 3014690, 131073, 0, 3014691, 131073, 0, 3014692, 131073, 0, 3014693, 65537, 0, 2686999, 65537, 0, 2687000, 65537, 0, 1769477, 1, 0, 1769486, 1, 0, 2293765, 1, 0, 2228229, 1, 0, 2162693, 1, 0, 2097157, 1, 0, 2031621, 1, 0, 1966085, 1, 0, 1900549, 1, 0, 1835013, 1, 0, 1703941, 1, 0, 3145729, 131073, 0, 3145730, 131073, 0, 3145731, 131073, 0, 3145732, 131073, 0, 2686976, 1, 0, 2621440, 1, 0, 2555904, 1, 0, 2555905, 1, 0, 2555906, 1, 0, 2555907, 1, 0, 2490371, 1, 0, 2424835, 1, 0, 2359299, 1, 0, 2293763, 1, 0, 2293764, 1, 0, 1769485, 1, 0, 1769484, 1, 0, 1835020, 1, 0, 1900556, 1, 0, 1966092, 1, 0, 2031628, 1, 0, 2097164, 1, 0, 2162700, 1, 0, 2228236, 1, 0, 2293772, 1, 0, 2359308, 1, 0, 2424844, 1, 0, 2424843, 1, 0, 2490379, 1, 0, 2555915, 1, 0, 2621451, 1, 0, 1638405, 1, 0, 1572869, 1, 0, 1703948, 1, 0, 1638412, 1, 0, 1572876, 1, 0, 2621453, 1, 0, 2555917, 1, 0, 2490381, 1, 0, 2424845, 1, 0, 2424846, 1, 0, 2359310, 1, 0, 2293774, 1, 0, 2228238, 1, 0, 2162702, 1, 0, 2097166, 1, 0, 2031630, 1, 0, 1966094, 1, 0, 1900558, 1, 0, 1835022, 1, 0, 1703950, 1, 0, 1572877, 1, 0, 1638413, 1, 0, 1703949, 1, 0, 1835021, 1, 0, 1900557, 1, 0, 1966093, 1, 0, 2031629, 1, 0, 2097165, 1, 0, 2162701, 1, 0, 2228237, 1, 0, 2293773, 1, 0, 2359309, 1, 0, 2490380, 1, 0, 2555916, 1, 0, 2621452, 1, 0, 393236, 65537, 0, 458772, 1, 0, 524308, 1, 0, 589844, 1, 0, 655380, 1, 0, 720916, 1, 0, 393228, 65537, 0, 458764, 1, 0, 524300, 1, 0, 589836, 1, 0, 655372, 1, 0, 720908, 1, 0, 393229, 131073, 0, 393230, 131073, 0, 393231, 131073, 0, 393232, 131073, 0, 393233, 131073, 0, 393234, 131073, 0, 393235, 131073, 0, 786444, 1, 0, 851980, 1, 0, 917516, 1, 0, 983052, 1, 0, 1048588, 1, 0, 1114124, 1, 0, 1179660, 1, 0, 1245196, 1, 0, 1310732, 1, 0, 1376268, 1, 0, 1441804, 1, 0, 1507340, 1, 0, 1507333, 1, 0, 1441797, 1, 0, 1245190, 1, 0, 1245191, 1, 0, 1245192, 1, 0, 1245193, 1, 0, 1245194, 1, 0, 1245195, 1, 0, 1310725, 1, 0, 1376261, 1, 0, 1310726, 1, 0, 1900564, 65537, 0, 1900565, 65537, 0, 1900566, 65537, 0, 1441826, 131073, 0, 1441827, 131073, 0, 1441828, 131073, 0, 2686989, 1, 0, 2686988, 1, 0, 1310751, 327681, 1, 1376287, 327681, 1, 1441823, 327681, 1, 1245215, 327681, 1, 1245214, 327681, 1, 1310750, 327681, 1, 1376286, 327681, 1, 1441822, 327681, 1, 1310752, 327681, 1, 1376288, 327681, 1, 1310749, 327681, 1, 1376285, 327681, 1, 1441829, 65537, 0, 786452, 1, 0, 851988, 1, 0, 917524, 1, 0, 983060, 1, 0, 1048596, 1, 0, 1114132, 1, 0, 1114133, 1, 0, 1179669, 1, 0, 1179670, 1, 0, 1114134, 1, 0, 1048598, 1, 0, 983062, 1, 0, 983063, 1, 0, 983064, 1, 0, 983065, 1, 0, 917529, 1, 0, 851993, 1, 0, 851994, 1, 0, 851995, 1, 0, 851996, 1, 0, 851997, 1, 0, 851998, 1, 0, 851999, 1, 0, 852000, 1, 0, 852002, 1, 0, 852003, 1, 0, 917540, 1, 0, 983077, 1, 0, 1048613, 1, 0, 1114149, 1, 0, 1179685, 1, 0, 1245221, 1, 0, 1310757, 1, 0, 1376293, 1, 0, 852001, 1, 0, 852004, 1, 0, 917541, 1, 0, 1441830, 1, 0, 1507366, 1, 0, 2752525, 1, 0, 2752524, 1, 0, 3145740, 65537, 0, 327692, 1, 0, 262156, 1, 0, 196620, 1, 0, 131084, 1, 0, 65548, 1, 0, 12, 1, 0, 20, 1, 0, 65556, 1, 0, 131092, 1, 0, 196628, 1, 0, 262164, 1, 0, 327700, 1, 0, 196623, 131073, 0, 196624, 131073, 0, 196625, 131073, 0, 2883620, 327681, 1, 2949156, 327681, 1)
+metadata/_edit_lock_ = true
+
+[node name="LayoutSceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+tile_set = ExtResource("3_pkw2l")
+format = 2
+layer_0/tile_data = PackedInt32Array(3735572, 0, 65536, 1835028, 0, 65536, 1835029, 0, 65536, 1835030, 0, 65536, 3080204, 0, 65536)
+metadata/_edit_lock_ = true
+
+[node name="LayoutSceneTiles90deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 1.5708
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="LayoutSceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 3.14159
+tile_set = ExtResource("3_pkw2l")
+format = 2
+layer_0/tile_data = PackedInt32Array(-2752537, 0, 196608, -2752536, 0, 196608, -1966101, 0, 65536, -1966102, 0, 65536, -1966103, 0, 65536, -1245206, 0, 65536, -1245207, 0, 65536, -2818061, 0, 65536, -2818062, 0, 65536)
+metadata/_edit_lock_ = true
+
+[node name="LayoutSceneTiles270deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = -1.5708
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="DecoTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles0deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+tile_set = ExtResource("4_cgqlc")
+format = 2
+layer_0/tile_data = PackedInt32Array(3080214, 0, 65536, 3080213, 0, 65536, 2621464, 0, 131072, 2621448, 0, 65536, 2359304, 0, 65536, 2097160, 0, 65536, 1835016, 0, 65536, 1572872, 0, 65536, 1572873, 0, 65536, 1835017, 0, 65536, 2097161, 0, 65536, 2621447, 0, 65536, 2621446, 0, 65536, 2883589, 0, 65536, 2359305, 0, 65536, 2883588, 0, 65536, 2883590, 0, 65536, 2359303, 0, 65536, 2097159, 0, 65536, 1835015, 0, 65536, 1572871, 0, 65536, 1376271, 0, 65536, 1376272, 0, 65536, 1376273, 0, 65536, 1114127, 0, 65536, 1114128, 0, 65536, 1114129, 0, 65536, 851983, 0, 65536, 851984, 0, 65536, 851985, 0, 65536, 589841, 0, 65536, 589840, 0, 65536, 589839, 0, 65536, 3080215, 0, 65536)
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles90deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 1.5708
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles180deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = 3.14159
+format = 2
+layer_0/tile_data = PackedInt32Array(-2818063, 0, 65536, -2818062, 0, 65536)
+metadata/_edit_lock_ = true
+
+[node name="SceneTiles270deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
+editor_description = "For scene tiles at a 0 degree rotation"
+rotation = -1.5708
+format = 2
+metadata/_edit_lock_ = true
+
+[node name="-20_ENTITIES" type="CanvasGroup" parent="."]
+z_index = -20
+metadata/_edit_lock_ = true
+
+[node name="LevelObjects" type="Node2D" parent="-20_ENTITIES"]
+editor_description = "orbs, artifacts, ladders, etc."
+metadata/_edit_lock_ = true
+
+[node name="TeleportOrbs" type="Node2D" parent="-20_ENTITIES/LevelObjects"]
+position = Vector2(64, 184)
+script = ExtResource("6_u167q")
+
+[node name="Area2D" type="Area2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
+collision_mask = 2
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs/Area2D"]
+position = Vector2(4, -4)
+shape = SubResource("RectangleShape2D_ykfev")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
+position = Vector2(4, -4)
+texture = ExtResource("7_ejbq1")
+hframes = 4
+vframes = 4
+frame = 5
+metadata/_edit_lock_ = true
+
+[node name="Glass" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
+visible = false
+position = Vector2(4, -4)
+texture = ExtResource("7_ejbq1")
+hframes = 4
+vframes = 4
+frame = 3
+
+[node name="Exit" type="Node2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
+position = Vector2(68, -4)
+
+[node name="Sprite2D" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs/Exit"]
+texture = ExtResource("7_ejbq1")
+hframes = 4
+vframes = 4
+frame = 6
+
+[node name="DashOrb" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("8_mq0in")]
+position = Vector2(168, 216)
+rotation = -0.785398
+
+[node name="TemporaryPlatform" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("9_ea4ef")]
+position = Vector2(232, 272)
+
+[node name="DashOrb2" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("8_mq0in")]
+position = Vector2(280, 224)
+
+[node name="HopOrb" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("4_i1rek")]
+position = Vector2(128, 392)
+glass = true
+
+[node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
+editor_description = "Any moving enemies/hazards/npcs"
+metadata/_edit_lock_ = true
+
+[node name="+20_FG" type="CanvasGroup" parent="."]
+editor_description = "not to be confused with HUD, which is part of the level manager. This is more for level elements going in front of the player (ex. a level with a tree or pillar)"
+z_index = 20
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 248.0
+offset_top = 392.0
+offset_right = 288.0
+offset_bottom = 415.0
+text = "soldier"
+
+[node name="Spawn" type="Node2D" parent="."]
+position = Vector2(16, 480)
+scale = Vector2(1.23514, 0.796474)
