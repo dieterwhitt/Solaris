@@ -17,7 +17,7 @@ func _process(delta):
 
 func _on_body_entered(body):
 	print("killbox collision at %v" % global_position)
-	print("killed player: %v" % body.global_position)
 	# kill player
-	if body.is_in_group("Player"):
+	if body is Player:
+		print("killed player: %v" % body.global_position)
 		body.kill()

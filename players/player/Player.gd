@@ -19,6 +19,7 @@ var on_floor : bool = false
 # for animation: to determine when to start jump animation
 var just_jumped = false
 var jump_hold_frames: int = 0 # number of frames currently holding jump
+var can_hold_jump = true
 
 # dashing
 var dashing = false
@@ -59,7 +60,7 @@ var direction : int = 0
 @export_file var move_data_resource_file
 
 # duplicating to not effect original file when making modifications
-@onready var MoveData : MoveDataResource = load(move_data_resource_file).new()
+@onready var MoveData : MoveDataResource = load(move_data_resource_file).duplicate()
 
 # @onready var multipliers_effects = load("res://players/common/multipliers_effects.gd")
 
@@ -162,8 +163,11 @@ func _physics_process(delta):
 	
 	_print_debug()
 	# subclasses: define unique movement
-	# run move and slide (in subclass)
-	# move_and_slide()
+	# run move and slide (logic can be changedin subclass)
+	complete_default_physics()
+
+func complete_default_physics():
+	move_and_slide()
 
 func update_direction():
 	if receive_input:
@@ -267,13 +271,16 @@ func apply_jump(delta):
 		velocity.y = MoveData.JUMP_BASE_VELOCITY
 		used_jump = true
 		just_jumped = true
-		# cancel dash
-		dashing = false
-		dash_stopping = false
-	elif used_jump and Input.is_action_pressed("jump") and jump_hold_frames <= MoveData.JUMP_DURATION:
+		can_hold_jump = true
+	elif used_jump and Input.is_action_pressed("jump") and \
+			jump_hold_frames <= MoveData.JUMP_DURATION and can_hold_jump:
+		# jump hold
 		jump_hold_frames += (round(delta * FPS))
-		velocity.y += MoveData.JUMP_ACCELERATION
-		
+		velocity.y += MoveData.JUMP_ACCELERATION * delta
+	elif used_jump and Input.is_action_just_released("jump"):
+		# jump release: max out timer (can't re-hold)
+		can_hold_jump = false
+
 
 # dropping ledges
 # checks for "s" input then temporarily disables collisions with
@@ -407,9 +414,6 @@ func _choose_animation():
 		state_machine.travel("idle-run")
 
 func kill():
-	# kills player
-	# erase backup data
-	
 	# state_machine.travel("death")
 	# [play transition animation]
 	

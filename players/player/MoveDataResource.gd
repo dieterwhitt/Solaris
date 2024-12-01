@@ -21,12 +21,12 @@ class_name MoveDataResource
 # @export var JUMP_VELOCITY = -207.0 # -200
 
 # reworked jump: variable height!
-@export var JUMP_BASE_VELOCITY : float = -50
-@export var JUMP_ACCELERATION : float = -750
-@export var JUMP_DURATION : int = 30
+@export var JUMP_BASE_VELOCITY : float = -70
+@export var JUMP_ACCELERATION : float = -1315
+@export var JUMP_DURATION : int = 7
 
 # down gravity multiplier
-@export var DOWN_MULTIPLIER : float = 1.2 # 1.2
+@export var DOWN_MULTIPLIER : float = 1.6 # 1.2
 # air acceleration and deceleration multiplier (air control and air brake)
 @export var AIR_ACCEL_MULTIPLIER : float = 0.85 # 0.8
 @export var AIR_DECEL_MULTIPLIER : float = 0.35 # 0.35

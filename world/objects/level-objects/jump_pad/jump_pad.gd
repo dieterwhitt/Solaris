@@ -21,9 +21,9 @@ func _on_area_2d_body_entered(body):
 	print("jump pad collision with %s" %body)
 	if body.is_in_group("Player"):
 		body.velocity.y = pad_velocity
-		body.used_double_jump = false #future: take away doulbe jump
 		body.used_jump = true
-		body._state_machine.start("jump")
+		body.can_hold_jump = false
+		body.state_machine.start("jump")
 		# play jump pad animation
 		state_machine.start("spring")
 		

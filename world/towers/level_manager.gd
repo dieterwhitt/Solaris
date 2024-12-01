@@ -26,7 +26,7 @@ level_manager:
 var loaded = {}
 # current tower rewource
 var tower : Tower = load("res://world/towers/tower1/tower1.gd").new()
-var spawn_lvl : String = "06" # current spawn level id (checkpoint)
+var spawn_lvl : String = "11" # current spawn level id (checkpoint)
 # setting checkpoints not established yet (need checkpoint scene)
 # for now just auto-set checkpoint when screen loads
 
@@ -158,13 +158,14 @@ func respawn_player():
 	print(player_scene)
 	player = load(player_scene).instantiate()
 	'''
+	
 	# artifact decorator upgrade
 	# hopefully this works?
 	player = load("res://players/player/player.tscn").instantiate()
 	for a : Artifact in [relic, ring]:
 		if a != null:
 			# load class file then create with player component
-			player = load(a.player_scene_path).new(player) 
+			player = load(a.player_scene_path).new(player)
 	
 	# delete all loaded scenes and switch current scene to checkpoint
 	for level in loaded:
