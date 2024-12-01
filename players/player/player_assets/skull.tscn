@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://c7plc034506xt"]
 
-[ext_resource type="Texture2D" uid="uid://cwyj34f6m7jwy" path="res://world/objects/toxic-gas/skulltimer.png" id="1_wwqop"]
+[ext_resource type="Texture2D" uid="uid://cwyj34f6m7jwy" path="res://players/player/player_assets/skulltimer.png" id="1_wwqop"]
 
 [sub_resource type="Animation" id="Animation_r7vhs"]
 resource_name = "fade-in"

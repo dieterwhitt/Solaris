@@ -1,8 +1,8 @@
 [gd_scene load_steps=31 format=3 uid="uid://4hrsdd38bj4j"]
 
 [ext_resource type="Script" path="res://old_players/severed_ear_player/severed_ear_player.gd" id="1_m38f2"]
-[ext_resource type="SpriteFrames" uid="uid://r1qbqgnq6vyp" path="res://old_players/common/placeholder_spriteframes.tres" id="2_idjvx"]
-[ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://old_players/common/player_hitbox.tscn" id="4_doo6i"]
+[ext_resource type="SpriteFrames" uid="uid://r1qbqgnq6vyp" path="res://players/player/placeholder_spriteframes.tres" id="2_idjvx"]
+[ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://players/player/player_assets/player_hitbox.tscn" id="4_doo6i"]
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
 length = 0.001

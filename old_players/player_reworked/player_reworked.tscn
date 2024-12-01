@@ -1,8 +1,8 @@
 [gd_scene load_steps=31 format=3 uid="uid://yri1y85csvlw"]
 
 [ext_resource type="Script" path="res://old_players/player_reworked/player_reworked.gd" id="1_wcno6"]
-[ext_resource type="SpriteFrames" uid="uid://bdvcb0ab46uj8" path="res://old_players/common/unpowered_spriteframes.tres" id="3_670jp"]
-[ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://old_players/common/player_hitbox.tscn" id="4_ypqtj"]
+[ext_resource type="SpriteFrames" uid="uid://bdvcb0ab46uj8" path="res://players/player/unpowered_spriteframes.tres" id="3_670jp"]
+[ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://players/player/player_assets/player_hitbox.tscn" id="4_ypqtj"]
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
 length = 0.001
@@ -182,21 +182,21 @@ animation = &"RESET"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rygee"]
 animation = &"fall"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_psv48"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jg6uk"]
 animation = &"idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1xvdy"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4jypw"]
 animation = &"run"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_det4s"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_10p0y"]
 animation = &"run"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_gyae5"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_psv48")
+blend_point_0/node = SubResource("AnimationNodeAnimation_jg6uk")
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_1xvdy")
+blend_point_1/node = SubResource("AnimationNodeAnimation_4jypw")
 blend_point_1/pos = -1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_det4s")
+blend_point_2/node = SubResource("AnimationNodeAnimation_10p0y")
 blend_point_2/pos = 1.0
 blend_mode = 1
 

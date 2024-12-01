@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="MoveDataResource" load_steps=2 format=3 uid="uid://cvm2ig7t4gfva"]
+
+[ext_resource type="Script" path="res://players/player/MoveDataResource.gd" id="1_py8n6"]
+
+[resource]
+script = ExtResource("1_py8n6")
+GRAVITY = 670.0
+ACCELERATION = 1000.0
+DECELERATION = 1500.0
+JUMP_BASE_VELOCITY = -50.0
+JUMP_ACCELERATION = -700.0
+JUMP_DURATION = 0.5
+DOWN_MULTIPLIER = 1.2
+AIR_ACCEL_MULTIPLIER = 0.85
+AIR_DECEL_MULTIPLIER = 0.35
+TERMINAL_X = 400.0
+TERMINAL_Y = 250.0
+INPUT_TERMINAL = 105.0
+COYOTE_TIME = 5
+JUMP_BUFFER = 5
+MOMENTUM_MULTIPLIER = 0.8

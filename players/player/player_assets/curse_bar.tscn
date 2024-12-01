@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://e050nnypu8vh"]
 
-[ext_resource type="Script" path="res://world/objects/toxic-gas/curse_bar.gd" id="1_vbrtl"]
-[ext_resource type="PackedScene" uid="uid://c7plc034506xt" path="res://world/objects/toxic-gas/skull.tscn" id="2_fwsac"]
+[ext_resource type="Script" path="res://players/player/player_assets/curse_bar.gd" id="1_vbrtl"]
+[ext_resource type="PackedScene" uid="uid://c7plc034506xt" path="res://players/player/player_assets/skull.tscn" id="2_fwsac"]
 
 [node name="CurseBar" type="Node2D"]
 z_index = 10

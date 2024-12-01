@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://dxybw0lxrmnw6"]
 
-[ext_resource type="Script" path="res://old_players/common/progress_bar.gd" id="1_fisnh"]
+[ext_resource type="Script" path="res://players/player/player_assets/progress_bar.gd" id="1_byxkg"]
 
 [node name="ProgressBar" type="Node2D" groups=["ProgressBar"]]
-script = ExtResource("1_fisnh")
+script = ExtResource("1_byxkg")
 timer_path = NodePath("")
 
 [node name="Base" type="Line2D" parent="."]

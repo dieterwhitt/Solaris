@@ -1,5 +1,7 @@
 # progress_bar.gd
 
+# player progress bar. can be added by code or scene editor
+
 extends Node2D
 
 # 20 pixels, 1px for every 5% interval. 0% is empty.
@@ -9,23 +11,26 @@ extends Node2D
 # timer node to track progress of
 @export_node_path("Timer") var timer_path
 @export var color : Color # color of bar
-@export var show_empty : bool = true # whether to show the bar when at 0%
+@export var show_empty : bool # whether to show the bar when at 0%
+var timer : Timer
+
 @onready var bar = $Bar
 @onready var base = $Base
-@export var total_time_override : float = 0
-var timer : Timer
 const BASE_COLOR = Color8(125, 125, 125, 255)
 
 # can init before adding to tree
-func _init(timer_path = "", color = Color.BLACK, show_empty = true, total_time_override = 0):
-	self.timer_path = timer_path
+func _init(color = Color.WHITE, show_empty: bool = true, 
+		timer: Timer = null):
 	self.color = color
 	self.show_empty = show_empty
-	self.total_time_override = total_time_override
+	self.timer = timer
 
 func _ready():
-	if timer_path:
-		timer = get_node(timer_path)
+	if timer == null:
+		if timer_path:
+			timer = get_node(timer_path)
+		else:
+			queue_free()
 	if color:
 		bar.default_color = color
 
@@ -45,9 +50,6 @@ func _physics_process(delta):
 	else:
 		# percent already progressed
 		var quotient = timer.wait_time
-		if total_time_override > 0:
-			# incase manual quotient was set
-			quotient = total_time_override
 		var percent : float = 1 - timer.time_left / quotient
 		# set bar accordingly
 		var bar_length : int = floor(percent * 20) # 0-20 pixels
