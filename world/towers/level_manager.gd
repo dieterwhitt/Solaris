@@ -1,6 +1,8 @@
 # apr 26 2024
 # level manager - manages levels and player
 
+# singleton.
+
 extends Node
 
 '''
@@ -18,12 +20,6 @@ level_manager:
 	- save checkpoints and respawn player on death
 '''
 
-# this will probably be the longest file in the game
-# needs to control level switching, player position/scene, and camera
-# child node - player manager - will handle switching player
-# and keeping track of which artifacts are collected
-# in a different file to improve readability
-
 # loaded scenes (deleted on checkpoint)
 # keep all the loaded levels in here so that we aren't loading things twice
 # level id (string) : node
@@ -31,17 +27,20 @@ var loaded = {}
 # current tower rewource
 var tower : Tower = load("res://world/towers/tower1/tower1.gd").new()
 var spawn_lvl : String = "06" # current spawn level id (checkpoint)
-# kindling bonfires (setting checkpoints) not established yet (need checkpoint scene)
+# setting checkpoints not established yet (need checkpoint scene)
 # for now just auto-set checkpoint when screen loads
+
 # current scene being rendered
 var current : Node = null
 var current_lvl : String = "" # current level id
-# player (node)
-# 
+
+# player management
 var player : Node = null
-# player manager
-@onready var player_manager = $PlayerManager
-# new - camera settings
+# active artifacts (will instantiate decorator defined in resource)
+var relic : Artifact = null
+var ring : Artifact = null
+
+# camera settings
 @onready var camera : Camera2D = Camera2D.new()
 # to control camera movement
 @onready var cam_transform : RemoteTransform2D = RemoteTransform2D.new()
@@ -151,12 +150,22 @@ func respawn_player():
 	if player:
 		player.queue_free()
 		player.remove_child(cam_transform)
+	''' outdated
 	var artifact = player_manager.active_artifact
 	var player_scene = "res://players/player_reworked/player_reworked.tscn"
 	if artifact:
 		player_scene = artifact.playerScenePath
 	print(player_scene)
 	player = load(player_scene).instantiate()
+	'''
+	# artifact decorator upgrade
+	# hopefully this works?
+	player = load("res://players/player/player.tscn").instantiate()
+	for a : Artifact in [relic, ring]:
+		if a != null:
+			# load class file then create with player component
+			player = load(a.player_scene_path).new(player) 
+	
 	# delete all loaded scenes and switch current scene to checkpoint
 	for level in loaded:
 		loaded[level].queue_free()
@@ -178,7 +187,11 @@ func respawn_player():
 		calibrate_camera()
 	else:
 		print("spawn point not found, unable to spawn player")
-	
+
+
+func set_artifacts(relic : Artifact, ring : Artifact):
+	self.relic = relic
+	self.ring = ring
 
 func _physics_process(delta):
 	update_invincibility()

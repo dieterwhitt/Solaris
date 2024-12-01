@@ -1,6 +1,6 @@
 # Player.gd 
 # 11/30/24
-# ABC Player class using decorator pattern. see UML
+# Base Player class using simplified decorator pattern. see UML
 
 # todo (eventually) add support for higher fps
 
@@ -59,7 +59,7 @@ var direction : int = 0
 @export_file var move_data_resource_file
 
 # duplicating to not effect original file when making modifications
-@onready var MoveData : MoveDataResource = load(move_data_resource_file).duplicate()
+@onready var MoveData : MoveDataResource = load(move_data_resource_file).new()
 
 # @onready var multipliers_effects = load("res://players/common/multipliers_effects.gd")
 
@@ -263,7 +263,7 @@ func apply_jump(delta):
 	if ((not used_jump and receive_input) 
 			and (Input.is_action_just_pressed("jump") or current_jump_buffer > 0)
 			 and (on_floor or current_coyote > 0)):
-		#regular jump
+		# regular jump
 		velocity.y = MoveData.JUMP_BASE_VELOCITY
 		used_jump = true
 		just_jumped = true
@@ -272,7 +272,7 @@ func apply_jump(delta):
 		dash_stopping = false
 	elif used_jump and Input.is_action_pressed("jump") and jump_hold_frames <= MoveData.JUMP_DURATION:
 		jump_hold_frames += (round(delta * FPS))
-		
+		velocity.y += MoveData.JUMP_ACCELERATION
 		
 
 # dropping ledges
