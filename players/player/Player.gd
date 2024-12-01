@@ -18,6 +18,7 @@ var current_jump_buffer : int = 0
 var on_floor : bool = false
 # for animation: to determine when to start jump animation
 var just_jumped = false
+var jump_hold_frames: int = 0 # number of frames currently holding jump
 
 # dashing
 var dashing = false
@@ -70,26 +71,30 @@ const CURSE_DEATH : int = 480 # total number of frames until curse death
 var curse_speed_mult : float = 1 # multiplier on curse speed
 var curse_decay_mult : float = 2 # how much slower/faster curse decays
 
+const FPS = 60
+
 # ABC status effect class definition (see UML)
 # decorators will have to create their own status effect nested classes, then
-# add it here.
+# add it here. works for any status effect, cooldown, etc.
+# status effects will always be direct children of player.
 class StatusEffect:
 	extends Timer
-	var player : Player # player to apply effect to
+	var duration : float
 	var show_bar : bool
 	var bar_color : Color
+	var player : Player # player to apply effect to
 	
 	# constructor - not on tree yet
 	# if player not provided: will check immediate parent for a player.
 	func _init(duration: float, show_bar : bool = true, 
 			bar_color: Color = Color.WHITE, player: Player = null):
 		self.one_shot = true
+		self.duration = duration
 		self.wait_time = duration
 		self.player = player
 		self.show_bar = show_bar
 		self.bar_color = bar_color
 		
-	
 	func _ready():
 		if player == null:
 			# search for player in parent. free if no parent or not player type.
@@ -98,25 +103,29 @@ class StatusEffect:
 				queue_free()
 			else:
 				player = parent
+		elif self not in player.get_children():
+			# player was given but the effect is not a direct child: add it
+			player.add_child(self)
 		# connect timeout signal
 		self.timeout.connect(_on_timeout)
 	
+	# virtual
 	func apply():
-		pass
+		self.start()
 	
+	# virtual
 	func remove():
 		pass
 	
 	# call remove() and free self from tree
 	func _on_timeout():
 		remove()
-		queue_free()
+		# orphan the effect, rather than remove it, so it can be reused. _ready will be re-called
+		player.remove_child(self)
+		self.wait_time = duration
 
 
-# regular status effect
-var status_effects : Array[StatusEffect] = []
-
-'''antigravity removal
+'''antigravity - scrapped
 # antigravity status from PREVIOUS frame
 var prev_antigravity = false
 # antigravity cooldown to ignore down gravity
@@ -139,7 +148,6 @@ func _physics_process(delta):
 	# pre calculate on floor
 	on_floor = is_on_floor()
 	update_direction()
-	update_multipliers_effects()
 	update_curse(delta)
 	update_dash(delta)
 	if not dashing:
@@ -162,91 +170,22 @@ func update_direction():
 		# -1, 0, 1
 		direction = Input.get_axis("left", "right")
 
-# updating movedata multipliers and temporary effects
-func update_multipliers_effects():
-	# filter all timed out multipliers (timer = 0)
-	movedata_multipliers = movedata_multipliers.filter(func(x): return x != null)
-	# print(movedata_multipliers)
-	# filter all timed out effects (timer = 0)
-	effects = effects.filter(func(x): return x != null)
-	# print(effects)
-
-# creates a new multiplier and adds it to the array of multipliers
-func add_multiplier(attribute : String, value : float, time_s : float, total_time_s : float, 
-		between_players : bool = false, show_progress_bar : bool = false, 
-		progress_bar_color : Color = Color.WHITE ):
-	print("creating new multiplier with timer %s" % time_s)
-	var new_multiplier = multipliers_effects.Multiplier.new(MoveData, attribute, value, time_s, 
-	total_time_s, between_players, show_progress_bar, progress_bar_color)
-	# add child
-	add_child(new_multiplier)
-	# apply it
-	new_multiplier.apply()
-	movedata_multipliers.append(new_multiplier)
-
-func add_effect(player : Node, apply_func, remove_func, 
-		time_s : float, total_time_s : float, 
-		between_players : bool = false, show_progress_bar : bool = false, 
-		progress_bar_color : Color = Color.WHITE ):
-	print("creating new effect with timer %s" % time_s)
-	var new_effect = multipliers_effects.Effect.new(player, apply_func, remove_func, time_s, 
-	total_time_s, between_players, show_progress_bar, progress_bar_color)
-	# add child
-	add_child(new_effect)
-	# apply it
-	new_effect.apply()
-	effects.append(new_effect)
-
 func apply_gravity(delta):
-	# apply gravity if the player is in the air and 
-	# below terminal velocity
+	# apply gravity if the player is in the air and below terminal velocity
 	# apply the down gravity multiplier if used jump and are on the way down
 	# i.e the user already jumped and is now falling
 	var down_multiplier = 1
-	if used_jump and velocity.y > 0 and apply_down_gravity and not antigrav_cooldown:
+	if used_jump and velocity.y > 0 and apply_down_gravity:
 		down_multiplier = MoveData.DOWN_MULTIPLIER
-	# update antigravity status
-	var antigravity : bool = false
-	for area in player_area.get_overlapping_areas():
-		if area.is_in_group("GravityField"):
-			antigravity = true
-	
-	# adjustments based on entering/exiting gravity field
-	if antigravity != prev_antigravity:
-		if antigravity:
-			# just entered
-			# print("entering gravity field")
-			# cap y velocity for consistency
-			if velocity.y < -50:
-				velocity.y = -50
-				print("capping upwards")
-			elif velocity.y >= 0 and velocity.y < 50:
-				# give boost when going down
-				print("downwards boost")
-				velocity.y = 50
-		else:
-			# just exited
-			# print("exiting gravity field")
-			pass
 	
 	# apply gravity
-	if antigravity and velocity.y > -MoveData.TERMINAL_Y:
-		# anti-gravity addition
-		velocity.y -= MoveData.GRAVITY * delta
-	elif not on_floor and velocity.y < MoveData.TERMINAL_Y:
+	if not on_floor and velocity.y < MoveData.TERMINAL_Y:
 		velocity.y += MoveData.GRAVITY * down_multiplier * delta
 	
 	# cap at terminal (falling speed only!)
 	# do not cap if dash_stopping
 	if not dash_stopping:
 		velocity.y = min(velocity.y, MoveData.TERMINAL_Y)
-		
-	prev_antigravity = antigravity
-	# antigravity cooldown
-	if antigravity:
-		antigrav_cooldown = true
-	elif on_floor:
-		antigrav_cooldown = false
 
 # handles logic for when to accelerate/decelerate player
 func apply_x_accel(delta):	
@@ -294,23 +233,23 @@ func update_coyote(delta):
 		current_coyote = MoveData.COYOTE_TIME
 	elif current_coyote > 0:
 		# decrease the coyote timer for each frame off the ground
-		current_coyote -= delta * 60 # 1 frame on 60fps
+		current_coyote -= round(delta * FPS) # 1 frame on 60fps
 
 func update_buffer(delta):
 	# queue buffer
 	if Input.is_action_just_pressed("jump") and not on_floor:
 		current_jump_buffer = MoveData.JUMP_BUFFER
 	elif current_jump_buffer > 0:
-		current_jump_buffer -= delta * 60 # 1 frame on 60fps
+		current_jump_buffer -= round(delta * FPS) # 1 frame on 60fps
 	
 		
 func update_jump_elig():
 	# replenish jump when on the floor
 	if on_floor:
 		used_jump = false
-		used_double_jump = false
-		# also reset down gravity to true
+		# also reset down gravity and jump holding status
 		apply_down_gravity = true
+		jump_hold_frames = 0 
 
 func apply_jump(delta):
 	just_jumped = false
@@ -325,22 +264,16 @@ func apply_jump(delta):
 			and (Input.is_action_just_pressed("jump") or current_jump_buffer > 0)
 			 and (on_floor or current_coyote > 0)):
 		#regular jump
-		velocity.y = MoveData.JUMP_VELOCITY
+		velocity.y = MoveData.JUMP_BASE_VELOCITY
 		used_jump = true
 		just_jumped = true
 		# cancel dash
 		dashing = false
 		dash_stopping = false
-	elif not used_double_jump and receive_input and Input.is_action_just_pressed("jump"):
-		# double jump
-		# future consideration: short ray scan to ground
-		# determines whether to buffer or double jump
-		velocity.y = MoveData.DOUBLE_JUMP_VELOCITY
-		used_double_jump = true
-		just_jumped = true
-		# cancel dash
-		dashing = false
-		dash_stopping = false
+	elif used_jump and Input.is_action_pressed("jump") and jump_hold_frames <= MoveData.JUMP_DURATION:
+		jump_hold_frames += (round(delta * FPS))
+		
+		
 
 # dropping ledges
 # checks for "s" input then temporarily disables collisions with
@@ -355,14 +288,12 @@ func check_drop():
 		if Input.is_action_just_pressed("down"):
 			# remove mask for one-way layer
 			set_collision_mask_value(6, false)
-			drop_timer = drop_delay
+			drop_timer = DROP_DELAY
 
 func dash(direction : Vector2, dash_frames : int, dash_velocity : 
 			float, friction_frames : int, friction_decel : float):
 	dashing = true
 	dash_stopping = false
-	# give back double jump
-	used_double_jump = false
 	# disable down gravity until next full jump
 	apply_down_gravity = false
 	# set timer
@@ -375,7 +306,7 @@ func dash(direction : Vector2, dash_frames : int, dash_velocity :
 func update_dash(delta):
 	if dashing and dash_timer > 0:
 		# preserve velocity
-		dash_timer -= delta * 60
+		dash_timer -= round(delta * FPS)
 	elif dashing and dash_timer <= 0:
 		# just hit 0: switch to stopping (friction)
 		dashing = false
@@ -385,10 +316,15 @@ func update_dash(delta):
 		# apply friction and decrease timer
 		velocity.x = move_toward(velocity.x, 0, dash_friction * delta)
 		velocity.y = move_toward(velocity.y, 0, dash_friction * delta)
-		dash_friction_timer -= delta * 60
+		dash_friction_timer -= round(delta * FPS)
 	elif dash_stopping and dash_friction_timer <= 0:
 		# apply regular physics again
 		dash_stopping = false
+
+# interface for adding statuseffect objects
+func add_effect(effect: StatusEffect):
+	self.add_child(effect)
+	effect.apply()
 
 func update_curse(delta):
 	# updates the current curse status of the player
@@ -403,12 +339,12 @@ func update_curse(delta):
 			break
 	if cursed:
 		# increase timer
-		curse_stage += 1 * curse_speed_mult * delta * 60
+		curse_stage += 1 * curse_speed_mult * round(delta * FPS)
 		if curse_stage > CURSE_DEATH:
 			kill()
 	elif curse_stage > 0:
 		# decrease timer
-		curse_stage -= 1 * curse_decay_mult * delta * 60
+		curse_stage -= 1 * curse_decay_mult * round(delta * FPS)
 		if curse_stage < 0:
 			curse_stage = 0
 	# update curse bar
@@ -438,7 +374,7 @@ func flip():
 
 func update_parry():
 	if Input.is_action_just_pressed("parry") and receive_input:
-		_state_machine.start("parry")
+		state_machine.start("parry")
 		# important: parry animation sets parry to false at the end
 
 func _update_animation():
@@ -454,42 +390,30 @@ func _update_animation():
 # subclasses with unique animations can override to adjust logic
 func _choose_animation():
 	if Input.is_action_just_pressed("parry") and receive_input:
-		_state_machine.start("parry")
+		state_machine.start("parry")
 	elif just_jumped:
 		# jump: and start from beginning
-		_state_machine.start("jump")
+		state_machine.start("jump")
 	elif not on_floor:
 		# fall
-		_state_machine.travel("fall")
-	elif not on_floor and used_jump or used_double_jump:
+		state_machine.travel("fall")
+	elif not on_floor and used_jump:
 		# jump animation again
-		_state_machine.travel("jump")
+		state_machine.travel("jump")
 	elif on_floor:
 		# set blend
 		animation_tree.set("parameters/idle-run/blend_position", direction)
 		# idle-run
-		_state_machine.travel("idle-run")
+		state_machine.travel("idle-run")
 
 func kill():
 	# kills player
 	# erase backup data
-	var player_manager = get_node("/root/LevelManager/PlayerManager")
-	if player_manager:
-		player_manager.backup_consumable = false
-	# need to remove all effects and multipliers upon death. new player scene will still have
-	# the same movedata
-	for multiplier in movedata_multipliers:
-		if multiplier != null:
-			multiplier.remove()
-	for effect in effects:
-		if effect != null:
-			effect.remove()
 	
-	# reset backup data in player manager
+	# state_machine.travel("death")
+	# [play transition animation]
 	
-	# _state_machine.travel("death")
 	# get level manager parent and respawn player
-	# level manager MUST be a parent of player!!!
-	
-	get_parent().respawn_player()
+	var level_manager = get_node("/root/LevelManager")
+	level_manager.respawn_player()
 

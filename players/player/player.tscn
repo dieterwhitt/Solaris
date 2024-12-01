@@ -252,9 +252,6 @@ graph_offset = Vector2(-47.6824, 32.4587)
 
 [node name="Node2D" type="CharacterBody2D"]
 script = ExtResource("1_d82yn")
-receive_input = null
-debug = null
-animation_tree_path = null
 
 [node name="PlayerHitbox" parent="." instance=ExtResource("2_y7qfr")]
 

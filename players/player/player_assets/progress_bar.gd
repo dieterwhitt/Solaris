@@ -37,7 +37,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	update_height()
-	# set global transform so it isn't flipped
+	# set global transform so it isn't flipped by parent
 	global_transform.x.x = 1
 	# check if timer actually still exists
 	if not timer:
