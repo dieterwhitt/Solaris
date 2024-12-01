@@ -88,8 +88,7 @@ class StatusEffect:
 		self.player = player
 		self.show_bar = show_bar
 		self.bar_color = bar_color
-		# connect timeout signal
-		self.timeout.connect(_on_timeout)
+		
 	
 	func _ready():
 		if player == null:
@@ -99,6 +98,8 @@ class StatusEffect:
 				queue_free()
 			else:
 				player = parent
+		# connect timeout signal
+		self.timeout.connect(_on_timeout)
 	
 	func apply():
 		pass
@@ -109,7 +110,7 @@ class StatusEffect:
 	# call remove() and free self from tree
 	func _on_timeout():
 		remove()
-		queue_fr
+		queue_free()
 
 
 # regular status effect
