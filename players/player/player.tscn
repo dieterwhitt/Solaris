@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://players/player/Player.gd" id="1_d82yn"]
 [ext_resource type="PackedScene" uid="uid://bd6x5b8aw8bq4" path="res://players/player/player_assets/player_hitbox.tscn" id="2_y7qfr"]
 [ext_resource type="PackedScene" uid="uid://n7ddc0vjwm5p" path="res://players/player/player_assets/player_area.tscn" id="3_6kqbe"]
-[ext_resource type="SpriteFrames" uid="uid://bdvcb0ab46uj8" path="res://players/player/unpowered_spriteframes.tres" id="3_i51m7"]
+[ext_resource type="SpriteFrames" uid="uid://r1qbqgnq6vyp" path="res://players/player/placeholder_spriteframes.tres" id="4_affvj"]
 
 [sub_resource type="Animation" id="Animation_1s0tj"]
 length = 0.001
@@ -18,6 +18,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Item:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, -1)]
 }
 
 [sub_resource type="Animation" id="Animation_1rqmf"]
@@ -47,6 +59,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Item:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(9, -1), Vector2(9, -5), Vector2(9, -7)]
 }
 
 [sub_resource type="Animation" id="Animation_3usi4"]
@@ -78,6 +102,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Item:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.500001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(6, -1), Vector2(6, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_6de6d"]
 resource_name = "jump"
@@ -106,6 +142,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Item:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.333333, 0.416667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(6, 7), Vector2(9, -1), Vector2(9, -5), Vector2(9, -7)]
 }
 
 [sub_resource type="Animation" id="Animation_dah5t"]
@@ -165,6 +213,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Item:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(6, 1), Vector2(4, 4), Vector2(3, 4), Vector2(4, 5), Vector2(5, 2), Vector2(7, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xaavk"]
@@ -258,10 +318,14 @@ move_data_resource_file = "res://players/player/base_movedata.tres"
 
 [node name="PlayerArea" parent="." instance=ExtResource("3_6kqbe")]
 
+[node name="Item" type="Node2D" parent="."]
+position = Vector2(6, -1)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("3_i51m7")
-animation = &"fall"
+sprite_frames = ExtResource("4_affvj")
+animation = &"run"
 frame = 1
+metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 callback_mode_process = 0

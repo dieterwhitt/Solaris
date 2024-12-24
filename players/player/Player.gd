@@ -72,6 +72,13 @@ const CURSE_DEATH : int = 480 # total number of frames until curse death
 var curse_speed_mult : float = 1 # multiplier on curse speed
 var curse_decay_mult : float = 2 # how much slower/faster curse decays
 
+# dual animation
+@onready var _held_item_filepath : String = "" # set in decorator
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+const unpowered_frames : SpriteFrames = preload("res://players/player/unpowered_spriteframes.tres")
+const item_frames : SpriteFrames = preload("res://players/player/placeholder_spriteframes.tres")
+
+
 const FPS = 60
 
 # ABC status effect class definition (see UML)
@@ -134,12 +141,23 @@ var antigrav_cooldown = false
 '''
 
 func _ready():
-	# adding player area and curse bar for detecting curse/aoe effects
-	add_child(player_area)
+	# common stuff - 
 	add_child(curse_bar)
 	curse_bar.total = CURSE_DEATH
-	# common stuff - 
 	animation_tree.active = true
+	# check dual animation
+	if _held_item_filepath == "":
+		sprite.sprite_frames = unpowered_frames
+	else:
+		sprite.sprite_frames = item_frames
+		# replace blank animation item with actual relic item scene
+		# name has to be the same to work i think
+		$Item.queue_free()
+		var new_item = load(_held_item_filepath)
+		if new_item != null:
+			add_child(new_item.instantiate())
+			new_item.name = "Item"
+		
 
 # runs every physics frame
 # for updating physics
@@ -267,6 +285,7 @@ func apply_jump(delta):
 	if ((not used_jump and receive_input) 
 			and (Input.is_action_just_pressed("jump") or current_jump_buffer > 0)
 			 and (on_floor or current_coyote > 0)):
+		# print("jump")
 		# regular jump
 		velocity.y = MoveData.JUMP_VELOCITY
 		used_jump = true
@@ -278,10 +297,12 @@ func apply_jump(delta):
 	elif used_jump and Input.is_action_pressed("jump") and \
 			jump_hold_frames <= MoveData.JUMP_DURATION and can_hold_jump:
 		# jump hold
+		# print("hold")
 		jump_hold_frames += (round(delta * FPS))
 		velocity.y = MoveData.JUMP_VELOCITY
 	elif used_jump and Input.is_action_just_released("jump"):
 		# jump release: max out timer (can't re-hold)
+		# print("release")
 		can_hold_jump = false
 
 
