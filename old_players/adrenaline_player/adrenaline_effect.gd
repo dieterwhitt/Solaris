@@ -1,6 +1,6 @@
 extends Script
 
-class_name AdrenalineEffect
+class_name OldAdrenalineEffect
 
 # all static functions to be accessed without instance of class (i think)
 static var particle_scene = "res://players/adrenaline_player/adrenaline_particles.tscn"

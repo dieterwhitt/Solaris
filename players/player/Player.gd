@@ -4,11 +4,11 @@
 
 # todo (eventually) add support for higher fps
 
+extends AbstractPlayer
 class_name Player
 
 # need to add parry and then should be done
 
-extends CharacterBody2D
 
 # jump options
 var current_coyote : int = 0 # number of frames remaining
@@ -60,7 +60,8 @@ var direction : int = 0
 @export_file var move_data_resource_file
 
 # duplicating to not effect original file when making modifications
-@onready var MoveData : MoveDataResource = load(move_data_resource_file).duplicate()
+@onready var DefaultMoveData : MoveDataResource = load(move_data_resource_file)
+@onready var MoveData : MoveDataResource = DefaultMoveData.duplicate()
 
 # @onready var multipliers_effects = load("res://players/common/multipliers_effects.gd")
 
@@ -73,65 +74,11 @@ var curse_speed_mult : float = 1 # multiplier on curse speed
 var curse_decay_mult : float = 2 # how much slower/faster curse decays
 
 # dual animation
-@onready var _held_item_filepath : String = "" # set in decorator
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 const unpowered_frames : SpriteFrames = preload("res://players/player/unpowered_spriteframes.tres")
 const item_frames : SpriteFrames = preload("res://players/player/placeholder_spriteframes.tres")
 
-
 const FPS = 60
-
-# ABC status effect class definition (see UML)
-# decorators will have to create their own status effect nested classes, then
-# add it here. works for any status effect, cooldown, etc.
-# status effects will always be direct children of player.
-class StatusEffect:
-	extends Timer
-	var duration : float
-	var show_bar : bool
-	var bar_color : Color
-	var player : Player # player to apply effect to
-	
-	# constructor - not on tree yet
-	# if player not provided: will check immediate parent for a player.
-	func _init(duration: float, show_bar : bool = true, 
-			bar_color: Color = Color.WHITE, player: Player = null):
-		self.one_shot = true
-		self.duration = duration
-		self.wait_time = duration
-		self.player = player
-		self.show_bar = show_bar
-		self.bar_color = bar_color
-		
-	func _ready():
-		if player == null:
-			# search for player in parent. free if no parent or not player type.
-			var parent : Node = get_parent()
-			if parent == null or !parent.is_class("Player"):
-				queue_free()
-			else:
-				player = parent
-		elif self not in player.get_children():
-			# player was given but the effect is not a direct child: add it
-			player.add_child(self)
-		# connect timeout signal
-		self.timeout.connect(_on_timeout)
-	
-	# virtual
-	func apply():
-		self.start()
-	
-	# virtual
-	func remove():
-		pass
-	
-	# call remove() and free self from tree
-	func _on_timeout():
-		remove()
-		# orphan the effect, rather than remove it, so it can be reused. _ready will be re-called
-		player.remove_child(self)
-		self.wait_time = duration
-
 
 '''antigravity - scrapped
 # antigravity status from PREVIOUS frame
@@ -141,6 +88,7 @@ var antigrav_cooldown = false
 '''
 
 func _ready():
+	print("concrete player ready")
 	# common stuff - 
 	add_child(curse_bar)
 	curse_bar.total = CURSE_DEATH
@@ -153,9 +101,9 @@ func _ready():
 		# replace blank animation item with actual relic item scene
 		# name has to be the same to work i think
 		# has to be set before added to tree
-		$Item.queue_free()
 		var new_item = load(_held_item_filepath)
 		if new_item != null:
+			$Item.queue_free()
 			add_child(new_item.instantiate())
 			new_item.name = "Item"
 		
@@ -359,6 +307,13 @@ func update_dash(delta):
 func add_effect(effect: StatusEffect):
 	self.add_child(effect)
 	effect.apply()
+
+# check if the player has a given effect
+func has_effect(className: String):
+	for node in self.get_children():
+		if node.get_class() == className:
+			return true
+	return false
 
 func update_curse(delta):
 	# updates the current curse status of the player

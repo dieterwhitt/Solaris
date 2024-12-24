@@ -19,4 +19,4 @@ enum Type {
 @export_file var icon8 : String # path to 8px icon resource
 @export_file var icon32 : String # path to 32 px icon resource
 @export var equippable : bool
-@export_file var player_scene_path : String # path to associated player scene (decorator)
+@export_file var player_path : String # path to associated player (decorator)

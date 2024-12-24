@@ -4,10 +4,11 @@
 
 [resource]
 script = ExtResource("1_fnkbj")
+type = 0
 id = "adrenaline_shot"
 name = "Adrenaline Serum"
-description = "[Consumable] [3 Charges] A syringe filled with a potent serum giving a surge of adrenaline. Press [Special] to inject. Charges may be refreshed at checkpoints."
+description = "[Relic] [3 Charges] A syringe filled with a potent serum giving a surge of adrenaline. Press [Special] to inject."
 icon8 = ""
-icon64 = ""
+icon32 = ""
 equippable = true
-playerScenePath = "res://players/adrenaline_player/adrenaline_player.tscn"
+player_path = "res://players/artifacts/adrenaline_shot/adrenaline_player.gd"

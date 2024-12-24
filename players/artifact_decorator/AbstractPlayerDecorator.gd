@@ -1,6 +1,8 @@
 # abstract decorator for artifacts
 
-extends Player
+extends AbstractPlayer
+
+class_name AbstractPlayerDecorator
 
 var component : Player
 

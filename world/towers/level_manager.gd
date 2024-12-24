@@ -37,7 +37,7 @@ var current_lvl : String = "" # current level id
 # player management
 var player : Node = null
 # active artifacts (will instantiate decorator defined in resource)
-var relic : Artifact = null
+var relic : Artifact = preload("res://players/artifacts/adrenaline_shot/adrenaline_shot.tres")
 var ring : Artifact = null
 
 # camera settings
@@ -162,10 +162,6 @@ func respawn_player():
 	# artifact decorator upgrade
 	# hopefully this works?
 	player = load("res://players/player/player.tscn").instantiate()
-	for a : Artifact in [relic, ring]:
-		if a != null:
-			# load class file then create with player component
-			player = load(a.player_scene_path).new(player)
 	
 	# delete all loaded scenes and switch current scene to checkpoint
 	for level in loaded:
@@ -184,6 +180,11 @@ func respawn_player():
 		player.position = Spawn.position
 		invince_timer = invince_frames
 		add_child(player)
+		for a : Artifact in [relic, ring]:
+			if a != null:
+				# load class file then create with player component
+				print(a.player_path)
+				player = load(a.player_path).new(player)
 		# calibrate camera for new room
 		calibrate_camera()
 	else:
