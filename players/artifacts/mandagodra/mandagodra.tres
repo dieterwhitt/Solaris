@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Artifact" load_steps=2 format=3 uid="uid://l511exik7oj1"]
 
-[ext_resource type="Script" path="res://world/artifacts/artifact.gd" id="1_h6bgv"]
+[ext_resource type="Script" path="res://players/artifacts/artifact.gd" id="1_h6bgv"]
 
 [resource]
 script = ExtResource("1_h6bgv")

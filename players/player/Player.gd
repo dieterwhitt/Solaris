@@ -152,6 +152,7 @@ func _ready():
 		sprite.sprite_frames = item_frames
 		# replace blank animation item with actual relic item scene
 		# name has to be the same to work i think
+		# has to be set before added to tree
 		$Item.queue_free()
 		var new_item = load(_held_item_filepath)
 		if new_item != null:
