@@ -1,7 +1,7 @@
 # progress_bar.gd
 
-# player progress bar. can be added by code or scene editor
-
+# flexible player progress bar. can be added by code or scene editor
+class_name Bar
 extends Node2D
 
 # 20 pixels, 1px for every 5% interval. 0% is empty.
@@ -12,18 +12,11 @@ extends Node2D
 @export_node_path("Timer") var timer_path
 @export var color : Color # color of bar
 @export var show_empty : bool # whether to show the bar when at 0%
-var timer : Timer
+var timer : Timer = null
 
 @onready var bar = $Bar
 @onready var base = $Base
 const BASE_COLOR = Color8(125, 125, 125, 255)
-
-# can init before adding to tree
-func _init(color = Color.WHITE, show_empty: bool = true, 
-		timer: Timer = null):
-	self.color = color
-	self.show_empty = show_empty
-	self.timer = timer
 
 func _ready():
 	if timer == null:
@@ -31,8 +24,13 @@ func _ready():
 			timer = get_node(timer_path)
 		else:
 			queue_free()
-	if color:
-		bar.default_color = color
+
+# build the progress bar
+func build(color = Color.WHITE, show_empty = false, timer = null):
+	print("building progress bar")
+	self.color = color
+	self.show_empty = show_empty
+	self.timer = timer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

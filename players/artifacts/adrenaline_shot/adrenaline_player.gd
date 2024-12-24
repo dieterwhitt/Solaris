@@ -4,7 +4,8 @@ extends AbstractPlayerDecorator
 
 class_name AdrenalinePlayer
 
-var charges_left = 3 
+var charges_left = 3
+var effect 
 const DURATION_S : int = 5 # duration in seconds
 
 class AdrenalineEffect:
@@ -19,12 +20,14 @@ class AdrenalineEffect:
 	const DECEL_MULT : float = 1.8
 	const COOLDOWN_TIME = 8
 	
-	@onready var particles = \
+	@onready var particle_scene = \
 			preload("res://players/artifacts/adrenaline_shot/adrenaline_particles.tscn")
+	@onready var particles 
 	
 	func _ready():
 		super()
-		player.add_child(particles.instantiate())
+		particles = particle_scene.instantiate()
+		player.add_child(particles)
 	
 	func _apply():
 		super()
@@ -48,10 +51,13 @@ class AdrenalineEffect:
 		
 func _ready():
 	component._held_item_filepath = "placeholder" # set later
+	effect = AdrenalineEffect.new(DURATION_S, component, true, 
+			Color8(235, 48, 96, 255))
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("special") and \
 			not component.has_effect("AdrenalineCooldown") and \
-			not component.has_effect("AdrenalineEffect"):
-		component.add_effect(AdrenalineEffect.new(DURATION_S, component, true, 
-				Color8(235, 48, 96, 255)))
+			not component.has_effect("AdrenalineEffect") and \
+			charges_left > 0:
+		component.add_effect(effect)
+		charges_left -= 1

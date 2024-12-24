@@ -1,6 +1,6 @@
 # abstract decorator for artifacts
 
-extends AbstractPlayer
+extends Node
 
 class_name AbstractPlayerDecorator
 

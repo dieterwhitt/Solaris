@@ -162,7 +162,14 @@ func respawn_player():
 	# artifact decorator upgrade
 	# hopefully this works?
 	player = load("res://players/player/player.tscn").instantiate()
-	
+	# decorator design pattern work around: game logic is only run from nodes,
+	# so add each decorator to a blank node and add it as a child to the player
+	for a : Artifact in [relic, ring]:
+		if a != null:
+			print(a.player_path)
+			var decorator_node = load(a.player_path).new(player)
+			player.add_child(decorator_node)
+			
 	# delete all loaded scenes and switch current scene to checkpoint
 	for level in loaded:
 		loaded[level].queue_free()
@@ -180,11 +187,7 @@ func respawn_player():
 		player.position = Spawn.position
 		invince_timer = invince_frames
 		add_child(player)
-		for a : Artifact in [relic, ring]:
-			if a != null:
-				# load class file then create with player component
-				print(a.player_path)
-				player = load(a.player_path).new(player)
+		
 		# calibrate camera for new room
 		calibrate_camera()
 	else:

@@ -4,9 +4,8 @@
 
 # todo (eventually) add support for higher fps
 
-extends AbstractPlayer
 class_name Player
-
+extends CharacterBody2D
 # need to add parry and then should be done
 
 
@@ -74,6 +73,7 @@ var curse_speed_mult : float = 1 # multiplier on curse speed
 var curse_decay_mult : float = 2 # how much slower/faster curse decays
 
 # dual animation
+var _held_item_filepath : String = "" # set in decorator
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 const unpowered_frames : SpriteFrames = preload("res://players/player/unpowered_spriteframes.tres")
 const item_frames : SpriteFrames = preload("res://players/player/placeholder_spriteframes.tres")
@@ -305,8 +305,9 @@ func update_dash(delta):
 
 # interface for adding statuseffect objects
 func add_effect(effect: StatusEffect):
-	self.add_child(effect)
-	effect.apply()
+	if effect not in get_children():
+		self.add_child(effect)
+	effect._apply()
 
 # check if the player has a given effect
 func has_effect(className: String):
