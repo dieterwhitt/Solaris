@@ -179,6 +179,10 @@ glass = true
 [node name="Checkpoint" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("5_xpd1l")]
 position = Vector2(440, 120)
 
+[node name="DashOrb2" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("4_f1oh6")]
+position = Vector2(208, 136)
+rotation = 1.5708
+
 [node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
 editor_description = "Any moving enemies/hazards/npcs"
 metadata/_edit_lock_ = true

@@ -19,7 +19,7 @@ var on_floor : bool = false
 # for animation: to determine when to start jump animation
 var just_jumped = false
 var jump_hold_frames: int = 0 # number of frames currently holding jump
-var can_hold_jump = true
+var can_hold_jump = false
 
 # dashing
 var dashing = false
@@ -268,15 +268,18 @@ func apply_jump(delta):
 			and (Input.is_action_just_pressed("jump") or current_jump_buffer > 0)
 			 and (on_floor or current_coyote > 0)):
 		# regular jump
-		velocity.y = MoveData.JUMP_BASE_VELOCITY
+		velocity.y = MoveData.JUMP_VELOCITY
 		used_jump = true
 		just_jumped = true
 		can_hold_jump = true
+		# reset buffers
+		current_jump_buffer = 0
+		current_coyote = 0
 	elif used_jump and Input.is_action_pressed("jump") and \
 			jump_hold_frames <= MoveData.JUMP_DURATION and can_hold_jump:
 		# jump hold
 		jump_hold_frames += (round(delta * FPS))
-		velocity.y += MoveData.JUMP_ACCELERATION * delta
+		velocity.y = MoveData.JUMP_VELOCITY
 	elif used_jump and Input.is_action_just_released("jump"):
 		# jump release: max out timer (can't re-hold)
 		can_hold_jump = false
@@ -301,6 +304,8 @@ func dash(direction : Vector2, dash_frames : int, dash_velocity :
 			float, friction_frames : int, friction_decel : float):
 	dashing = true
 	dash_stopping = false
+	# disable jump
+	can_hold_jump = false
 	# disable down gravity until next full jump
 	apply_down_gravity = false
 	# set timer

@@ -21,12 +21,14 @@ class_name MoveDataResource
 # @export var JUMP_VELOCITY = -207.0 # -200
 
 # reworked jump: variable height!
-@export var JUMP_BASE_VELOCITY : float = -75 # -70
-@export var JUMP_ACCELERATION : float = -1305 # -1315
-@export var JUMP_DURATION : int = 7
+# GD STYLE: constant upward velocity
+
+@export var JUMP_VELOCITY: float = -130
+# @export var JUMP_ACCELERATION : float = -1000 # -1305
+@export var JUMP_DURATION : int = 12
 
 # down gravity multiplier
-@export var DOWN_MULTIPLIER : float = 1.6 # 1.2
+@export var DOWN_MULTIPLIER : float = 1.8
 # air acceleration and deceleration multiplier (air control and air brake)
 @export var AIR_ACCEL_MULTIPLIER : float = 0.85 # 0.8
 @export var AIR_DECEL_MULTIPLIER : float = 0.35 # 0.35
@@ -41,4 +43,4 @@ class_name MoveDataResource
 @export var JUMP_BUFFER : int = 5 # 5
 # new stuff
 # @export var DOUBLE_JUMP_VELOCITY = -130 # -150 removed in jump rework
-@export var MOMENTUM_MULTIPLIER = 0.8 # friction multiplier at high speeds
+@export var MOMENTUM_MULTIPLIER = 0.35 # friction multiplier at high speeds
