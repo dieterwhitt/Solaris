@@ -44,3 +44,5 @@ class_name MoveDataResource
 # new stuff
 # @export var DOUBLE_JUMP_VELOCITY = -130 # -150 removed in jump rework
 @export var MOMENTUM_MULTIPLIER = 0.35 # friction multiplier at high speeds
+# since dashing replaces typical accel check, second momentum multiplier for dash stopping
+@export var DASH_MOMENTUM_MULTIPLIER = 0.5 

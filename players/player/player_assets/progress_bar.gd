@@ -24,16 +24,19 @@ func _ready():
 			timer = get_node(timer_path)
 		else:
 			queue_free()
+	base.default_color = BASE_COLOR
+	bar.default_color = color
 
 # build the progress bar
-func build(color = Color.WHITE, show_empty = false, timer = null):
+func build(color, show_empty, timer):
 	print("building progress bar")
 	self.color = color
 	self.show_empty = show_empty
 	self.timer = timer
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _process(delta):
 	update_height()
 	# set global transform so it isn't flipped by parent
 	global_transform.x.x = 1
@@ -68,7 +71,7 @@ func update_height():
 	# get array of bars
 	var bars = get_tree().get_nodes_in_group("ProgressBar")
 	# based on index of current, shift up 4px
-	var count = 0 # number of bars before self
+	var count = 0 # number of bars added before self
 	for bar in bars:
 		if bar == self:
 			# shift up

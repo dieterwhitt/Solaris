@@ -4,6 +4,7 @@
 # status effects will always be direct children of player.
 class_name StatusEffect
 extends Timer
+var id : String
 var duration : float
 var show_bar : bool
 var bar_color : Color
@@ -14,9 +15,10 @@ var bar : Bar
 
 # constructor - not on tree yet
 # if player not provided: will check immediate parent for a player.
-func _init(duration: float, player: Player = null, show_bar : bool = true, 
+func _init(duration: float, id: String = "Effect", player: Player = null, show_bar : bool = true, 
 		bar_color: Color = Color.WHITE):
 	self.one_shot = true
+	self.id = id
 	self.duration = duration
 	self.wait_time = duration
 	self.player = player
@@ -24,6 +26,7 @@ func _init(duration: float, player: Player = null, show_bar : bool = true,
 	self.bar_color = bar_color
 	
 func _ready():
+	add_to_group("StatusEffect")
 	if player == null:
 		# search for player in parent. free if no parent or not player type.
 		var parent : Node = get_parent()
@@ -39,11 +42,12 @@ func _ready():
 
 # virtual
 func _apply():
-	self.start()
+	# add progress bar
 	if show_bar:
 		bar = bar_scene.instantiate()
 		bar.build(bar_color, false, self)
 		player.add_child(bar)
+	self.start()
 
 # virtual
 func _remove():

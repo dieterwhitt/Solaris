@@ -31,6 +31,8 @@ var dash_friction : float = 0
 var drop_timer : int = 0
 const DROP_DELAY: int = 3
 
+# momentum (reduced friction when moving at high speeds)
+var has_momentum = false
 
 # direction: -1, 0, 1
 # represents the current INPUT direction (left, none, right)
@@ -116,6 +118,7 @@ func _physics_process(delta):
 	# pre calculate on floor
 	on_floor = is_on_floor()
 	update_direction()
+	update_momentum()
 	update_curse(delta)
 	update_dash(delta)
 	if not dashing:
@@ -131,15 +134,19 @@ func _physics_process(delta):
 	_print_debug()
 	# subclasses: define unique movement
 	# run move and slide (logic can be changedin subclass)
-	complete_default_physics()
+	_complete_default_physics()
 
-func complete_default_physics():
+func _complete_default_physics():
 	move_and_slide()
 
 func update_direction():
 	if receive_input:
 		# -1, 0, 1
 		direction = Input.get_axis("left", "right")
+
+func update_momentum():
+	has_momentum = abs(velocity.x) > MoveData.INPUT_TERMINAL and \
+			(direction * velocity.x > 0)
 
 func apply_gravity(delta):
 	# apply gravity if the player is in the air and below terminal velocity
@@ -167,14 +174,15 @@ func apply_x_accel(delta):
 	# cap at total terminal
 	
 	# new: momentum friction
-	if abs(velocity.x) > MoveData.INPUT_TERMINAL and (direction * velocity.x > 0):
+	if has_momentum:
 		# speed above input terminal and player moving in that direction: 
 		# apply special "momentum friction"
 		# make speed boosts more satisfying (in theory)
 		apply_friction(delta, MoveData.MOMENTUM_MULTIPLIER)
 	elif (not receive_input or abs(velocity.x) > MoveData.INPUT_TERMINAL 
 			or direction == 0 or (direction * velocity.x < 0)):
-		# standard friction
+		# standard friction: no input or above input terminal or moving in
+		# opposite direction of movement
 		apply_friction(delta, 1)
 	else:
 		apply_input(delta)
@@ -296,8 +304,10 @@ func update_dash(delta):
 	# applying friction
 	if dash_stopping and dash_friction_timer > 0:
 		# apply friction and decrease timer
-		velocity.x = move_toward(velocity.x, 0, dash_friction * delta)
-		velocity.y = move_toward(velocity.y, 0, dash_friction * delta)
+		# apply momentum multiplier if needed
+		var mult = MoveData.DASH_MOMENTUM_MULTIPLIER if has_momentum else 1 
+		velocity.x = move_toward(velocity.x, 0, dash_friction * mult * delta)
+		velocity.y = move_toward(velocity.y, 0, dash_friction * mult * delta)
 		dash_friction_timer -= round(delta * FPS)
 	elif dash_stopping and dash_friction_timer <= 0:
 		# apply regular physics again
@@ -309,10 +319,10 @@ func add_effect(effect: StatusEffect):
 		self.add_child(effect)
 	effect._apply()
 
-# check if the player has a given effect
-func has_effect(className: String):
+# check if the player has a given effect by id
+func has_effect(id: String):
 	for node in self.get_children():
-		if node.get_class() == className:
+		if node.is_in_group("StatusEffect") and node.id == id:
 			return true
 	return false
 
