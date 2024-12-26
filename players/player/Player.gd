@@ -80,6 +80,9 @@ var _held_item_filepath : String = "" # set in decorator
 const unpowered_frames : SpriteFrames = preload("res://players/player/unpowered_spriteframes.tres")
 const item_frames : SpriteFrames = preload("res://players/player/placeholder_spriteframes.tres")
 
+# death animation (just making sure player isn't killed more than once)
+var alive = true
+
 const FPS = 60
 
 '''antigravity - scrapped
@@ -120,6 +123,7 @@ func _physics_process(delta):
 	update_direction()
 	update_momentum()
 	update_curse(delta)
+	check_orbs()
 	update_dash(delta)
 	if not dashing:
 		apply_gravity(delta)
@@ -350,6 +354,20 @@ func update_curse(delta):
 	# update curse bar
 	curse_bar.stage = curse_stage
 
+func check_orbs():
+	var closest_orb = null
+	for node in player_area.get_overlapping_areas():
+		# find the closest orb.
+		# if the orb has a bubble, only count if just parried.
+		if node.is_in_group("OrbArea") and (closest_orb == null or \
+				position.distance_to(node.position) < \
+				position.distance_to(closest_orb.position)):
+			var orb = node.get_parent()
+			if not orb.bubble or (Input.is_action_just_pressed("parry") and receive_input):
+				closest_orb = orb
+	if closest_orb != null:
+		closest_orb.activate(self)
+
 # debug function which prints data on the character
 # subclasses may override to print additional data
 func _print_debug():
@@ -407,10 +425,27 @@ func _choose_animation():
 		state_machine.travel("idle-run")
 
 func kill():
-	# state_machine.travel("death")
-	# [play transition animation]
+	print("killing player")
+	if not alive:
+		return
+	alive = false
 	
-	# get level manager parent and respawn player
+	const death_offset_y = -4
+	const death_time_s = 1.2
+	
+	set_physics_process(false)
+	hide()
+	var death_effect = load("res://players/player/player_assets/death_effect.tscn").instantiate()
+	death_effect.position = position
+	death_effect.position.y += death_offset_y
+	add_sibling(death_effect)
+	death_effect.emitting = true
+	# fade screen overlay to black
 	var level_manager = get_node("/root/LevelManager")
+	level_manager.fade_out(death_time_s)
+	
+	await get_tree().create_timer(death_time_s).timeout
+	death_effect.queue_free()
+	# get level manager parent and respawn player
 	level_manager.respawn_player()
 

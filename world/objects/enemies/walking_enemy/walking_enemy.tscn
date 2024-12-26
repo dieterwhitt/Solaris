@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://bwi582bms0oxp"]
 
-[ext_resource type="Script" path="res://walking_enemy.gd" id="1_mkt87"]
+[ext_resource type="Script" path="res://world/objects/enemies/walking_enemy/walking_enemy.gd" id="1_mkt87"]
 [ext_resource type="Texture2D" uid="uid://bkpks82ek3ibv" path="res://online-assets/kenney_pixel-platformer/Tilemap/tilemap-characters_packed.png" id="2_w73nu"]
 [ext_resource type="PackedScene" uid="uid://dyrpmbpr8barb" path="res://world/objects/utility/killbox.tscn" id="3_5sfbx"]
 

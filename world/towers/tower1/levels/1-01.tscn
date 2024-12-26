@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-01.gd" id="1_brum4"]
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_xw7aq"]
-[ext_resource type="PackedScene" uid="uid://bwi582bms0oxp" path="res://walking_enemy.tscn" id="3_n8rcq"]
+[ext_resource type="PackedScene" uid="uid://bwi582bms0oxp" path="res://world/objects/enemies/walking_enemy/walking_enemy.tscn" id="3_n8rcq"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
 

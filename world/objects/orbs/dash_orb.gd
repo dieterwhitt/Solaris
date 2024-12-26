@@ -18,9 +18,6 @@ const FRICTION_FRAMES : int = 5 # 4 #3
 func _ready():
 	super()
 
-func _physics_process(delta):
-	super(delta)
-
 func _orb_function(body):
 	# calculate direction vector
 	var direction : Vector2 = Vector2.ZERO

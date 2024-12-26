@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://5aok88itvndo"]
+
+[ext_resource type="Texture2D" uid="uid://dm6i43v18o28d" path="res://world/particle-textures/half_line_particle.png" id="1_diagm"]
+
+[sub_resource type="Curve" id="Curve_ocd6u"]
+_data = [Vector2(0, 0.253776), 0.0, 0.0, 0, 0, Vector2(0.343648, 0.691156), -0.257912, -0.257912, 0, 0, Vector2(0.747557, 0.409091), -1.50399, -1.50399, 0, 0, Vector2(1, 0), -0.279935, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_sgot1"]
+curve = SubResource("Curve_ocd6u")
+
+[sub_resource type="Gradient" id="Gradient_0qh3m"]
+colors = PackedColorArray(0.588235, 0.588235, 0.588235, 1, 0.882353, 0.882353, 0.882353, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_th82g"]
+gradient = SubResource("Gradient_0qh3m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hfb7f"]
+lifetime_randomness = 0.4
+particle_flag_disable_z = true
+angle_max = 360.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_max = 1.5
+color_initial_ramp = SubResource("GradientTexture1D_th82g")
+alpha_curve = SubResource("CurveTexture_sgot1")
+
+[node name="DeathEffect" type="GPUParticles2D"]
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_hfb7f")
+texture = ExtResource("1_diagm")
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.7

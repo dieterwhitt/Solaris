@@ -10,9 +10,6 @@ extends Orb
 func _ready():
 	super()
 		
-
-func _physics_process(delta):
-	super(delta)
 		
 
 func _orb_function(body):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://56iv1nv88f8n"]
+[gd_scene load_steps=10 format=3 uid="uid://56iv1nv88f8n"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_44qqg"]
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-06.gd" id="1_nhw1x"]
@@ -7,6 +7,7 @@
 [ext_resource type="TileSet" uid="uid://dgjiqrgsc00lg" path="res://world/tiles/layout_scene_tiles.tres" id="5_0445l"]
 [ext_resource type="TileSet" uid="uid://co5nljfb6abfh" path="res://world/towers/tower1/levels/tower1spikes.tres" id="5_enhbx"]
 [ext_resource type="PackedScene" uid="uid://jttcj28mbwsg" path="res://world/objects/checkpoint/checkpoint.tscn" id="5_xpd1l"]
+[ext_resource type="TileSet" uid="uid://c8c3to5y0br5j" path="res://world/tiles/scene_tiles.tres" id="6_bnatw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xh0ji"]
 
@@ -147,6 +148,7 @@ metadata/_edit_lock_ = true
 [node name="SceneTiles90deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"
 rotation = 1.5708
+tile_set = ExtResource("6_bnatw")
 format = 2
 metadata/_edit_lock_ = true
 
@@ -174,7 +176,7 @@ metadata/_edit_lock_ = true
 
 [node name="DashOrb" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("4_f1oh6")]
 position = Vector2(600, 80)
-glass = true
+bubble = true
 
 [node name="Checkpoint" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("5_xpd1l")]
 position = Vector2(440, 120)

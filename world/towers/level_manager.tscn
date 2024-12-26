@@ -4,3 +4,11 @@
 
 [node name="LevelManager" type="Node"]
 script = ExtResource("1_f187e")
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 648.0
+offset_bottom = 460.0
+color = Color(0, 0, 0, 1)

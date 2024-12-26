@@ -88,6 +88,17 @@ func calibrate_camera():
 	# reset smoothing
 	camera.reset_smoothing()
 
+# fade out and fade in. use TWEENS for lightweight code-based animations
+# (better than animation player in most cases not involving sprites)
+
+func fade_out(duration: float):
+	var tween = create_tween().set_trans(Tween.TRANS_QUART)
+	tween.tween_property($Overlay, "color", Color8(0,0,0,255), duration)
+
+func fade_in(duration: float):
+	var tween = create_tween().set_trans(Tween.TRANS_QUART)
+	tween.tween_property($Overlay, "color", Color8(0, 0, 0, 0), duration)
+
 # starts the current level by adding it to the tree and loading its
 # adjacent levels. does NOT spawn player
 func start_current_level():
@@ -114,7 +125,7 @@ func start_current_level():
 			load_lvl(Vector2(scan_posn.x + 1, scan_posn.y)) # right
 			load_lvl(Vector2(scan_posn.x, scan_posn.y - 1)) # up
 			load_lvl(Vector2(scan_posn.x, scan_posn.y + 1)) # down
-
+		
 # loads level
 # checks if in bounds & non blank & not already loaded
 func load_lvl(matrix_posn : Vector2):
@@ -144,20 +155,16 @@ func get_level_matrix_posn(lvl_id : String):
 
 # spawns/respawns player
 func respawn_player():
+	# set screen to black before respawning (if wasn't black already)
+	$Overlay.color = Color.BLACK
+	
 	# rework:
 	# free player, then create new player based on active player path
 	# make sure to preserve cam transform
 	if player:
-		player.queue_free()
+		# take camera off player and free it
 		player.remove_child(cam_transform)
-	''' outdated
-	var artifact = player_manager.active_artifact
-	var player_scene = "res://players/player_reworked/player_reworked.tscn"
-	if artifact:
-		player_scene = artifact.playerScenePath
-	print(player_scene)
-	player = load(player_scene).instantiate()
-	'''
+		player.queue_free()
 	
 	# artifact decorator upgrade
 	# hopefully this works?
@@ -190,6 +197,7 @@ func respawn_player():
 		
 		# calibrate camera for new room
 		calibrate_camera()
+		fade_in(0.5)
 	else:
 		print("spawn point not found, unable to spawn player")
 

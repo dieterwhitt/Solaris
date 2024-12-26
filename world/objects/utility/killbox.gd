@@ -2,6 +2,8 @@
 # kills player on contact
 # must add collision shape when used
 
+# todo: check player area instead of body
+
 extends Area2D
 
 
@@ -16,8 +18,7 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	print("killbox collision at %v" % global_position)
+	print("killbox player collision at %v" % global_position)
 	# kill player
 	if body is Player:
-		print("killed player: %v" % body.global_position)
 		body.kill()
