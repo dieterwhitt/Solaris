@@ -1,25 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://8wt45uebyitn"]
+[gd_scene load_steps=6 format=3 uid="uid://8wt45uebyitn"]
 
 [ext_resource type="Script" path="res://world/objects/orbs/dash_orb.gd" id="1_slnlk"]
 [ext_resource type="Texture2D" uid="uid://4rcqj4tpgk5q" path="res://world/tiles/random-tiles.png" id="2_kebol"]
 [ext_resource type="PackedScene" uid="uid://d0372iweuqreu" path="res://world/particles/dash/dash_particles.tscn" id="3_lv4wo"]
+[ext_resource type="PackedScene" uid="uid://bxbi2dwwxdatb" path="res://world/objects/orbs/abstract/bubble/bubble.tscn" id="4_5b6ae"]
 [ext_resource type="PackedScene" uid="uid://dl2jmb8rgjdw2" path="res://world/objects/orbs/abstract/orb_area.tscn" id="4_vakcw"]
 
 [node name="DashOrb" type="Node2D"]
 script = ExtResource("1_slnlk")
+orb_area_path = NodePath("OrbArea")
 visual_parent_path = NodePath("VisualParent")
+bubble_path = NodePath("VisualParent/Bubble")
 
 [node name="VisualParent" type="Node2D" parent="."]
-
-[node name="Orb" type="Sprite2D" parent="VisualParent"]
 position = Vector2(4, -4)
+metadata/_edit_lock_ = true
+
+[node name="RotateParent" type="Node2D" parent="VisualParent"]
+
+[node name="Orb" type="Sprite2D" parent="VisualParent/RotateParent"]
 scale = Vector2(0.984, 1)
 texture = ExtResource("2_kebol")
 hframes = 4
 vframes = 4
 frame = 2
+metadata/_edit_lock_ = true
 
-[node name="DashParticles" parent="VisualParent" instance=ExtResource("3_lv4wo")]
-position = Vector2(4, 0)
+[node name="DashParticles" parent="VisualParent/RotateParent" instance=ExtResource("3_lv4wo")]
+position = Vector2(1.15042e-08, 5)
+
+[node name="Bubble" parent="VisualParent" instance=ExtResource("4_5b6ae")]
+visible = false
+position = Vector2(-4, 4)
 
 [node name="OrbArea" parent="." instance=ExtResource("4_vakcw")]

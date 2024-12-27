@@ -7,17 +7,17 @@
 script = ExtResource("3_hks3d")
 
 [node name="platform" parent="." groups=["platforms"] instance=ExtResource("3_12nkr")]
-position = Vector2(-15.9945, 0.418831)
+position = Vector2(-9.74018, -12.6937)
 collision_layer = 32
 
 [node name="platform2" parent="." groups=["platforms"] instance=ExtResource("3_12nkr")]
-position = Vector2(-0.418831, -15.9945)
+position = Vector2(12.6937, -9.74018)
 collision_layer = 32
 
 [node name="platform3" parent="." groups=["platforms"] instance=ExtResource("3_12nkr")]
-position = Vector2(15.9945, -0.418831)
+position = Vector2(9.74018, 12.6937)
 collision_layer = 32
 
 [node name="platform4" parent="." groups=["platforms"] instance=ExtResource("3_12nkr")]
-position = Vector2(0.418831, 15.9945)
+position = Vector2(-12.6937, 9.74018)
 collision_layer = 32

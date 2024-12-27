@@ -1,6 +1,8 @@
 # april 23 2024
 # boost orb
 
+# OUTDATED (WE WON"T USE)
+
 extends Orb
 
 const BOOST_MULT = 1.4

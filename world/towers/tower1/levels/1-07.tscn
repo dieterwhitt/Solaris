@@ -170,9 +170,9 @@ metadata/_edit_lock_ = true
 editor_description = "orbs, artifacts, ladders, etc."
 metadata/_edit_lock_ = true
 
-[node name="DashOrb" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("4_mlcgv")]
+[node name="DashOrb2" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("4_mlcgv")]
 position = Vector2(88, 120)
-rotation = -0.785398
+dir = 7
 
 [node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
 editor_description = "Any moving enemies/hazards/npcs"

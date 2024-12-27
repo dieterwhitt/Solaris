@@ -1,16 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://df8v5tpu7rlty"]
+[gd_scene load_steps=8 format=3 uid="uid://df8v5tpu7rlty"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_3xwe7"]
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-08.gd" id="1_aaj3o"]
-[ext_resource type="TileSet" uid="uid://bdwynd1cyshwk" path="res://world/tiles/layout_scene_tiles.tres" id="3_gmf8x"]
+[ext_resource type="TileSet" uid="uid://dgjiqrgsc00lg" path="res://world/tiles/layout_scene_tiles.tres" id="3_gmf8x"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="4_bfhc0"]
-[ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="5_jroiy"]
-[ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="6_dpbav"]
+[ext_resource type="PackedScene" uid="uid://bln36344x66pa" path="res://world/objects/orbs/teleport_orbs.tscn" id="6_roj57"]
+[ext_resource type="PackedScene" uid="uid://dg3fanjbcq1ae" path="res://world/objects/level-objects/jump_pad/jump_pad.tscn" id="7_sws2e"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykfev"]
-size = Vector2(12, 12)
 
 [node name="1-08" type="Node"]
 editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
@@ -118,7 +115,7 @@ metadata/_edit_lock_ = true
 editor_description = "For level tiles, not including scene tiles (use scene tilemap)"
 tile_set = ExtResource("1_3xwe7")
 format = 2
-layer_0/tile_data = PackedInt32Array(458752, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 196618, 1, 0, 262155, 1, 0, 327691, 1, 0, 393227, 1, 0, 458764, 1, 0, 524300, 1, 0, 589836, 1, 0, 196619, 1, 0, 655372, 1, 0, 720908, 1, 0, 786444, 1, 0, 851980, 1, 0, 917516, 1, 0, 917517, 1, 0, 983053, 1, 0, 983060, 1, 0, 983061, 1, 0, 917525, 1, 0, 851989, 1, 0, 786453, 1, 0, 720917, 1, 0, 655381, 1, 0, 589845, 1, 0, 524309, 1, 0, 458773, 1, 0, 393237, 1, 0, 327701, 1, 0, 262165, 1, 0, 196629, 1, 0, 131093, 1, 0, 131094, 1, 0, 65558, 1, 0, 22, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 524293, 1, 0, 589829, 1, 0, 655365, 1, 0, 458763, 1, 0, 458758, 131073, 0, 458759, 131073, 0, 458760, 131073, 0, 458761, 131073, 0, 458762, 131073, 0, 720901, 1, 0, 786437, 1, 0, 851973, 1, 0, 917509, 1, 0, 983045, 1, 0, 1048581, 1, 0, 1114117, 1, 0, 1179653, 1, 0, 1245189, 1, 0, 1310725, 1, 0, 1376261, 1, 0, 1376262, 1, 0, 1441798, 1, 0, 1441799, 1, 0, 1441800, 1, 0, 1441801, 1, 0, 1441802, 1, 0, 1441803, 1, 0, 1441804, 1, 0, 1441805, 1, 0, 1310734, 1, 0, 1310735, 1, 0, 1310736, 1, 0, 1310737, 1, 0, 1310738, 1, 0, 1310739, 1, 0, 1310740, 1, 0, 983054, 1, 0, 983055, 1, 0, 983056, 1, 0, 983057, 1, 0, 983058, 1, 0, 983059, 1, 0, 1310733, 1, 0, 1376269, 1, 0, 1310741, 1, 0, 1310742, 1, 0, 1310743, 1, 0, 1310744, 1, 0, 1310745, 1, 0, 1245209, 1, 0, 1179673, 1, 0, 1179674, 1, 0, 1245210, 1, 0, 1245211, 1, 0, 1245212, 1, 0, 1245213, 1, 0, 1245214, 1, 0, 1179678, 1, 0, 1114142, 1, 0, 589855, 1, 0, 524319, 1, 0, 458783, 1, 0, 393247, 1, 0, 327711, 1, 0, 262175, 1, 0, 196639, 1, 0, 131103, 1, 0, 65567, 1, 0, 31, 1, 0, 393238, 65537, 0, 393239, 65537, 0, 393240, 65537, 0, 393241, 65537, 0, 393242, 65537, 0, 393243, 65537, 0, 393244, 65537, 0, 393245, 65537, 0, 393246, 65537, 0, 196638, 131073, 0, 196637, 131073, 0, 1114143, 1, 0, 1048607, 1, 0, 983071, 1, 0, 917535, 1, 0, 851999, 1, 0, 786463, 1, 0, 720927, 1, 0, 655391, 1, 0)
+layer_0/tile_data = PackedInt32Array(458752, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 196618, 1, 0, 262155, 1, 0, 327691, 1, 0, 393227, 1, 0, 458764, 1, 0, 524300, 1, 0, 589836, 1, 0, 196619, 1, 0, 655372, 1, 0, 720908, 1, 0, 786444, 1, 0, 851980, 1, 0, 917516, 1, 0, 917517, 1, 0, 917525, 1, 0, 851989, 1, 0, 786453, 1, 0, 720917, 1, 0, 655381, 1, 0, 589845, 1, 0, 524309, 1, 0, 458773, 1, 0, 393237, 1, 0, 327701, 1, 0, 262165, 1, 0, 196629, 1, 0, 131093, 1, 0, 131094, 1, 0, 65558, 1, 0, 22, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 524293, 1, 0, 589829, 1, 0, 655365, 1, 0, 458763, 1, 0, 458758, 131073, 0, 458759, 131073, 0, 458760, 131073, 0, 458761, 131073, 0, 458762, 131073, 0, 720901, 1, 0, 786437, 1, 0, 851973, 1, 0, 917509, 1, 0, 983045, 1, 0, 1048581, 1, 0, 1114117, 1, 0, 1179653, 1, 0, 1245189, 1, 0, 1310725, 1, 0, 1376261, 1, 0, 1376262, 1, 0, 1441798, 1, 0, 1441799, 1, 0, 1441800, 1, 0, 1441801, 1, 0, 1441802, 1, 0, 1441803, 1, 0, 1441804, 1, 0, 1441805, 1, 0, 1310734, 1, 0, 1310735, 1, 0, 1310736, 1, 0, 1310737, 1, 0, 1310738, 1, 0, 1310739, 1, 0, 1310740, 1, 0, 1310733, 1, 0, 1376269, 1, 0, 1310741, 1, 0, 1310742, 1, 0, 1310743, 1, 0, 1310744, 1, 0, 1310745, 1, 0, 1245209, 1, 0, 1179673, 1, 0, 1179674, 1, 0, 1245210, 1, 0, 1245211, 1, 0, 1245212, 1, 0, 1245213, 1, 0, 1245214, 1, 0, 1179678, 1, 0, 1114142, 1, 0, 589855, 1, 0, 524319, 1, 0, 458783, 1, 0, 393247, 1, 0, 327711, 1, 0, 262175, 1, 0, 196639, 1, 0, 131103, 1, 0, 65567, 1, 0, 31, 1, 0, 393238, 65537, 0, 393239, 65537, 0, 393240, 65537, 0, 393241, 65537, 0, 393242, 65537, 0, 393243, 65537, 0, 393244, 65537, 0, 393245, 65537, 0, 393246, 65537, 0, 196638, 131073, 0, 196637, 131073, 0, 1114143, 1, 0, 1048607, 1, 0, 983071, 1, 0, 917535, 1, 0, 851999, 1, 0, 786463, 1, 0, 720927, 1, 0, 655391, 1, 0, 917518, 1, 0, 917519, 1, 0, 917520, 1, 0, 917521, 1, 0, 917522, 1, 0, 983058, 1, 0, 983059, 1, 0, 983060, 1, 0, 983061, 1, 0)
 metadata/_edit_lock_ = true
 
 [node name="DecoTileMap" type="TileMap" parent="-30_LEVEL/Tilemaps"]
@@ -161,47 +158,16 @@ editor_description = "orbs, artifacts, ladders, etc."
 metadata/_edit_lock_ = true
 
 [node name="DashOrb" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("4_bfhc0")]
-position = Vector2(64, 144)
-rotation = 1.5708
+position = Vector2(64, 152)
+dir = 2
 
-[node name="TeleportOrbs" type="Node2D" parent="-20_ENTITIES/LevelObjects"]
-position = Vector2(208, 80)
-script = ExtResource("5_jroiy")
-glass = true
+[node name="JumpPad" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("7_sws2e")]
+position = Vector2(208, 136)
 
-[node name="Area2D" type="Area2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
-collision_mask = 2
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs/Area2D"]
-position = Vector2(4, -4)
-shape = SubResource("RectangleShape2D_ykfev")
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
-position = Vector2(4, -4)
-texture = ExtResource("6_dpbav")
-hframes = 4
-vframes = 4
-frame = 5
-metadata/_edit_lock_ = true
-
-[node name="Glass" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
-visible = false
-position = Vector2(4, -4)
-texture = ExtResource("6_dpbav")
-hframes = 4
-vframes = 4
-frame = 3
-
-[node name="Exit" type="Node2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
-position = Vector2(4, -53)
-
-[node name="Sprite2D" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs/Exit"]
-texture = ExtResource("6_dpbav")
-hframes = 4
-vframes = 4
-frame = 6
+[node name="TeleportOrbs2" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("6_roj57")]
+position = Vector2(204, 80)
+exit_delta = Vector2(2.08165e-12, -48)
+bubble = true
 
 [node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
 editor_description = "Any moving enemies/hazards/npcs"

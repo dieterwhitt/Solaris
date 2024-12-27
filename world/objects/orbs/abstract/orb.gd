@@ -3,6 +3,8 @@
 # abstract orb class
 # inherited by all orbs
 
+# REWORKED DEC 2024 (i got aids)
+
 extends Node2D
 
 class_name Orb
@@ -10,33 +12,45 @@ class_name Orb
 # hidden and non-interactable
 var used = false
 # allowing setting glass in inspector when making levels
-@export var bubble = false
-# loading the glass scene
-@onready var bubble_scene = preload("res://world/objects/orbs/abstract/bubble/bubble.tscn").instantiate()
+@export var bubble : bool:
+	set(new_bubble):
+		bubble = new_bubble
+		if Engine.is_editor_hint():
+			# do through ready in game
+			# since requires touching other node
+			update_bubble_visibility() 
 # getting the orb hitbox
-@onready var hitbox = $OrbArea
+@export_node_path("Area2D") var orb_area_path = null
+@onready var hitbox = get_node(orb_area_path)
 # for animation
 @export_node_path("Node2D") var visual_parent_path = null
-var visual_parent: Node2D
+@onready var visual_parent: Node2D = get_node(visual_parent_path)
 
+# get bubble
+@export_node_path("Node2D") var bubble_path = null
+@onready var bubble_scene: Node2D = get_node(bubble_path)
 # time for orbs to come back after being hit
 const RESET_TIME = 4.5
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	visual_parent = get_node(visual_parent_path)
 	if visual_parent == null:
 		print("orb error: visual parent not provided")
 		queue_free()
-	# connect area2d using code
 	if not bubble:
-		# delete
-		bubble_scene.queue_free()
-		bubble_scene = null
-	else:
-		visual_parent.add_child(bubble_scene)
-	hover() # hover tween animation
+		bubble_scene.hide()
+	update_bubble_visibility()
+	if not Engine.is_editor_hint():
+		hover() # hover tween animation
 
+func update_bubble_visibility():
+	# hide/show instead of add/free
+	if bubble:
+		bubble_scene.show()
+	else:
+		bubble_scene.hide()
+	
+	
 func hover():
 	# go up 2, down 2, repeat
 	var tween = visual_parent.create_tween().set_loops().set_trans(Tween.TRANS_SINE)\
@@ -53,21 +67,25 @@ func hover():
 # override in subclass
 func _orb_function(body):
 	pass
-	
+
+func _consume():
+	# default behaviour: hide all visual children except particles and bubble
+	for node in visual_parent.get_children():
+		if not node is GPUParticles2D and not node == bubble_scene:
+			node.hide()
+
 # removes self and adds back after reset time
 func remove():
 	used = true
 	if bubble:
 		bubble_scene.pop()
-	# hide all children except particles and bubble
-	for node in visual_parent.get_children():
-		if not node is GPUParticles2D and not node == bubble_scene:
-			node.hide()
+	_consume()
 	# pause after removing
 	await get_tree().create_timer(RESET_TIME).timeout
 	# show all children
 	for node in visual_parent.get_children():
-		node.show()
+		if bubble or node != bubble_scene:
+			node.show()
 	if bubble:
 		bubble_scene.reform()
 	used = false
