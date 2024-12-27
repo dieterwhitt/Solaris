@@ -7,8 +7,11 @@
 
 [node name="DashOrb" type="Node2D"]
 script = ExtResource("1_slnlk")
+visual_parent_path = NodePath("VisualParent")
 
-[node name="Orb" type="Sprite2D" parent="."]
+[node name="VisualParent" type="Node2D" parent="."]
+
+[node name="Orb" type="Sprite2D" parent="VisualParent"]
 position = Vector2(4, -4)
 scale = Vector2(0.984, 1)
 texture = ExtResource("2_kebol")
@@ -16,7 +19,7 @@ hframes = 4
 vframes = 4
 frame = 2
 
-[node name="DashParticles" parent="." instance=ExtResource("3_lv4wo")]
+[node name="DashParticles" parent="VisualParent" instance=ExtResource("3_lv4wo")]
 position = Vector2(4, 0)
 
 [node name="OrbArea" parent="." instance=ExtResource("4_vakcw")]

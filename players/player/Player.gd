@@ -431,7 +431,7 @@ func kill():
 	alive = false
 	
 	const death_offset_y = -4
-	const death_time_s = 1.2
+	const death_time_s = 1.1
 	
 	set_physics_process(false)
 	hide()

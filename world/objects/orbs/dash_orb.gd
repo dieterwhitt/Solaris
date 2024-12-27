@@ -13,7 +13,7 @@ const DASH_FRAMES : int = 6 #6
 const DASH_FRICTION : float = 950 # 1600 100 #2750
 const FRICTION_FRAMES : int = 5 # 4 #3
 
-@onready var dash_particles = $DashParticles
+@onready var dash_particles = $VisualParent/DashParticles
 
 func _ready():
 	super()
