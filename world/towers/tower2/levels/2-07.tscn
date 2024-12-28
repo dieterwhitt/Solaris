@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://world/towers/tower2/levels/2-07.gd" id="1_brclr"]
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_yhcbe"]
 [ext_resource type="TileSet" uid="uid://dgjiqrgsc00lg" path="res://world/tiles/layout_scene_tiles.tres" id="3_32ucl"]
-[ext_resource type="PackedScene" uid="uid://d0rkh45i2a8xl" path="res://world/objects/orbs/hop_orb.tscn" id="3_e01gn"]
+[ext_resource type="PackedScene" uid="uid://d0rkh45i2a8xl" path="res://world/objects/orbs/small_jump_orb.tscn" id="3_e01gn"]
 [ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="4_7b54t"]
 [ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="5_lp3y4"]
 

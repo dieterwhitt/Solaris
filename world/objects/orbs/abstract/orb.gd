@@ -37,6 +37,7 @@ func _ready():
 	if visual_parent == null:
 		print("orb error: visual parent not provided")
 		queue_free()
+		return
 	if not bubble:
 		bubble_scene.hide()
 	update_bubble_visibility()
@@ -74,18 +75,22 @@ func _consume():
 		if not node is GPUParticles2D and not node == bubble_scene:
 			node.hide()
 
+func _respawn():
+	# default behaviour: show all children
+	for node in visual_parent.get_children():
+		if bubble or node != bubble_scene:
+			node.show()
+	
+
 # removes self and adds back after reset time
-func remove():
+func consume_and_respawn():
 	used = true
 	if bubble:
 		bubble_scene.pop()
 	_consume()
 	# pause after removing
 	await get_tree().create_timer(RESET_TIME).timeout
-	# show all children
-	for node in visual_parent.get_children():
-		if bubble or node != bubble_scene:
-			node.show()
+	_respawn()
 	if bubble:
 		bubble_scene.reform()
 	used = false
@@ -97,5 +102,5 @@ func activate(body):
 	if used:
 		return
 	_orb_function(body)
-	remove()
+	consume_and_respawn()
 

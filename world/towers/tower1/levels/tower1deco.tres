@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bk71wpsmaydws" path="res://world/tiles/tower-1-deco/big spikes.png" id="3_ekmu8"]
 [ext_resource type="Texture2D" uid="uid://bycwnbyq566nj" path="res://world/tiles/tower-1-deco/BRICKTILESFIX.png" id="3_jpkeb"]
 [ext_resource type="Texture2D" uid="uid://dbu3wgbervaxi" path="res://world/tiles/tower-1-deco/MOSSTILES.png" id="4_qi533"]
-[ext_resource type="PackedScene" uid="uid://dvbn8ur7xitxc" path="res://world/objects/level-objects/illusory_wall_highlight.tscn" id="4_v30em"]
+[ext_resource type="PackedScene" uid="uid://dvbn8ur7xitxc" path="res://world/objects/level-objects/wall_jump/wall_jump.tscn" id="4_v30em"]
 [ext_resource type="Texture2D" uid="uid://weeg2wsa1ik0" path="res://world/tiles/tower-1-deco/BLANKETTILES.png" id="5_amiv5"]
 [ext_resource type="Texture2D" uid="uid://qw7gbc3k2xco" path="res://world/tiles/tower-1-deco/candles.png" id="9_qtdt3"]
 [ext_resource type="Texture2D" uid="uid://1mfw60q13jh" path="res://world/tiles/tower-1-deco/scaffoldingtileset.png" id="10_a8rt7"]

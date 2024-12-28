@@ -157,14 +157,6 @@ metadata/_edit_lock_ = true
 editor_description = "orbs, artifacts, ladders, etc."
 metadata/_edit_lock_ = true
 
-[node name="DashOrb2" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("3_j24nw")]
-position = Vector2(152, 40)
-rotation = 1.5708
-dir = 2
-bubble = true
-orb_area_path = NodePath("")
-visual_parent_path = NodePath("")
-
 [node name="DashOrb3" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("3_j24nw")]
 position = Vector2(112, 88)
 dir = 1

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="6_8msbr"]
 [ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="6_gayy5"]
 [ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="7_36msg"]
-[ext_resource type="PackedScene" uid="uid://d0rkh45i2a8xl" path="res://world/objects/orbs/hop_orb.tscn" id="8_mnb8x"]
+[ext_resource type="PackedScene" uid="uid://d0rkh45i2a8xl" path="res://world/objects/orbs/small_jump_orb.tscn" id="8_mnb8x"]
 [ext_resource type="PackedScene" uid="uid://jtl7uk1yuw3v" path="res://world/particles/rain/fg_rain.tscn" id="10_2f6ov"]
 [ext_resource type="PackedScene" uid="uid://yri1y85csvlw" path="res://old_players/player_reworked/player_reworked.tscn" id="11_bkgxh"]
 

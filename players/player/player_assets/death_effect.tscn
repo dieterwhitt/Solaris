@@ -26,9 +26,9 @@ alpha_curve = SubResource("CurveTexture_sgot1")
 
 [node name="DeathEffect" type="GPUParticles2D"]
 emitting = false
-amount = 40
+amount = 12
 process_material = SubResource("ParticleProcessMaterial_hfb7f")
 texture = ExtResource("1_diagm")
 lifetime = 0.7
 one_shot = true
-explosiveness = 0.7
+explosiveness = 0.8

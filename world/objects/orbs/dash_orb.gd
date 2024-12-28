@@ -2,6 +2,7 @@
 # dash orb
 
 # REWORKED DEC 2024
+# don't touch this file...
 
 @tool
 extends Orb
@@ -49,6 +50,10 @@ func _consume():
 	for node in rotate_parent.get_children():
 		if not node is GPUParticles2D and not node == bubble_scene:
 			node.hide()
+
+func _respawn():
+	for node in rotate_parent.get_children():
+		node.show()
 
 func _orb_function(body):
 	# calculate direction vector

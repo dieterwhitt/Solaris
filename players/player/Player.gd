@@ -20,6 +20,10 @@ var just_jumped = false
 var jump_hold_frames: int = 0 # number of frames currently holding jump
 var can_hold_jump = false
 
+# walljumps
+var on_walljump = false
+var used_walljump = false
+
 # dashing
 var dashing = false
 var dash_stopping = false
@@ -83,6 +87,8 @@ const item_frames : SpriteFrames = preload("res://players/player/placeholder_spr
 # death animation (just making sure player isn't killed more than once)
 var alive = true
 
+
+
 const FPS = 60
 
 '''antigravity - scrapped
@@ -119,7 +125,7 @@ func _physics_process(delta):
 	# in general: multiply by delta whenever velocity changes, except jump
 	# velocity means 'how much to move the character next frame'
 	# pre calculate on floor
-	on_floor = is_on_floor()
+	update_floor_wall()
 	update_direction()
 	update_momentum()
 	update_curse(delta)
@@ -142,6 +148,18 @@ func _physics_process(delta):
 
 func _complete_default_physics():
 	move_and_slide()
+
+func is_on_walljump():
+	for node in player_area.get_overlapping_areas():
+		if node.is_in_group("WallJumpArea"):
+			return true
+	return false
+
+func update_floor_wall():
+	on_floor = is_on_floor()
+	on_walljump = is_on_walljump()
+	
+
 
 func update_direction():
 	if receive_input:
@@ -224,16 +242,18 @@ func update_buffer(delta):
 		current_jump_buffer = MoveData.JUMP_BUFFER
 	elif current_jump_buffer > 0:
 		current_jump_buffer -= round(delta * FPS) # 1 frame on 60fps
-	
-		
-func update_jump_elig():
-	# replenish jump when on the floor
-	if on_floor:
-		used_jump = false
-		# also reset down gravity and jump holding status
-		apply_down_gravity = true
-		jump_hold_frames = 0 
 
+func update_jump_elig():
+	# replenish jump when on the floor or walljump
+	if on_floor or on_walljump:
+		if on_floor or on_walljump:
+			used_jump = false
+		# if on_walljump:
+			# used_walljump = false
+		# also reset down gravity
+		apply_down_gravity = true
+		
+# jump function
 func apply_jump(delta):
 	just_jumped = false
 	update_coyote(delta)
@@ -245,25 +265,23 @@ func apply_jump(delta):
 	# on floor <-> coyote > 0
 	if ((not used_jump and receive_input) 
 			and (Input.is_action_just_pressed("jump") or current_jump_buffer > 0)
-			 and (on_floor or current_coyote > 0)):
-		# print("jump")
+			 and (on_floor or current_coyote > 0 or on_walljump)):
 		# regular jump
 		velocity.y = MoveData.JUMP_VELOCITY
 		used_jump = true
 		just_jumped = true
 		can_hold_jump = true
+		jump_hold_frames = 0 # reset jump hold
 		# reset buffers
 		current_jump_buffer = 0
 		current_coyote = 0
-	elif used_jump and Input.is_action_pressed("jump") and \
+	elif Input.is_action_pressed("jump") and \
 			jump_hold_frames <= MoveData.JUMP_DURATION and can_hold_jump:
 		# jump hold
-		# print("hold")
 		jump_hold_frames += (round(delta * FPS))
 		velocity.y = MoveData.JUMP_VELOCITY
-	elif used_jump and Input.is_action_just_released("jump"):
+	elif Input.is_action_just_released("jump"):
 		# jump release: max out timer (can't re-hold)
-		# print("release")
 		can_hold_jump = false
 
 

@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dicpn63thecj8" path="res://world/backgrounds/finn-sketch1.png" id="1_rsyha"]
 [ext_resource type="TileSet" uid="uid://n525m3jhu2dx" path="res://world/tiles/shitty_tileset.tres" id="2_yfdqa"]
 [ext_resource type="PackedScene" uid="uid://yri1y85csvlw" path="res://old_players/player_reworked/player_reworked.tscn" id="3_12r68"]
-[ext_resource type="PackedScene" uid="uid://b7uh2up3p5ga0" path="res://world/objects/level-objects/normal_spike.tscn" id="3_en3lr"]
+[ext_resource type="PackedScene" uid="uid://b7uh2up3p5ga0" path="res://world/objects/level-objects/spikes/normal_spike.tscn" id="3_en3lr"]
 [ext_resource type="PackedScene" uid="uid://bvw780c0vet6v" path="res://world/objects/enemies/prototype-enemies/walking_enemy.tscn" id="3_ov02t"]
-[ext_resource type="PackedScene" uid="uid://cdqyy8r71bnmi" path="res://world/objects/level-objects/small_spikes.tscn" id="4_fryxv"]
+[ext_resource type="PackedScene" uid="uid://cdqyy8r71bnmi" path="res://world/objects/level-objects/spikes/small_spikes.tscn" id="4_fryxv"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="4_iqwo0"]
 [ext_resource type="PackedScene" uid="uid://bln36344x66pa" path="res://world/objects/orbs/teleport_orbs.tscn" id="5_qovld"]
 

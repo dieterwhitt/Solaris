@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="6_wtdel"]
 [ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="7_oqnmo"]
 [ext_resource type="PackedScene" uid="uid://fk3y1d2hulei" path="res://world/platforms/temporary_platform.tscn" id="8_cbmy3"]
-[ext_resource type="PackedScene" uid="uid://d0rkh45i2a8xl" path="res://world/objects/orbs/hop_orb.tscn" id="9_7kx8r"]
+[ext_resource type="PackedScene" uid="uid://d0rkh45i2a8xl" path="res://world/objects/orbs/small_jump_orb.tscn" id="9_7kx8r"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uljvq"]
 distance = 0.00014197

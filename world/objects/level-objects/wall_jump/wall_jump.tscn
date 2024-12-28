@@ -1,7 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvbn8ur7xitxc"]
+[gd_scene load_steps=9 format=3 uid="uid://dvbn8ur7xitxc"]
 
-[ext_resource type="Script" path="res://world/objects/level-objects/illusory_wall_highlight.gd" id="1_k6umh"]
-[ext_resource type="Material" uid="uid://bhmlrjkrl7to5" path="res://world/particles/small_rising_particles/small_rising_particles.tres" id="2_xx1yv"]
+[ext_resource type="Script" path="res://world/objects/level-objects/wall_jump/wall_jump.gd" id="1_1ebok"]
+
+[sub_resource type="Curve" id="Curve_b66q0"]
+_data = [Vector2(0.00316456, 0.996532), 0.0, 0.0, 0, 0, Vector2(0.992089, 0.167778), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a11vl"]
+curve = SubResource("Curve_b66q0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nvxwr"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 2.08165e-12, 1)
+direction = Vector3(2.08165e-12, -1, 2.08165e-12)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+color = Color(1, 0.956863, 0.827451, 1)
+alpha_curve = SubResource("CurveTexture_a11vl")
 
 [sub_resource type="Animation" id="Animation_5xnyd"]
 length = 0.001
@@ -42,13 +59,16 @@ _data = {
 "pulse": SubResource("Animation_fnmdy")
 }
 
-[node name="IllusoryWallHighlight" type="Node2D"]
-script = ExtResource("1_k6umh")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpvte"]
+size = Vector2(8, 2)
+
+[node name="WallJump" type="Node2D"]
+script = ExtResource("1_1ebok")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(2.08165e-12, 4)
 amount = 6
-process_material = ExtResource("2_xx1yv")
+process_material = SubResource("ParticleProcessMaterial_nvxwr")
 lifetime = 0.75
 preprocess = 0.3
 randomness = 0.5
@@ -65,3 +85,11 @@ libraries = {
 "": SubResource("AnimationLibrary_pyvhc")
 }
 autoplay = "pulse"
+
+[node name="Area2D" type="Area2D" parent="." groups=["WallJumpArea"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_qpvte")

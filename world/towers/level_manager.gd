@@ -225,6 +225,7 @@ func update_invincibility():
 # add some kind of error checking for going in blank levels so the game doesnt
 # crash
 func check_borders():
+	const velocity_boost_up = -190
 	var posn = player.position
 	# check left, right, top, bottom border
 	var target_posn_relative = Vector2.ZERO
@@ -237,8 +238,8 @@ func check_borders():
 				 current.SCREEN_HEIGHT)
 		# future improvment HERE:
 		# upwardvelocity boost when entering from below
-		if player.velocity.y > -190:
-			player.velocity.y = -190
+		if player.velocity.y > velocity_boost_up:
+			player.velocity.y = velocity_boost_up
 	elif posn.y > current.borders["bottom"]:
 		target_dir.y = 1
 		# keep relative x, set y to top of screen
