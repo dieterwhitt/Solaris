@@ -22,7 +22,6 @@ var can_hold_jump = false
 
 # walljumps
 var on_walljump = false
-var used_walljump = false
 
 # dashing
 var dashing = false
@@ -248,8 +247,6 @@ func update_jump_elig():
 	if on_floor or on_walljump:
 		if on_floor or on_walljump:
 			used_jump = false
-		# if on_walljump:
-			# used_walljump = false
 		# also reset down gravity
 		apply_down_gravity = true
 		

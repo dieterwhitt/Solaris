@@ -1,6 +1,6 @@
 # wall_jump.gd
 # lets the player wall jump when in contact.
-# logic added as part of player jump elig check.
+# logic added as part of player jump elig check
 
 extends Node2D
 
