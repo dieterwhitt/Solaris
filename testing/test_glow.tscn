@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://df6px7qnlpuh3"]
+
+[ext_resource type="Texture2D" uid="uid://dalqbk123rumn" path="res://icon.svg" id="1_y76jd"]
+
+[sub_resource type="Environment" id="Environment_dloqk"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 1
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(2, 2, 2, 1)
+texture = ExtResource("1_y76jd")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dloqk")

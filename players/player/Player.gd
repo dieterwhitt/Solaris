@@ -256,6 +256,9 @@ func apply_jump(delta):
 	update_coyote(delta)
 	update_buffer(delta)
 	update_jump_elig()
+	if Input.is_action_just_released("jump"):
+		# jump release: max out timer (can't re-hold)
+		can_hold_jump = false
 	# jump if the user can jump and the user just pressed space and is 
 	# still on the floor or in coyote time
 	# pressed space <-> buffer > 0
@@ -277,9 +280,7 @@ func apply_jump(delta):
 		# jump hold
 		jump_hold_frames += (round(delta * FPS))
 		velocity.y = MoveData.JUMP_VELOCITY
-	elif Input.is_action_just_released("jump"):
-		# jump release: max out timer (can't re-hold)
-		can_hold_jump = false
+	
 
 
 # dropping ledges

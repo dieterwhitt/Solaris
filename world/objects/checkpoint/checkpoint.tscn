@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://jttcj28mbwsg"]
+[gd_scene load_steps=18 format=3 uid="uid://jttcj28mbwsg"]
 
 [ext_resource type="Script" path="res://world/objects/checkpoint/checkpoint.gd" id="1_o8eth"]
 [ext_resource type="Texture2D" uid="uid://dejy8oxqop0x1" path="res://world/objects/checkpoint/bowelscheckpoint.png" id="1_vcfjb"]
+[ext_resource type="FontFile" uid="uid://bxxyt1c73i3l2" path="res://fonts/alagard.ttf" id="3_63gqx"]
 
 [sub_resource type="Animation" id="Animation_4xaci"]
 length = 0.001
@@ -142,10 +143,11 @@ position = Vector2(0.5, 4)
 shape = SubResource("RectangleShape2D_f7uvx")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -8.0
-offset_top = -56.0
-offset_right = 16.0
+offset_left = -10.0
+offset_top = -48.0
+offset_right = 11.0
 offset_bottom = -33.0
+theme_override_fonts/font = ExtResource("3_63gqx")
 text = "[E]"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

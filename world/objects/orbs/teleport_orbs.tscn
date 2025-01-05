@@ -7,6 +7,7 @@
 
 [node name="TeleportOrbs" type="Node2D"]
 script = ExtResource("1_7wngk")
+bubble = true
 orb_area_path = NodePath("OrbArea")
 visual_parent_path = NodePath("VisualParent")
 bubble_path = NodePath("VisualParent/Bubble")
@@ -31,6 +32,6 @@ frame = 6
 metadata/_edit_lock_ = true
 
 [node name="Bubble" parent="VisualParent" instance=ExtResource("3_mvkh0")]
-visible = false
 
 [node name="OrbArea" parent="." instance=ExtResource("3_fu1mo")]
+visible = false

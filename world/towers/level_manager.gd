@@ -20,13 +20,26 @@ level_manager:
 	- save checkpoints and respawn player on death
 '''
 
+# todo: add background management (background transfer between screens)
+# create custom parallax backgrounds, transfer offset between screens.
+# adjust y base_offset based on current screen height in level matrix. (for that background section)
+
+# the scale ratio (base_scale) for a non-repeating dimension is the number of extra
+# screens given on that layer's dimension divided by the number of screens
+# with that background in that dimension in the level.
+
+# thus if a background does not repeat, adjust the base offset by the
+# scale factor times the size of one screen dimension to get the pixel delta.
+# note that if you scale some layers less than the base offset (move slower), 
+# the engine will automatically calculate its starting posn
+
 # loaded scenes (deleted on checkpoint)
 # keep all the loaded levels in here so that we aren't loading things twice
 # level id (string) : node
 var loaded = {}
 # current tower rewource
 var tower : Tower = load("res://world/towers/tower1/tower1.gd").new()
-var spawn_lvl : String = "01" # current spawn level id (checkpoint)
+var spawn_lvl : String = "05" # current spawn level id (checkpoint)
 # setting checkpoints not established yet (need checkpoint scene)
 # for now just auto-set checkpoint when screen loads
 

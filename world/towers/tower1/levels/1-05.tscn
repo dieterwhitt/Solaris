@@ -1,13 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://56iv1nv88f8n"]
+[gd_scene load_steps=13 format=3 uid="uid://56iv1nv88f8n"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_1ee02"]
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-05.gd" id="1_4opag"]
+[ext_resource type="Texture2D" uid="uid://5fkugs3hgxor" path="res://world/backgrounds/bg1/bowelsbg1good.png" id="2_lah7d"]
 [ext_resource type="TileSet" uid="uid://btp05tgwulpae" path="res://world/towers/tower1/levels/tower1deco.tres" id="3_yo5iq"]
 [ext_resource type="TileSet" uid="uid://co5nljfb6abfh" path="res://world/towers/tower1/levels/tower1spikes.tres" id="4_esbh4"]
 [ext_resource type="TileSet" uid="uid://dgjiqrgsc00lg" path="res://world/tiles/layout_scene_tiles.tres" id="5_yp6vq"]
 [ext_resource type="TileSet" uid="uid://c8c3to5y0br5j" path="res://world/tiles/scene_tiles.tres" id="6_rhud3"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="7_jvuhh"]
 [ext_resource type="PackedScene" uid="uid://jttcj28mbwsg" path="res://world/objects/checkpoint/checkpoint.tscn" id="8_qmxeg"]
+[ext_resource type="FontFile" uid="uid://bxxyt1c73i3l2" path="res://fonts/alagard.ttf" id="10_rn64r"]
+[ext_resource type="FontFile" uid="uid://dlkifd3trwns5" path="res://fonts/vaticanus/Vaticanus.ttf" id="11_5w6d8"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xh0ji"]
 
@@ -111,6 +114,16 @@ metadata/_edit_lock_ = true
 z_index = -40
 metadata/_edit_lock_ = true
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="-40_BG_LAYER"]
+visible = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="-40_BG_LAYER/ParallaxBackground"]
+motion_scale = Vector2(0.2, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="-40_BG_LAYER/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_lah7d")
+centered = false
+
 [node name="-30_LEVEL" type="CanvasGroup" parent="."]
 z_index = -30
 metadata/_edit_lock_ = true
@@ -202,4 +215,17 @@ anchor_bottom = 0.5
 offset_top = -2.0
 offset_right = 40.0
 offset_bottom = 21.0
+theme_override_fonts/font = ExtResource("10_rn64r")
+theme_override_font_sizes/font_size = 16
 text = "death"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Label"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = -52.0
+offset_right = 160.0
+offset_bottom = -12.0
+theme_override_fonts/normal_font = ExtResource("11_5w6d8")
+theme_override_font_sizes/normal_font_size = 8
+text = "the quick brown fox jumps over the lazy dog.
+THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG."
