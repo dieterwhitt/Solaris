@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://caiwygmwb1v20"]
 
-[ext_resource type="Script" path="res://world/towers/tower1/levels/1-09.gd" id="1_0p1ni"]
+[ext_resource type="Script" path="res://world/towers/tower1/levels/old/1-09.gd" id="1_0p1ni"]
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_l8k5d"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="3_j24nw"]
 [ext_resource type="TileSet" uid="uid://dgjiqrgsc00lg" path="res://world/tiles/layout_scene_tiles.tres" id="3_titcw"]
@@ -125,7 +125,6 @@ editor_description = "For scene tiles at a 0 degree rotation"
 tile_set = ExtResource("3_titcw")
 format = 2
 layer_0/tile_data = PackedInt32Array(1179665, 0, 65536, 1179664, 0, 65536, 1179663, 0, 65536, 1179662, 0, 65536, 1179661, 0, 65536, 1179660, 0, 65536, 1114123, 0, 65536, 1114122, 0, 65536, 655378, 0, 65536, 655379, 0, 65536, 655380, 0, 65536, 655381, 0, 65536, 655382, 0, 65536, 655383, 0, 65536, 655384, 0, 65536)
-metadata/_edit_lock_ = true
 
 [node name="SceneTiles90deg" type="TileMap" parent="-30_LEVEL/Tilemaps"]
 editor_description = "For scene tiles at a 0 degree rotation"

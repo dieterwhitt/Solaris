@@ -1,15 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://8wt45uebyitn"]
+[gd_scene load_steps=6 format=3 uid="uid://8wt45uebyitn"]
 
 [ext_resource type="Script" path="res://world/objects/orbs/dash_orb.gd" id="1_slnlk"]
 [ext_resource type="Texture2D" uid="uid://4rcqj4tpgk5q" path="res://world/tiles/random-tiles.png" id="2_kebol"]
 [ext_resource type="PackedScene" uid="uid://d0372iweuqreu" path="res://world/particles/dash/dash_particles.tscn" id="3_lv4wo"]
 [ext_resource type="PackedScene" uid="uid://bxbi2dwwxdatb" path="res://world/objects/orbs/abstract/bubble/bubble.tscn" id="4_5b6ae"]
 [ext_resource type="PackedScene" uid="uid://dl2jmb8rgjdw2" path="res://world/objects/orbs/abstract/orb_area.tscn" id="4_vakcw"]
-
-[sub_resource type="Environment" id="Environment_pe0lx"]
-background_mode = 3
-glow_enabled = true
-glow_blend_mode = 0
 
 [node name="DashOrb" type="Node2D"]
 script = ExtResource("1_slnlk")
@@ -28,7 +23,6 @@ position = Vector2(-4, 4)
 [node name="RotateParent" type="Node2D" parent="VisualParent"]
 
 [node name="Orb" type="Sprite2D" parent="VisualParent/RotateParent"]
-modulate = Color(1.5, 1.5, 1.5, 1)
 texture = ExtResource("2_kebol")
 hframes = 4
 vframes = 4
@@ -40,6 +34,3 @@ position = Vector2(1.15042e-08, 5)
 
 [node name="OrbArea" parent="." instance=ExtResource("4_vakcw")]
 visible = false
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_pe0lx")

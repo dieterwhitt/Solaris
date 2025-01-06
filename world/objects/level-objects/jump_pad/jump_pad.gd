@@ -5,7 +5,7 @@
 
 extends Node2D
 
-const pad_velocity = -300
+const pad_velocity = 300
 var state_machine
 @onready var tree = $AnimationTree
 
@@ -42,13 +42,14 @@ func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
 		var velocities = {
 			# multiplier, dimension (x = 0, y = 1)
-			direction.UP : [1, 1],
+			direction.DOWN : [1, 1],
 			direction.RIGHT : [1, 0],
-			direction.DOWN : [-1, 1],
+			direction.UP : [-1, 1],
 			direction.LEFT : [-1, 0]
 		}
 		var pair = velocities[dir]
 		body.velocity[pair[1]] = pair[0] * pad_velocity
+		print(body.velocity)
 		body.used_jump = true
 		body.can_hold_jump = false
 		body.state_machine.start("jump")

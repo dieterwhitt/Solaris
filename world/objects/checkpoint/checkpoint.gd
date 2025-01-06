@@ -16,8 +16,6 @@ func _ready():
 	# checked already reached (value loaded from file)
 	if reached:
 		state_machine.start("reached")
-	# make label invisible
-	label.hide()
 
 func _physics_process(delta):
 	# check if player is in area
@@ -32,11 +30,19 @@ func _on_area_2d_body_entered(body):
 		if not reached:
 			# set checkpoint
 			set_checkpoint()
-		label.show()
+		fade_label(true)
 
 func _on_area_2d_body_exited(body):
 	if body.is_in_group("Player"):
-		label.hide()
+		fade_label(false)
+
+func fade_label(show: bool):
+	var tween = create_tween().set_trans(Tween.TRANS_QUART)
+	var current_color = label.modulate
+	var alpha = 255 if show else 0
+	print(alpha)
+	tween.tween_property(label, "modulate", 
+		Color8(current_color.r8, current_color.g8, current_color.b8, alpha), 0.15)
 
 func set_checkpoint():
 	# play animation

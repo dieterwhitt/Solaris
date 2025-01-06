@@ -24,7 +24,7 @@ frame = 5
 metadata/_edit_lock_ = true
 
 [node name="Exit" type="Sprite2D" parent="VisualParent"]
-position = Vector2(4, 4)
+position = Vector2(4, -12)
 texture = ExtResource("2_8k3s7")
 hframes = 4
 vframes = 4

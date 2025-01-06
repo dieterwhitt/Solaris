@@ -38,8 +38,6 @@ func _ready():
 		print("orb error: visual parent not provided")
 		queue_free()
 		return
-	if not bubble:
-		bubble_scene.hide()
 	update_bubble_visibility()
 	if not Engine.is_editor_hint():
 		hover() # hover tween animation

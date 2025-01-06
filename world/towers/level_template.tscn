@@ -10,55 +10,6 @@ editor_description = "Last step: Make this scene local and attach a script that 
 
 [node name="Borders" type="Node" parent="."]
 
-[node name="Right" type="Label" parent="Borders"]
-anchors_preset = -1
-anchor_left = 1.1
-anchor_top = 0.444
-anchor_right = 1.1
-anchor_bottom = 0.444
-offset_top = 0.0799936
-offset_right = 116.0
-offset_bottom = 23.08
-text = "Right: Level_XX"
-metadata/_edit_lock_ = true
-
-[node name="Top" type="Label" parent="Borders"]
-anchors_preset = -1
-anchor_left = 0.3
-anchor_top = -0.267
-anchor_right = 0.3
-anchor_bottom = -0.267
-offset_left = 8.0
-offset_top = 0.0600035
-offset_right = 124.0
-offset_bottom = 23.06
-text = "Top: Level_XX"
-metadata/_edit_lock_ = true
-
-[node name="Left" type="Label" parent="Borders"]
-anchors_preset = -1
-anchor_left = -0.425
-anchor_top = 0.444
-anchor_right = -0.425
-anchor_bottom = 0.444
-offset_top = 0.0799936
-offset_right = 116.0
-offset_bottom = 23.08
-text = "Left: Level_XX"
-metadata/_edit_lock_ = true
-
-[node name="Bottom" type="Label" parent="Borders"]
-anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 1.156
-anchor_right = 0.3
-anchor_bottom = 1.156
-offset_top = -0.0800033
-offset_right = 134.0
-offset_bottom = 22.92
-text = "Bottom: Level_XX"
-metadata/_edit_lock_ = true
-
 [node name="PhysicsBorder" type="StaticBody2D" parent="Borders"]
 collision_layer = 24
 collision_mask = 0

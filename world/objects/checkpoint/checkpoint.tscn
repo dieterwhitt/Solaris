@@ -143,6 +143,7 @@ position = Vector2(0.5, 4)
 shape = SubResource("RectangleShape2D_f7uvx")
 
 [node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
 offset_left = -10.0
 offset_top = -48.0
 offset_right = 11.0
