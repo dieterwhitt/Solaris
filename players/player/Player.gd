@@ -229,7 +229,7 @@ func apply_friction(delta, multiplier):
 
 func update_coyote(delta):
 	# set timer to the coyote time when on the ground
-	if on_floor:
+	if on_floor and not used_jump:
 		current_coyote = MoveData.COYOTE_TIME
 	elif current_coyote > 0:
 		# decrease the coyote timer for each frame off the ground
@@ -263,7 +263,7 @@ func apply_jump(delta):
 	# still on the floor or in coyote time
 	# pressed space <-> buffer > 0
 	# on floor <-> coyote > 0
-	if ((not used_jump and receive_input) 
+	elif ((not used_jump and receive_input) 
 			and (Input.is_action_just_pressed("jump") or current_jump_buffer > 0)
 			 and (on_floor or current_coyote > 0 or on_walljump)):
 		# regular jump

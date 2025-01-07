@@ -40,7 +40,6 @@ func fade_label(show: bool):
 	var tween = create_tween().set_trans(Tween.TRANS_QUART)
 	var current_color = label.modulate
 	var alpha = 255 if show else 0
-	print(alpha)
 	tween.tween_property(label, "modulate", 
 		Color8(current_color.r8, current_color.g8, current_color.b8, alpha), 0.15)
 

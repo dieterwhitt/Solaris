@@ -7,7 +7,6 @@ script = ExtResource("1_f187e")
 
 [node name="Overlay" type="ColorRect" parent="."]
 z_index = 20
-z_as_relative = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

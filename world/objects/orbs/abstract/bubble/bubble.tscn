@@ -1,46 +1,46 @@
 [gd_scene load_steps=14 format=3 uid="uid://bxbi2dwwxdatb"]
 
-[ext_resource type="Texture2D" uid="uid://bkq2cwk2iap63" path="res://world/objects/orbs/abstract/bubble/bubble.png" id="1_ah46q"]
 [ext_resource type="Script" path="res://world/objects/orbs/abstract/bubble/bubble.gd" id="2_p0ygw"]
+[ext_resource type="Texture2D" uid="uid://c58f8mtocewsv" path="res://world/objects/orbs/abstract/bubble/bubble-new.png" id="2_xp8s6"]
 [ext_resource type="PackedScene" uid="uid://cvlf6ekq4khui" path="res://world/objects/orbs/abstract/bubble/bubble_burst.tscn" id="3_cbln4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e4ebh"]
-atlas = ExtResource("1_ah46q")
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuh68"]
+atlas = ExtResource("2_xp8s6")
 region = Rect2(0, 0, 12, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bsmrb"]
-atlas = ExtResource("1_ah46q")
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqu3l"]
+atlas = ExtResource("2_xp8s6")
 region = Rect2(12, 0, 12, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_phpce"]
-atlas = ExtResource("1_ah46q")
+[sub_resource type="AtlasTexture" id="AtlasTexture_63ux0"]
+atlas = ExtResource("2_xp8s6")
 region = Rect2(24, 0, 12, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_doap6"]
-atlas = ExtResource("1_ah46q")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ui41"]
+atlas = ExtResource("2_xp8s6")
 region = Rect2(36, 0, 12, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dxl17"]
-atlas = ExtResource("1_ah46q")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnqp0"]
+atlas = ExtResource("2_xp8s6")
 region = Rect2(48, 0, 12, 12)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qiejs"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e4ebh")
+"texture": SubResource("AtlasTexture_kuh68")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bsmrb")
+"texture": SubResource("AtlasTexture_aqu3l")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_phpce")
+"texture": SubResource("AtlasTexture_63ux0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_doap6")
+"texture": SubResource("AtlasTexture_7ui41")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dxl17")
+"texture": SubResource("AtlasTexture_tnqp0")
 }],
 "loop": true,
 "name": &"default",
@@ -141,6 +141,7 @@ _data = {
 
 [node name="Bubble" type="Node2D"]
 modulate = Color(1, 1, 1, 0.784314)
+z_index = 2
 script = ExtResource("2_p0ygw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
