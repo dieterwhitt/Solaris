@@ -49,7 +49,6 @@ func _on_area_2d_body_entered(body):
 		}
 		var pair = velocities[dir]
 		body.velocity[pair[1]] = pair[0] * pad_velocity
-		print(body.velocity)
 		body.used_jump = true
 		body.can_hold_jump = false
 		body.state_machine.start("jump")
