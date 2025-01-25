@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://boqhc34m38d33"]
 
-[ext_resource type="Script" path="res://world/towers/tower1/levels/1-21.gd" id="1_jh1qy"]
+[ext_resource type="Script" path="res://world/towers/tower1/levels/old/1-21.gd" id="1_jh1qy"]
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_ouidc"]
 [ext_resource type="TileSet" uid="uid://dgjiqrgsc00lg" path="res://world/tiles/layout_scene_tiles.tres" id="3_18gtj"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="3_dwran"]
