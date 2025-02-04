@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://duveprttiws0m"]
+[gd_scene load_steps=3 format=3 uid="uid://duveprttiws0m"]
 
 [ext_resource type="Script" path="res://world/towers/level_manager.gd" id="1_f187e"]
+[ext_resource type="Script" path="res://world/towers/background_manager.gd" id="2_dx1xc"]
 
 [node name="LevelManager" type="Node"]
 script = ExtResource("1_f187e")
@@ -13,3 +14,7 @@ anchor_bottom = 1.0
 offset_right = 648.0
 offset_bottom = 460.0
 color = Color(0, 0, 0, 1)
+
+[node name="BackgroundManager" type="CanvasGroup" parent="."]
+z_index = -40
+script = ExtResource("2_dx1xc")

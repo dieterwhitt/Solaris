@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://l47p071535qk"]
+[gd_scene load_steps=10 format=3 uid="uid://l47p071535qk"]
 
 [ext_resource type="Texture2D" uid="uid://bf74xj3yabq5l" path="res://world/backgrounds/bg1/backgroundbgTEMPLE.png" id="1_1vfvm"]
+[ext_resource type="Script" path="res://world/backgrounds/background.gd" id="1_lt0gu"]
 [ext_resource type="Texture2D" uid="uid://da1wuu8q6ic2c" path="res://world/backgrounds/bg1/banner1TEMPLE.png" id="2_keeyf"]
 [ext_resource type="Texture2D" uid="uid://rcxlggtfrlkg" path="res://world/backgrounds/bg1/foregroundbgTEMPLE.png" id="2_rp4xf"]
 [ext_resource type="Texture2D" uid="uid://b3q0tgys5wgvn" path="res://world/backgrounds/bg1/banner3TEMPLE.png" id="3_7iuo1"]
@@ -10,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://b2p2qsp0bcjp8" path="res://world/backgrounds/bg1/decay3TEMPLE.png" id="8_7ih4l"]
 
 [node name="bg1" type="ParallaxBackground"]
+script = ExtResource("1_lt0gu")
+height = 180
+repeat_x = true
 
 [node name="back1" type="ParallaxLayer" parent="."]
 texture_repeat = 2
