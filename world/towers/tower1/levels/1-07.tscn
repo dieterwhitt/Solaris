@@ -167,6 +167,7 @@ position = Vector2(208, 132)
 [node name="TeleportOrbs2" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("6_myuv1")]
 position = Vector2(204, 80)
 exit_delta = Vector2(2.08165e-12, -56)
+bubble = true
 
 [node name="DashOrb3" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("4_tg7g3")]
 position = Vector2(112, -100)

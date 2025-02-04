@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://56iv1nv88f8n"]
+[gd_scene load_steps=14 format=3 uid="uid://56iv1nv88f8n"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_1ee02"]
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-05.gd" id="1_4opag"]
 [ext_resource type="Texture2D" uid="uid://5fkugs3hgxor" path="res://world/backgrounds/bg1/bowelsbg1good.png" id="2_lah7d"]
+[ext_resource type="PackedScene" uid="uid://l47p071535qk" path="res://world/backgrounds/bg1/bg1.tscn" id="3_ii4co"]
 [ext_resource type="TileSet" uid="uid://btp05tgwulpae" path="res://world/towers/tower1/levels/tower1deco.tres" id="3_yo5iq"]
 [ext_resource type="TileSet" uid="uid://co5nljfb6abfh" path="res://world/towers/tower1/levels/tower1spikes.tres" id="4_esbh4"]
 [ext_resource type="TileSet" uid="uid://dgjiqrgsc00lg" path="res://world/tiles/layout_scene_tiles.tres" id="5_yp6vq"]
@@ -66,6 +67,7 @@ z_index = -40
 metadata/_edit_lock_ = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="-40_BG_LAYER"]
+visible = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="-40_BG_LAYER/ParallaxBackground"]
 motion_scale = Vector2(0.2, 1)
@@ -73,6 +75,8 @@ motion_scale = Vector2(0.2, 1)
 [node name="Sprite2D" type="Sprite2D" parent="-40_BG_LAYER/ParallaxBackground/ParallaxLayer"]
 texture = ExtResource("2_lah7d")
 centered = false
+
+[node name="bg1" parent="-40_BG_LAYER" instance=ExtResource("3_ii4co")]
 
 [node name="-30_LEVEL" type="CanvasGroup" parent="."]
 z_index = -30
