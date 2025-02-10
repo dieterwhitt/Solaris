@@ -180,3 +180,6 @@ offset_right = 220.0
 offset_bottom = 239.0
 theme_override_fonts/font = ExtResource("6_deam7")
 text = "curse"
+
+[node name="Spawn" type="Node2D" parent="."]
+position = Vector2(72, 128)

@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://l47p071535qk"]
+[gd_scene load_steps=11 format=3 uid="uid://l47p071535qk"]
 
 [ext_resource type="Texture2D" uid="uid://bf74xj3yabq5l" path="res://world/backgrounds/bg1/backgroundbgTEMPLE.png" id="1_1vfvm"]
 [ext_resource type="Script" path="res://world/backgrounds/background.gd" id="1_lt0gu"]
 [ext_resource type="Texture2D" uid="uid://da1wuu8q6ic2c" path="res://world/backgrounds/bg1/banner1TEMPLE.png" id="2_keeyf"]
-[ext_resource type="Texture2D" uid="uid://rcxlggtfrlkg" path="res://world/backgrounds/bg1/foregroundbgTEMPLE.png" id="2_rp4xf"]
 [ext_resource type="Texture2D" uid="uid://b3q0tgys5wgvn" path="res://world/backgrounds/bg1/banner3TEMPLE.png" id="3_7iuo1"]
+[ext_resource type="Texture2D" uid="uid://bqm442ou1yee0" path="res://world/backgrounds/bg1/middlepillarTEMPLE.png" id="3_si1si"]
 [ext_resource type="Texture2D" uid="uid://drbitt5ie11cy" path="res://world/backgrounds/bg1/banner6TEMPLE.png" id="4_gcb84"]
 [ext_resource type="Texture2D" uid="uid://cim3eusahtrkm" path="res://world/backgrounds/bg1/decay1TEMPLE.png" id="6_p52v0"]
+[ext_resource type="Texture2D" uid="uid://drjcreay24885" path="res://world/backgrounds/bg1/frontpillarTEMPLE.png" id="7_a525v"]
 [ext_resource type="Texture2D" uid="uid://cisy35iyw7mem" path="res://world/backgrounds/bg1/decay2TEMPLE.png" id="7_ggfcx"]
 [ext_resource type="Texture2D" uid="uid://b2p2qsp0bcjp8" path="res://world/backgrounds/bg1/decay3TEMPLE.png" id="8_7ih4l"]
 
@@ -15,28 +16,38 @@ script = ExtResource("1_lt0gu")
 height = 180
 repeat_x = true
 
-[node name="back1" type="ParallaxLayer" parent="."]
+[node name="back-pillars" type="ParallaxLayer" parent="."]
 texture_repeat = 2
 motion_scale = Vector2(0.2, 1)
 
-[node name="TextureRect" type="TextureRect" parent="back1"]
-offset_right = 3200.0
+[node name="TextureRect" type="TextureRect" parent="back-pillars"]
+offset_right = 640.0
 offset_bottom = 360.0
 texture = ExtResource("1_1vfvm")
 stretch_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="fore1" type="ParallaxLayer" parent="."]
+[node name="mid-pillars" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.3, 1)
+
+[node name="TextureRect" type="TextureRect" parent="mid-pillars"]
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("3_si1si")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="banners" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.4, 1)
 motion_mirroring = Vector2(300, 2.08165e-12)
 
-[node name="Sprite2D" type="Sprite2D" parent="fore1"]
+[node name="Sprite2D" type="Sprite2D" parent="banners"]
 texture = ExtResource("2_keeyf")
 centered = false
 offset = Vector2(2.08165e-12, 2.08165e-12)
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D4" type="Sprite2D" parent="fore1"]
+[node name="Sprite2D4" type="Sprite2D" parent="banners"]
 position = Vector2(112, 0)
 texture = ExtResource("2_keeyf")
 centered = false
@@ -44,67 +55,68 @@ offset = Vector2(2.08165e-12, 2.08165e-12)
 flip_h = true
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D2" type="Sprite2D" parent="fore1"]
-position = Vector2(158, 186)
+[node name="Sprite2D2" type="Sprite2D" parent="banners"]
+position = Vector2(148, 185)
 texture = ExtResource("3_7iuo1")
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D3" type="Sprite2D" parent="fore1"]
-position = Vector2(37, 228)
+[node name="Sprite2D3" type="Sprite2D" parent="banners"]
+position = Vector2(48, 229)
 texture = ExtResource("4_gcb84")
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D5" type="Sprite2D" parent="fore1"]
-position = Vector2(265, 82)
+[node name="Sprite2D5" type="Sprite2D" parent="banners"]
+position = Vector2(248, 92)
 texture = ExtResource("4_gcb84")
 centered = false
 flip_h = true
 metadata/_edit_lock_ = true
 
-[node name="fore2" type="ParallaxLayer" parent="."]
+[node name="front-pillars" type="ParallaxLayer" parent="."]
 texture_repeat = 2
-motion_scale = Vector2(0.3, 1)
+motion_scale = Vector2(0.4, 1)
 
-[node name="TextureRect" type="TextureRect" parent="fore2"]
-offset_right = 3200.0
+[node name="TextureRect" type="TextureRect" parent="front-pillars"]
+offset_right = 640.0
 offset_bottom = 360.0
-texture = ExtResource("2_rp4xf")
+texture = ExtResource("7_a525v")
 stretch_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="fore3" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.3, 1)
+[node name="decay" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.4, 1)
+motion_mirroring = Vector2(300, 2.08165e-12)
 
-[node name="Sprite2D" type="Sprite2D" parent="fore3"]
-position = Vector2(63, 100)
+[node name="Sprite2D" type="Sprite2D" parent="decay"]
+position = Vector2(48, 103)
 texture = ExtResource("6_p52v0")
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D4" type="Sprite2D" parent="fore3"]
-position = Vector2(163, 189)
+[node name="Sprite2D4" type="Sprite2D" parent="decay"]
+position = Vector2(148, 188)
 texture = ExtResource("6_p52v0")
 centered = false
 flip_v = true
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D2" type="Sprite2D" parent="fore3"]
-position = Vector2(33, 201)
+[node name="Sprite2D2" type="Sprite2D" parent="decay"]
+position = Vector2(48, 202)
 texture = ExtResource("7_ggfcx")
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D5" type="Sprite2D" parent="fore3"]
-position = Vector2(263, 81)
+[node name="Sprite2D5" type="Sprite2D" parent="decay"]
+position = Vector2(248, 82)
 texture = ExtResource("7_ggfcx")
 centered = false
 flip_h = true
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D3" type="Sprite2D" parent="fore3"]
-position = Vector2(163, 61)
+[node name="Sprite2D3" type="Sprite2D" parent="decay"]
+position = Vector2(148, 60)
 texture = ExtResource("8_7ih4l")
 centered = false
 flip_v = true

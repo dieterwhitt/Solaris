@@ -5,7 +5,7 @@
 
 extends CanvasGroup
 
-var background
+var background : ParallaxBackground
 
 func _ready():
 	pass
@@ -26,3 +26,7 @@ func get_leftmost():
 
 func get_rightmost():
 	pass
+	
+func get_background():
+	pass
+	

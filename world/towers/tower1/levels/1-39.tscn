@@ -1,17 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bpl0sdojh01o2"]
+[gd_scene load_steps=7 format=3 uid="uid://bpl0sdojh01o2"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_w3ltd"]
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-39.gd" id="1_ylhnq"]
 [ext_resource type="TileSet" uid="uid://dgjiqrgsc00lg" path="res://world/tiles/layout_scene_tiles.tres" id="3_f87er"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="3_ss0t3"]
-[ext_resource type="Script" path="res://world/objects/orbs/teleport_orbs.gd" id="4_ix03n"]
 [ext_resource type="TileSet" uid="uid://c8c3to5y0br5j" path="res://world/tiles/scene_tiles.tres" id="4_pk0pm"]
-[ext_resource type="Texture2D" uid="uid://cntkhgy4sqump" path="res://world/tiles/random-tiles-v2.png" id="5_p6yor"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0e1bx"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykfev"]
-size = Vector2(12, 12)
 
 [node name="1-39" type="Node"]
 editor_description = "Last step: Make this scene local and attach a script that extends from Level. If the current borders are not in the default positions, adjust their values in the inspector. Use the new script to handle any logic specific to the level."
@@ -190,50 +185,9 @@ metadata/_edit_lock_ = true
 
 [node name="DashOrb" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("3_ss0t3")]
 position = Vector2(280, 136)
-glass = true
 
 [node name="DashOrb2" parent="-20_ENTITIES/LevelObjects" instance=ExtResource("3_ss0t3")]
 position = Vector2(280, 80)
-glass = true
-
-[node name="TeleportOrbs" type="Node2D" parent="-20_ENTITIES/LevelObjects"]
-position = Vector2(24, 160)
-script = ExtResource("4_ix03n")
-glass = true
-
-[node name="Area2D" type="Area2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
-collision_mask = 2
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs/Area2D"]
-position = Vector2(4, -4)
-shape = SubResource("RectangleShape2D_ykfev")
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
-position = Vector2(4, -4)
-texture = ExtResource("5_p6yor")
-hframes = 4
-vframes = 4
-frame = 5
-metadata/_edit_lock_ = true
-
-[node name="Glass" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
-visible = false
-position = Vector2(4, -4)
-texture = ExtResource("5_p6yor")
-hframes = 4
-vframes = 4
-frame = 3
-
-[node name="Exit" type="Node2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs"]
-position = Vector2(520, -96)
-
-[node name="Sprite2D" type="Sprite2D" parent="-20_ENTITIES/LevelObjects/TeleportOrbs/Exit"]
-texture = ExtResource("5_p6yor")
-hframes = 4
-vframes = 4
-frame = 6
 
 [node name="MovingEntities" type="Node2D" parent="-20_ENTITIES"]
 editor_description = "Any moving enemies/hazards/npcs"

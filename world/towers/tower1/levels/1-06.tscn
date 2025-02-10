@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqhwcxfx5gteh"]
+[gd_scene load_steps=9 format=3 uid="uid://dqhwcxfx5gteh"]
 
 [ext_resource type="TileSet" uid="uid://86jyx871yeuu" path="res://world/tiles/layout_tileset.tres" id="1_44qqg"]
 [ext_resource type="Script" path="res://world/towers/tower1/levels/1-06.gd" id="1_17040"]
 [ext_resource type="Texture2D" uid="uid://5fkugs3hgxor" path="res://world/backgrounds/bg1/bowelsbg1good.png" id="2_dwd2e"]
 [ext_resource type="TileSet" uid="uid://btp05tgwulpae" path="res://world/towers/tower1/levels/tower1deco.tres" id="3_7p7a1"]
+[ext_resource type="PackedScene" uid="uid://l47p071535qk" path="res://world/backgrounds/bg1/bg1.tscn" id="3_boorv"]
 [ext_resource type="PackedScene" uid="uid://8wt45uebyitn" path="res://world/objects/orbs/dash_orb.tscn" id="4_f1oh6"]
 [ext_resource type="TileSet" uid="uid://dgjiqrgsc00lg" path="res://world/tiles/layout_scene_tiles.tres" id="5_0445l"]
 
@@ -105,8 +106,11 @@ z_index = -40
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="-40_BG_LAYER"]
+visible = false
 texture = ExtResource("2_dwd2e")
 centered = false
+
+[node name="bg1" parent="-40_BG_LAYER" instance=ExtResource("3_boorv")]
 
 [node name="-30_LEVEL" type="CanvasGroup" parent="."]
 z_index = -30
